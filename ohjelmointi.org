@@ -1,0 +1,37 @@
+# -*- org-autonum-enable: t; -*-
+
+* Kuvioiden piirtäminen <<1>>
+  Processing-ohjelmointikielessä piirretään kuvioita ja
+  animaatioita. Eräs peruskuvioista on suorakulmio (englanniksi
+  /rectangle/). Seuraavassa esimerkissä piirretään suorakulmio
+  ikkunaan, jonka koko on $600\times 400$ pikseliä.
+  #+BEGIN_SRC processing :exports both
+    size (600, 400);
+    rect (50, 10, 150, 70);
+  #+END_SRC
+
+  #+RESULTS:
+  #+BEGIN_HTML
+  <script src="processing.js"></script>
+   <script type="text/processing" data-processing-target="ob-1b8cf2b9836c06906b4194c446c1f7523b0e3f69">
+  rect (50, 10, 150, 70);
+  </script> <canvas id="ob-1b8cf2b9836c06906b4194c446c1f7523b0e3f69"></canvas>
+  #+END_HTML
+
+  Komento ~size (600, 400);~ avaa piirtoikkunan, jonka leveys on 600
+  pikseliä ja korkeus 400 pikseliä. 
+* Väri <<2>>
+* Piirtoikkuna ja koordinaatisto <<3>>
+* Vakio <<4>>
+* Laskulauseke <<5>>
+* Lauseke <<6>>
+* Muuttuja <<7>>
+* Ehdollinen suorittaminen <<8>>
+* ~while~-silmukka <<9>>
+* ~for~-silmukka <<10>>
+* Funktion määritteleminen <<11>>
+* Animaatio <<12>>
+* Aika <<13>>
+* Hiiri <<14>>
+* Satunnaisuus <<15>>
+* Rekursio <<16>>
