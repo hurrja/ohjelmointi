@@ -14,17 +14,26 @@
    kulmapisteiden koordinaatit sekä pisteiden \((70, 40)\) ja \((220,
    130)\) kohdat.
 
+   
    #+NAME: koordinaatisto
-   #+BEGIN_SRC asymptote :file koordinaatisto.svg
+   #+BEGIN_SRC asymptote :exports none
      int LEVEYS = 600;
      int KORKEUS = 400;
      size (LEVEYS, KORKEUS);
      filldraw (xscale (LEVEYS) * yscale (KORKEUS) * unitsquare, lightgray);
+     // muunnos Processing-koordinaatistosta perinteiseen koordinaatistoon
+     transform T = shift ((0, 400)) * yscale (-1); 
+     real s = -.05 * LEVEYS; // akselien translaatio pois ikkunan reunalta
+     draw ("$x$", T * shift ((0, s)) * ((0, 0) -- (LEVEYS, 0)), LeftSide, EndArrow);
+     draw ("$y$", T * shift ((2*s, 0)) * ((0, 0) -- (0, KORKEUS)), EndArrow);
+
+   #+END_SRC
+
+   #+NAME: pisteita-koordinaatistossa
+   #+BEGIN_SRC asymptote :noweb yes :file pisteita-koordinaatistossa.svg 
+     <<koordinaatisto>>
      pair A = (70, 40);
      pair B = (220, 130);
-
-     // muunnos perinteisestä koordinaatistosta Processing-koordinaatistoon
-     transform T = shift ((0, 400)) * yscale (-1); 
 
      for (pair P : new pair[] {A, B})
        dot ((string) P, T * P, NE);
@@ -34,13 +43,10 @@
            pair P = (x, y);
            dot ((string) P, T * P, (x == 0 ? W : E));
          }
-     real s = -.05 * LEVEYS; // akselien translaatio pois ikkunan reunalta
-     draw ("$x$", T * shift ((0, s)) * ((0, 0) -- (LEVEYS, 0)), LeftSide, EndArrow);
-     draw ("$y$", T * shift ((2*s, 0)) * ((0, 0) -- (0, KORKEUS)), EndArrow);
    #+END_SRC
 
-   #+RESULTS: koordinaatisto
-   [[file:koordinaatisto.svg]]
+   #+RESULTS: pisteita-koordinaatistossa
+   [[file:pisteita-koordinaatistossa.svg]]
 
    Eräs peruskuvioista on suorakulmio (englanniksi
    /rectangle/). Seuraavassa esimerkissä piirretään suorakulmio
@@ -163,9 +169,28 @@
       pisteellä $E$ ja sama \(y\)-koordinaatti kuin pisteellä \(A,\)
       joten \(G(200, 50).\)
     
-   #+BEGIN_SRC asymptote :file kolmio-nelio.svg
-   
+   #+BEGIN_SRC asymptote :file kolmio-nelio.svg :noweb yes
+     <<koordinaatisto>>
+     pair A = (50, 50);
+     int s = 300; // sivun pituus
+     pair B = shift ((0, s)) * A;
+     pair C = shift ((s, 0)) * B;
+
+     draw (T * (A -- B -- C -- cycle), dashed);
+     pair D = midpoint (A -- B);
+     pair Ep = midpoint (B -- C);
+     pair F = (C.x, D.y);
+     pair G = (Ep.x, A.y);
+     draw (T * (D -- Ep -- F -- G -- cycle), dashed);
+     pair[] points = {A, B, C, D, Ep, F, G};
+     string[] labels = {"$A$", "$B$", "$C$", "$D$", "$E$", "$F$", "$G$"};
+     for (int i = 0; i < points.length; ++i)
+       {
+         pair P = points [i];
+         dot (labels [i] + (string) P, T * P, (P.y == A.x + s ? S : E));
+       }
    #+END_SRC
+
 ** Tehtävät
   1. Piirrä \(800\times 600\)-kokoiseen piirtoikkunaan 
      a) nelikulmio, jonka vasen yläkulma on pisteessä \((160, 90)\) ja
