@@ -1,18 +1,19 @@
 # -*- org-autonum-enable: t; -*-
 
 * Piirtäminen lausekkeiden avulla <<1>>
+  <<txt:piirtaminen>>
 ** Piirtoikkunan pisteen koordinaatit <<1.1>>
    
    Processing-ohjelmointikielessä piirretään kuvioita ja animaatioita
-   piirtoikkunaan. Piirtoikkunan eri kohtiin viitataan \(x\)- ja
-   \(y\)-koordinaateilla. Esimerkiksi pisteen \((70, 40)\)
-   \(x\)-koordinaatti on 70 ja \(y\)-koordinaatti 40. Toisin kuin
-   matematiikassa, piirtoikkunassa piste \((0, 0)\) on /vasemmassa
-   yläkulmassa/ ja \(y\)-koordinaatin arvot kasvavat
-   /alaspäin/. Seuraavaan kuva esittää piirtoikkunaa, jonka leveys on
-   600 ja korkeus 400. Kuvaan on piirretty myös kaikkien ikkunan
-   kulmapisteiden koordinaatit sekä pisteiden \((70, 40)\) ja \((220,
-   130)\) kohdat.
+   piirtoikkunaan. Piirtoikkunan eri kohtiin eli /pikseleihin/
+   viitataan \(x\)- ja \(y\)-koordinaateilla. Esimerkiksi pisteen
+   \((70, 40)\) \(x\)-koordinaatti on 70 ja
+   \(y\)-koordinaatti 40. Toisin kuin matematiikassa, piirtoikkunassa
+   piste \((0, 0)\) on /vasemmassa yläkulmassa/ ja \(y\)-koordinaatin
+   arvot kasvavat /alaspäin/. Seuraavaan kuva esittää piirtoikkunaa,
+   jonka leveys on 600 ja korkeus 400. Kuvaan on piirretty myös
+   kaikkien ikkunan kulmapisteiden koordinaatit sekä pisteiden \((70,
+   40)\) ja \((220, 130)\) kohdat.
 
    
    #+NAME: koordinaatisto
@@ -67,9 +68,9 @@
    130, \] suorakaiteen oikea alakulma on samassa kohdassa kuin yllä
    olevaan kuvaan piirretty piste \((220, 130)\).
 
-   Tarkalleen ottaen suorakulmio koostuu pienistä neliöistä eli
-   /pikseleistä/, mikä vaikuttaa hieman oikean alakulman tarkkoihin
-   koordinaatteihin. Tähän palataan kappaleessa [[txt:pikseli]].
+   Tarkalleen ottaen pikselit ovat pieniä neliöitä, mikä vaikuttaa
+   hieman oikean alakulman tarkkoihin koordinaatteihin. Tähän palataan
+   kappaleessa [[txt:pikseli]].
 ** Ohjelmarivin muoto
    Tietokoneohjelma koostuu tyypillisesti /ohjelmariveistä/, joita
    edellä olevasta ohjelmasta löytyy kaksi. Processing-ohjelma on
@@ -194,10 +195,61 @@
 ** Tehtävät
   1. Piirrä \(800\times 600\)-kokoiseen piirtoikkunaan 
      a) nelikulmio, jonka vasen yläkulma on pisteessä \((160, 90)\) ja
-        jonka leveys on 300 ja korkeus 500
+        jonka leveys on 200 ja korkeus 300
+     b) kolmio, jonka kärkipisteet ovat \((110, 500)\), \((370, 420)\)
+        sekä \((480, 570)\)
+     c) nelikulmio, jonka kärkipisteet ovat vastapäivään kiertäen
+        lueteltuina \((730, 50)\), \((450, 370)\), \((770, 530)\)
+        sekä \((610, 250)\).
+  2. Piirrä seuraavanlaiset kuvat. Piirtoikkunan koko on \(200\times 200.\)
+     a) 
+	#+NAME: kolmio-neliossa
+	#+BEGIN_SRC processing
+          size (200, 200);
+          triangle (0, 100, 0, 200, 200, 0);
+	#+END_SRC
      b) 
-     
-
+	#+BEGIN_SRC processing
+          size (200, 200);
+          quad (0, 0, 200, 200, 200, 100, 100, 0);
+          triangle (0, 100, 0, 200, 100, 200);
+	#+END_SRC
+     c) 
+	#+BEGIN_SRC processing
+          size (200, 200);
+          quad (0, 100, 100, 200, 200, 100, 100, 0);
+          rect (50, 50, 100, 100);
+	#+END_SRC
+  3. Piirrä haluamasi kokoiseen piirtoikkunaan valitsemasi kokoinen
+     a) puolisuunnikas
+     b) tasakylkinen kolmio, joka ei ole suorakulmainen
+     c) suunnikas, joka ei ole suorakulmio.
+  4. Piirrä seuraavat kuviot. Piirtoikkunan koko on \(300\times 200.\)
+     a) Suorakaide on piirtoikkunan keskellä, ja suorakaiteen leveys
+        ja korkeus ovat puolet piirtoikkunan vastaavista mitoista.
+	#+BEGIN_SRC processing
+          size (300, 200);
+          rect (75, 50, 150, 100);
+	#+END_SRC
+     b) Ulomman suunnikkaan kaksi kärkipistettä jakavat piirtoikkunan
+        pidemmät sivut suhteessa \(1:2.\) Sisemmän suunnikkaan
+        kärkipisteet ovat ulomman suunnikkaan sivujen keskipisteitä.
+	#+BEGIN_SRC processing
+          size (300, 200);
+          quad (100, 0, 300, 100, 200, 200, 0, 100);
+          quad (50, 50, 200, 50, 250, 150, 100, 150);
+	#+END_SRC
+  5. Tasakylkinen kolmio
+  6. Tasasivuinen kolmio
+  7. Piirrä haluamasi näköiset ja kokoiset versiot isoista kirjaimista
+     T, X, A, B sekä Q. Alla esimerkkinä yksi versio
+     A-kirjaimesta.
+     #+BEGIN_SRC processing
+       size (300, 200);
+       rect (75, 100, 150, 30);
+       quad (250, 200, 300, 200, 175, 0, 125, 0);
+       quad (0, 200, 50, 200, 175, 0, 125, 0);
+     #+END_SRC
 * Väri <<2>>
 * Piirtoikkuna ja koordinaatisto <<3>>
 * Vakio <<4>>
@@ -215,3 +267,12 @@
 * Hiiri <<15>>
 * Satunnaisuus <<16>>
 * Rekursio <<17>>
+* Ratkaisut
+** [[txt:piirtaminen]]
+   1.
+      #+BEGIN_SRC processing
+        size (800, 600);
+        rect (160, 90, 200, 300);
+        triangle (110, 500, 370, 420, 480, 570);
+        quad (730, 50, 450, 370, 770, 530, 610, 250);
+      #+END_SRC
