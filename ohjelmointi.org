@@ -1,4 +1,32 @@
+#+COLUMNS: %25ITEM(Aihe) %TUNNIT(Tunteja)
+* Aikataulu
+  #+BEGIN: columnview :id global :maxlevel 1
+  | Aihe                                                  | Tunteja |
+  |-------------------------------------------------------+---------|
+  | * Aikataulu                                           |         |
+  | * Piirtäminen lausekkeiden avulla <<txt:piirtaminen>> |       2 |
+  | * Väri                                                |       1 |
+  | * Piirtoikkuna ja koordinaatisto                      |         |
+  | * Vakio                                               |         |
+  | * Laskulauseke                                        |         |
+  | * Lauseke                                             |         |
+  | * Muuttuja                                            |         |
+  | * Ehdollinen suorittaminen                            |         |
+  | * ~while~-silmukka                                    |         |
+  | * ~for~-silmukka                                      |         |
+  | * Pikseli <<txt:pikseli>>                             |         |
+  | * Funktion määritteleminen                            |         |
+  | * Animaatio                                           |         |
+  | * Aika                                                |         |
+  | * Hiiri                                               |         |
+  | * Satunnaisuus                                        |         |
+  | * Rekursio                                            |         |
+  | * Ratkaisut                                           |         |
+  #+END:
 * Piirtäminen lausekkeiden avulla <<txt:piirtaminen>>
+  :PROPERTIES:
+  :TUNNIT:   2
+  :END:
 ** Piirtoikkunan pisteen koordinaatit
    
    Processing-ohjelmointikielessä piirretään kuvioita ja animaatioita
@@ -257,6 +285,9 @@
      tilaa. Voit pyöristää laskujesi tuloksina saamasi koordinaatit
      kokonaisluvuiksi.
 * Väri
+  :PROPERTIES:
+  :TUNNIT:   1
+  :END:
 * Piirtoikkuna ja koordinaatisto
 * Vakio
 * Laskulauseke
