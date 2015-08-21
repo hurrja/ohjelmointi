@@ -1,8 +1,5 @@
-# -*- org-autonum-enable: t; -*-
-
-* Piirtäminen lausekkeiden avulla <<1>>
-  <<txt:piirtaminen>>
-** Piirtoikkunan pisteen koordinaatit <<1.1>>
+* Piirtäminen lausekkeiden avulla <<txt:piirtaminen>>
+** Piirtoikkunan pisteen koordinaatit
    
    Processing-ohjelmointikielessä piirretään kuvioita ja animaatioita
    piirtoikkunaan. Piirtoikkunan eri kohtiin eli /pikseleihin/
@@ -259,23 +256,22 @@
      paljon tilaa ja myös ylä- ja alapuolelle jää yhtä paljon
      tilaa. Voit pyöristää laskujesi tuloksina saamasi koordinaatit
      kokonaisluvuiksi.
-* Väri <<2>>
-* Piirtoikkuna ja koordinaatisto <<3>>
-* Vakio <<4>>
-* Laskulauseke <<5>>
-* Lauseke <<6>>
-* Muuttuja <<7>>
-* Ehdollinen suorittaminen <<8>>
-* ~while~-silmukka <<9>>
-* ~for~-silmukka <<10>>
-* Pikseli <<11>>
-  <<txt:pikseli>>
-* Funktion määritteleminen <<12>>
-* Animaatio <<13>>
-* Aika <<14>>
-* Hiiri <<15>>
-* Satunnaisuus <<16>>
-* Rekursio <<17>>
+* Väri
+* Piirtoikkuna ja koordinaatisto
+* Vakio
+* Laskulauseke
+* Lauseke
+* Muuttuja
+* Ehdollinen suorittaminen
+* ~while~-silmukka
+* ~for~-silmukka
+* Pikseli <<txt:pikseli>>
+* Funktion määritteleminen
+* Animaatio
+* Aika
+* Hiiri
+* Satunnaisuus
+* Rekursio
 * Ratkaisut
 ** [[txt:piirtaminen]]
    1. 
