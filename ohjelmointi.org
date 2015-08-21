@@ -203,18 +203,20 @@
         sekä \((610, 250)\).
   2. Piirrä seuraavanlaiset kuvat. Piirtoikkunan koko on \(200\times 200.\)
      a) 
-	#+NAME: kolmio-neliossa
+	#+NAME: piirtaminen-kolmio
 	#+BEGIN_SRC processing
           size (200, 200);
           triangle (0, 100, 0, 200, 200, 0);
 	#+END_SRC
      b) 
+	#+NAME: piirtaminen-raidat
 	#+BEGIN_SRC processing
           size (200, 200);
           quad (0, 0, 200, 200, 200, 100, 100, 0);
           triangle (0, 100, 0, 200, 100, 200);
 	#+END_SRC
      c) 
+	#+NAME: piirtaminen-neliot
 	#+BEGIN_SRC processing
           size (200, 200);
           quad (0, 100, 100, 200, 200, 100, 100, 0);
@@ -227,6 +229,7 @@
   4. Piirrä seuraavat kuviot. Piirtoikkunan koko on \(300\times 200.\)
      a) Suorakaide on piirtoikkunan keskellä, ja suorakaiteen leveys
         ja korkeus ovat puolet piirtoikkunan vastaavista mitoista.
+	#+NAME: piirtaminen-suorakaide-keskella
 	#+BEGIN_SRC processing
           size (300, 200);
           rect (75, 50, 150, 100);
@@ -234,14 +237,13 @@
      b) Ulomman suunnikkaan kaksi kärkipistettä jakavat piirtoikkunan
         pidemmät sivut suhteessa \(1:2.\) Sisemmän suunnikkaan
         kärkipisteet ovat ulomman suunnikkaan sivujen keskipisteitä.
+	#+NAME: piirtaminen-sisakkaiset-suunnikkaat
 	#+BEGIN_SRC processing
           size (300, 200);
           quad (100, 0, 300, 100, 200, 200, 0, 100);
           quad (50, 50, 200, 50, 250, 150, 100, 150);
 	#+END_SRC
-  5. Tasakylkinen kolmio
-  6. Tasasivuinen kolmio
-  7. Piirrä haluamasi näköiset ja kokoiset versiot isoista kirjaimista
+  5. Piirrä haluamasi näköiset ja kokoiset versiot isoista kirjaimista
      T, X, A, B sekä Q. Alla esimerkkinä yksi versio
      A-kirjaimesta.
      #+BEGIN_SRC processing
@@ -250,6 +252,13 @@
        quad (250, 200, 300, 200, 175, 0, 125, 0);
        quad (0, 200, 50, 200, 175, 0, 125, 0);
      #+END_SRC
+  6. Tämän tehtävän voit tehdä vain, mikäli olet jo opiskellut
+     /Pythagoraann lauseen/. Piirrä tasasivuinen kolmio, jonka sivun
+     pituus on 120. Piirrä kolmio \(300\times 300\)-kokoisen
+     piirtoikkunan keskelle siten, että kolmion sivuille jää yhtä
+     paljon tilaa ja myös ylä- ja alapuolelle jää yhtä paljon
+     tilaa. Voit pyöristää laskujesi tuloksina saamasi koordinaatit
+     kokonaisluvuiksi.
 * Väri <<2>>
 * Piirtoikkuna ja koordinaatisto <<3>>
 * Vakio <<4>>
@@ -269,10 +278,55 @@
 * Rekursio <<17>>
 * Ratkaisut
 ** [[txt:piirtaminen]]
-   1.
-      #+BEGIN_SRC processing
-        size (800, 600);
-        rect (160, 90, 200, 300);
-        triangle (110, 500, 370, 420, 480, 570);
-        quad (730, 50, 450, 370, 770, 530, 610, 250);
+   1. 
+       #+BEGIN_SRC processing
+         size (800, 600);
+         rect (160, 90, 200, 300);
+         triangle (110, 500, 370, 420, 480, 570);
+         quad (730, 50, 450, 370, 770, 530, 610, 250);
+       #+END_SRC
+   2. 
+      a) 
+	 #+BEGIN_SRC processing :noweb yes :exports code
+	 <<piirtaminen-kolmio>>
+	 #+END_SRC
+      b) 
+	 #+BEGIN_SRC processing :noweb yes :exports code
+	 <<piirtaminen-raidat>>
+	 #+END_SRC
+      c) 
+	 #+BEGIN_SRC processing :noweb yes :exports code
+	 <<piirtaminen-neliot>>
+	 #+END_SRC
+   3. Esimerkkejä mahdollisista ratkaisuista.
+      a) 
+	 #+BEGIN_SRC processing :exports both
+           size (300, 200);
+           quad (50, 50, 130, 50, 190, 150, 10, 150);
+	 #+END_SRC
+      b) 
+	 #+BEGIN_SRC processing :exports both
+           size (300, 200);
+           triangle (50, 150, 250, 150, 150, 100);
+	 #+END_SRC
+      c) 
+	 #+BEGIN_SRC processing :exports both
+           size (300, 200);
+           quad (50, 150, 200, 150, 250, 50, 100, 50);
+	 #+END_SRC
+   4. 
+      a) 
+	  #+BEGIN_SRC processing :noweb yes :exports code
+	  <<piirtaminen-suorakaide-keskella>>
+	  #+END_SRC
+      b) 
+	  #+BEGIN_SRC processing :noweb yes :exports code
+	  <<piirtaminen-sisakkaiset-suunnikkaat>>
+	  #+END_SRC
+   5. Useita eri ratkaisuja.
+   6. Tasasivuisen kolmion korkeudeksi saadaan Pythagoraan lauseella
+      noin 104.
+      #+BEGIN_SRC processing :exports both
+        size (300, 300);
+        triangle (90, 202, 210, 202, 150, 98);
       #+END_SRC
