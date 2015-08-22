@@ -298,45 +298,32 @@
    vaan niihin voidaan viitata eri luvuilla. Tietty kynä voidaan
    valita muutamalla eri tavalla.
 
-   #+BEGIN_SRC processing
-     final int LEVEYS = 800;
-     final int KORKEUS = 100;
-     final int YLAMARGINAALI = 50;
-     final int VARI_MAX = 100;
-     final int SATURAATIOT_N = 20; // oletetaan, että leveys jaollinen tällä
+   #+NAME: varisavy
+   #+BEGIN_SRC asymptote :file varisavy.svg
+     import graph;
 
-     final int SATURAATIO_ASKEL = LEVEYS / SATURAATIOT_N;
-
-     void settings ()
-     {
-       size (LEVEYS, KORKEUS);
-     }
-
-     void setup ()
-     {
-       background (255);
-       fill (0);
-       colorMode (HSB, VARI_MAX);
-       textSize (.3 * YLAMARGINAALI);
-       textAlign (CENTER, TOP);
-     }
-
-     void draw ()
-     {
-       for (int i = 0; i < LEVEYS; i++)
+     size (20cm, 0);
+     int LEVEYS = 100, KORKEUS = 20;
+     real VARISAVYASKEL = 5;
+     real VARISAVY_MAX = 360;
+     real LAATIKON_LEVEYS = LEVEYS * VARISAVYASKEL / VARISAVY_MAX;
+     for (real s = 0; s < 360; s+= VARISAVYASKEL)
        {
-         float saturaatio = ((float) i) / (LEVEYS - 1) * VARI_MAX;
-         stroke (saturaatio, VARI_MAX, VARI_MAX);
-         line (i, YLAMARGINAALI, i, KORKEUS);
-
-         if (i == 0 || i % SATURAATIO_ASKEL == 0 || i == LEVEYS - 1)
-         {
-           String str = "";
-           text (str.format ("%.0f", saturaatio), i, 0);
-         }
+         real vasenReuna = s / VARISAVY_MAX * LEVEYS;
+         path alue = shift ((vasenReuna, 0)) * xscale (LAATIKON_LEVEYS)
+           * yscale (KORKEUS) * unitsquare;
+         pair vasenAlakulma = min (alue);
+         pair oikeaYlakulma = max (alue);
+         axialshade (alue, 
+                     hsv (s, 1, 1),
+                     vasenAlakulma,
+                     hsv (s + VARISAVYASKEL, 1, 1),
+                     (oikeaYlakulma.x, vasenAlakulma.y));
        }
-     }
+
+     xaxis ("värisävy", xmin = 0, xmax = 100, RightTicks);
    #+END_SRC
+
 * Piirtoikkuna ja koordinaatisto
 * Vakio
 * Laskulauseke
