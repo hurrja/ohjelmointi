@@ -278,16 +278,65 @@
        quad (0, 200, 50, 200, 175, 0, 125, 0);
      #+END_SRC
   6. Tämän tehtävän voit tehdä vain, mikäli olet jo opiskellut
-     /Pythagoraann lauseen/. Piirrä tasasivuinen kolmio, jonka sivun
+     /Pythagoraan lauseen/. Piirrä tasasivuinen kolmio, jonka sivun
      pituus on 120. Piirrä kolmio \(300\times 300\)-kokoisen
      piirtoikkunan keskelle siten, että kolmion sivuille jää yhtä
      paljon tilaa ja myös ylä- ja alapuolelle jää yhtä paljon
      tilaa. Voit pyöristää laskujesi tuloksina saamasi koordinaatit
      kokonaisluvuiksi.
-* Väri
+* Värejä ja kommentteja
   :PROPERTIES:
   :TUNNIT:   1
   :END:
+** Väreillä piirtäminen
+   Processing-ohjelmointikielessä väreillä piirtäminen tapahtuu samaan
+   tapaan kuin kynällä paperille piirrettäessä: ennen piirtämistä
+   valitaan, minkä värisellä kynällä piirretään.
+
+   Processing-ohjelmointikielessä on yli 16 miljoonaa eri väristä
+   \ldquo{}piirtokynää\rdquo{}. Niitä ei enää kannata kaikkia nimetä,
+   vaan niihin voidaan viitata eri luvuilla. Tietty kynä voidaan
+   valita muutamalla eri tavalla.
+
+   #+BEGIN_SRC processing
+     final int LEVEYS = 800;
+     final int KORKEUS = 100;
+     final int YLAMARGINAALI = 50;
+     final int VARI_MAX = 100;
+     final int SATURAATIOT_N = 20; // oletetaan, että leveys jaollinen tällä
+
+     final int SATURAATIO_ASKEL = LEVEYS / SATURAATIOT_N;
+
+     void settings ()
+     {
+       size (LEVEYS, KORKEUS);
+     }
+
+     void setup ()
+     {
+       background (255);
+       fill (0);
+       colorMode (HSB, VARI_MAX);
+       textSize (.3 * YLAMARGINAALI);
+       textAlign (CENTER, TOP);
+     }
+
+     void draw ()
+     {
+       for (int i = 0; i < LEVEYS; i++)
+       {
+         float saturaatio = ((float) i) / (LEVEYS - 1) * VARI_MAX;
+         stroke (saturaatio, VARI_MAX, VARI_MAX);
+         line (i, YLAMARGINAALI, i, KORKEUS);
+
+         if (i == 0 || i % SATURAATIO_ASKEL == 0 || i == LEVEYS - 1)
+         {
+           String str = "";
+           text (str.format ("%.0f", saturaatio), i, 0);
+         }
+       }
+     }
+   #+END_SRC
 * Piirtoikkuna ja koordinaatisto
 * Vakio
 * Laskulauseke
