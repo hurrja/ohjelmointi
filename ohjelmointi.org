@@ -1,4 +1,5 @@
 #+COLUMNS: %25ITEM(Aihe) %TUNNIT(Tunteja)
+#+HTML_HEAD_EXTRA: <link rel="additional stylesheet" type="text/css" href="ohjelmointi.css" />
 * Aikataulu
   #+BEGIN: columnview :id global :maxlevel 1
   | Aihe                                                  | Tunteja |
@@ -79,10 +80,22 @@
    ikkunaan, jonka koko on $600\times 400$ pikseliä. Piirtoikkuna on
    väriltään harmaa, ja piirretyssä valkoisessa suorakulmiossa on
    musta reunus.
+   #+NAME: piirtaminen-suorakulmio
    #+BEGIN_SRC processing :exports both
      size (600, 400);
      rect (70, 40, 150, 90);
    #+END_SRC
+
+   #+BEGIN_CENTER
+   #+RESULTS: piirtaminen-suorakulmio
+   #+BEGIN_HTML
+   <script src="processing.js"></script>
+    <script type="text/processing" data-processing-target="ob-49d7acfd62146385f6f269a2deca92a918358190">
+   size (600, 400);
+   rect (70, 40, 150, 90);
+   </script> <canvas id="ob-49d7acfd62146385f6f269a2deca92a918358190"></canvas>
+   #+END_HTML
+   #+END_CENTER
 
    Lauseke ~size (600, 400);~ avaa piirtoikkunan, jonka leveys on 600
    pikseliä ja korkeus 400 pikseliä. Lauseke ~rect (70, 40, 150, 90);~
@@ -342,7 +355,7 @@
 * Ratkaisut
 ** [[txt:piirtaminen]]
    1. 
-       #+BEGIN_SRC processing
+       #+BEGIN_SRC processing :exports both
          size (800, 600);
          rect (160, 90, 200, 300);
          triangle (110, 500, 370, 420, 480, 570);
