@@ -302,17 +302,19 @@
   :TUNNIT:   1
   :END:
 ** Väreillä piirtäminen
-   Processing-ohjelmointikielessä väreillä piirtäminen tapahtuu samaan
-   tapaan kuin kynällä paperille piirrettäessä: ennen piirtämistä
-   valitaan, minkä värisellä kynällä piirretään.
+   Värikynillä paperille piirrettäessä valitaan ensin, minkä värisellä
+   kynällä piirretään. Samaan tapaan Processing-ohjelmointikielessä
+   valitaan ennen piirtämistä, millä värillä piirretään. Samalla
+   värillä piirretään kunnes valitaan toinen piirtoväri.
 
    Processing-ohjelmointikielessä on yli 16 miljoonaa eri väristä
-   \ldquo{}piirtokynää\rdquo{}. Niitä ei enää kannata kaikkia nimetä,
-   vaan niihin voidaan viitata eri luvuilla. Tietty kynä voidaan
+   \ldquo{}piirtokynää\rdquo{}. Niitä ei enää kannata yrittää nimetä,
+   vaan eri väreihin voidaan viitata eri luvuilla. Tietty väri voidaan
    valita muutamalla eri tavalla.
 
    #+NAME: varisavy
    #+BEGIN_SRC asymptote :file varisavy.svg
+     usepackage ("inputenc", "utf8");
      import graph;
 
      size (20cm, 0);
@@ -324,7 +326,7 @@
        {
          real vasenReuna = s / VARISAVY_MAX * LEVEYS;
          path alue = shift ((vasenReuna, 0)) * xscale (LAATIKON_LEVEYS)
-           * yscale (KORKEUS) * unitsquare;
+           ,* yscale (KORKEUS) * unitsquare;
          pair vasenAlakulma = min (alue);
          pair oikeaYlakulma = max (alue);
          axialshade (alue, 
@@ -336,6 +338,9 @@
 
      xaxis ("värisävy", xmin = 0, xmax = 100, RightTicks);
    #+END_SRC
+
+   #+RESULTS: varisavy
+   [[file:varisavy.svg]]
 
 * Piirtoikkuna ja koordinaatisto
 * Vakio
