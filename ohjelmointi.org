@@ -442,8 +442,8 @@
    #+BEGIN_SRC processing :exports both
      size (600, 400);
 
-     // valitaan HSB-värimalli, kunkin värin ominaisuuden suurimmaksi
-     // arvoksi asetetaan 100
+     // valitaan HSB-värimalli, värien ominaisuuksien suurimmiksi arvoiksi
+     // asetetaan 100
      colorMode (HSB, 100); 
 
      // valitaan täyttöväriksi väri, jonka sävy on 17, kylläisyys 60 ja
