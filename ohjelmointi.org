@@ -1,5 +1,10 @@
 #+COLUMNS: %25ITEM(Aihe) %TUNNIT(Tunteja)
 #+HTML_HEAD_EXTRA: <link rel="additional stylesheet" type="text/css" href="ohjelmointi.css" />
+#+NAME: asymptote-asetukset
+#+BEGIN_SRC asymptote
+  usepackage ("inputenc", "utf8");
+  defaultpen (fontsize (14));
+#+END_SRC
 * Aikataulu
   #+BEGIN: columnview :id global :maxlevel 1
   | Aihe                                                  | Tunteja |
@@ -43,7 +48,8 @@
 
    
    #+NAME: koordinaatisto
-   #+BEGIN_SRC asymptote :exports none
+   #+BEGIN_SRC asymptote :exports none :noweb yes
+     <<asymptote-asetukset>>
      int LEVEYS = 600;
      int KORKEUS = 400;
      size (LEVEYS, KORKEUS);
@@ -297,10 +303,28 @@
      paljon tilaa ja myös ylä- ja alapuolelle jää yhtä paljon
      tilaa. Voit pyöristää laskujesi tuloksina saamasi koordinaatit
      kokonaisluvuiksi.
-* Värejä ja kommentteja
+* Kommentteja ja värejä
   :PROPERTIES:
   :TUNNIT:   1
   :END:
+** Kommentti ohjelmakoodissa
+   Tietokoneohjelmiin kirjoitetaan usein /kommentteja/, jotka ovat
+   ohjelman ihmislukijalle tarkoitettuja selvennyksiä. Tietokone
+   jättää kommentit huomiotta ohjelman suorituksessa.
+
+   Processing-ohjelmointikielessä yksi tapa kirjoittaa kommentteja on
+   kahden kauttaviivan ~//~ avulla. Tietokone jättää huomiotta kahta
+   kauttaviivaa seuraavan tekstin rivin loppuun asti. Alla on
+   esimerkki kommenttien käytöstä.
+
+   #+BEGIN_SRC processing :exports both
+     size (500, 500); // asetetaan piirtoikkunan koko
+
+     // piirretään ristin muotoinen kuvio kahden suorakaiteen avulla
+     // keskelle piirtoikkunaa
+     rect (200, 100, 100, 300);
+     rect (100, 200, 300, 100);
+   #+END_SRC
 ** Väreillä piirtäminen
    Värikynillä paperille piirrettäessä valitaan ensin, minkä värisellä
    kynällä piirretään. Samaan tapaan Processing-ohjelmointikielessä
@@ -309,24 +333,34 @@
 
    Processing-ohjelmointikielessä on yli 16 miljoonaa eri väristä
    \ldquo{}piirtokynää\rdquo{}. Niitä ei enää kannata yrittää nimetä,
-   vaan eri väreihin voidaan viitata eri luvuilla. Tietty väri voidaan
-   valita muutamalla eri tavalla.
+   vaan eri väreihin viitataan luvuilla. Tietty väri voidaan valita
+   muutamalla eri tavalla. Ihmisen kannalta näistä helpoiten
+   tulkittava tapa on värin valitseminen /värisävyn/ (englanniksi
+   /hue/), /värikylläisyyden/ (englanniksi /saturation/) ja /värin
+   kirkkauden/ (englanniksi /brightness/) avulla. Englanninkielisistä
+   sanoista tulee tämän /värimallin/ nimi HSB. 
 
+   Alla olevissa esimerkeissä värisävy on jokin luku nollan ja sadan
+   väliltä. Seuraava kuva esittää, mikä värisävy saadaan milläkin
+   luvulla.
    #+NAME: varisavy
-   #+BEGIN_SRC asymptote :file varisavy.svg
-     usepackage ("inputenc", "utf8");
+   #+BEGIN_SRC asymptote :file varisavy.svg :noweb yes
+     <<asymptote-asetukset>>
      import graph;
 
      size (20cm, 0);
      int LEVEYS = 100, KORKEUS = 20;
-     real VARISAVYASKEL = 5;
      real VARISAVY_MAX = 360;
      real LAATIKON_LEVEYS = LEVEYS * VARISAVYASKEL / VARISAVY_MAX;
-     for (real s = 0; s < 360; s+= VARISAVYASKEL)
+     int VARISAVYASKELEET = 10
+
+     real VARISAVYASKEL = ((real) VARISAVY_MAX) / VARISAVYASKELEET;
+
+     for (real s = 0; s < VARISAVY_MAX; s+= VARISAVYASKEL)
        {
          real vasenReuna = s / VARISAVY_MAX * LEVEYS;
          path alue = shift ((vasenReuna, 0)) * xscale (LAATIKON_LEVEYS)
-           ,* yscale (KORKEUS) * unitsquare;
+           * yscale (KORKEUS) * unitsquare;
          pair vasenAlakulma = min (alue);
          pair oikeaYlakulma = max (alue);
          axialshade (alue, 
@@ -342,6 +376,17 @@
    #+RESULTS: varisavy
    [[file:varisavy.svg]]
 
+   Valitaanpa värisävyksi 17, joka antaa keltaisen
+   värin. Värikylläisyys kertoo sen, kuinka räikeä väri on. Alla myös
+   värikylläisyys on jokin luku nollan ja sadan väliltä. Eri
+   värikylläisyyksillä saadaan seuraavat värit.
+   
+   #+BEGIN_SRC processing
+     size (600, 400);
+     colorMode (HSB, 100);
+     fill (17, 100, 100);
+     rect (50, 50, 300, 300);
+   #+END_SRC
 * Piirtoikkuna ja koordinaatisto
 * Vakio
 * Laskulauseke
