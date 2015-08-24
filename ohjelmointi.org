@@ -343,44 +343,71 @@
    Alla olevissa esimerkeissä värisävy on jokin luku nollan ja sadan
    väliltä. Seuraava kuva esittää, mikä värisävy saadaan milläkin
    luvulla.
-   #+NAME: varisavy
-   #+BEGIN_SRC asymptote :file varisavy.svg :noweb yes
+   #+NAME: hsb-koodaus-havainnollistus
+   #+BEGIN_SRC asymptote
      <<asymptote-asetukset>>
      import graph;
 
      size (20cm, 0);
      int LEVEYS = 100, KORKEUS = 20;
-     real VARISAVY_MAX = 360;
-     real LAATIKON_LEVEYS = LEVEYS * VARISAVYASKEL / VARISAVY_MAX;
-     int VARISAVYASKELEET = 10
+     int KOMPONENTTI_ASKELEET = 50;
 
-     real VARISAVYASKEL = ((real) VARISAVY_MAX) / VARISAVYASKELEET;
+     typedef pen variFunktio (real);
 
-     for (real s = 0; s < VARISAVY_MAX; s+= VARISAVYASKEL)
-       {
-         real vasenReuna = s / VARISAVY_MAX * LEVEYS;
-         path alue = shift ((vasenReuna, 0)) * xscale (LAATIKON_LEVEYS)
-           * yscale (KORKEUS) * unitsquare;
-         pair vasenAlakulma = min (alue);
-         pair oikeaYlakulma = max (alue);
-         axialshade (alue, 
-                     hsv (s, 1, 1),
-                     vasenAlakulma,
-                     hsv (s + VARISAVYASKEL, 1, 1),
-                     (oikeaYlakulma.x, vasenAlakulma.y));
-       }
+     void hsbKoodausHavainnollistus (real komponenttiMax,
+                                     string komponenttiNimi,
+                                     variFunktio f)
+     {
+       real komponenttiAskel = ((real) komponenttiMax) / KOMPONENTTI_ASKELEET;
+       real laatikonLeveys = ((real) LEVEYS) / KOMPONENTTI_ASKELEET;
 
-     xaxis ("värisävy", xmin = 0, xmax = 100, RightTicks);
+       for (real k = 0;  k < komponenttiMax; k += komponenttiAskel)
+         {
+           real vasenReuna = k / komponenttiMax * LEVEYS;
+           path alue = shift ((vasenReuna, 0)) * xscale (laatikonLeveys)
+             * yscale (KORKEUS) * unitsquare;
+           pair vasenAlakulma = min (alue);
+           pair oikeaYlakulma = max (alue);
+           axialshade (alue,
+                       f (k),
+                       vasenAlakulma,
+                       f (k + komponenttiAskel),
+                       (min (oikeaYlakulma.x, LEVEYS), vasenAlakulma.y));
+         }
+  
+       xaxis (komponenttiNimi, xmin = 0, xmax = 100, RightTicks);
+     }
    #+END_SRC
 
-   #+RESULTS: varisavy
-   [[file:varisavy.svg]]
+   #+RESULTS: hsb-koodaus-havainnollistus
+
+   #+NAME: varisavy
+   #+BEGIN_SRC asymptote :file varisavy.svg :noweb yes
+     <<hsb-koodaus-havainnollistus>>
+     pen f (real h) { return (hsv (h, 1, 1)); }
+     hsbKoodausHavainnollistus (360, "värisävy", f);
+   #+END_SRC
+
+   #+NAME: kirkkaus
+   #+BEGIN_SRC asymptote :file kirkkaus.svg :noweb yes
+     <<hsb-koodaus-havainnollistus>>
+     pen f (real v) { return (hsv (0.17 * 360, 1, v)); }
+     hsbKoodausHavainnollistus (1, "kirkkaus", f);
+   #+END_SRC
 
    Valitaanpa värisävyksi 17, joka antaa keltaisen
    värin. Värikylläisyys kertoo sen, kuinka räikeä väri on. Alla myös
    värikylläisyys on jokin luku nollan ja sadan väliltä. Eri
    värikylläisyyksillä saadaan seuraavat värit.
    
+   #+NAME: varikyllaisyys
+   #+BEGIN_SRC asymptote :file varikyllaisyys.svg :noweb yes
+     <<hsb-koodaus-havainnollistus>>
+     pen f (real s) { return (hsv (0.17 * 360, s, .7)); }
+     hsbKoodausHavainnollistus (1, "värikylläisyys", f);
+   #+END_SRC
+
+
    #+BEGIN_SRC processing
      size (600, 400);
      colorMode (HSB, 100);
