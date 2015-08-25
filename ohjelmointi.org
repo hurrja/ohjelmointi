@@ -595,22 +595,24 @@
          värisävy ja kirkkaus kuin taustalla. Toisen kolmion
          värikylläisyys on 30 yksikköä suurempi kuin taustan, toisen
          30 yksikköä pienempi kuin taustan.
-
    5. Piirrä alla oleva kuva. Piirtoikkunan koko on \((400\times
       400).\) Keltaisen värin HSB-arvot ovat \((13, 62, 98).\) 
       #+NAME: vari-tiikeri
       #+BEGIN_SRC processing
         size (400, 400);
         colorMode (HSB, 100);
-        background (13, 62, 98);
         noStroke ();
+        background (13, 62, 98); // taustaväri keltainen
+	
+	// mustat osat
         fill (0);
         quad (0, 400, 100, 0, 200, 0, 100, 400);
         triangle (300, 400, 400, 400, 400, 0);
+	
+	// valkoinen osa
         fill (100);
         quad (200, 0, 100, 400, 200, 400, 300, 0);
       #+END_SRC
-   
    6. Piirrä Ahvenanmaan lippu. Selvitä tarvittavat mitat ja värien
       tiedot. Voit pyöristää laskuissa saamasi tulokset
       kokonaisluvuiksi Processing-ohjelmaa varten.
@@ -747,14 +749,20 @@
       ovat \((59, 100, 49),\) keltaisen \((14, 100, 100)\) ja punaisen
       \((0, 100, 94).\)
 
-      #+BEGIN_SRC processing
+      #+BEGIN_SRC processing :exports both
         size (520, 340);
         colorMode (HSB, 100);
         noStroke ();
 
-        background (59, 100, 49);
+        background (59, 100, 49); // sininen tausta
+
+	// keltaiset viivat (joiden päälle piirretään punaiset)
         fill (14, 100, 100);
-        rect (10, 10, 100, 100);
+        rect (160, 0, 100, 340);
+	rect (0, 120, 520, 100);
+
+	// punaiset viivat
         fill (0, 100, 94);
-        rect (200, 200, 50, 50);
+        rect (190, 0, 40, 340);
+	rect (0, 150, 520, 40);
       #+END_SRC
