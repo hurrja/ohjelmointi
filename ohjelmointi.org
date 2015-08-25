@@ -398,10 +398,11 @@
    [[file:varisavy.png]]
 
    Valitaanpa värisävyksi 17, joka antaa keltavihreän värin. Tämä on
-   merkattu kuvaan katkoviivalla. Kirkkaus kertoo sen, kuinka valoisa
-   väri on. Alla myös kirkkaus on jokin luku nollan ja sadan
-   väliltä. Eri kirkkauksilla saadaan seuraavat värit; kaikissa tämän
-   kuvan väreissä on suurin mahdollinen värikylläisyys.
+   merkattu kuvaan katkoviivalla. Valitaan seuraavaksi värin
+   kirkkaus. Kirkkaus kertoo sen, kuinka valoisa väri on. Tässä myös
+   kirkkaus on jokin luku nollan ja sadan väliltä. Eri kirkkauksilla
+   saadaan seuraavat värit; kaikissa tämän kuvan väreissä on suurin
+   mahdollinen värikylläisyys.
 
    #+NAME: kirkkaus
    #+BEGIN_SRC asymptote :file kirkkaus.png :cache yes :noweb yes
@@ -429,10 +430,10 @@
    #+RESULTS[1e09b08150ea8e0910c45e7d82614331e5d1242f]: varikyllaisyys
    [[file:varikyllaisyys.png]]
 
-   Valitaanpa vielä värikylläisyydeksi 60 (kuvassa
-   katkoviivalla). Kirkkaus selitettiin edellä ennen kylläisyyttä,
-   mutta Processing-ohjelmointikielessä värin tiedot annetaan
-   järjestyksessä sävy 17, kylläisyys 60 ja kirkkaus 75.
+   Valitaan värikylläisyydeksi 60 (kuvassa katkoviivalla). Kirkkaus
+   selitettiin edellä ennen kylläisyyttä, mutta
+   Processing-ohjelmointikielessä värin tiedot annetaan järjestyksessä
+   sävy 17, kylläisyys 60 ja kirkkaus 75.
    
    Processing-kielessä suorakaiteen täyttäminen edellä valitsemallamme
    värillä tapahtuu seuraavasti. HSB-värimallin valinta tapahtuu
@@ -475,13 +476,13 @@
      rect (100, 100, 400, 200);
    #+END_SRC
 
-   Musta ja valkoinen ovat erittäin usein käytettyjä värejä. Niille
-   voidaan käyttää väriasetusfunktioiden lyhyempiä versioita, joilla
-   annetaan vain yksi luku. Tällöin mustaa vastaa luku 0 ja valkoista
-   luku 100. Kuvioiden ääriviivat voidaan jättää pois funktion
-   ~noStroke()~ avulla. Viivojen piirtäminen saadaan takaisin funktion
-   ~stroke()~ avulla. Tässä esimerkki, jossa käytetään näitä
-   ominaisuuksia.
+   Musta ja valkoinen ovat usein käytettyjä värejä. Niille voidaan
+   käyttää väriasetusfunktioiden lyhyempiä versioita, joilla annetaan
+   vain yksi luku. Tällöin mustaa vastaa luku 0 ja valkoista luku 100,
+   ja välillä olevat luvut antavat eri harmaan sävyjä. Kuvioiden
+   ääriviivat voidaan jättää pois funktion ~noStroke()~
+   avulla. Viivojen piirtäminen saadaan takaisin funktion ~stroke()~
+   avulla. Tässä esimerkki, jossa käytetään näitä ominaisuuksia.
    #+BEGIN_SRC processing :exports both
      size (600, 400);
      colorMode (HSB, 100);
@@ -494,6 +495,68 @@
      stroke (10, 100, 100); // piirretään viivat, oransseina
      triangle (300, 200, 500, 350, 250, 50); // musta kolmio, oranssi ääriviiva
    #+END_SRC
+** Esimerkki
+   Alla on esimerkki yksinkertaisesta kuvasta. Kuvien piirtäminen
+   ohjelmallisesti näin yksinkertaisin menetelmin vaatii paljon työtä
+   ja on aikaavievää. Sen takia tehtävissä piirretään pääosin hyvin
+   yksinkertaisia kuvia.
+   #+BEGIN_SRC processing :exports both
+     size (600, 400);
+     colorMode (HSB, 100);
+
+     noStroke (); // ei piirretä ääriviivoja
+
+     background (65, 30, 90); // sininen taivas taustana
+
+     // nurmikko
+     fill (33, 80, 50); // vihreä väri
+     rect (0, 250, 600, 150);
+
+     // talo
+     fill (5, 50, 90); // rakennuksen väri
+     rect (100, 150, 100, 150); // rakennus
+     // ikkunat
+     fill (65, 100, 50); // ikkunoiden väri
+     rect (120, 170, 20, 20);
+     rect (120, 210, 20, 20);
+     rect (160, 170, 20, 20);
+     rect (160, 210, 20, 20);
+
+     // puu
+     fill (3, 92, 24); // rungon väri
+     rect (400, 240, 10, 10); // runko
+     fill (33, 70, 20); // havujen väri
+     triangle (380, 240, 430, 240, 405, 220); // alaoksat
+     triangle (385, 230, 425, 230, 405, 210); // latva
+   #+END_SRC
+** Miten HSB-arvoja löytää?
+   HSB-arvoja nimitetään myös HSV-arvoiksi. Alla olevalta sivulta saa
+   HSV-arvoja nimetyille väreille viemällä hiiren osoittimen värin
+   päälle.
+
+   #+BEGIN_QUOTE
+   https://en.wikipedia.org/wiki/List_of_colors_(compact)
+   #+END_QUOTE
+
+   Sivuilta saaduissa arvoissa on yksi merkittävä ero: niissä
+   värisävyn arvo eli \(H\)-arvo on lukujen 0 ja 360 välillä.  Tämän
+   arvon voi muuttaa lukujen 0 ja 100 välille lausekkeella \[
+   \frac{H}{360}\cdot 100. \]
+
+   Sivulta löytyvät esimerkiksi värille \ldquo{}Turquoise
+   green\rdquo{} arvot \((142, 25, 84).\) Tällöin lukujen 0 ja 100
+   välillä oleva sävyarvo on \[ \frac{142}{360}\cdot 100
+   \approx 39. \] Näillä arvoilla saadaan seuraavanlainen väri.
+
+   #+BEGIN_SRC processing :exports both
+     size (100, 100);
+     colorMode (HSB, 100);
+     background (39, 25, 84);
+   #+END_SRC
+** Tehtävät
+   1. Piirrä punainen neliö siniselle pohjalle. Neliöllä tulee olla
+      vihreä reunus. Kuvioiden koot ja tarkat värit voit valita itse.
+   
 * Piirtoikkuna ja koordinaatisto
 * Vakio
 * Laskulauseke
