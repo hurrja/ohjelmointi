@@ -1,3 +1,14 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t c:nil creator:nil d:(not "LOGBOOK") date:t e:t
+#+OPTIONS: email:nil f:t inline:t num:t p:nil pri:nil prop:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
+#+TITLE: Ohjelmointi
+#+AUTHOR: Jarmo Hurri
+#+EMAIL: jarmo.hurri@iki.fi
+#+LANGUAGE: fi
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+
 #+COLUMNS: %25ITEM(Aihe) %TUNNIT(Tunteja)
 #+HTML_HEAD_EXTRA: <link rel="additional stylesheet" type="text/css" href="ohjelmointi.css" />
 #+NAME: asymptote-asetukset
@@ -11,11 +22,9 @@
   |-------------------------------------------------------+---------|
   | * Aikataulu                                           |         |
   | * Piirtäminen lausekkeiden avulla <<txt:piirtaminen>> |       2 |
-  | * Väri                                                |       1 |
-  | * Piirtoikkuna ja koordinaatisto                      |         |
-  | * Vakio                                               |         |
-  | * Laskulauseke                                        |         |
-  | * Lauseke                                             |         |
+  | * Kommentteja ja värejä <<txt:kommentteja-vareja>>    |       2 |
+  | * Kokonaislukuvakio <<txt:kokonaislukuvakio>>         |       2 |
+  | * Desimaaliluku                                       |         |
   | * Muuttuja                                            |         |
   | * Ehdollinen suorittaminen                            |         |
   | * ~while~-silmukka                                    |         |
@@ -304,7 +313,7 @@
      kokonaisluvuiksi.
 * Kommentteja ja värejä <<txt:kommentteja-vareja>>
   :PROPERTIES:
-  :TUNNIT:   1
+  :TUNNIT:   2
   :END:
 ** Kommentti ohjelmakoodissa
    Tietokoneohjelmiin kirjoitetaan usein /kommentteja/, jotka ovat
@@ -646,6 +655,9 @@
 	rect (0, 150, 520, 40);
       #+END_SRC
 * Kokonaislukuvakio <<txt:kokonaislukuvakio>>
+  :PROPERTIES:
+  :TUNNIT:   2
+  :END:
 ** Vakio
    Edellisessä kappaleissa kaikki koordinaatit on laskettu käsin ennen
    kuvien piirtämisessä. Yleensä ohjelmoinnissa ei tehdä näin, vaan
@@ -891,8 +903,7 @@
       sivun pituutta voit säädellä vakiolla, ja jonka etäisyys
       origosta on aina kaksi kertaa niin suuri kuin neliön lävistäjän
       pituus. Muuntele vakion suuruutta.
-* Laskulauseke
-* Lauseke
+* Desimaaliluku
 * Muuttuja
 * Ehdollinen suorittaminen
 * ~while~-silmukka
