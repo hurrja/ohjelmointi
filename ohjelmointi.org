@@ -721,10 +721,11 @@
    koordinaatteja. 
 
    #+BEGIN_QUOTE
-   Ohjelman monessa kohdassa käytetyt luvut määritellään yleensä
-   vakioina. Myös vain yhdessä kohdassa käytetty luku on usein hyvä
-   määrittää vakiona, koska näin annetaan selitys sekä luvun arvolle
-   että merkitykselle.
+   Jos jotain lukua käytetään ohjelmassa useassa kohdassa, luku
+   määritellään yleensä vakiona. Myös vain yhdessä kohdassa käytetty
+   luku on usein hyvä määrittää vakiona, koska näin annetaan
+   ohjelmakoodin lukijalle selitys sekä luvun arvolle että
+   merkitykselle.
    #+END_QUOTE
 
    Monet ohjelmoijat kirjoittavat vakioiden nimet isoilla kirjaimilla
