@@ -640,7 +640,7 @@
         rect (190, 0, 40, 340);
 	rect (0, 150, 520, 40);
       #+END_SRC
-* Kokonaislukuvakio <<txt:laskuja-vakioilla>>
+* Kokonaislukuvakio <<txt:kokonaislukuvakio>>
 ** Vakio
    Edellisessä kappaleissa kaikki koordinaatit on laskettu käsin ennen
    kuvien piirtämisessä. Yleensä ohjelmoinnissa ei tehdä näin, vaan
@@ -871,7 +871,21 @@
    #+END_SRC
 
 ** Tehtävät
-   1. 
+   1. Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan neliö, jonka
+      vasen yläkulma on koordinaateissa \((0, 0).\) Määrittele neliön
+      sivun pituus vakiona ~SIVU~, jonka arvo on ensimmäisessä
+      versiossasi 200. Muuntele vakion suuruutta ja varmista, että
+      ohjelmasi toimii kuten pitääkin.
+   2. Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan suorakaide,
+      jonka leveyden ja korkeuden suhde on aina \(3:1,\) ja jonka
+      korkeutta voit säädellä vakion avulla. Suorakaiteen vasen
+      yläkulma on \(y\)-akselilla, ja vasemman yläkulman etäisyys
+      origosta on sama kuin suorakaiteen korkeus. Muuntele vakion
+      suuruutta.
+   3. Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan neliö, jonka
+      sivun pituutta voit säädellä vakiolla, ja jonka etäisyys
+      origosta on aina kaksi kertaa niin suuri kuin neliön lävistäjän
+      pituus. Muuntele vakion suuruutta.
 * Laskulauseke
 * Lauseke
 * Muuttuja
@@ -1005,4 +1019,26 @@
 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<vari-ahvenanmaan-lippu>>
+      #+END_SRC
+** [[txt:kokonaislukuvakio]]
+   1. 
+      #+BEGIN_SRC processing :exports both
+        size (400, 400);
+        final int SIVU = 100;
+        rect (0, 0, SIVU, SIVU);
+      #+END_SRC
+   2. 
+      #+BEGIN_SRC processing :exports both
+        size (400, 400);
+
+        final int KORKEUS = 100;
+        rect (0, KORKEUS, 3 * KORKEUS, KORKEUS);
+      #+END_SRC
+   3. 
+      #+BEGIN_SRC processing :exports both
+        size (400, 400);
+        final int SIVU = 100;
+        final int KOORDINAATTI = 2 * SIVU;
+
+        rect (KOORDINAATTI, KOORDINAATTI, SIVU, SIVU);
       #+END_SRC
