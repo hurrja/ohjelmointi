@@ -640,7 +640,7 @@
         rect (190, 0, 40, 340);
 	rect (0, 150, 520, 40);
       #+END_SRC
-* Laskutoimituksia kokonaislukuvakioilla
+* Laskutoimituksia kokonaislukuvakioilla <<txt:laskuja-vakioilla>>
 ** Vakio
    Edellisessä kappaleissa kaikki koordinaatit on laskettu käsin ennen
    kuvien piirtämisessä. Yleensä ohjelmoinnissa ei tehdä näin, vaan
@@ -654,17 +654,15 @@
    #+END_QUOTE
 
    Alla olevassa esimerkissä määritellään kokonaislukuvakio ~SIVU~,
-   jonka arvoksi asetetaan 100. Kokonaisluku on ohjelmassa ~int~
+   jonka arvoksi asetetaan 128. Kokonaisluku on ohjelmassa ~int~
    (kokonaislukua tarkoittavasta sanasta /integer/) ja vakio ~final~
    (\ldquo{}lopullinen\rdquo{}). Kahden luvun tulo lasketaan
    ohjelmassa /kertolukuoperaattorin/ ~*~ avulla. Ohjelma piirtää
    kolme neliötä, joiden sivun pituus on ~SIVU~. Vierekkäiset neliöt
    koskevat toisiinsa yhdessä kulmapisteessä.
 
-   #+BEGIN_SRC processing :exports both
-     size (600, 400);
-     final int SIVU = 100; // kokonaislukuvakio
-
+   #+NAME: nelioita-vakiolla-runko
+   #+BEGIN_SRC processing :exports none
      colorMode (HSB, 100);
      background (59, 21, 87);
      fill (58, 98, 59);
@@ -673,6 +671,191 @@
      rect (SIVU, SIVU, SIVU, SIVU); // toinen neliö koskettaa ensimmäistä
      rect (2 * SIVU, 2 * SIVU, SIVU, SIVU); // kolmas koskettaa toista
    #+END_SRC
+
+   #+BEGIN_SRC processing :exports both :noweb yes
+     size (600, 400);
+     final int SIVU = 128; // kokonaislukuvakio
+
+     <<nelioita-vakiolla-runko>>
+   #+END_SRC
+
+   Verrataan ohjelmaa toiseen, jossa ei käytetä vakioita. Ohjelma
+   piirtää saman kuvan.
+
+   #+BEGIN_SRC processing :exports code
+     size (600, 400);
+
+     colorMode (HSB, 100);
+     background (59, 21, 87);
+     fill (58, 98, 59);
+
+     rect (0, 0, 128, 128);
+     rect (128, 128, 128, 128);
+     rect (256, 256, 128, 128);
+   #+END_SRC
+
+   Jo näin pienessä ohjelmassa vakion käytöllä on useita hyviä puolia.
+   - Ensimmäisestä ohjelmakoodista nähdään /heti/, että
+     - ohjelmassa esiintyvä luku 128 on nimenomaan neliön sivun pituus
+     - kaikki suorakulmiot ovat neliöitä ja että niillä kaikilla on sama
+       sivun pituus
+     - toisen neliön vasen yläkulma on tarkoituksellisesti
+       koordinaateissa ~(SIVU, SIVU)~
+     - kolmannen neliön vasen yläkulma on tarkoituksellisesti
+       koordinaateissa ~(2 * SIVU, 2 * SIVU)~.
+   - Kolmannen neliön koordinaatit lasketaan ohjelmassa automaattisesti.
+     
+   Eikä siinä vielä kaikki. Kuvitellaanpa, että haluamme muuttaa
+   neliön sivun pituutta. Ohjelman ensimmäisessä versiossa tarvitsee
+   muuttaa vain yhtä lukua ohjelmassa, ja kaikki muut arvot muuttuvat
+   automaattisesti.
+
+   #+BEGIN_SRC processing :exports both :noweb yes
+     size (600, 400);
+     final int SIVU = 87; // sivun pituus muuttuu
+
+     <<nelioita-vakiolla-runko>>
+   #+END_SRC
+   
+   Toisessa versioissa täytyisi muuttaa kaikkia nollasta poikkeavia
+   koordinaatteja. 
+
+   #+BEGIN_QUOTE
+   Ohjelman monessa kohdassa käytetyt luvut määritellään yleensä
+   vakioina. Myös vain yhdessä kohdassa käytetty luku on usein hyvä
+   määrittää vakiona, koska näin annetaan luvun arvolle ja
+   merkitykselle selitys.
+   #+END_QUOTE
+
+   Monet ohjelmoijat kirjoittavat vakioiden nimet isoilla kirjaimilla
+   erottaakseen ne /muuttujista/, joista myöhemmin lisää. Sillä onko
+   vakion nimi kirjoitettu isoilla vai pienillä kirjamilla ei ole
+   merkitystä, kunhan nimi kirjoitetaan koko ajan samalla tavalla.
+
+   #+BEGIN_QUOTE
+   Vakion nimi on yksi sana, ja se täytyy kirjoittaa koko ajan samalla
+   tavalla. Isoja kirjaimia ei voi vaihtaa pieniin tai toisin
+   päin. Vakion nimessä voi käyttää kirjaimia ~a-z~, ~A-Z~, numeroita
+   ~0-9~ sekä alaviivaa ~_~. Vakion nimi ei voi alkaa numerolla.
+
+   Periaatteessa skandinaavisia merkkejä kuten ~ä~ tai ~Ö~ voi myös
+   käyttää, mutta niiden käyttöön liittyy usein ongelmia.
+
+   Jotkut sanat ovat ohjelmointikielen /varattuna sanoja/, eikä niitä
+   voi käyttää vakioiden niminä. Tällaisia ovat mm. ~int~ sekä
+   ~final~.
+   #+END_QUOTE
+** Laskutoimituksia kokonaislukuvakioilla
+   Processing-ohjelmointikielessä kerto-, yhteen- ja vähennyslaskuun
+   käytetyt merkit ovat seuraavat.
+   | laskutoimitus | merkki |
+   |---------------+--------|
+   | kertolasku    | ~*~    |
+   | yhteenlasku   | ~+~    |
+   | vähennyslasku | ~-~    |
+
+   Alla oleva monimutkaisempi esimerkki näyttää, miten näitä
+   laskutoimituksia ja vakioita voi käyttää
+   ohjelmakoodissa. Esimerkissä piirretään valkoiselle pohjalle kolmesta
+   kolmiosta koostuva suunnikas. Seuraavat vakiot määrittävät kuvion
+   muodon.
+   - ~LEVEYS~ on suunnikkaan leveys ja ~KORKEUS~ suunnikkaan korkeus
+   - ~VASEN_YLAKULMA_X~ on suunnikkaan vasemman yläkulman
+     \(x\)-koordinaatti; \(y\)-koordinaatti on aina 0
+   Nämä vakiot puolestaan määrittävät kolmioiden värit.
+   - ~SAVY~ on kaikkien kolmioiden värisävy
+   - ~KYLLAISYYS_HARMAIN~ on suurimman, vähiten värikylläisen kolmion
+     värikylläisyys
+   - ~KIRKKAUS_TUMMIN~ on suurimman, tummimman kolmion kirkkaus
+   - ~VARIARVO_MUUTOS~ on se arvo, jolla sekä kylläisyys että kirkkaus
+     kasvavat kolmiosta toiseen.
+
+   Ohjelmassa tarvitaan kahteen kertaan suunnikkaan oikean yläkulman
+   \(x\)-koordinaattia. Se voidaan laskea vasemman yläkulman
+   \(x\)-koordinaatista ja suunnikkaan leveydestä. Sen sijaan että
+   laskutoimitus kirjoitettaisiin kahteen kertaan, voidaan oikean
+   yläkulman \(x\)-koordinaatti määritellä vakioksi, jonka /arvo
+   lasketaan toisista vakioista/.
+
+   #+BEGIN_QUOTE
+   Ohjelmakoodissa vakion arvo voidaan laskea toisista vakioista
+   vakion määrittelevällä rivillä.
+   #+END_QUOTE
+
+   Ohjelmakoodissa pienet kolmiot piirretään ensin suurempina, koska
+   se on helpompaa kuin suunnikkaan keskipisteet laskeminen. Isoin
+   kolmio piirretään osittain toisten kolmioiden päälle.
+   
+   #+NAME: suunnikas-vakioilla-runko
+   #+BEGIN_SRC processing :exports none
+     // lasketaan oikean yläkulman x-koordinaatti ja tallennetaan se
+     // vakioon
+     final int OIKEA_YLAKULMA_X = LEVEYS + VASEN_YLAKULMA_X;
+
+     colorMode (HSB, 100);
+     noStroke ();
+     background (100);
+
+     // räikein ja kirkkain kolmio
+     fill (SAVY, 
+           KYLLAISYYS_HARMAIN + 2 * VARIARVO_MUUTOS,
+           KIRKKAUS_TUMMIN + 2 * VARIARVO_MUUTOS);
+     triangle (0, KORKEUS, LEVEYS, KORKEUS, OIKEA_YLAKULMA_X, 0);
+
+     // toiseksi räikein ja kirkkain kolmio
+     fill (SAVY,
+           KYLLAISYYS_HARMAIN + VARIARVO_MUUTOS,
+           KIRKKAUS_TUMMIN + VARIARVO_MUUTOS);
+     triangle (VASEN_YLAKULMA_X, 0, 0, KORKEUS, LEVEYS, KORKEUS);
+
+     // suurin, harmain ja tummin kolmio
+     fill (SAVY, KYLLAISYYS_HARMAIN, KIRKKAUS_TUMMIN);
+     triangle (0, KORKEUS, OIKEA_YLAKULMA_X, 0, VASEN_YLAKULMA_X, 0);
+   #+END_SRC
+
+
+   #+BEGIN_SRC processing :exports both :noweb yes
+     size (600, 400);
+
+     // kuvion mitat määrittävät vakiot
+     final int LEVEYS = 250; // suunnikkaan leveys
+     final int KORKEUS = 330; // suunnikkaan korkeus
+     // suunnikkaan vasemman yläkulman x-koordinaatti
+     final int VASEN_YLAKULMA_X = 150;
+
+     // väreihin liittyvät vakiot
+     final int SAVY = 55; // värien värisävy
+     final int KYLLAISYYS_HARMAIN = 50; // harmaimman värin kylläisyys
+     final int KIRKKAUS_TUMMIN = 30; // tummimman värin kirkkaus
+     // kylläisyys ja kirkkaus kasvavat alueesta toiseen näin paljon
+     final int VARIARVO_MUUTOS = 10; 
+
+     <<suunnikas-vakioilla-runko>>
+   #+END_SRC
+
+   Pelkästään vakioiden arvoja muuttamalla voidaan samalla
+   ohjelmakoodilla piirtää seuraavanlainen kuvio.
+
+   #+BEGIN_SRC processing :exports both :noweb yes
+     size (600, 400);
+
+     // kuvion mitat määrittävät vakiot
+     final int LEVEYS = 500; // suunnikkaan leveys
+     final int KORKEUS = 150; // suunnikkaan korkeus
+     // suunnikkaan vasemman yläkulman x-koordinaatti
+     final int VASEN_YLAKULMA_X = 20;
+
+     // väreihin liittyvät vakiot
+     final int SAVY = 0; // värien värisävy
+     final int KYLLAISYYS_HARMAIN = 10; // harmaimman värin kylläisyys
+     final int KIRKKAUS_TUMMIN = 0; // tummimman värin kirkkaus
+     // kylläisyys ja kirkkaus kasvavat alueesta toiseen näin paljon
+     final int VARIARVO_MUUTOS = 45; 
+
+     <<suunnikas-vakioilla-runko>>
+   #+END_SRC
+
+
 
 * Laskulauseke
 * Lauseke
