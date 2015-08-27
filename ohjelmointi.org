@@ -334,10 +334,6 @@
    kirkkauden/ (englanniksi /brightness/) avulla. Englanninkielisistä
    sanoista tulee tämän /värimallin/ nimi HSB. 
 
-   Alla olevissa esimerkeissä värisävy on jokin luku nollan ja sadan
-   väliltä. Seuraava kuva esittää, mikä värisävy saadaan milläkin
-   luvulla. Kaikissa tämän kuvan väreissä on suurin mahdollinen
-   kirkkaus ja värikylläisyys.
    #+NAME: hsb-koodaus-havainnollistus 
    #+BEGIN_SRC asymptote :exports none
      <<asymptote-asetukset>>
@@ -387,58 +383,67 @@
    # Huom. Nämä esitetään png-tiedostoina, koska svg-formaatissa
    # laatikkojen väliin piirtyy pieniä valkoisia viivoja.
 
-   #+NAME: varisavy
-   #+BEGIN_SRC asymptote :file varisavy.png :cache yes :noweb yes
-     <<hsb-koodaus-havainnollistus>>
-     pen f (real h) { return (hsv (h, 1, 1)); }
-     hsbKoodausHavainnollistus (360, "värisävy", f, valittuVari.x);
-   #+END_SRC
+   Otetaan nyt jokin väri piirtämistä varten valitsemalla värisävy,
+   kirkkaus ja värikylläisyys.
+   1. Värisävy on jokin luku nollan ja sadan väliltä. Seuraava kuva
+      esittää, mikä värisävy saadaan milläkin luvulla. Kaikissa tämän
+      kuvan väreissä on suurin mahdollinen kirkkaus ja värikylläisyys.
 
-   #+RESULTS[2b8aff37fd2338def47e713e557526dc157e2bf9]: varisavy
-   [[file:varisavy.png]]
+      #+NAME: varisavy
+      #+BEGIN_SRC asymptote :file varisavy.png :cache yes :noweb yes
+        <<hsb-koodaus-havainnollistus>>
+        pen f (real h) { return (hsv (h, 1, 1)); }
+        hsbKoodausHavainnollistus (360, "värisävy", f, valittuVari.x);
+      #+END_SRC
 
-   Valitaanpa värisävyksi 17, joka antaa keltavihreän värin. Tämä on
-   merkattu kuvaan katkoviivalla. Valitaan seuraavaksi värin
-   kirkkaus. Kirkkaus kertoo sen, kuinka valoisa väri on. Tässä myös
-   kirkkaus on jokin luku nollan ja sadan väliltä. Eri kirkkauksilla
-   saadaan seuraavat värit; kaikissa tämän kuvan väreissä on suurin
-   mahdollinen värikylläisyys.
+      #+RESULTS[2b8aff37fd2338def47e713e557526dc157e2bf9]: varisavy
+      [[file:varisavy.png]]
 
-   #+NAME: kirkkaus
-   #+BEGIN_SRC asymptote :file kirkkaus.png :cache yes :noweb yes
-     <<hsb-koodaus-havainnollistus>>
-     pen f (real v) { return (hsv (valittuVari.x * 360, 1, v)); }
-     hsbKoodausHavainnollistus (1, "kirkkaus", f, valittuVari.z);
-   #+END_SRC
+      Valitaanpa värisävyksi 17, joka antaa keltavihreän värin. Tämä
+      on merkattu kuvaan katkoviivalla.
 
-   #+RESULTS[1fcaaf3252b6b33e8da029ad871ba6a0a6405ba2]: kirkkaus
-   [[file:kirkkaus.png]]
+   2. Valitaan seuraavaksi värin kirkkaus. Kirkkaus kertoo sen, kuinka
+      valoisa väri on. Tässä myös kirkkaus on jokin luku nollan ja
+      sadan väliltä. Eri kirkkauksilla saadaan seuraavat värit;
+      kaikissa tämän kuvan väreissä on suurin mahdollinen
+      värikylläisyys.
 
-   Valitaan värisävyn 17 lisäksi kirkkaus 75 (kuvassa
-   katkoviivalla). Vielä voidaan valita värikylläisyys joka kertoo
-   sen, kuinka räikeä väri on. Alla myös värikylläisyys on jokin luku
-   nollan ja sadan väliltä. Eri värikylläisyyksillä saadaan seuraavat
-   värit.
+      #+NAME: kirkkaus
+      #+BEGIN_SRC asymptote :file kirkkaus.png :cache yes :noweb yes
+        <<hsb-koodaus-havainnollistus>>
+        pen f (real v) { return (hsv (valittuVari.x * 360, 1, v)); }
+        hsbKoodausHavainnollistus (1, "kirkkaus", f, valittuVari.z);
+      #+END_SRC
+
+      #+RESULTS[1fcaaf3252b6b33e8da029ad871ba6a0a6405ba2]: kirkkaus
+      [[file:kirkkaus.png]]
+
+      Valitaan värisävyn 17 lisäksi kirkkaus 75 (kuvassa
+      katkoviivalla).
+
+   3. Vielä voidaan valita värikylläisyys joka kertoo sen, kuinka
+      räikeä väri on. Alla myös värikylläisyys on jokin luku nollan ja
+      sadan väliltä. Eri värikylläisyyksillä saadaan seuraavat värit.
    
-   #+NAME: varikyllaisyys
-   #+BEGIN_SRC asymptote :file varikyllaisyys.png :cache yes :noweb yes
-     <<hsb-koodaus-havainnollistus>>
-     pen f (real s) { return (hsv (valittuVari.x * 360, s, valittuVari.z)); }
-     hsbKoodausHavainnollistus (1, "värikylläisyys", f, valittuVari.y);
-   #+END_SRC
+      #+NAME: varikyllaisyys
+      #+BEGIN_SRC asymptote :file varikyllaisyys.png :cache yes :noweb yes
+        <<hsb-koodaus-havainnollistus>>
+        pen f (real s) { return (hsv (valittuVari.x * 360, s, valittuVari.z)); }
+        hsbKoodausHavainnollistus (1, "värikylläisyys", f, valittuVari.y);
+      #+END_SRC
 
-   #+RESULTS[1e09b08150ea8e0910c45e7d82614331e5d1242f]: varikyllaisyys
-   [[file:varikyllaisyys.png]]
+      #+RESULTS[1e09b08150ea8e0910c45e7d82614331e5d1242f]: varikyllaisyys
+      [[file:varikyllaisyys.png]]
 
-   Valitaan värikylläisyydeksi 60 (kuvassa katkoviivalla). Kirkkaus
-   selitettiin edellä ennen kylläisyyttä, mutta
+      Valitaan värikylläisyydeksi 60 (kuvassa katkoviivalla). 
+
+   Kirkkaus valittiin yllä ennen kylläisyyttä, mutta
    Processing-ohjelmointikielessä värin tiedot annetaan järjestyksessä
-   sävy 17, kylläisyys 60 ja kirkkaus 75.
-   
-   Processing-kielessä suorakaiteen täyttäminen edellä valitsemallamme
-   värillä tapahtuu seuraavasti. HSB-värimallin valinta tapahtuu
-   funktiolla ~colorMode()~, ja suorakaiteen täyttämisessä käytetyn
-   värin valitseminen funktiolla ~fill()~.
+   sävy 17, kylläisyys 60 ja kirkkaus 75. Processing-kielessä
+   suorakaiteen täyttäminen edellä valitsemallamme värillä tapahtuu
+   seuraavasti. HSB-värimallin valinta tapahtuu funktiolla
+   ~colorMode()~, ja suorakaiteen täyttämisessä käytetyn värin
+   valitseminen funktiolla ~fill()~.
 
    #+BEGIN_SRC processing :exports both
      size (600, 400);
@@ -554,11 +559,11 @@
      background (39, 25, 84);
    #+END_SRC
 ** Tehtävät
-   1. Piirrä keskellä \((600\times 400\)-kokoista piirtoikkunaa
-      \((400\times 200\)-kokoinen suorakulmio. Taustan värin
+   1. Piirrä keskelle \((600\times 400)\)-kokoista piirtoikkunaa
+      \((400\times 200)\)-kokoinen suorakulmio. Taustan värin
       HSB-arvojen tulee olla \((9, 45, 76)\) ja suorakulmion \((54,
-      100, 100)\). Suorakulmiolla ei ole reunusta. (Muista asettaa
-      ~colorMode (HSB, 100);~)
+      100, 100)\). Suorakulmiolla ei ole reunusta. [Muista asettaa
+      ~colorMode (HSB, 100);~]
    2. Piirrä punainen neliö siniselle pohjalle. Neliöllä tulee olla
       vihreä reunus. Kuvioiden koot ja tarkat värit voit valita itse.
    3. Piirrä alla olevan kaltainen kuvio. Taustan HSB-väriarvot ovat
@@ -613,9 +618,28 @@
         fill (100);
         quad (200, 0, 100, 400, 200, 400, 300, 0);
       #+END_SRC
-   6. Piirrä Ahvenanmaan lippu. Selvitä tarvittavat mitat ja värien
-      tiedot. Voit pyöristää laskuissa saamasi tulokset
-      kokonaisluvuiksi Processing-ohjelmaa varten.
+   6. Piirrä haluamasi kokoinen Ahvenanmaan lippu. Selvitä tarvittavat
+      mitat ja värien tiedot. Voit pyöristää laskuissa saamasi
+      tulokset kokonaisluvuiksi Processing-ohjelmaa varten.
+
+      #+NAME: vari-ahvenanmaan-lippu
+      #+BEGIN_SRC processing :exports results
+        size (520, 340);
+        colorMode (HSB, 100);
+        noStroke ();
+
+        background (59, 100, 49); // sininen tausta
+
+	// keltaiset viivat (joiden päälle piirretään punaiset)
+        fill (14, 100, 100);
+        rect (160, 0, 100, 340);
+	rect (0, 120, 520, 100);
+
+	// punaiset viivat
+        fill (0, 100, 94);
+        rect (190, 0, 40, 340);
+	rect (0, 150, 520, 40);
+      #+END_SRC
 * Piirtoikkuna ja koordinaatisto
 * Vakio
 * Laskulauseke
@@ -749,20 +773,6 @@
       ovat \((59, 100, 49),\) keltaisen \((14, 100, 100)\) ja punaisen
       \((0, 100, 94).\)
 
-      #+BEGIN_SRC processing :exports both
-        size (520, 340);
-        colorMode (HSB, 100);
-        noStroke ();
-
-        background (59, 100, 49); // sininen tausta
-
-	// keltaiset viivat (joiden päälle piirretään punaiset)
-        fill (14, 100, 100);
-        rect (160, 0, 100, 340);
-	rect (0, 120, 520, 100);
-
-	// punaiset viivat
-        fill (0, 100, 94);
-        rect (190, 0, 40, 340);
-	rect (0, 150, 520, 40);
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<vari-ahvenanmaan-lippu>>
       #+END_SRC
