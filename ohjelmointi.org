@@ -640,8 +640,40 @@
         rect (190, 0, 40, 340);
 	rect (0, 150, 520, 40);
       #+END_SRC
-* Piirtoikkuna ja koordinaatisto
-* Vakio
+* Laskutoimituksia kokonaislukuvakioilla
+** Vakio
+   Edellisessä kappaleissa kaikki koordinaatit on laskettu käsin ennen
+   kuvien piirtämisessä. Yleensä ohjelmoinnissa ei tehdä näin, vaan
+   koordinaatit lasketaan ohjelmassa annetuista tiedoista. Annetut
+   tiedot voidaan tallentaa /vakioihin/.
+
+   #+BEGIN_QUOTE
+   Tietokoneohjelman /vakio/ on nimetty muistipaikka, johon voidaan
+   tallentaa mm. lukuja. Vakion arvo ei muutu ohjelman suorituksen
+   aikana.
+   #+END_QUOTE
+
+   Alla olevassa esimerkissä määritellään kokonaislukuvakio ~SIVU~,
+   jonka arvoksi asetetaan 100. Kokonaisluku on ohjelmassa ~int~
+   (kokonaislukua tarkoittavasta sanasta /integer/) ja vakio ~final~
+   (\ldquo{}lopullinen\rdquo{}). Kahden luvun tulo lasketaan
+   ohjelmassa /kertolukuoperaattorin/ ~*~ avulla. Ohjelma piirtää
+   kolme neliötä, joiden sivun pituus on ~SIVU~. Vierekkäiset neliöt
+   koskevat toisiinsa yhdessä kulmapisteessä.
+
+   #+BEGIN_SRC processing :exports both
+     size (600, 400);
+     final int SIVU = 100; // kokonaislukuvakio
+
+     colorMode (HSB, 100);
+     background (59, 21, 87);
+     fill (58, 98, 59);
+
+     rect (0, 0, SIVU, SIVU); // neliö ikkunan vasemmassa yläkulmassa
+     rect (SIVU, SIVU, SIVU, SIVU); // toinen neliö koskettaa ensimmäistä
+     rect (2 * SIVU, 2 * SIVU, SIVU, SIVU); // kolmas koskettaa toista
+   #+END_SRC
+
 * Laskulauseke
 * Lauseke
 * Muuttuja
