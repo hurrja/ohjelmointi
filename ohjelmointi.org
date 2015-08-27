@@ -738,9 +738,6 @@
    päin. Vakion nimessä voi käyttää kirjaimia ~a-z~, ~A-Z~, numeroita
    ~0-9~ sekä alaviivaa ~_~. Vakion nimi ei voi alkaa numerolla.
 
-   Periaatteessa skandinaavisia merkkejä kuten ~ä~ tai ~Ö~ voi myös
-   käyttää, mutta niiden käyttöön liittyy usein ongelmia.
-
    Jotkut sanat ovat ohjelmointikielen /varattuna sanoja/, eikä niitä
    voi käyttää vakioiden niminä. Tällaisia ovat mm. ~int~ sekä
    ~final~.
@@ -797,19 +794,19 @@
      background (100);
 
      // räikein ja kirkkain kolmio
-     fill (SAVY, 
-           KYLLAISYYS_HARMAIN + 2 * VARIARVO_MUUTOS,
-           KIRKKAUS_TUMMIN + 2 * VARIARVO_MUUTOS);
+     fill (SAVY,  KYLLAISYYS_SUURIN, KIRKKAUS_SUURIN);
      triangle (0, KORKEUS, LEVEYS, KORKEUS, OIKEA_YLAKULMA_X, 0);
 
      // toiseksi räikein ja kirkkain kolmio
      fill (SAVY,
-           KYLLAISYYS_HARMAIN + VARIARVO_MUUTOS,
-           KIRKKAUS_TUMMIN + VARIARVO_MUUTOS);
+           KYLLAISYYS_SUURIN - VARIARVO_LASKU,
+           KIRKKAUS_SUURIN - VARIARVO_LASKU);
      triangle (VASEN_YLAKULMA_X, 0, 0, KORKEUS, LEVEYS, KORKEUS);
 
      // suurin, harmain ja tummin kolmio
-     fill (SAVY, KYLLAISYYS_HARMAIN, KIRKKAUS_TUMMIN);
+     fill (SAVY, 
+           KYLLAISYYS_SUURIN - 2 * VARIARVO_LASKU,
+           KIRKKAUS_SUURIN - 2 * VARIARVO_LASKU);
      triangle (0, KORKEUS, OIKEA_YLAKULMA_X, 0, VASEN_YLAKULMA_X, 0);
    #+END_SRC
 
@@ -825,10 +822,10 @@
 
      // väreihin liittyvät vakiot
      final int SAVY = 55; // värien värisävy
-     final int KYLLAISYYS_HARMAIN = 50; // harmaimman värin kylläisyys
-     final int KIRKKAUS_TUMMIN = 30; // tummimman värin kirkkaus
-     // kylläisyys ja kirkkaus kasvavat alueesta toiseen näin paljon
-     final int VARIARVO_MUUTOS = 10; 
+     final int KYLLAISYYS_SUURIN = 70; // räikeimmän värin kylläisyys
+     final int KIRKKAUS_SUURIN = 50; // vaaleimman värin kirkkaus
+     // kylläisyys ja kirkkaus vähenevät alueesta toiseen näin paljon
+     final int VARIARVO_LASKU = 10; 
 
      <<suunnikas-vakioilla-runko>>
    #+END_SRC
@@ -847,15 +844,13 @@
 
      // väreihin liittyvät vakiot
      final int SAVY = 0; // värien värisävy
-     final int KYLLAISYYS_HARMAIN = 10; // harmaimman värin kylläisyys
-     final int KIRKKAUS_TUMMIN = 0; // tummimman värin kirkkaus
-     // kylläisyys ja kirkkaus kasvavat alueesta toiseen näin paljon
-     final int VARIARVO_MUUTOS = 45; 
+     final int KYLLAISYYS_SUURIN = 90; // räikeimmän värin kylläisyys
+     final int KIRKKAUS_SUURIN = 100; // vaaleimman värin kirkkaus
+     // kylläisyys ja kirkkaus vähenevät alueesta toiseen näin paljon
+     final int VARIARVO_LASKU = 45; 
 
      <<suunnikas-vakioilla-runko>>
    #+END_SRC
-
-
 
 * Laskulauseke
 * Lauseke
