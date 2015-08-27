@@ -126,7 +126,7 @@
 
    Monet muutokset johtavat siihen, että ohjelma ei joko toimi tai
    lopputulos muuttuu. Ennen kaikkea
-   - ohjelmarivin lopussa täytyy olla puolipiste eli ~;~
+   - suoritettavan komennon lopussa täytyy olla puolipiste eli ~;~
    - sanat ~size~ ja ~rect~ täytyy kirjoittaa pienillä kirjaimilla
    - sulkujen ~()~ täytyy olla tavalliset sulut, ei esimerkiksi
      aaltosulut ~{}~ tai hakasulut ~[]~
