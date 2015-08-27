@@ -106,7 +106,7 @@
    Tarkalleen ottaen pikselit ovat pieniä neliöitä, mikä vaikuttaa
    hieman oikean alakulman tarkkoihin koordinaatteihin. Tähän palataan
    kappaleessa [[txt:pikseli]].
-** Ohjelmarivin muoto
+** Ohjelmakoodin muoto
    Tietokoneohjelma koostuu tyypillisesti /ohjelmariveistä/, joita
    edellä olevasta ohjelmasta löytyy kaksi. Processing-ohjelma on
    hyvin tarkka monista ohjelmarivin yksityiskohdista. Jotkut asiat
@@ -131,9 +131,11 @@
    - sulkujen ~()~ täytyy olla tavalliset sulut, ei esimerkiksi
      aaltosulut ~{}~ tai hakasulut ~[]~
    - sulkujen sisällä olevien lukujen täytyy olla eroteltuina
-     toisistaan pilkuilla.
+     toisistaan pilkuilla
+   - Processing-ohjelmassa komennon ~size()~ täytyy olla aina ohjelman
+     ensimmäinen rivi.
 
-   Kokeile tehdä muutoksia riveihin ja katso, mitä tapahtuu kun yrität
+   Kokeile tehdä muutoksia ohjelmaan ja katso, mitä tapahtuu kun yrität
    suorittaa ohjelman.
 ** Muita kuvioita
    Suorakaiteen piirtämiseen käytetään yllä /funktiota/
