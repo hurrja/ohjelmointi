@@ -22,9 +22,9 @@
   |-------------------------------------------------------+---------|
   | * Aikataulu                                           |         |
   | * Piirtäminen lausekkeiden avulla <<txt:piirtaminen>> |       2 |
-  | * Kommentteja ja värejä <<txt:kommentteja-vareja>>    |       2 |
-  | * Kokonaislukuvakio <<txt:kokonaislukuvakio>>         |       2 |
-  | * Desimaaliluku                                       |         |
+  | * Kommentti ja väri <<txt:kommentteja-vareja>>        |       2 |
+  | * Vakio <<txt:vakio>>                                 |       2 |
+  | * Desimaaliluku ja jakolasku <<txt:desimaaliluku>>    |         |
   | * Muuttuja                                            |         |
   | * Ehdollinen suorittaminen                            |         |
   | * ~while~-silmukka                                    |         |
@@ -311,7 +311,7 @@
      paljon tilaa ja myös ylä- ja alapuolelle jää yhtä paljon
      tilaa. Voit pyöristää laskujesi tuloksina saamasi koordinaatit
      kokonaisluvuiksi.
-* Kommentteja ja värejä <<txt:kommentteja-vareja>>
+* Kommentti ja väri <<txt:kommentteja-vareja>>
   :PROPERTIES:
   :TUNNIT:   2
   :END:
@@ -654,7 +654,7 @@
         rect (190, 0, 40, 340);
 	rect (0, 150, 520, 40);
       #+END_SRC
-* Kokonaislukuvakio <<txt:kokonaislukuvakio>>
+* Vakio <<txt:vakio>>
   :PROPERTIES:
   :TUNNIT:   2
   :END:
@@ -670,13 +670,15 @@
    aikana.
    #+END_QUOTE
 
-   Alla olevassa esimerkissä määritellään kokonaislukuvakio ~SIVU~,
-   jonka arvoksi asetetaan 128. Kokonaisluku on ohjelmassa ~int~
-   (kokonaislukua tarkoittavasta sanasta /integer/) ja vakio ~final~
-   (\ldquo{}lopullinen\rdquo{}). Kahden luvun tulo lasketaan
-   ohjelmassa /kertolukuoperaattorin/ ~*~ avulla. Ohjelma piirtää
-   kolme neliötä, joiden sivun pituus on ~SIVU~. Vierekkäiset neliöt
-   koskevat toisiinsa yhdessä kulmapisteessä.
+   Alla olevassa esimerkissä määritellään vakio ~SIVU~, jonka arvoksi
+   asetetaan 128. Vakion /tyyppi/ on ~float~, joka tulee englannin
+   kielen termista /floating point number/. Tällaisen vakion arvoksi
+   voidaan asettaa desimaaliluku ja siten myös kokonaisluku. Sana
+   ~final~ (\ldquo{}lopullinen\rdquo{}) tarkoittaa, että kyseessä on
+   vakio. Kahden luvun tulo lasketaan ohjelmassa
+   /kertolukuoperaattorin/ ~*~ avulla. Ohjelma piirtää kolme neliötä,
+   joiden sivun pituus on ~SIVU~. Vierekkäiset neliöt koskevat
+   toisiinsa yhdessä kulmapisteessä.
 
    #+NAME: nelioita-vakiolla-runko
    #+BEGIN_SRC processing :exports none
@@ -691,7 +693,7 @@
 
    #+BEGIN_SRC processing :exports both :noweb yes
      size (600, 400);
-     final int SIVU = 128; // kokonaislukuvakio
+     final float SIVU = 128; // vakio
 
      <<nelioita-vakiolla-runko>>
    #+END_SRC
@@ -729,7 +731,7 @@
 
    #+BEGIN_SRC processing :exports both :noweb yes
      size (600, 400);
-     final int SIVU = 87; // sivun pituus muuttuu
+     final float SIVU = 87; // sivun pituus muuttuu
 
      <<nelioita-vakiolla-runko>>
    #+END_SRC
@@ -757,10 +759,10 @@
    ~0-9~ sekä alaviivaa ~_~. Vakion nimi ei voi alkaa numerolla.
 
    Jotkut sanat ovat ohjelmointikielen /varattuna sanoja/, eikä niitä
-   voi käyttää vakioiden niminä. Tällaisia ovat mm. ~int~ sekä
+   voi käyttää vakioiden niminä. Tällaisia ovat mm. ~float~ sekä
    ~final~.
    #+END_QUOTE
-** Laskutoimituksia kokonaislukuvakioilla
+** Laskutoimituksia vakioilla
    Processing-ohjelmointikielessä kerto-, yhteen- ja vähennyslaskuun
    käytetyt merkit ovat seuraavat.
    | laskutoimitus | merkki |
@@ -778,11 +780,11 @@
 
    #+BEGIN_SRC processing :exports both
         size (600, 400);
-        final int LEVEYS = 80;
-        final int VALI = 10;
+        final float LEVEYS = 80;
+        final float VALI = 10;
 
 	// vakio korkeus lasketaan leveydestä
-	final int KORKEUS = 2 * LEVEYS;
+	final float KORKEUS = 2 * LEVEYS;
 
 	rect (0, 0, LEVEYS, KORKEUS);
 	rect (LEVEYS + VALI, 0, LEVEYS, KORKEUS);
@@ -822,7 +824,7 @@
    #+BEGIN_SRC processing :exports none
      // lasketaan oikean yläkulman x-koordinaatti ja tallennetaan se
      // vakioon
-     final int OIKEA_YLAKULMA_X = KANTA + VASEN_YLAKULMA_X;
+     final float OIKEA_YLAKULMA_X = KANTA + VASEN_YLAKULMA_X;
 
      colorMode (HSB, 100);
      noStroke ();
@@ -850,17 +852,17 @@
      size (600, 400);
 
      // kuvion mitat määrittävät vakiot
-     final int KANTA = 250; // suunnikkaan leveys
-     final int KORKEUS = 330; // suunnikkaan korkeus
+     final float KANTA = 250; // suunnikkaan leveys
+     final float KORKEUS = 330; // suunnikkaan korkeus
      // suunnikkaan vasemman yläkulman x-koordinaatti
-     final int VASEN_YLAKULMA_X = 150;
+     final float VASEN_YLAKULMA_X = 150;
 
      // väreihin liittyvät vakiot
-     final int SAVY = 55; // värien värisävy
-     final int KYLLAISYYS_SUURIN = 70; // räikeimmän värin kylläisyys
-     final int KIRKKAUS_SUURIN = 50; // vaaleimman värin kirkkaus
+     final float SAVY = 55; // värien värisävy
+     final float KYLLAISYYS_SUURIN = 70; // räikeimmän värin kylläisyys
+     final float KIRKKAUS_SUURIN = 50; // vaaleimman värin kirkkaus
      // kylläisyys ja kirkkaus vähenevät alueesta toiseen näin paljon
-     final int VARIARVO_LASKU = 10; 
+     final float VARIARVO_LASKU = 10; 
 
      <<suunnikas-vakioilla-runko>>
    #+END_SRC
@@ -872,17 +874,17 @@
      size (600, 400);
 
      // kuvion mitat määrittävät vakiot
-     final int KANTA = 500; // suunnikkaan leveys
-     final int KORKEUS = 150; // suunnikkaan korkeus
+     final float KANTA = 500; // suunnikkaan leveys
+     final float KORKEUS = 150; // suunnikkaan korkeus
      // suunnikkaan vasemman yläkulman x-koordinaatti
-     final int VASEN_YLAKULMA_X = 20;
+     final float VASEN_YLAKULMA_X = 20;
 
      // väreihin liittyvät vakiot
-     final int SAVY = 0; // värien värisävy
-     final int KYLLAISYYS_SUURIN = 90; // räikeimmän värin kylläisyys
-     final int KIRKKAUS_SUURIN = 100; // vaaleimman värin kirkkaus
+     final float SAVY = 0; // värien värisävy
+     final float KYLLAISYYS_SUURIN = 90; // räikeimmän värin kylläisyys
+     final float KIRKKAUS_SUURIN = 100; // vaaleimman värin kirkkaus
      // kylläisyys ja kirkkaus vähenevät alueesta toiseen näin paljon
-     final int VARIARVO_LASKU = 45; 
+     final float VARIARVO_LASKU = 45; 
 
      <<suunnikas-vakioilla-runko>>
    #+END_SRC
@@ -910,9 +912,9 @@
       #+NAME: vakio-tasakylkiset-kolmiot
       #+BEGIN_SRC processing
         size (400, 400);
-        final int KYLKI = 120;
-        final int VALI = 20;
-        final int OIKEA_KOLMIO_VASEN_X = KYLKI + VALI;
+        final float KYLKI = 120;
+        final float VALI = 20;
+        final float OIKEA_KOLMIO_VASEN_X = KYLKI + VALI;
 
         triangle (0, 0, KYLKI, 0, KYLKI, KYLKI);
         triangle (OIKEA_KOLMIO_VASEN_X, 0,
@@ -935,10 +937,10 @@
       #+NAME: vakio-suunnikas-suorakulmiossa
       #+BEGIN_SRC processing
         size (600, 400);
-        final int LEVEYS = 500;
-        final int KORKEUS = 300;
-        final int SUUNNIKAS_X = 300;
-        final int SUUNNIKAS_Y = 250;
+        final float LEVEYS = 500;
+        final float KORKEUS = 300;
+        final float SUUNNIKAS_X = 300;
+        final float SUUNNIKAS_Y = 250;
 
         colorMode (HSB, 100);
         background (100);
@@ -972,17 +974,17 @@
       #+NAME: vakio-pienet-neliot-isossa
       #+BEGIN_SRC processing
         size (400, 400);
-        final int SUURI_SIVU = 300;
-        final int PIENI_SIVU = 90;
+        final float SUURI_SIVU = 300;
+        final float PIENI_SIVU = 90;
 
-        final int SUURI_SAVY = 15;
-        final int SAVY_MUUTOS = 30;
-        final int KYLLAISYYS = 70;
-        final int KIRKKAUS = 90;
+        final float SUURI_SAVY = 15;
+        final float SAVY_MUUTOS = 30;
+        final float KYLLAISYYS = 70;
+        final float KIRKKAUS = 90;
 
         // kuvassa oikealla alhaalla olevan pienen neliön vasemman yläkulman
         // x- ja y-koordinaatti (sama luku)
-        final int PIENI_YLAKULMA = SUURI_SIVU - PIENI_SIVU;
+        final float PIENI_YLAKULMA = SUURI_SIVU - PIENI_SIVU;
 
         colorMode (HSB, 100);
 	background (100);
@@ -1031,15 +1033,15 @@
       #+NAME: vakio-suorakulmiot-suoralla
       #+BEGIN_SRC processing
         size (400, 400);
-        final int K = 3;
-        final int LEVEYS_PIENI = 40;
-        final int KORKEUS_PIENI = K * LEVEYS_PIENI;
+        final float K = 3;
+        final float LEVEYS_PIENI = 40;
+        final float KORKEUS_PIENI = K * LEVEYS_PIENI;
 
         rect (0, 0, LEVEYS_PIENI, KORKEUS_PIENI);
         rect (LEVEYS_PIENI, KORKEUS_PIENI, 2 * LEVEYS_PIENI, 2 * KORKEUS_PIENI);
 
       #+END_SRC
-* Desimaaliluku
+* Desimaaliluku ja jakolasku <<txt:desimaaliluku>>
 * Muuttuja
 * Ehdollinen suorittaminen
 * ~while~-silmukka
@@ -1172,18 +1174,18 @@
       #+BEGIN_SRC processing :exports code :noweb yes
       <<vari-ahvenanmaan-lippu>>
       #+END_SRC
-** [[txt:kokonaislukuvakio]]
+** [[txt:vakio]]
    1. 
       #+BEGIN_SRC processing :exports both
         size (400, 400);
-        final int SIVU = 100;
+        final float SIVU = 100;
         rect (0, 0, SIVU, SIVU);
       #+END_SRC
    2. 
       #+BEGIN_SRC processing :exports both
         size (400, 400);
 
-        final int KORKEUS = 100;
+        final float KORKEUS = 100;
         rect (0, KORKEUS, 3 * KORKEUS, KORKEUS);
       #+END_SRC
    3. 
