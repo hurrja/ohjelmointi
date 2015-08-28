@@ -919,7 +919,40 @@
                   OIKEA_KOLMIO_VASEN_X, KYLKI,
                   OIKEA_KOLMIO_VASEN_X + KYLKI, 0);
       #+END_SRC
-   4. Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan valkoiselle
+   4. Piirrä \((600\times 400)\)-kokoiseen piirtoikkunaan valkoiselle
+      pohjalle musta suorakulmio ja suorakulmion sisään valkoinen
+      suunnikas alla olevan kuvion mukaisesti. Suorakulmion vasen
+      yläkulma on origossa. Seuraavat vakiot määräävät kuvan tarkan
+      sisällön.
+      - ~LEVEYS~ on suorakulmion leveys
+      - ~KORKEUS~ on suorakulmion korkeus
+      - ~SUUNNIKAS_X~ on suunnikkaan \(x\)-akselilla sijaitsevan
+        kärkipisteen \(x\)-koordinaatti
+      - ~SUUNNIKAS_Y~ on suunnikkaan \(y\)-akselilla sijaitsevan
+        kärkipisteen \(y\)-koordinaatti.
+	
+      #+NAME: vakio-suunnikas-suorakulmiossa
+      #+BEGIN_SRC processing
+        size (600, 400);
+        final int LEVEYS = 500;
+        final int KORKEUS = 300;
+        final int SUUNNIKAS_X = 300;
+        final int SUUNNIKAS_Y = 250;
+
+        colorMode (HSB, 100);
+        background (100);
+
+	fill (0);
+        rect (0, 0, LEVEYS, KORKEUS);
+
+	fill (100);
+        quad (SUUNNIKAS_X, 0,
+              0, SUUNNIKAS_Y,
+              LEVEYS - SUUNNIKAS_X, KORKEUS,
+              LEVEYS, KORKEUS - SUUNNIKAS_Y);
+
+      #+END_SRC
+   5. Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan valkoiselle
       taustalle alla olevan kuvan mukaisesti kolme neliötä. Seuraavat
       vakiot määräävät ohjelman tarkan toimintatavan.
       - ~SUURI_SIVU~ on suuren neliön sivun pituus
@@ -967,7 +1000,7 @@
         rect (PIENI_YLAKULMA, PIENI_YLAKULMA,
               PIENI_SIVU, PIENI_SIVU);
       #+END_SRC
-   5. Alla olevaan piirtoikkunaan on piirretty
+   6. Alla olevaan piirtoikkunaan on piirretty
       - punaisella ne piirtoikkunan pisteet, joille pätee \(y = x\)
       - vihreällä ne piirtoikkunan pisteet, joille pätee \(y = 2x\)
       - sinisellä ne piirtoikkunan pisteet, joille pätee \(y = 3x.\)
@@ -1158,9 +1191,14 @@
       #+END_SRC
    4. 
       #+BEGIN_SRC processing :exports code :noweb yes
+      <<vakio-suunnikas-suorakulmiossa>>
+      #+END_SRC
+      
+   5. 
+      #+BEGIN_SRC processing :exports code :noweb yes
       <<vakio-pienet-neliot-isossa>>
       #+END_SRC
-   5. 
+   6. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<vakio-suorakulmiot-suoralla>>
       #+END_SRC
