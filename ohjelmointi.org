@@ -930,7 +930,8 @@
         kärkipisteen \(x\)-koordinaatti
       - ~SUUNNIKAS_Y~ on suunnikkaan \(y\)-akselilla sijaitsevan
         kärkipisteen \(y\)-koordinaatti.
-	
+      Muuntele vakioiden suuruuksia.
+
       #+NAME: vakio-suunnikas-suorakulmiossa
       #+BEGIN_SRC processing
         size (600, 400);
