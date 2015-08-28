@@ -899,10 +899,74 @@
       yläkulma on \(y\)-akselilla, ja vasemman yläkulman etäisyys
       origosta on sama kuin suorakaiteen korkeus. Muuntele vakion
       suuruutta.
-   3. Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan neliö, jonka
-      sivun pituutta voit säädellä vakiolla, ja jonka etäisyys
-      origosta on aina kaksi kertaa niin suuri kuin neliön lävistäjän
-      pituus. Muuntele vakion suuruutta.
+   3. Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan alla olevan
+      kuvan mukaisesti kaksi suorakulmaista tasasivuista
+      kolmiota. Kolmioiden kylkien pituutta sekä kolmioiden välistä
+      etäisyyttä \(x\)-akselilla täytyy voida säätää vakioiden ~KYLKI~
+      sekä ~VALI~ avulla. Molempien kolmioiden kaksi kärkipistettä on
+      aina \(x\)-akselilla, ja vasemmanpuoleisen kolmion yksi
+      kärkipiste on origossa. Muuntele vakioiden suuruuksia.
+
+      #+NAME: vakio-tasakylkiset-kolmiot
+      #+BEGIN_SRC processing
+        size (400, 400);
+        final int KYLKI = 120;
+        final int VALI = 20;
+        final int OIKEA_KOLMIO_VASEN_X = KYLKI + VALI;
+
+        triangle (0, 0, KYLKI, 0, KYLKI, KYLKI);
+        triangle (OIKEA_KOLMIO_VASEN_X, 0,
+                  OIKEA_KOLMIO_VASEN_X, KYLKI,
+                  OIKEA_KOLMIO_VASEN_X + KYLKI, 0);
+      #+END_SRC
+   4. Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan valkoiselle
+      taustalle alla olevan kuvan mukaisesti kolme neliötä. Seuraavat
+      vakiot määräävät ohjelman tarkan toimintatavan.
+      - ~SUURI_SIVU~ on suuren neliön sivun pituus
+      - ~PIENI_SIVU~ on pienien neliöiden sivun pituus
+      - ~SUURI_SAVY~ on suuren neliön värisävy
+      - ~SAVY_MUUTOS~ on värisävymuutos suuren neliön sävystä pienten
+        neliöiden sävyyn; vasemman yläkulman pienen neliön sävyyn tämä
+        muutos lisätään kerran, oikean alakulman pienen neliön sävyyn
+        muutos lisätään kaksinkertaisena
+      -  ~KYLLAISYYS~ on kaikkien värien kylläisyys ja ~KIRKKAUS~
+        kaikkien värien kirkkaus.
+	
+      Suuren neliön vasen yläkulma on origossa ja pienten neliöiden
+      yksi kärkipiste suuren neliön kärkipisteessä. Muuntele vakioiden
+      suuruuksia.
+      #+NAME: vakio-pienet-neliot-isossa
+      #+BEGIN_SRC processing
+        size (400, 400);
+        final int SUURI_SIVU = 300;
+        final int PIENI_SIVU = 90;
+
+        final int SUURI_SAVY = 15;
+        final int SAVY_MUUTOS = 30;
+        final int KYLLAISYYS = 70;
+        final int KIRKKAUS = 90;
+
+        // kuvassa oikealla alhaalla olevan pienen neliön vasemman yläkulman
+        // x- ja y-koordinaatti (sama luku)
+        final int PIENI_YLAKULMA = SUURI_SIVU - PIENI_SIVU;
+
+        colorMode (HSB, 100);
+	background (100);
+        noStroke ();
+
+	// suuri neliö
+        fill (SUURI_SAVY, KYLLAISYYS, KIRKKAUS);
+        rect (0, 0, SUURI_SIVU, SUURI_SIVU);
+
+	// vasemman yläkulman neliö
+        fill (SUURI_SAVY + SAVY_MUUTOS, KYLLAISYYS, KIRKKAUS);
+        rect (0, 0, PIENI_SIVU, PIENI_SIVU);
+
+	// oikean alakulman neliö
+        fill (SUURI_SAVY + 2 * SAVY_MUUTOS, KYLLAISYYS, KIRKKAUS);
+        rect (PIENI_YLAKULMA, PIENI_YLAKULMA,
+              PIENI_SIVU, PIENI_SIVU);
+      #+END_SRC
 * Desimaaliluku
 * Muuttuja
 * Ehdollinen suorittaminen
@@ -1051,10 +1115,10 @@
         rect (0, KORKEUS, 3 * KORKEUS, KORKEUS);
       #+END_SRC
    3. 
-      #+BEGIN_SRC processing :exports both
-        size (400, 400);
-        final int SIVU = 100;
-        final int KOORDINAATTI = 2 * SIVU;
-
-        rect (KOORDINAATTI, KOORDINAATTI, SIVU, SIVU);
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<vakio-tasakylkiset-kolmiot>>
+      #+END_SRC
+   4. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<vakio-pienet-neliot-isossa>>
       #+END_SRC
