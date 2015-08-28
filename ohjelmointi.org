@@ -498,7 +498,7 @@
    Musta ja valkoinen ovat usein käytettyjä värejä. Niille voidaan
    käyttää väriasetusfunktioiden lyhyempiä versioita, joilla annetaan
    vain yksi luku. Tällöin mustaa vastaa luku 0 ja valkoista luku 100,
-   ja välillä olevat luvut antavat eri harmaan sävyjä. Kuvioiden
+   ja välillä olevat luvut antavat harmaan eri sävyjä. Kuvioiden
    ääriviivat voidaan jättää pois funktion ~noStroke()~
    avulla. Viivojen piirtäminen saadaan takaisin funktion ~stroke()~
    avulla. Tässä esimerkki, jossa käytetään näitä ominaisuuksia.
@@ -929,8 +929,8 @@
         neliöiden sävyyn; vasemman yläkulman pienen neliön sävyyn tämä
         muutos lisätään kerran, oikean alakulman pienen neliön sävyyn
         muutos lisätään kaksinkertaisena
-      -  ~KYLLAISYYS~ on kaikkien värien kylläisyys ja ~KIRKKAUS~
-        kaikkien värien kirkkaus.
+      - ~KYLLAISYYS~ on kaikkien värien kylläisyys ja ~KIRKKAUS~
+	kaikkien värien kirkkaus.
 	
       Suuren neliön vasen yläkulma on origossa ja pienten neliöiden
       yksi kärkipiste suuren neliön kärkipisteessä. Muuntele vakioiden
@@ -966,6 +966,44 @@
         fill (SUURI_SAVY + 2 * SAVY_MUUTOS, KYLLAISYYS, KIRKKAUS);
         rect (PIENI_YLAKULMA, PIENI_YLAKULMA,
               PIENI_SIVU, PIENI_SIVU);
+      #+END_SRC
+   5. Alla olevaan piirtoikkunaan on piirretty
+      - punaisella ne piirtoikkunan pisteet, joille pätee \(y = x\)
+      - vihreällä ne piirtoikkunan pisteet, joille pätee \(y = 2x\)
+      - sinisellä ne piirtoikkunan pisteet, joille pätee \(y = 3x.\)
+      Yleisesti ne piirtoikkunan pisteet, joille pätee \(y = K\cdot
+      x,\) missä $K$ on jokin vakio, sijaitsevat origon kautta
+      kulkevalla suoralla.
+      #+BEGIN_SRC processing
+        size (400, 400);
+        colorMode (HSB, 100);
+	background (0);
+        for (int k = 1; k <= 3; k++)
+         {
+         stroke (k == 1 ? 0 : (k == 2 ? 30 : 65), 100, 100);
+           line (0, 0, height / ((float) k), height);
+         }
+      #+END_SRC
+      Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan alla olevan
+      kuvan mukaisesti kaksi suorakulmioita. Suuremman ja pienemmän
+      suorakulmion leveyksien suhden on \(2:1.\) Seuraavat
+      vakiot määräävät ohjelman tarkan toimintatavan.
+      - ~K~ määrittää origon kautta kulkevan suoran \(y = K\cdot x,\)
+        jolla molempien suorakulmioiden kaksi kärkipistettä
+        sijaitsevat
+      - ~LEVEYS_PIENI~ on pienemmän suorakulmion leveys
+      Muuntele vakioiden suuruuksia.
+	
+      #+NAME: vakio-suorakulmiot-suoralla
+      #+BEGIN_SRC processing
+        size (400, 400);
+        final int K = 3;
+        final int LEVEYS_PIENI = 40;
+        final int KORKEUS_PIENI = K * LEVEYS_PIENI;
+
+        rect (0, 0, LEVEYS_PIENI, KORKEUS_PIENI);
+        rect (LEVEYS_PIENI, KORKEUS_PIENI, 2 * LEVEYS_PIENI, 2 * KORKEUS_PIENI);
+
       #+END_SRC
 * Desimaaliluku
 * Muuttuja
@@ -1122,3 +1160,8 @@
       #+BEGIN_SRC processing :exports code :noweb yes
       <<vakio-pienet-neliot-isossa>>
       #+END_SRC
+   5. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<vakio-suorakulmiot-suoralla>>
+      #+END_SRC
+      
