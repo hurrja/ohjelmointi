@@ -1103,10 +1103,12 @@
    muutu.
 
    Koska ~width~ ja ~height~ ovat kokonaislukuja, niiden jakaminen
-   kokonaisluvulla antaa kokonaisluvun. Yleensä tällä ei ole suurta merkitystä
-   saatuun kuvaan, koska ikkunan koko on suuri. Jos ~width~ on
-   vaikkapa 455, niin ~width / 2~ antaa arvoksi 227, kun taas ~width /
-   2~ antaa arvoksi 227.5. 
+   kokonaisluvulla antaa kokonaisluvun. Yleensä tällä ei ole suurta
+   vaikutusta saatuun kuvaan, koska ikkunan koko on suuri luku. Jos
+   ~width~ on vaikkapa 455, niin ~width / 2~ antaa arvoksi 227, kun
+   taas ~width / 2~ antaa arvoksi 227.5. Lisäksi piirrettäessä
+   kuvioita näyttöön desimaaliarvot pyöristetään usein taas
+   kokonaisluvuiksi.
 
    Seuraavassa esimerkissä piirretään neliö piirtoikkunan
    keskelle. Piirtoikkunan keskikohta on (~width/2.0~, ~height/2.0~)
