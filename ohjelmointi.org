@@ -1042,6 +1042,39 @@
 
       #+END_SRC
 * Desimaaliluku ja jakolasku <<txt:desimaaliluku>>
+** Desimaalierotin
+   Processing-ohjelmointikielessä desimaalierotin on piste. Seuraava
+   esimerkki piirtää kohtaan \((100, 100)\) suorakaiteen, jonka
+   korkeus on leveyden ja luvun 0,3 tulo. (Toisin sanoen korkeus on
+   30\thinsp{}% leveydestä.)
+   #+BEGIN_SRC processing :exports both
+     size (400, 400);
+     final float LEVEYS = 150;
+     rect (100, 100, LEVEYS, 0.3 * LEVEYS);
+   #+END_SRC
+** Jakolasku
+   Jakolaskuoperaattori Processing-kielessä on kauttaviiva ~/~. Alla
+   olevassa esimerkissä piirretään neliö ja sen kanssa kulmittain
+   suorakaide, joka leveys on puolet ja korkeus kolmasosa neliön sivun
+   pituudesta.
+   #+BEGIN_SRC processing
+     size (400, 400);
+     final float SIVU = 140;
+     rect (0, 0, SIVU, SIVU);
+     rect (SIVU, SIVU, SIVU / 2, SIVU / 3);
+   #+END_SRC
+** Kokonaislukujen jakolasku antaa kokonaisluvun
+   Jakolaskuun liittyy suorastaan vaarallinen yksityiskohta. Monissa
+   ohjelmointikielissä /kahden kokonaisluvun jakolasku antaa
+   tulokseksi vain osamäärän kokonaislukuosan/.
+
+   Alla olevaan taulukkoon on kirjattu muutamia jakolaskuja sekä
+   niiden antama tulos.
+   | jakolasku | tulos |
+   |-----------+-------|
+   | ~5 / 3~   | 1     |
+   | ~1 / 5~   | 0     |
+
 * Muuttuja
 * Ehdollinen suorittaminen
 * ~while~-silmukka
