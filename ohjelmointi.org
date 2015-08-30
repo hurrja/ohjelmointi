@@ -1109,7 +1109,7 @@
    2~ antaa arvoksi 227.5. 
 
    Seuraavassa esimerkissä piirretään neliö piirtoikkunan
-   keskelle. Piirtoikkunan keskikohta on (~widht/2.0~, ~height/2.0~)
+   keskelle. Piirtoikkunan keskikohta on (~width/2.0~, ~height/2.0~)
    ja laskutoimitus ~SIVU / 2.0~ antaa puolet neliön sivun pituudesta.
    #+BEGIN_SRC processing
      size (600, 400);
