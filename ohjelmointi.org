@@ -1091,6 +1091,9 @@
    | ~1.0 / 5~  |   0.2 |
    | ~1 / 5.0~  |   0.2 |
    
+   Kaikki ~float~-tyyppiset vakiot ovat desimaalilukuja, vaikka niiden
+   arvoksi olisi asetettu kokonaisluku.
+
    Miksi kokonaislukujen jakolasku antaa tulokseksi kokonaisluvun?
    Koska se on hyödyllinen laskutoimitus ja tietokone osaa laskea sen
    nopeammin.
@@ -1103,10 +1106,10 @@
    muutu.
 
    Koska ~width~ ja ~height~ ovat kokonaislukuja, niiden jakaminen
-   kokonaisluvulla antaa kokonaisluvun. Yleensä tällä ei ole suurta
-   vaikutusta saatuun kuvaan, koska ikkunan koko on suuri luku. Jos
-   ~width~ on vaikkapa 455, niin ~width / 2~ antaa arvoksi 227, kun
-   taas ~width / 2~ antaa arvoksi 227.5. Lisäksi piirrettäessä
+   kokonaisluvulla antaa tuloksena kokonaisluvun. Yleensä tällä ei ole
+   suurta vaikutusta saatuun kuvaan, koska ikkunan koko on suuri
+   luku. Jos ~width~ on vaikkapa 455, niin ~width / 2~ antaa arvoksi
+   227, kun taas ~width / 2.0~ antaa 227.5. Lisäksi piirrettäessä
    kuvioita näyttöön desimaaliarvot pyöristetään usein taas
    kokonaisluvuiksi.
 
@@ -1121,8 +1124,44 @@
 
    #+END_SRC
 ** Esimerkki
-   Suomen, Ruotsin ja Tanskan lipussa on jonkin värinen risti toisen
-   värisellä pohjalla. Alla oleva ohjelma 
+   Suomen, Ruotsin ja Tanskan lipuissa on jonkin värinen risti toisen
+   värisellä pohjalla. Värien lisäksi lipuissa vaihtelevat
+   mittasuhteet. Esimerkiksi Suomen lippu jakautuu eri osiin
+   vasemmasta yläkulmasta katsoen pystysuunnassa suhteessa \(4 : 3 :
+   4\) ja vaakasuunnassa suhteessa \(5 : 3 : 10\). Alla oleva kuva
+   havainnollistaa näitä mittoja.
+
+   #+NAME: lippu-mitat
+   #+BEGIN_SRC asymptote :file lippu-mitat.svg :cache yes
+     size (15cm, 0);
+     int YLA = 4, KESKI_PYSTY = 3, ALA = 4;
+     int VASEN = 5, KESKI_LEVEYS = 3, OIKEA = 10;
+
+     pair A = (0, 0);
+     pair B = (0, ALA);
+     pair C = B + (0, KESKI_PYSTY);
+     pair D = C + (0, YLA); 
+     draw ((string) ALA, A -- B, Arrows);
+     draw ((string) KESKI_PYSTY, B -- C, Arrows);
+     draw ((string) YLA, C -- D, Arrows);
+
+     pair F = D + (VASEN, 0);
+     draw ((string) VASEN, D -- F, Arrows);
+     pair G = F + (KESKI_LEVEYS, 0);
+     draw ((string) KESKI_LEVEYS, F -- G, Arrows);
+     pair H = G + (OIKEA, 0);
+     draw ((string) OIKEA, G -- H, Arrows);
+
+     draw (A -- (H.x, A.y) -- H, dashed);
+     draw (B -- (F.x, B.y) -- (F.x, A.y), dashed);
+     draw (C -- (F.x, C.y) -- F, dashed);
+     draw (G -- (G.x, C.y) -- (H.x, C.y), dashed);
+     draw ((G.x, A.y) -- (G.x, B.y) -- (H.x, B.y), dashed);
+   #+END_SRC
+
+   #+RESULTS[c6e4b6d261fcef6f1f63835bd657cfaf1009bad1]: lippu-mitat
+   [[file:lippu-mitat.svg]]
+
 * Muuttuja
 * Ehdollinen suorittaminen
 * ~while~-silmukka
