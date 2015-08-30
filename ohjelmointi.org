@@ -1064,17 +1064,63 @@
      rect (SIVU, SIVU, SIVU / 2, SIVU / 3);
    #+END_SRC
 ** Kokonaislukujen jakolasku antaa kokonaisluvun
-   Jakolaskuun liittyy suorastaan vaarallinen yksityiskohta. Monissa
-   ohjelmointikielissä /kahden kokonaisluvun jakolasku antaa
-   tulokseksi vain osamäärän kokonaislukuosan/.
+   Jakolaskuun liittyy suorastaan vaarallinen yksityiskohta. 
+
+   #+BEGIN_QUOTE
+   Kahden kokonaisluvun jakolasku antaa tulokseksi
+   kokonaisluvun. Tulos on jakolaskun kokonaislukuosa
+   #+END_QUOTE
 
    Alla olevaan taulukkoon on kirjattu muutamia jakolaskuja sekä
-   niiden antama tulos.
+   niiden antama tulos. 
    | jakolasku | tulos |
    |-----------+-------|
-   | ~5 / 3~   | 1     |
-   | ~1 / 5~   | 0     |
+   | ~10 / 2~  |     5 |
+   | ~8 / 5~   |     1 |
+   | ~1 / 5~   |     0 |
+   Ensimmäinen tulos on odotettu. Kaksi muuta ovat esimerkkejä siitä,
+   että kokonaislukujen jakolaskussa desimaaliosa jätetään pois.
 
+   Miten kokonaislukuja voidaan sitten jakaa niin, että tulokseksi
+   saadaan desimaaliluku? Merkitsemällä toinen kokonaisluku
+   desimaalilukuna.
+   | jakolasku  | tulos |
+   |------------+-------|
+   | ~10.0 / 2~ |   5.0 |
+   | ~8 / 5.0~  |   1.6 |
+   | ~1.0 / 5~  |   0.2 |
+   | ~1 / 5.0~  |   0.2 |
+   
+   Miksi kokonaislukujen jakolasku antaa tulokseksi kokonaisluvun?
+   Koska se on hyödyllinen laskutoimitus ja tietokone osaa laskea sen
+   nopeammin.
+** Sisäiset \ldquo{}vakiot\rdquo{} ~width~ ja ~height~
+   Processing-ohjelma määrittelee automaattisesti
+   \ldquo{}kokonaislukuvakiot\rdquo{} ~width~ ja ~height~, joiden
+   arvot ovat piirtoikkunan leveys ja korkeus. Periaatteessa ikkunan
+   koko voi muuttua ohjelman suorituksen aikana, joten luvut eivät
+   tarkalleen ottaen ole vakioita, mutta meidän ohjelmissamme ne eivät
+   muutu.
+
+   Koska ~width~ ja ~height~ ovat kokonaislukuja, niiden jakaminen
+   kokonaisluvulla antaa kokonaisluvun. Yleensä tällä ei ole suurta merkitystä
+   saatuun kuvaan, koska ikkunan koko on suuri. Jos ~width~ on
+   vaikkapa 455, niin ~width / 2~ antaa arvoksi 227, kun taas ~width /
+   2~ antaa arvoksi 227.5. 
+
+   Seuraavassa esimerkissä piirretään neliö piirtoikkunan
+   keskelle. Piirtoikkunan keskikohta on (~widht/2.0~, ~height/2.0~)
+   ja laskutoimitus ~SIVU / 2.0~ antaa puolet neliön sivun pituudesta.
+   #+BEGIN_SRC processing
+     size (600, 400);
+     final float SIVU = 235;
+
+     rect (width / 2.0 - SIVU / 2.0, height / 2.0 - SIVU / 2.0, SIVU, SIVU);
+
+   #+END_SRC
+** Esimerkki
+   Suomen, Ruotsin ja Tanskan lipussa on jonkin värinen risti toisen
+   värisellä pohjalla. Alla oleva ohjelma 
 * Muuttuja
 * Ehdollinen suorittaminen
 * ~while~-silmukka
