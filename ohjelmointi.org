@@ -1097,21 +1097,16 @@
    Miksi kokonaislukujen jakolasku antaa tulokseksi kokonaisluvun?
    Koska se on hyödyllinen laskutoimitus ja tietokone osaa laskea sen
    nopeammin.
-** Sisäiset \ldquo{}vakiot\rdquo{} ~width~ ja ~height~
-   Processing-ohjelma määrittelee automaattisesti
-   \ldquo{}kokonaislukuvakiot\rdquo{} ~width~ ja ~height~, joiden
-   arvot ovat piirtoikkunan leveys ja korkeus. Periaatteessa ikkunan
-   koko voi muuttua ohjelman suorituksen aikana, joten luvut eivät
-   tarkalleen ottaen ole vakioita, mutta meidän ohjelmissamme ne eivät
-   muutu.
-
-   Koska ~width~ ja ~height~ ovat kokonaislukuja, niiden jakaminen
-   kokonaisluvulla antaa tuloksena kokonaisluvun. Yleensä tällä ei ole
-   suurta vaikutusta saatuun kuvaan, koska ikkunan koko on suuri
-   luku. Jos ~width~ on vaikkapa 455, niin ~width / 2~ antaa arvoksi
-   227, kun taas ~width / 2.0~ antaa 227.5. Lisäksi piirrettäessä
-   kuvioita näyttöön desimaaliarvot pyöristetään usein taas
-   kokonaisluvuiksi.
+** Sisäiset vakiot ~width~ ja ~height~
+   Processing-ohjelma määrittelee automaattisesti kokonaislukuvakiot
+   ~width~ ja ~height~, joiden arvot ovat piirtoikkunan leveys ja
+   korkeus. Koska ~width~ ja ~height~ ovat kokonaislukuja, niiden
+   jakaminen kokonaisluvulla antaa tuloksena kokonaisluvun. Yleensä
+   tällä ei ole suurta vaikutusta saatuun kuvaan, koska ikkunan koko
+   on suuri luku. Jos ~width~ on vaikkapa 455, niin ~width / 2~ antaa
+   arvoksi 227, kun taas ~width / 2.0~ antaa 227.5. Lisäksi
+   piirrettäessä kuvioita näyttöön desimaaliarvot pyöristetään usein
+   taas kokonaisluvuiksi.
 
    Seuraavassa esimerkissä piirretään neliö piirtoikkunan
    keskelle. Piirtoikkunan keskikohta on (~width/2.0~, ~height/2.0~)
@@ -1162,6 +1157,45 @@
    #+RESULTS[c6e4b6d261fcef6f1f63835bd657cfaf1009bad1]: lippu-mitat
    [[file:lippu-mitat.svg]]
 
+   #+BEGIN_SRC processing :exports both
+     size (600, 600);
+     // suhteet vaakasuunnassa
+     final float VASEN = 5;
+     final float KESKI_LEVEYS = 3;
+     final float OIKEA = 10;
+
+     // suhteet pystysuunnassa
+     final float YLA = 4;
+     final float KESKI_PYSTY = 3;
+     final float ALA = 4;
+
+     // taustaväri
+     final float TAUSTA_SAVY = 0;
+     final float TAUSTA_KYLLAISYYS = 0;
+     final float TAUSTA_KIRKKAUS = 100;
+
+     // ristin väri
+     final float RISTI_SAVY = 59;
+     final float RISTI_KYLLAISYYS = 81;
+     final float RISTI_KIRKKAUS = 49;
+
+     // yhden osan pituus kuvassa: kuvan leveys jaettuna vaakasuunnan
+     // osien summalla
+     final float OSA = width / (VASEN + KESKI_LEVEYS + OIKEA);
+     
+     // lipun korkeus
+     final float KORKEUS = (YLA + KESKI_PYSTY + ALA) * OSA;
+
+     colorMode (HSB, 100);
+     noStroke ();
+
+     fill (TAUSTA_SAVY, TAUSTA_KYLLAISYYS, TAUSTA_KIRKKAUS);
+     rect (0, 0, width, KORKEUS);
+
+     fill (RISTI_SAVY, RISTI_KYLLAISYYS, RISTI_KIRKKAUS);
+     rect (VASEN * OSA, 0, KESKI_LEVEYS * OSA, KORKEUS);
+     rect (0, YLA * OSA, width, KESKI_PYSTY * OSA);
+   #+END_SRC
 * Muuttuja
 * Ehdollinen suorittaminen
 * ~while~-silmukka
