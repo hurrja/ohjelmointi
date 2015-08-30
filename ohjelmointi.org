@@ -1121,16 +1121,16 @@
 ** Esimerkki
    Suomen, Ruotsin ja Tanskan lipuissa on jonkin värinen risti toisen
    värisellä pohjalla. Värien lisäksi lipuissa vaihtelevat
-   mittasuhteet. Esimerkiksi Suomen lippu jakautuu eri osiin
-   vasemmasta yläkulmasta katsoen pystysuunnassa suhteessa \(4 : 3 :
-   4\) ja vaakasuunnassa suhteessa \(5 : 3 : 10\). Alla oleva kuva
+   mittasuhteet. Esimerkiksi Ruotsin lippu jakautuu eri osiin
+   vasemmasta yläkulmasta katsoen pystysuunnassa suhteessa \(4 : 2 :
+   4\) ja vaakasuunnassa suhteessa \(5 : 2 : 9\). Alla oleva kuva
    havainnollistaa näitä mittoja.
 
    #+NAME: lippu-mitat
    #+BEGIN_SRC asymptote :file lippu-mitat.svg :cache yes
      size (15cm, 0);
-     int YLA = 4, KESKI_PYSTY = 3, ALA = 4;
-     int VASEN = 5, KESKI_LEVEYS = 3, OIKEA = 10;
+     int YLA = 4, KESKI_PYSTY = 2, ALA = 4;
+     int VASEN = 5, KESKI_LEVEYS = 2, OIKEA = 9;
 
      pair A = (0, 0);
      pair B = (0, ALA);
@@ -1154,31 +1154,19 @@
      draw ((G.x, A.y) -- (G.x, B.y) -- (H.x, B.y), dashed);
    #+END_SRC
 
-   #+RESULTS[c6e4b6d261fcef6f1f63835bd657cfaf1009bad1]: lippu-mitat
+   #+RESULTS[ca51d06e6e710c7a24ccd0aaa1c7b4a5ff1afa4e]: lippu-mitat
    [[file:lippu-mitat.svg]]
 
-   #+BEGIN_SRC processing :exports both
-     size (600, 600);
-     // suhteet vaakasuunnassa
-     final float VASEN = 5;
-     final float KESKI_LEVEYS = 3;
-     final float OIKEA = 10;
-
-     // suhteet pystysuunnassa
-     final float YLA = 4;
-     final float KESKI_PYSTY = 3;
-     final float ALA = 4;
-
-     // taustaväri
-     final float TAUSTA_SAVY = 0;
-     final float TAUSTA_KYLLAISYYS = 0;
-     final float TAUSTA_KIRKKAUS = 100;
-
-     // ristin väri
-     final float RISTI_SAVY = 59;
-     final float RISTI_KYLLAISYYS = 81;
-     final float RISTI_KIRKKAUS = 49;
-
+   Alla oleva ohjelma piirtää neliön muotoiseen ikkunaan vakioita
+   vaihtelemalla näiden kolmen eri valtion liput. Vakioina annetaan
+   mittasuhteet sekä värien tiedot. Lippu piirretään koko
+   piirtoikkunan levyisenä. Ensimmäisenä lasketaan, mikä on tällöin
+   lipun mitoissa olevan yhden \ldquo{}osan\rdquo{} suuruus. Jos
+   leveys on vaikkapa 600, ja kyseessä on Ruotsin lippu, niin yhden
+   osan suuruus on tällöin \[ \frac{600}{5 + 2 + 9} = 37,5. \]
+ 
+   #+NAME: liput-runko
+   #+BEGIN_SRC processing :exports none
      // yhden osan pituus kuvassa: kuvan leveys jaettuna vaakasuunnan
      // osien summalla
      final float OSA = width / (VASEN + KESKI_LEVEYS + OIKEA);
@@ -1196,6 +1184,59 @@
      rect (VASEN * OSA, 0, KESKI_LEVEYS * OSA, KORKEUS);
      rect (0, YLA * OSA, width, KESKI_PYSTY * OSA);
    #+END_SRC
+
+   #+BEGIN_SRC processing :exports both :noweb yes
+     size (600, 600);
+     // suhteet vaakasuunnassa
+     final float VASEN = 5;
+     final float KESKI_LEVEYS = 2;
+     final float OIKEA = 9;
+
+     // suhteet pystysuunnassa
+     final float YLA = 4;
+     final float KESKI_PYSTY = 2;
+     final float ALA = 4;
+
+     // taustaväri
+     final float TAUSTA_SAVY = 58;
+     final float TAUSTA_KYLLAISYYS = 100;
+     final float TAUSTA_KIRKKAUS = 26;
+
+     // ristin väri
+     final float RISTI_SAVY = 13;
+     final float RISTI_KYLLAISYYS = 100;
+     final float RISTI_KIRKKAUS = 100;
+
+     <<liput-runko>>
+   #+END_SRC
+
+   Muuttamalla kuvan kokoa sekä vakioita, jotka säätelevät
+   mittasuhteita ja värejä saadaan pienempi Tanskan lippu.
+   #+BEGIN_SRC processing :exports both :noweb yes
+     size (350, 350);
+     // suhteet vaakasuunnassa
+     final float VASEN = 12;
+     final float KESKI_LEVEYS = 4;
+     final float OIKEA = 21;
+
+     // suhteet pystysuunnassa
+     final float YLA = 12;
+     final float KESKI_PYSTY = 4;
+     final float ALA = 12;
+
+     // taustaväri
+     final float TAUSTA_SAVY = 97;
+     final float TAUSTA_KYLLAISYYS = 92;
+     final float TAUSTA_KIRKKAUS = 78;
+
+     // ristin väri
+     final float RISTI_SAVY = 0;
+     final float RISTI_KYLLAISYYS = 0;
+     final float RISTI_KIRKKAUS = 100;
+
+     <<liput-runko>>
+   #+END_SRC
+
 * Muuttuja
 * Ehdollinen suorittaminen
 * ~while~-silmukka
