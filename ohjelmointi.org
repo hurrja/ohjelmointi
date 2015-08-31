@@ -1041,7 +1041,7 @@
         rect (LEVEYS_PIENI, KORKEUS_PIENI, 2 * LEVEYS_PIENI, 2 * KORKEUS_PIENI);
 
       #+END_SRC
-* Desimaaliluku ja jakolasku <<txt:desimaaliluku>>
+* Desimaaliluku ja jakolasku <<txt:desimaaliluku-jakolasku>>
 ** Desimaalierotin
    Processing-ohjelmointikielessä desimaalierotin on piste. Seuraava
    esimerkki piirtää kohtaan \((100, 100)\) suorakaiteen, jonka
@@ -1119,9 +1119,9 @@
    korkeus ovat samat, saadaan ympyrä.
    #+BEGIN_SRC processing
      size (400, 400);
-     // keskipisteen x- ja y-koordinaatti (sama luku)
-     final float KESKIPISTE = width / 2.0; 
-     ellipse (KESKIPISTE, KESKIPISTE, width, width);
+     // ympyrän säde
+     final float SADE = width / 2.0; 
+     ellipse (SADE, SADE, width, width);
    #+END_SRC
 ** Esimerkki
    Suomen, Ruotsin ja Tanskan lipuissa on jonkin värinen risti toisen
@@ -1241,7 +1241,49 @@
 
      <<liput-runko>>
    #+END_SRC
-
+** Tehtävät
+   1. Piirrä alla olevan kaltaiset kuvat /neliön muotoiseen/
+      piirtoikkunaan. Kuvioiden tulee skaalautua, kun piirtoikkunan
+      kokoa muutetaan.
+      a) 
+	  #+NAME: desimaaliluku-ympyrat-paallekkain
+	  #+BEGIN_SRC processing
+            size (300, 300);
+            final float HALKAISIJA = width / 2.0;
+	    final float SADE = HALKAISIJA / 2.0;
+            ellipse (SADE, HALKAISIJA, HALKAISIJA, HALKAISIJA);
+            ellipse (3 * SADE, HALKAISIJA, HALKAISIJA, HALKAISIJA);
+	  #+END_SRC
+      b) 
+	  #+NAME: desimaaliluku-ympyrat-vierekkain
+	  #+BEGIN_SRC processing
+            size (300, 300);
+            final float HALKAISIJA = height / 2.0;
+            final float SADE = HALKAISIJA / 2.0;
+            ellipse (HALKAISIJA, SADE, HALKAISIJA, HALKAISIJA);
+            ellipse (HALKAISIJA, 3 * SADE, HALKAISIJA, HALKAISIJA);
+	  #+END_SRC
+      c) 
+	 #+NAME: desimaaliluku-ellipsit
+	 #+BEGIN_SRC processing
+           size (300, 300);
+	   final float PUOLET = width / 2.0;
+           ellipse (PUOLET, PUOLET / 2.0, width, PUOLET);
+           ellipse (PUOLET, 1.5 * PUOLET, width, PUOLET);
+	 #+END_SRC
+      d) 
+	  #+NAME: desimaaliluku-nelja-ympyraa
+	  #+BEGIN_SRC processing
+            size (300, 300);
+            final float HALKAISIJA = width / 2.0;
+	    final float NELJANNES = width / 4.0;
+            ellipse (NELJANNES, NELJANNES, HALKAISIJA, HALKAISIJA);
+            ellipse (3 * NELJANNES, NELJANNES, HALKAISIJA, HALKAISIJA);
+            ellipse (NELJANNES, 3 * NELJANNES, HALKAISIJA, HALKAISIJA);
+            ellipse (3 * NELJANNES, 3 * NELJANNES, HALKAISIJA, HALKAISIJA);
+	  #+END_SRC
+	 
+	 
 * Muuttuja
 * Ehdollinen suorittaminen
 * ~while~-silmukka
@@ -1253,7 +1295,10 @@
 * Hiiri
 * Satunnaisuus
 * Rekursio
-* Ratkaisut
+* Esimerkkiratkaisuja
+** Monta ratkaisutapaa
+   Saman asian tekevä tietokoneohjelma voidaan kirjoittaa monella eri
+   tavalla. Nämä ratkaisut ovat vain esimerkkejä.
 ** [[txt:piirtaminen]]
    1. 
        #+BEGIN_SRC processing :exports both
@@ -1405,4 +1450,21 @@
       #+BEGIN_SRC processing :exports code :noweb yes
       <<vakio-suorakulmiot-suoralla>>
       #+END_SRC
-      
+** [[txt:desimaaliluku-jakolasku]]
+   1. 
+      a) 
+          #+BEGIN_SRC processing :noweb yes :exports code
+	  <<desimaaliluku-ympyrat-paallekkain>>
+	  #+END_SRC
+      b) 
+          #+BEGIN_SRC processing :noweb yes :exports code
+	  <<desimaaliluku-ympyrat-vierekkain>>
+	  #+END_SRC
+      c) 
+          #+BEGIN_SRC processing :noweb yes :exports code
+	  <<desimaaliluku-ellipsit>>
+	  #+END_SRC
+      d) 
+          #+BEGIN_SRC processing :noweb yes :exports code
+	  <<desimaaliluku-nelja-ympyraa>>
+	  #+END_SRC
