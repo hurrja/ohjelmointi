@@ -8,3 +8,9 @@ canvas
     display: block;
     margin: 0 auto;
 }
+
+pre.src
+{
+    color: white;
+    background-color: #102e4e;
+}
