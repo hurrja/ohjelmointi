@@ -1108,15 +1108,20 @@
    piirrettäessä kuvioita näyttöön desimaaliarvot pyöristetään usein
    taas kokonaisluvuiksi.
 
-   Seuraavassa esimerkissä piirretään neliö piirtoikkunan
-   keskelle. Piirtoikkunan keskikohta on (~width/2.0~, ~height/2.0~)
-   ja laskutoimitus ~SIVU / 2.0~ antaa puolet neliön sivun pituudesta.
+   Seuraavassa esimerkissä piirretään piirtoikkunaan mahdollisimman
+   suuri ympyrä. Piirtoikkunan keskikohta on (~width/2.0~,
+   ~height/2.0~) ja laskutoimitus ~SIVU / 4.0~ antaa neljäosan neliön
+   sivun pituudesta. Ympyrä piirretään käyttämällä funktiota
+   ~ellipse()~, jolla voidaan piirtää eri kokoisia
+   ellipsejä. Funktiolle annetaan neljä lukua.  Kaksi ensimmäistä
+   lukua määräävät ellipsin keskipisteen. Seuraava luku määrää
+   ellipsin leveyden ja viimeinen ellipsin korkeuden. Jos leveys ja
+   korkeus ovat samat, saadaan ympyrä.
    #+BEGIN_SRC processing
-     size (600, 400);
-     final float SIVU = 235;
-
-     rect (width / 2.0 - SIVU / 2.0, height / 2.0 - SIVU / 2.0, SIVU, SIVU);
-
+     size (400, 400);
+     // keskipisteen x- ja y-koordinaatti (sama luku)
+     final float KESKIPISTE = width / 2.0; 
+     ellipse (KESKIPISTE, KESKIPISTE, width, width);
    #+END_SRC
 ** Esimerkki
    Suomen, Ruotsin ja Tanskan lipuissa on jonkin värinen risti toisen
