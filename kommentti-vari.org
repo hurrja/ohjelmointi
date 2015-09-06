@@ -239,9 +239,7 @@
    HSV-arvoja nimetyille väreille viemällä hiiren osoittimen värin
    päälle.
 
-   #+BEGIN_QUOTE
    https://en.wikipedia.org/wiki/List_of_colors_(compact)
-   #+END_QUOTE
 
    Sivuilta saaduissa arvoissa on yksi merkittävä ero: niissä
    värisävyn arvo eli \(H\)-arvo on lukujen 0 ja 360 välillä.  Tämän
