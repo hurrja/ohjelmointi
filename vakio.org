@@ -1,3 +1,5 @@
+#+SETUPFILE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
 * Vakio
 ** Vakio
    Edellisessä kappaleissa kaikki koordinaatit on laskettu käsin ennen
