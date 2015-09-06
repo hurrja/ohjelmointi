@@ -1,7 +1,4 @@
-* Vakio <<txt:vakio>>
-  :PROPERTIES:
-  :TUNNIT:   2
-  :END:
+* Vakio
 ** Vakio
    Edellisessä kappaleissa kaikki koordinaatit on laskettu käsin ennen
    kuvien piirtämisessä. Yleensä ohjelmoinnissa ei tehdä näin, vaan

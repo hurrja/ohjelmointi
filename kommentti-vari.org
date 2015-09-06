@@ -1,7 +1,4 @@
-* Kommentti ja väri <<txt:kommentteja-vareja>>
-  :PROPERTIES:
-  :TUNNIT:   2
-  :END:
+* Kommentti ja väri
 ** Kommentti ohjelmakoodissa
    Tietokoneohjelmiin kirjoitetaan usein /kommentteja/, jotka ovat
    ohjelman ihmislukijalle tarkoitettuja selvennyksiä. Tietokone
