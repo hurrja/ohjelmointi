@@ -1,3 +1,5 @@
+#+SETUPFILE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
 * Kommentti ja väri
 ** Kommentti ohjelmakoodissa
    Tietokoneohjelmiin kirjoitetaan usein /kommentteja/, jotka ovat
@@ -260,8 +262,8 @@
    1. Piirrä keskelle \((600\times 400)\)-kokoista piirtoikkunaa
       \((400\times 200)\)-kokoinen suorakulmio. Taustan värin
       HSB-arvojen tulee olla \((9, 45, 76)\) ja suorakulmion \((54,
-      100, 100)\). Suorakulmiolla ei ole reunusta. [Muista asettaa
-      ~colorMode (HSB, 100);~]
+      100, 100)\). Suorakulmiolla ei ole reunusta. Muista asettaa
+      ~colorMode (HSB, 100)~.
    2. Piirrä punainen neliö siniselle pohjalle. Neliöllä tulee olla
       vihreä reunus. Kuvioiden koot ja tarkat värit voit valita itse.
    3. Piirrä alla olevan kaltainen kuvio. Taustan HSB-väriarvot ovat
