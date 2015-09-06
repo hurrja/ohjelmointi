@@ -8,6 +8,22 @@ ol li ol
     list-style-type: lower-alpha;
 }
 
+li
+{
+    margin-top: 30px;
+}
+
+li li
+{
+    margin-top: 2px;
+}
+
+
+li:first-child
+{
+    margin-top: 0;
+}
+
 canvas
 {
     display: block;
@@ -16,6 +32,8 @@ canvas
 
 pre.src
 {
+    margin: 0 auto;
+    width: 50%;
     color: white;
     background-color: #102e4e;
 }
