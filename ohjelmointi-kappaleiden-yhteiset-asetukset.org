@@ -1,4 +1,4 @@
-#+OPTIONS: toc:nil
+#+OPTIONS: toc:nil num:nil
 #+HTML_HEAD_EXTRA: <link rel="additional stylesheet" type="text/css" href="ohjelmointi.css" />
 #+NAME: asymptote-asetukset
 #+BEGIN_SRC asymptote :exports none
