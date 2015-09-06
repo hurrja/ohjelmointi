@@ -1,0 +1,56 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t c:nil creator:nil d:(not "LOGBOOK") date:t e:t
+#+OPTIONS: email:nil f:t inline:t num:t p:nil pri:nil prop:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
+#+TITLE: Ohjelmointi
+#+AUTHOR: Jarmo Hurri
+#+EMAIL: jarmo.hurri@iki.fi
+#+LANGUAGE: fi
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+
+#+COLUMNS: %25ITEM(Aihe) %TUNNIT(Tunteja)
+#+HTML_HEAD_EXTRA: <link rel="additional stylesheet" type="text/css" href="ohjelmointi.css" />
+#+NAME: asymptote-asetukset
+#+BEGIN_SRC asymptote :exports none
+  usepackage ("inputenc", "utf8");
+  defaultpen (fontsize (14));
+#+END_SRC
+* Aikataulu
+  #+BEGIN: columnview :id global :maxlevel 1
+  | Aihe                                                  | Tunteja |
+  |-------------------------------------------------------+---------|
+  | * Aikataulu                                           |         |
+  | * Piirtäminen lausekkeiden avulla <<txt:piirtaminen>> |       2 |
+  | * Kommentti ja väri <<txt:kommentteja-vareja>>        |       2 |
+  | * Vakio <<txt:vakio>>                                 |       2 |
+  | * Desimaaliluku ja jakolasku <<txt:desimaaliluku>>    |         |
+  | * Muuttuja                                            |         |
+  | * Ehdollinen suorittaminen                            |         |
+  | * ~while~-silmukka                                    |         |
+  | * ~for~-silmukka                                      |         |
+  | * Pikseli <<txt:pikseli>>                             |         |
+  | * Funktion määritteleminen                            |         |
+  | * Animaatio                                           |         |
+  | * Aika                                                |         |
+  | * Hiiri                                               |         |
+  | * Satunnaisuus                                        |         |
+  | * Rekursio                                            |         |
+  | * Ratkaisut                                           |         |
+  #+END:
+* [[file:piirtaminen.org]]
+* [[file:kommentti-vari.org]]
+* [[file:vakio.org]]
+* [[file:desimaaliluku-jakolasku.org]]
+* Muuttuja
+* Ehdollinen suorittaminen
+* ~while~-silmukka
+* ~for~-silmukka
+* Funktion määritteleminen
+* Animaatio
+* Aika
+* Hiiri
+* [[file:pikseli.org]]
+* Satunnaisuus
+* Rekursio
+* Esimerkkiratkaisuja
