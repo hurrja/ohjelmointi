@@ -1,3 +1,5 @@
+#+SETUPFILE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
 * Piirtäminen lausekkeiden avulla
 ** Piirtoikkunan pisteen koordinaatit
    
