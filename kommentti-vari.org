@@ -1,4 +1,4 @@
-#+SETUPFILE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * Kommentti ja väri
 ** Kommentti ohjelmakoodissa
@@ -90,14 +90,11 @@
       kuvan väreissä on suurin mahdollinen kirkkaus ja värikylläisyys.
 
       #+NAME: varisavy
-      #+BEGIN_SRC asymptote :file varisavy.png :cache yes :noweb yes
+      #+BEGIN_SRC asymptote :file varisavy.png :noweb yes
         <<hsb-koodaus-havainnollistus>>
         pen f (real h) { return (hsv (h, 1, 1)); }
         hsbKoodausHavainnollistus (360, "värisävy", f, valittuVari.x);
       #+END_SRC
-
-      #+RESULTS[2b8aff37fd2338def47e713e557526dc157e2bf9]: varisavy
-      [[file:varisavy.png]]
 
       Valitaanpa värisävyksi 17, joka antaa keltavihreän värin. Tämä
       on merkattu kuvaan katkoviivalla.
@@ -109,14 +106,11 @@
       värikylläisyys.
 
       #+NAME: kirkkaus
-      #+BEGIN_SRC asymptote :file kirkkaus.png :cache yes :noweb yes
+      #+BEGIN_SRC asymptote :file kirkkaus.png :noweb yes
         <<hsb-koodaus-havainnollistus>>
         pen f (real v) { return (hsv (valittuVari.x * 360, 1, v)); }
         hsbKoodausHavainnollistus (1, "kirkkaus", f, valittuVari.z);
       #+END_SRC
-
-      #+RESULTS[1fcaaf3252b6b33e8da029ad871ba6a0a6405ba2]: kirkkaus
-      [[file:kirkkaus.png]]
 
       Valitaan värisävyn 17 lisäksi kirkkaus 75 (kuvassa
       katkoviivalla).
@@ -126,14 +120,11 @@
       sadan väliltä. Eri värikylläisyyksillä saadaan seuraavat värit.
    
       #+NAME: varikyllaisyys
-      #+BEGIN_SRC asymptote :file varikyllaisyys.png :cache yes :noweb yes
+      #+BEGIN_SRC asymptote :file varikyllaisyys.png :noweb yes
         <<hsb-koodaus-havainnollistus>>
         pen f (real s) { return (hsv (valittuVari.x * 360, s, valittuVari.z)); }
         hsbKoodausHavainnollistus (1, "värikylläisyys", f, valittuVari.y);
       #+END_SRC
-
-      #+RESULTS[1e09b08150ea8e0910c45e7d82614331e5d1242f]: varikyllaisyys
-      [[file:varikyllaisyys.png]]
 
       Valitaan värikylläisyydeksi 60 (kuvassa katkoviivalla). 
 
