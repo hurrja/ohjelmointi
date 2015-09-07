@@ -323,6 +323,38 @@
         final float HALKAISIJA = KORKEUS / 5 * 3;
         ellipse (width / 2.0, KORKEUS / 2.0, HALKAISIJA, HALKAISIJA);
       #+END_SRC
+   5. Piirrä alla oleva kuva, joka skaalautuu piirtoikkunan
+      mukana. Ohjelmassa määritelty vakio ~P~ määrää, kuinka monta
+      prosenttia sinisen kolmion korkeus on piirtoikkunan
+      korkeudesta. Kuvassa vakion ~P~ arvo on 20. Sinisen värin
+      HSB-arvot ovat \((62, 100, 100).\)
+      #+NAME: desimaaliluku-oja
+      #+BEGIN_SRC processing
+        size (400, 300);
+        final float P = 20;
+
+        colorMode (HSB, 100);
+        noStroke ();
+        background (0);
+
+        // valkoinen kolmio
+        fill (100);
+        triangle (0, 0, width, 0, width / 2.0, height);
+
+        // sinisen kolmion väri
+        fill (62, 100, 100);
+
+        // vakio K on se osuus (desimaalilukuna, jonka arvo on vähintään 0 ja
+        // korkeintaan 1) valkoisen kolmion korkeudesta, joka pysyy valkoisena
+        final float K = 1 - P / 100;
+
+        // sinisen kolmion vasemman yläkulman koordinaatit
+        final float X = K * width / 2.0;
+        final float Y = K * height;
+
+        // itse kolmio
+        triangle (X, Y, width / 2.0, height, width - X, Y);
+      #+END_SRC
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :noweb yes :exports code
@@ -352,4 +384,8 @@
    4. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<desimaaliluku-japanin-lippu>>
+      #+END_SRC
+   5. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<desimaaliluku-oja>>
       #+END_SRC
