@@ -301,7 +301,24 @@
 	fill (53, 93, 73);
         rect (VIHREA_LEVEYS, 0, width - VIHREA_LEVEYS, height);
       #+END_SRC
-   4. Piirrä neliön muotoiseen ikkunaan Japanin lippu, joka skaalautuu
+   4. 
+      #+NAME: desimaaliluku-suorakaiteet-suhteissa
+      #+BEGIN_SRC processing
+        size (500, 200);
+        final float A = 1;
+        final float B = 3;
+        final float C = 2;
+        final float D = 5;
+	noStroke ();
+
+	// yhteisen kulmapisteen koordinaatit
+        final float X = A * width / (A + B);
+        final float Y = C * height / (C + D);
+
+        rect (0, 0, X, Y);
+        rect (X, Y, width - X, height - Y);
+      #+END_SRC
+   5. Piirrä neliön muotoiseen ikkunaan Japanin lippu, joka skaalautuu
       piirtoikkunan mukana. Japanin lipun leveyden ja korkeuden suhde
       on \(3 : 2.\) Punainen ympyrä on keskellä lippua, ja ympyrän
       halkaisija on \(\displaystyle\frac{3}{5}\) lipun
@@ -323,7 +340,7 @@
         final float HALKAISIJA = KORKEUS / 5 * 3;
         ellipse (width / 2.0, KORKEUS / 2.0, HALKAISIJA, HALKAISIJA);
       #+END_SRC
-   5. Piirrä alla oleva kuva, joka skaalautuu piirtoikkunan
+   6. Piirrä alla oleva kuva, joka skaalautuu piirtoikkunan
       mukana. Ohjelmassa määritelty vakio ~P~ määrää, kuinka monta
       prosenttia sinisen kolmion korkeus on piirtoikkunan
       korkeudesta. Kuvassa vakion ~P~ arvo on 20. Sinisen värin
@@ -383,9 +400,13 @@
       #+END_SRC
    4. 
       #+BEGIN_SRC processing :noweb yes :exports code
-      <<desimaaliluku-japanin-lippu>>
+      <<desimaaliluku-suorakaiteet-suhteissa>>
       #+END_SRC
    5. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<desimaaliluku-japanin-lippu>>
+      #+END_SRC
+   6. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<desimaaliluku-oja>>
       #+END_SRC
