@@ -15,9 +15,10 @@
 * [[file:kommentti-vari.org]]
 * [[file:vakio.org]]
 * [[file:desimaaliluku-jakolasku.org]]
-* Muuttuja
 * Ehdollinen suorittaminen
+* Muuttuja
 * ~while~-silmukka
+* Lauselohko
 * ~for~-silmukka
 * Funktion määritteleminen
 * Animaatio
