@@ -51,7 +51,11 @@
    | ~1 / 5.0~  |   0.2 |
    
    Kaikki ~float~-tyyppiset vakiot ovat desimaalilukuja, vaikka niiden
-   arvoksi olisi asetettu kokonaisluku.
+   arvoksi olisi asetettu kokonaisluku. Jos esimerkiksi 
+
+   ~final float K = 5;~
+
+   niin ~K~ on tämän jälkeen desimaaliluku.
 
    Miksi kokonaislukujen jakolasku antaa tulokseksi kokonaisluvun?
    Koska se on hyödyllinen laskutoimitus ja tietokone osaa laskea sen
@@ -221,7 +225,22 @@
      <<liput-runko>>
    #+END_SRC
 ** Tehtävät
-   1. Piirrä alla olevan kaltaiset kuvat /neliön muotoiseen/
+   1. Piirrä neliön muotoiseen piirtoikkunaan alla oleva kuva, joka
+      skaalautuu piirtoikkunan mukana. Keltaisen värin HSB-arvot ovat
+      \((17, 100, 100).\)
+      #+NAME: desimaaliluku-pacman
+      #+BEGIN_SRC processing
+        size (200, 200);
+        colorMode (HSB, 100);
+        noStroke ();
+        background (0);
+        fill (17, 100, 100);
+        final float SADE = width / 2.0;
+        ellipse (SADE, SADE, width, width);
+        fill (0);
+        triangle (width, 0, SADE, SADE, width, width);
+      #+END_SRC
+   2. Piirrä alla olevan kaltaiset kuvat /neliön muotoiseen/
       piirtoikkunaan. Kuvioiden tulee skaalautua automaattisesti, jos
       piirtoikkunan kokoa muutetaan.
       a) 
@@ -261,13 +280,13 @@
             ellipse (NELJANNES, 3 * NELJANNES, HALKAISIJA, HALKAISIJA);
             ellipse (3 * NELJANNES, 3 * NELJANNES, HALKAISIJA, HALKAISIJA);
 	  #+END_SRC
-   2. Piirrä alla olevan kaltainen kuva, joka skaalautuu piirtoikkunan
+   3. Piirrä alla olevan kaltainen kuva, joka skaalautuu piirtoikkunan
       mukana. Ohjelmassa määritelty vakio ~P~ määrää, kuinka monta
       prosenttia vihreä palkki peittää kuvasta. Kuvassa vakion ~P~
       arvo on 75. Voit valita vapaasti kuvan värisävyt.
       #+NAME: desimaaliluku-vihrea-palkki
       #+BEGIN_SRC processing
-        size (600, 50);
+        size (600, 100);
         final float P = 70;
         final float VIHREA_LEVEYS = P / 100 * width;
 	
@@ -282,8 +301,34 @@
 	fill (53, 93, 73);
         rect (VIHREA_LEVEYS, 0, width - VIHREA_LEVEYS, height);
       #+END_SRC
+   4. Piirrä neliön muotoiseen ikkunaan Japanin lippu, joka skaalautuu
+      piirtoikkunan mukana. Japanin lipun leveyden ja korkeuden suhde
+      on \(3 : 2.\) Punainen ympyrä on keskellä lippua, ja ympyrän
+      halkaisija on \(\displaystyle\frac{3}{5}\) lipun
+      korkeudesta. Punaisen värin HSB-arvot ovat \((99, 85, 57).\)
+      #+NAME: desimaaliluku-japanin-lippu
+      #+BEGIN_SRC processing
+        size (400, 400);
+        final float KORKEUS = 2.0 / 3 * width;
+
+        colorMode (HSB, 100);
+        noStroke ();
+
+	// valkoinen tausta
+        fill (100);
+        rect (0, 0, width, KORKEUS);
+
+	// punainen ympyrä
+        fill (99, 85, 57);
+        final float HALKAISIJA = KORKEUS / 5 * 3;
+        ellipse (width / 2.0, KORKEUS / 2.0, HALKAISIJA, HALKAISIJA);
+      #+END_SRC
 ** Ratkaisuja
    1. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<desimaaliluku-pacman>>
+      #+END_SRC
+   2. 
       a) 
           #+BEGIN_SRC processing :noweb yes :exports code
 	  <<desimaaliluku-ympyrat-paallekkain>>
@@ -300,7 +345,11 @@
           #+BEGIN_SRC processing :noweb yes :exports code
 	  <<desimaaliluku-nelja-ympyraa>>
 	  #+END_SRC
-   2. 
+   3. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<desimaaliluku-vihrea-palkki>>
+      #+END_SRC
+   4. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<desimaaliluku-japanin-lippu>>
       #+END_SRC
