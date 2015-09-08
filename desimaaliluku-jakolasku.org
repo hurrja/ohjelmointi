@@ -406,7 +406,30 @@
       #+BEGIN_SRC processing :noweb yes :exports code
       <<desimaaliluku-japanin-lippu>>
       #+END_SRC
-   6. 
+   6. Alla on kaksi esimerkkiratkaisua tehtävään. Ensimmäisessä
+      piirretään valkoiselle pohjalle sininen suorakulmio ja sen
+      osittain peittävät mustat kolmiot.
+      #+BEGIN_SRC processing :exports both
+        size (600, 200);
+        final float P = 20;
+        final float SININEN_KORKEUS = P / 100 * height;
+
+        colorMode (HSB, 100);
+        background (100);
+        noStroke ();
+
+	// sininen suorakulmio
+        fill (62, 100, 100);
+        rect (0, height - SININEN_KORKEUS, width, SININEN_KORKEUS);
+
+	// kaksi mustaa kolmiota
+        final float KESKI_X = width / 2.0; // keskikohdan x-koordinaatti
+        fill (0);
+        triangle (0, 0, 0, height, KESKI_X, height);
+        triangle (KESKI_X, height, width, height, width, 0);
+      #+END_SRC
+      Toisessa ratkaisussa valkoinen alue ja sen osittain peittävä
+      sininen alue piirretään kolmioina mustalle taustalle.
       #+BEGIN_SRC processing :noweb yes :exports code
       <<desimaaliluku-oja>>
       #+END_SRC
