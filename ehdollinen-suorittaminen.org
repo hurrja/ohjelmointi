@@ -76,3 +76,47 @@
    Lukujen ~a~ ja ~b~ yhtäsuuruus testataan vertailuoperaattorilla
    ~==~, jossa on kaksi yhtäsuuruusmerkkiä peräkkäin.
    #+END_QUOTE
+** Esimerkki
+   Piirretään neliön muotoiseen piirtoikkunaan ympyrä tai nelikulmio
+   riippuen vakion ~P~ arvosta. Jos ~P~ on alle 95 piirretään ympyrä,
+   muuten nelikulmio.
+
+   #+NAME: ehdollinen-ympyra-nelio-runko
+   #+BEGIN_SRC processing :exports none
+     if (P < 95)
+       ellipse (100, 100, 100, 100);
+     else
+       rect (50, 50, 100, 100);
+   #+END_SRC
+   Ensin vakio on suurempi kuin 95, joten piirretään nelikulmio.
+   #+BEGIN_SRC processing :noweb yes :exports both
+     size (250, 250);
+     final float P = 96;
+
+     <<ehdollinen-ympyra-nelio-runko>>
+   #+END_SRC
+
+   Kun vakion arvoa lasketaan, piirretään ympyrä.
+   #+BEGIN_SRC processing :noweb yes :exports both
+     size (250, 250);
+     final float P = 93;
+
+     <<ehdollinen-ympyra-nelio-runko>>
+   #+END_SRC
+** Pelkkä ~if~-rakenne
+   Seuraavassa esimerkissä piirretään neliö neliön muotoiseen
+   piirtoikkunan keskelle. Piirtoikkunan vasempaan yläkulmaan
+   piirretään toinen samankokoinen neliö, jos kuvassa on sille tilaa.
+   
+   #+BEGIN_SRC processing
+     size (200, 200);
+     final float SIVU = 10;
+
+     // keskelle piirrettävän neliön koordinaatit (x- ja y-koordinaatti sama)
+     final float X = width / 2.0 - SIVU / 2.0;
+     rect (X, X, SIVU, SIVU);
+
+     if (X >= SIVU)
+       rect (0, 0, SIVU, SIVU);
+
+   #+END_SRC
