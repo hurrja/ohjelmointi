@@ -37,4 +37,42 @@
      <<ehdollinen-kolmio-oikealle>>
    #+END_SRC
 ** ~if-else~ -rakenne     
+   #+BEGIN_QUOTE
+   ~if-else~ -rakenteessa on
+   1. ~ehto~, joka määrää mikä lauseke suoritetaan
+   2. lauseke, joka suoritetaan jos ehto on tosi
+   3. lauseke, joka suoritetaan jos ehto ei ole tosi.
+   #+BEGIN_EXAMPLE
+     if (ehto)
+       lauseke suoritetaan jos ehto tosi;
+     else
+       lauseke suoritetaan jos ehto ei tosi;
+   #+END_EXAMPLE
+   #+END_QUOTE
 
+   Huomaa, että
+   - ~if~-rivin lopussa ei ole puolipistettä
+   - ~else~-rivin lopussa ei ole puolipistettä.
+
+   Yleensä lausekerivit sisennetään, jotta nähdään mihin lausekkeeseen
+   ehto vaikuttaa. Processing-editori sisentää lausekkeet
+   valikosta ~Edit~ \(\rightarrow\) ~Autoformat~ tai suoraan
+   näppäinkomennolla ~Ctrl+t~.
+** Lukujen vertaileminen
+   Jos ~if-else~ -rakenteen ehdossa vertaillaan lukuja, tarvitaan
+   lukujen vertailuoperaattoreita.
+
+   | ehtolauseke | merkitys                                  |
+   |-------------+-------------------------------------------|
+   | ~a < b~     | onko ~a~ pienempi kuin ~b~                |
+   | ~a <= b~    | onko ~a~ pienempi tai yhtä suuri kuin ~b~ |
+   | ~a > b~     | onko ~a~ suurempi kuin ~b~                |
+   | ~a >= b~    | onko ~a~ suurempi tai yhtä suuri kuin ~b~ |
+   | ~a == b~    | onko ~a~ yhtä suuri kuin ~b~              |
+   | ~a != b~    | onko ~a~ eri suuri kuin ~b~               |
+
+   Yllättävintä on yhtäsuuruuden testaaminen.
+   #+BEGIN_QUOTE
+   Lukujen ~a~ ja ~b~ yhtäsuuruus testataan vertailuoperaattorilla
+   ~==~, jossa on kaksi yhtäsuuruusmerkkiä peräkkäin.
+   #+END_QUOTE
