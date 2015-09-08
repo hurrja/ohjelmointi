@@ -49,3 +49,9 @@ blockquote
     border-radius: 10px;
     padding: 5pt;
 }
+
+pre.example
+{
+    border: 0pt;
+    box-shadow: 0pt 0pt 0pt;
+}
