@@ -307,14 +307,20 @@
 	fill (53, 93, 73);
         rect (VIHREA_LEVEYS, 0, width - VIHREA_LEVEYS, height);
       #+END_SRC
-   5. 
+   5. Piirrä alla oleva kuvio, joka skaalautuu piirtoikkunan
+      mukana. Ohjelmassa määritellyt vakiot ~A~ ja ~B~ määräävät,
+      missä suhteessa valkoiset suorakulmiot jakavat piirtoikkunan
+      vaakasuunnassa. Vastaavasti vakiot ~C~ ja ~D~ määräävät, missä
+      suhteessa valkoiset suorakulmiot jakavat piirtoikkunan
+      pystysuunnassa. Alla olevassa kuvassa ~A:B~ on ~1:3~ ja ~C:D~ on
+      ~3:2~.
       #+NAME: desimaaliluku-suorakaiteet-suhteissa
       #+BEGIN_SRC processing
         size (500, 200);
         final float A = 1;
         final float B = 3;
-        final float C = 2;
-        final float D = 5;
+        final float C = 3;
+        final float D = 2;
 	noStroke ();
 
 	// yhteisen kulmapisteen koordinaatit
