@@ -1,0 +1,40 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* Ehdollinen suorittaminen
+** Esimerkki
+   #+NAME: ehdollinen-kolmio-suunta-runko
+   #+BEGIN_SRC processing :exports none
+     // jos leveys on suurempi kuin korkeus
+     if (width > height)
+       triangle (0, 0, width, height / 2.0, 0, height); // kolmio oikealle
+     else // muussa tapauksessa
+       triangle (0, 0, width, 0, width / 2.0, height); // kolmio alas
+   #+END_SRC
+
+   Haluamme kirjoittaa ohjelman, joka toimii seuraavasti.
+   - Jos piirtoikkunan leveys on suurempi kuin piirtoikkunan korkeus,
+     piirretään \ldquo{}oikealla osoittava\rdquo{} kolmio.
+     #+NAME: ehdollinen-kolmio-oikealle
+     #+BEGIN_SRC processing :noweb yes :exports results
+     size (300, 100);
+
+     <<ehdollinen-kolmio-suunta-runko>>
+     #+END_SRC
+   - Muussa tapauksessa piirretään \ldquo{}alas osoittava\rdquo{}
+     kolmio.
+     #+BEGIN_SRC processing :noweb yes :exports results
+     size (100, 200);
+
+     <<ehdollinen-kolmio-suunta-runko>>
+     #+END_SRC
+
+   Ohjelma toimii siis eri tavoin eri tilanteissa. Tämä voidaan
+   ohjelmoida /ehdollisen suorittamisen/ avulla. Ehdollisessa
+   suorittamisessa käytetään Processing-kielen varattuja sanoja ~if~
+   (jos) sekä ~else~ (muutoin).
+
+   #+BEGIN_SRC processing :noweb yes :exports code
+     <<ehdollinen-kolmio-oikealle>>
+   #+END_SRC
+** ~if-else~ -rakenne     
+

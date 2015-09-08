@@ -15,7 +15,7 @@
 * [[file:kommentti-vari.org]]
 * [[file:vakio.org]]
 * [[file:desimaaliluku-jakolasku.org]]
-* Ehdollinen suorittaminen
+* [[file:ehdollinen-suorittaminen.org]]
 * Muuttuja
 * ~while~-silmukka
 * Lauselohko
