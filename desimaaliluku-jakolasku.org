@@ -225,7 +225,13 @@
      <<liput-runko>>
    #+END_SRC
 ** Tehtävät
-   1. Piirrä neliön muotoiseen piirtoikkunaan alla oleva kuva, joka
+   1. Piirrä neliön muotoiseen piirtoikkunan vasempaan yläkulmaan
+      annettu kuvio. Kuvion tulee skaalautua piirtoikkunan mukana.
+      a) neliö, jonka sivun pituus on kolmasosa piirtoikkunan sivun pituudesta
+      b) suorakulmio, jonka leveys on puolet ja korkeus 76\thinsp{}%
+         piirtoikkunan sivun pituudesta
+      c) ympyrä, jonka säde on kaksi seitsemäsosaa neliön sivun pituudesta.
+   2. Piirrä neliön muotoiseen piirtoikkunaan alla oleva kuva, joka
       skaalautuu piirtoikkunan mukana. Keltaisen värin HSB-arvot ovat
       \((17, 100, 100).\)
       #+NAME: desimaaliluku-pacman
@@ -240,7 +246,7 @@
         fill (0);
         triangle (width, 0, SADE, SADE, width, width);
       #+END_SRC
-   2. Piirrä alla olevan kaltaiset kuvat /neliön muotoiseen/
+   3. Piirrä alla olevat kuviot neliön muotoiseen
       piirtoikkunaan. Kuvioiden tulee skaalautua automaattisesti, jos
       piirtoikkunan kokoa muutetaan.
       a) 
@@ -280,7 +286,7 @@
             ellipse (NELJANNES, 3 * NELJANNES, HALKAISIJA, HALKAISIJA);
             ellipse (3 * NELJANNES, 3 * NELJANNES, HALKAISIJA, HALKAISIJA);
 	  #+END_SRC
-   3. Piirrä alla olevan kaltainen kuva, joka skaalautuu piirtoikkunan
+   4. Piirrä alla olevan kaltainen kuva, joka skaalautuu piirtoikkunan
       mukana. Ohjelmassa määritelty vakio ~P~ määrää, kuinka monta
       prosenttia vihreä palkki peittää kuvasta. Kuvassa vakion ~P~
       arvo on 75. Voit valita vapaasti kuvan värisävyt.
@@ -301,7 +307,7 @@
 	fill (53, 93, 73);
         rect (VIHREA_LEVEYS, 0, width - VIHREA_LEVEYS, height);
       #+END_SRC
-   4. 
+   5. 
       #+NAME: desimaaliluku-suorakaiteet-suhteissa
       #+BEGIN_SRC processing
         size (500, 200);
@@ -318,7 +324,7 @@
         rect (0, 0, X, Y);
         rect (X, Y, width - X, height - Y);
       #+END_SRC
-   5. Piirrä neliön muotoiseen ikkunaan Japanin lippu, joka skaalautuu
+   6. Piirrä neliön muotoiseen ikkunaan Japanin lippu, joka skaalautuu
       piirtoikkunan mukana. Japanin lipun leveyden ja korkeuden suhde
       on \(3 : 2.\) Punainen ympyrä on keskellä lippua, ja ympyrän
       halkaisija on \(\displaystyle\frac{3}{5}\) lipun
@@ -340,7 +346,7 @@
         final float HALKAISIJA = KORKEUS / 5 * 3;
         ellipse (width / 2.0, KORKEUS / 2.0, HALKAISIJA, HALKAISIJA);
       #+END_SRC
-   6. Piirrä alla oleva kuva, joka skaalautuu piirtoikkunan
+   7. Piirrä alla oleva kuva, joka skaalautuu piirtoikkunan
       mukana. Ohjelmassa määritelty vakio ~P~ määrää, kuinka monta
       prosenttia sinisen kolmion korkeus on piirtoikkunan
       korkeudesta. Kuvassa vakion ~P~ arvo on 20. Sinisen värin
@@ -374,10 +380,32 @@
       #+END_SRC
 ** Ratkaisuja
    1. 
+      a) 
+	  #+BEGIN_SRC processing :exports both
+            size (200, 200);
+            final float SIVU = width / 3.0;
+            rect (0, 0, SIVU, SIVU);
+	  #+END_SRC
+      b) 
+	 #+BEGIN_SRC processing :exports both
+           size (200, 200);
+           final float LEVEYS = width / 2.0;
+           final float KORKEUS = 0.76 * width;
+           rect (0, 0, LEVEYS, KORKEUS);
+	 #+END_SRC
+      c) 
+	 #+BEGIN_SRC processing :exports both
+           size (200, 200);
+           final float SADE = width / 7.0 * 2;
+           final float HALKAISIJA = 2 * SADE;
+
+           ellipse (SADE, SADE, HALKAISIJA, HALKAISIJA);
+	 #+END_SRC
+   2. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<desimaaliluku-pacman>>
       #+END_SRC
-   2. 
+   3. 
       a) 
           #+BEGIN_SRC processing :noweb yes :exports code
 	  <<desimaaliluku-ympyrat-paallekkain>>
@@ -394,19 +422,19 @@
           #+BEGIN_SRC processing :noweb yes :exports code
 	  <<desimaaliluku-nelja-ympyraa>>
 	  #+END_SRC
-   3. 
+   4. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<desimaaliluku-vihrea-palkki>>
       #+END_SRC
-   4. 
+   5. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<desimaaliluku-suorakaiteet-suhteissa>>
       #+END_SRC
-   5. 
+   6. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<desimaaliluku-japanin-lippu>>
       #+END_SRC
-   6. Alla on kaksi esimerkkiratkaisua tehtävään. Ensimmäisessä
+   7. Alla on kaksi esimerkkiratkaisua tehtävään. Ensimmäisessä
       piirretään valkoiselle pohjalle sininen suorakulmio ja sen
       osittain peittävät mustat kolmiot.
       #+BEGIN_SRC processing :exports both
