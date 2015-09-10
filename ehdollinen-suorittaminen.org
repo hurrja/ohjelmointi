@@ -108,10 +108,8 @@
    piirtoikkunan keskelle. Piirtoikkunan vasempaan yläkulmaan
    piirretään toinen samankokoinen neliö, jos kuvassa on sille tilaa.
    
-   #+BEGIN_SRC processing
-     size (200, 200);
-     final float SIVU = 10;
-
+   #+NAME: ehdollinen-neliot-runko
+   #+BEGIN_SRC processing :exports none
      // keskelle piirrettävän neliön koordinaatit (x- ja y-koordinaatti sama)
      final float X = width / 2.0 - SIVU / 2.0;
      rect (X, X, SIVU, SIVU);
@@ -120,3 +118,48 @@
        rect (0, 0, SIVU, SIVU);
 
    #+END_SRC
+
+   #+BEGIN_SRC processing :noweb yes :exports both
+     size (200, 200);
+     final float SIVU = 60;
+
+     <<ehdollinen-neliot-runko>>
+   #+END_SRC
+
+   Kun neliön sivun pituutta kasvatetaan, toista neliötä ei enää
+   piirretä.
+
+   #+BEGIN_SRC processing :noweb yes :exports both
+     size (200, 200);
+     final float SIVU = 80;
+
+     <<ehdollinen-neliot-runko>>
+   #+END_SRC
+
+   #+BEGIN_QUOTE
+   ~if~-rakenteessa on
+   1. ~ehto~, joka määrää suoritetaanko seuraava lauseke
+   2. lauseke, joka suoritetaan jos ehto on tosi
+   #+BEGIN_EXAMPLE
+     if (ehto)
+       lauseke suoritetaan jos ehto tosi;
+   #+END_EXAMPLE
+   #+END_QUOTE
+** Tehtäviä
+   1. Kirjoita ohjelma, joka piirtää piirtoikkunan vasempaan
+      yläkulmaan \(100\times 100\)-kokoisen neliön, jos ikkunan leveys
+      on suurempi kuin korkeus. Muussa tapauksessa piirtoikkunan
+      vasempaan yläkulmaan piirretään ympyrä, jonka halkaisija
+      on 100. Voi olettaa, että piirtoikkunan leveys ja korkeus ovat
+      vähintään 100. Testaa ohjelmasi toimivuus muuttamalla leveyttä
+      ja korkeutta
+** Ratkaisuja
+   1. 
+      #+BEGIN_SRC processing :exports both
+        size (300, 200);
+
+        if (width > height)
+          rect (0, 0, 100, 100);
+        else
+          ellipse (50, 50, 100, 100);
+      #+END_SRC
