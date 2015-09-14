@@ -106,7 +106,8 @@
 ** Pelkkä ~if~-rakenne
    Seuraavassa esimerkissä piirretään neliö neliön muotoiseen
    piirtoikkunan keskelle. Piirtoikkunan vasempaan yläkulmaan
-   piirretään toinen samankokoinen neliö, jos kuvassa on sille tilaa.
+   piirretään toinen samankokoinen neliö, jos kuvassa on sille
+   tilaa. Neliön sivun pituuden määrää vakio ~SIVU~.
    
    #+NAME: ehdollinen-neliot-runko
    #+BEGIN_SRC processing :exports none
@@ -146,15 +147,57 @@
    #+END_EXAMPLE
    #+END_QUOTE
 ** Tehtäviä
-   1. Kirjoita ohjelma, joka piirtää piirtoikkunan vasempaan
+   1. Kirjoita ohjelma, joka asettaa piirtoikkunan taustan väriksi
+      vihreä värin, jos vakion ~P~ arvo on vähintään 100. Muussa
+      tapauksessa ei tehdä mitään (eli avataan vain harmaa
+      piirtoikkuna). Testaa ohjelmasi toimivuus muuttamalla vakion ~P~
+      arvoa.
+   2. Kirjoita ohjelma, joka piirtää neliön muotoisen piirtoikkunan
+      keskelle mahdollisimman suuren ympyrän. Jos vakion ~P~ arvo on
+      vähintään 100, ympyrä on vihreä. Muussa tapauksessa ympyrä on
+      oranssi. Testaa ohjelmasi toimivuus muuttamalla vakion ~P~
+      arvoa.
+   3. Kirjoita ohjelma, joka piirtää piirtoikkunan vasempaan
       yläkulmaan \(100\times 100\)-kokoisen neliön, jos ikkunan leveys
       on suurempi kuin korkeus. Muussa tapauksessa piirtoikkunan
       vasempaan yläkulmaan piirretään ympyrä, jonka halkaisija
       on 100. Voi olettaa, että piirtoikkunan leveys ja korkeus ovat
-      vähintään 100. Testaa ohjelmasi toimivuus muuttamalla leveyttä
-      ja korkeutta
+      vähintään 100. Testaa ohjelmasi toimivuus muuttamalla
+      piirtoikkunan leveyttä ja korkeutta.
+   4. Kirjoita ohjelma, joka piirtää piirtoikkunan vasempaan
+      yläkulmaan neliön. Neliön sivun pituus on vakio ~SIVU~. Jos
+      piirretyn neliön viereen mahtuu toinen samankokoinen neliö, niin
+      myös toinen neliö piirretään. Testaa ohjelmasi toimivuus
+      muuttamalla piirtoikkunan leveyttä ja vakion ~SIVU~
+      suuruutta. Voit olettaa, että piirtoikkunan leveys ja korkeus
+      ovat molemmat vähintään yhtä suuria kuin ~SIVU~.
 ** Ratkaisuja
    1. 
+      #+BEGIN_SRC processing :exports both
+        size (300, 300);
+        final float P = 101;
+
+        colorMode (HSB, 100);
+
+        if (P >= 100)
+          background (44, 66, 71);
+      #+END_SRC
+   2. 
+      #+BEGIN_SRC processing :exports both
+        size (300, 300);
+        final float P = 101;
+        colorMode (HSB, 100);
+        noStroke ();
+
+        if (P >= 100)
+          fill (21, 100, 71);
+        else
+          fill (6, 100, 100);
+
+        final float SADE = width / 2.0;
+        ellipse (SADE, SADE, width, width);
+      #+END_SRC
+   3. 
       #+BEGIN_SRC processing :exports both
         size (300, 200);
 
@@ -162,4 +205,13 @@
           rect (0, 0, 100, 100);
         else
           ellipse (50, 50, 100, 100);
+      #+END_SRC
+
+   4. 
+      #+BEGIN_SRC processing :exports both
+        size (300, 200);
+        final float SIVU = 180;
+        rect (0, 0, SIVU, SIVU);
+        if (width >= 2 * SIVU)
+          rect (SIVU, 0, SIVU, SIVU);
       #+END_SRC
