@@ -16,7 +16,7 @@
 * [[file:vakio.org]]
 * [[file:desimaaliluku-jakolasku.org]]
 * [[file:ehdollinen-suorittaminen.org]]
-* Muuttuja
+* [[file:muuttuja.org]]
 * ~while~-silmukka
 * Lauselohko
 * ~for~-silmukka

@@ -1,0 +1,119 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* Muuttuja 
+** Esimerkki
+   Piirretään piirtoikkunaan mahdollisimman suuri ympyrä. Ympyrän
+   halkaisijan pituus riippuu siitä, kumpi on suurempi: ikkunan leveys
+   vai korkeus. Ensimmäisessä esimerkissä leveys on suurempi, joten
+   ympyrän halkaisija on ikkunan korkeus.
+
+   #+NAME: muuttuja-ympyra-runko
+   #+BEGIN_SRC processing :exports none
+     if (width > height)
+       ellipse (width / 2.0, height / 2.0, height, height);
+     else
+       ellipse (width / 2.0, height / 2.0, width, width);
+   #+END_SRC
+
+   #+BEGIN_SRC processing :exports both :noweb yes
+     size (300, 200);
+     <<muuttuja-ympyra-runko>>
+   #+END_SRC
+
+   Kun ikkunan mittasuhteet muuttuvat, ympyrän halkaisija on ikkunan
+   leveys.
+
+   #+BEGIN_SRC processing :exports both :noweb yes
+     size (300, 400);
+     <<muuttuja-ympyra-runko>>
+   #+END_SRC
+
+   Huomataan, että ohjelmaan on kirjoitettu funktion ~ellipse()~ kutsu
+   kahdesti, vaikka vain ympyrän halkaisija muuttuu. Voisiko tämän
+   hoitaa fiksummin?
+** Sama esimerkki muuttujan avulla
+   
+   #+BEGIN_QUOTE
+   Tietokoneohjelmassa /muuttuja/ on nimetty muistipaikka, johon
+   voidaan tallentaa mm. lukuja. Muuttujan arvo voi muuttua ohjelman
+   suorituksen aikana.
+   #+END_QUOTE
+
+   Ohjelmoidaan yllä olevan esimerkin mukainen ohjelma käyttämällä
+   muuttujaa ~halkaisija~.
+
+   #+BEGIN_SRC processing :exports both
+     size (400, 300);
+
+     float halkaisija; // määritellään muuttuja nimeltä halkaisija, ei arvoa
+     if (width > height)
+       halkaisija = height; // halkaisijan arvo on ikkunan korkeus
+     else
+       halkaisija = width; // halkaisijan arvo on ikkunan leveys
+
+     ellipse (width / 2.0, height / 2.0, halkaisija, halkaisija);
+   #+END_SRC
+   
+   Huomaa, että
+   - toisin kuin vakiota määritellessä, sanan ~float~ edessä /ei/ lue ~final~
+   - muuttujalle ei tarvitse antaa arvoa määrittelevällä rivillä
+   - muuttujalle asetetaan arvo yhtäsuuruusmerkin ~=~ avulla.
+
+   Monet ohjelmoijat kirjoittavat muuttujien nimet pienillä
+   kirjaimilla erotellakseen ne vakioista.
+** Esimerkki
+   Piirretään ikkunaan palkki, joka peittää ~P~ prosenttia ikkunasta,
+   missä ~P~ on vakio. Jos vakion ~P~ arvo on alle 90, palkki on
+   sininen. Muussa tapauksessa palkki on vihreä.
+
+   #+NAME: muuttuja-palkki-runko 
+   #+BEGIN_SRC processing :exports none
+     final float LEVEYS = P / 100 * width; // palkin leveys
+
+     colorMode (HSB, 100);
+     noStroke ();
+
+     float varisavy; // palkin värin sävy
+     if (P < 90)
+       varisavy = 65; // sininen
+     else
+       varisavy = 30; // vihreä
+
+     fill (varisavy, 70, 100);
+     rect (0, 0, LEVEYS, height);
+   #+END_SRC
+
+   Ensimmäisessä tapauksessa vakion ~P~ arvo on alle 90.
+   #+BEGIN_SRC processing :exports both :noweb yes
+     size (600, 100);
+     final float P = 65;
+     <<muuttuja-palkki-runko>>
+   #+END_SRC
+
+   Kun vakion ~P~ arvo kasvaa, palkin väri muuttuu vihreäksi.
+   #+BEGIN_SRC processing :exports both :noweb yes
+     size (600, 100);
+     final float P = 95;
+     <<muuttuja-palkki-runko>>
+   #+END_SRC
+** Esimerkki
+   Piirretään mahdollisimman suuri ellipsi, jonka keskipisteen
+   \(x\)-koordinaatti on vakio ~X~. Korkeussuunnassa ellipsin
+   keskipiste on ikkunan puolivälissä.
+
+   #+BEGIN_SRC processing :exports both
+     size (400, 300);
+     final float X = 330;
+
+     float leveys;
+     // keskipisteen etäisyydet ikkunan oikeasta ja vasemmasta reunasta
+     final float ETAISYYS_OIKEA = width - X;
+     final float ETAISYYS_VASEN = X;
+
+     if (ETAISYYS_VASEN < ETAISYYS_OIKEA)
+       leveys = 2 * ETAISYYS_VASEN;
+     else
+       leveys = 2 * ETAISYYS_OIKEA;
+
+     ellipse (X, height / 2.0, leveys, height);
+   #+END_SRC
