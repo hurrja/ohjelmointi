@@ -101,10 +101,8 @@
    \(x\)-koordinaatti on vakio ~X~. Korkeussuunnassa ellipsin
    keskipiste on ikkunan puolivälissä.
 
-   #+BEGIN_SRC processing :exports both
-     size (400, 300);
-     final float X = 330;
-
+   #+NAME: muuttuja-ellipsi-runko
+   #+BEGIN_SRC processing :exports none
      float leveys;
      // keskipisteen etäisyydet ikkunan oikeasta ja vasemmasta reunasta
      final float ETAISYYS_OIKEA = width - X;
@@ -116,4 +114,39 @@
        leveys = 2 * ETAISYYS_OIKEA;
 
      ellipse (X, height / 2.0, leveys, height);
+   #+END_SRC
+
+   Ensimmäisessä tilanteessa keskipisteen etäisyys vasempaan reunaan
+   määrittää ellipsin leveyden.
+   #+BEGIN_SRC processing :noweb yes :exports both
+     size (400, 300);
+     final float X = 100;
+
+     <<muuttuja-ellipsi-runko>>
+   #+END_SRC
+
+   Toisessa tilanteessa vakion ~X~ arvo on suurempi, ja ellipsin
+   leveys määräytyy keskipisteen etäisyydestä ikkunan oikeaan reunaan.
+   #+BEGIN_SRC processing :noweb yes :exports both
+     size (500, 100);
+     final float X = 440;
+
+     <<muuttuja-ellipsi-runko>>
+   #+END_SRC
+
+   Alla on vaihtoehtoinen, lyhyempi ratkaisu. Etäisyys ikkunan reunaan
+   voidaan päätellä myös suoraan siitä, sijaitseeko keskipiste ikkunan
+   vasemmassa vai oikeassa puoliskossa.
+   #+BEGIN_SRC processing :exports both
+     size (200, 300);
+     final float X = 150;
+
+     float etaisyys; // keskipisteen etäisyys ikkunan reunaan
+     if (X < width / 2.0)
+       etaisyys = X; // keskipiste ikkunan vasemmassa puoliskossa
+     else
+       etaisyys = width - X; 
+
+     ellipse (X, height / 2.0, 2 * etaisyys, height);
+
    #+END_SRC
