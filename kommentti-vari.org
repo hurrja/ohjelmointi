@@ -14,7 +14,7 @@
    #+BEGIN_SRC processing :exports both
      size (500, 500); // asetetaan piirtoikkunan koko
 
-     // piirretään ristin muotoinen kuvio kahden suorakaiteen avulla
+     // piirretään ristin muotoinen kuvio kahden suorakulmion avulla
      // keskelle piirtoikkunaa
      rect (200, 100, 100, 300);
      rect (100, 200, 300, 100);

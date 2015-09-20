@@ -58,7 +58,7 @@
    niin ~K~ on tämän jälkeen desimaaliluku.
 
    Miksi kokonaislukujen jakolasku antaa tulokseksi kokonaisluvun?
-   Koska se on hyödyllinen laskutoimitus ja tietokone osaa laskea sen
+   Koska se on hyödyllinen laskutoimitus, ja tietokone osaa laskea sen
    nopeammin.
 ** Sisäiset \ldquo{}vakiot\rdquo{} ~width~ ja ~height~ ja skaalautuvat kuvat
    Processing-ohjelma määrittelee automaattisesti
@@ -163,12 +163,14 @@
      colorMode (HSB, 100);
      noStroke ();
 
+     // lipun tausta
      fill (TAUSTA_SAVY, TAUSTA_KYLLAISYYS, TAUSTA_KIRKKAUS);
      rect (0, 0, width, KORKEUS);
 
+     // risti
      fill (RISTI_SAVY, RISTI_KYLLAISYYS, RISTI_KIRKKAUS);
-     rect (VASEN * OSA, 0, KESKI_LEVEYS * OSA, KORKEUS);
-     rect (0, YLA * OSA, width, KESKI_PYSTY * OSA);
+     rect (VASEN * OSA, 0, KESKI_LEVEYS * OSA, KORKEUS); // pystypalkki
+     rect (0, YLA * OSA, width, KESKI_PYSTY * OSA); // vaakapalkki
    #+END_SRC
 
    #+BEGIN_SRC processing :exports both :noweb yes

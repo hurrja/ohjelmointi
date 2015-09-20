@@ -9,7 +9,7 @@
    \((70, 40)\) \(x\)-koordinaatti on 70 ja
    \(y\)-koordinaatti 40. Toisin kuin matematiikassa, piirtoikkunassa
    piste \((0, 0)\) on /vasemmassa yläkulmassa/ ja \(y\)-koordinaatin
-   arvot kasvavat /alaspäin/. Seuraavaan kuva esittää piirtoikkunaa,
+   arvot kasvavat /alaspäin/. Alla oleva kuva esittää piirtoikkunaa,
    jonka leveys on 600 ja korkeus 400. Kuvaan on piirretty myös
    kaikkien ikkunan kulmapisteiden koordinaatit sekä pisteiden \((70,
    40)\) ja \((220, 130)\) kohdat.
@@ -51,7 +51,7 @@
 
    Pistettä \((0, 0)\) kutsutaan piirtokoordinaatiston /origoksi/. 
 
-   Eräs peruskuvioista on suorakulmio (englanniksi
+   Eräs Processing-kielen peruskuvioista on suorakulmio (englanniksi
    /rectangle/). Seuraavassa esimerkissä piirretään suorakulmio
    ikkunaan, jonka koko on $600\times 400$ pikseliä. Piirtoikkuna on
    väriltään harmaa, ja piirretyssä valkoisessa suorakulmiossa on
