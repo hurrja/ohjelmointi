@@ -43,10 +43,10 @@ pre.src
 blockquote
 {
     margin-top: 10px;
-    background-color: darksalmon;
+    background-color: #b6d8b6;
     margin: 0 auto;
     width: 80%;
-    border-radius: 10px;
+    border-radius: 3px;
     padding: 5pt;
 }
 
