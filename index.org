@@ -17,8 +17,8 @@
 * [[file:desimaaliluku-jakolasku.org]]
 * [[file:ehdollinen-suorittaminen.org]]
 * [[file:muuttuja.org]]
-* ~while~-silmukka
 * Lauselohko
+* ~while~-silmukka
 * ~for~-silmukka
 * Funktion määritteleminen
 * Animaatio
