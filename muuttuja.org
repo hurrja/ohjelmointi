@@ -192,6 +192,29 @@
          punainen, jos sen keskipiste sijaitsee ikkunan
          \ldquo{}punaisessa\rdquo{} osassa. Muussa tapauksessa ympyrä
          on sininen.
+   6. Kirjoita ohjelma, joka piirtää neliön muotoiseen piirtoikkunaan
+      mahdollisimman suuren ympyrän, joka täyttää seuraavat ehdot.
+      - Ohjelman vakio ~X~ määrää ympyrän keskipisteen
+        \(x\)-koordinaatin.
+      - Ympyrän keskipiste on piirtoikkunan lävistäjällä, jonka toinen
+        pää on origossa.  
+      Alla on ohjelman piirtämä kuva, kun ikkunan koko on \((400\times
+      400)\) ja vakion ~X~ arvo on 370.
+      #+NAME: muuttuja-ympyra-lavistajalla
+      #+BEGIN_SRC processing :exports results
+        size (400, 400);
+        final float X = 370;
+
+        float sade;
+        if (X < width / 2.0)
+          sade = X;
+        else
+          sade = width - X;
+
+        float halkaisija = 2 * sade;
+        ellipse (X, X, halkaisija, halkaisija);
+      #+END_SRC
+
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports both
@@ -275,3 +298,8 @@
            fill (savy, 100, 100);
            ellipse (X, Y, 10, 10);
 	 #+END_SRC
+
+   6. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<muuttuja-ympyra-lavistajalla>>
+      #+END_SRC
