@@ -1,0 +1,73 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* Lauselohko
+** Esimerkki
+  Kirjoitetaan ohjelma, joka piirtää piirtoikkunan keskelle ympyrän
+  seuraavasti.
+  - Jos ikkunan leveys on suurempi kuin korkeus, piirretään vihreälle
+    pohjalle ympyrä, jonka halkaisija on 100.
+  - Muussa tapauksessa piirretään siniselle pohjalle ympyrä, jonka
+    halkaisija on 50.
+
+  Muistamme, että ~if-else~-rakenne näyttää seuraavalta.
+  #+BEGIN_EXAMPLE
+  if (ehto)
+    lauseke, joka suoritetaan jos ehto tosi;
+  else
+    lauseke, joka suoritetaan jos ehto ei ole tosi;
+  #+END_EXAMPLE
+  Suunnittelemassamme ohjelmassa ehto ~(width > height)~ vaikuttaa
+  kahteen asiaan: sekä taustaväriin että ympyrän halkaisijaan. Ehdon
+  ollessa tosi halutaan siis suorittaa useampi lauseke.
+  
+  Ohjelma voidaan kirjoittaa /lauselohkojen/ avulla.
+
+  #+BEGIN_QUOTE
+  Lauselohko alkaa ~{~-merkillä ja päättyy
+  ~}~-merkkiin. ~if-else~-rakenteessa lauselohkot näyttävät
+  seuraavilta.
+  #+BEGIN_EXAMPLE
+  if (ehto)
+  {
+    lauseke;
+    toinen lauseke;
+    ...
+    viimeinen lauseke;
+  }
+  else
+  {
+    lauseke;
+    toinen lauseke;
+    ...
+    viimeinen lauseke;
+  }
+  #+END_EXAMPLE
+  Lauselohko yhdistää toisiinsa useita lausekkeita siten, että
+  ohjelmointikielen rakenne, kuten ~if-else~-rakenne, käsittelee niitä
+  yhtenä lausekkeena.
+  #+END_QUOTE
+
+  Ohjelmamme näyttää seuraavalta.
+  #+BEGIN_SRC processing :exports both
+    size (200, 300);
+
+    colorMode (HSB, 100);
+    noStroke ();
+
+    float halkaisija;
+    if (width > height)
+    {
+      background (0); // musta tausta
+      halkaisija = 100;
+    }
+    else
+    {
+      background (63, 100, 100); // sininen tausta
+      halkaisija = 50;
+    }
+
+    ellipse (width / 2.0, height / 2.0, halkaisija, halkaisija);
+  #+END_SRC
+** Esimerkki
+   
+   
