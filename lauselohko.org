@@ -4,8 +4,8 @@
 ** Esimerkki
   Kirjoitetaan ohjelma, joka piirtää piirtoikkunan keskelle ympyrän
   seuraavasti.
-  - Jos ikkunan leveys on suurempi kuin korkeus, piirretään vihreälle
-    pohjalle ympyrä, jonka halkaisija on 100.
+  - Jos ikkunan leveys on suurempi kuin korkeus, piirretään mustalle
+    taustalle ympyrä, jonka halkaisija on 100.
   - Muussa tapauksessa piirretään siniselle pohjalle ympyrä, jonka
     halkaisija on 50.
 
@@ -69,5 +69,15 @@
     ellipse (width / 2.0, height / 2.0, halkaisija, halkaisija);
   #+END_SRC
 ** Esimerkki
-   
-   
+   Kirjoitetaan ohjelma, joka piirtää suorakulmion
+   seuraavasti. Ohjelmassa määritellään neljän vakion avulla kaksi
+   piirtoikkunan pistettä $A$ ja $B$:
+    - ~X_A~ määrittää pisteen $A$ \(x\)-koordinaatin ja ~Y_A~ saman
+      pisteen \(y\)-koordinaatin
+    - ~X_B~ määrittää pisteen $B$ \(x\)-koordinaatin ja ~Y_B~ saman
+      pisteen \(y\)-koordinaatin.
+   Ohjelma piirtää suorakulmion, jonka vastakkaiset kärkipisteet ovat
+   $A$ ja \(B.\)
+
+   Alla on kaksi esimerkkiä pisteiden $A$ ja $B$ mahdollisista
+   arvoista sekä piirretyistä suorakulmioista.
