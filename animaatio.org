@@ -1,0 +1,38 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* Esimerkki
+  #+BEGIN_SRC processing :exports both
+    final float SADE = 10;
+    final float HALKAISIJA = 2 * SADE;
+    float x, y;
+    float xNopeus = 200; // pikseliä sekunnissa
+    float yNopeus = 100;
+    float edellinenAikaMs;
+
+    void setup ()
+    {
+      size (400, 400);
+      colorMode (HSB, 100);
+      background (0);
+      x = SADE;
+      y = SADE;
+      edellinenAikaMs = millis ();
+      frameRate (60);
+    }
+
+    void draw ()
+    {
+      fill (color (0));
+      rect (x - SADE, y - SADE, HALKAISIJA, HALKAISIJA);
+      fill (color (1, 100, 100));
+      float kulunutAikaS = (millis () - edellinenAikaMs) * 0.001;
+      x += xNopeus * kulunutAikaS;
+      y += yNopeus * kulunutAikaS;
+      ellipse (x, y, HALKAISIJA, HALKAISIJA);
+      if (x + SADE > width | x - SADE < 0)
+        xNopeus *= -1;
+      if (y + SADE > height | y - SADE < 0)
+        yNopeus *= -1;
+      edellinenAikaMs = millis ();
+    }
+  #+END_SRC
