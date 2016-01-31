@@ -182,7 +182,54 @@
         pituus on ~P~.
       - Muuten piirretään vihreä ympyrä, jonka halkaisija on ~P~.
       Testaa ohjelmasi toimivuus eri vakion ~P~ arvoilla.
-   2. Kirjoita ohjelma, joka piirtää piirtoikkunaan kaksi
+   2. Kirjoita ohjelma, jossa piirretään \(200\times 400\)-kokoiseen
+      piirtoikkunaan mustalle taustalle päällekkäin kaksi ympyrää,
+      joiden halkaisija on 200. Ohjelmassa määritellään yksi vakio
+      ~P~, jonka arvo on vähintään 0 ja korkeintaan 200. 
+      - Jos ~P~ on korkeintaan 100, ylempi ympyrä on punainen ja
+        alempi oranssi, ja ylemmän ympyrän värin kirkkaus on ~(100 -
+        P)~ ja alemman ~P~.
+      - Muussa tapauksessa ylempi ympyrä on oranssi ja alempi vihreä,
+        ja ylemmän ympyrän värin kirkkaus on ~(200 - P)~ ja
+        alemman ~(P - 100)~. 
+      Alla on esimerkki ohjelman piirtämästä kuvasta vakion ~P~
+      arvolla 110. Testaa ohjelmasi toimivuutta eri vakion ~P~
+      arvoilla.
+      #+NAME: kaksi-liikennevaloa
+      #+BEGIN_SRC processing
+        size (200, 400);
+        final float P = 110;
+        final float HALKAISIJA = width;
+        final float SADE = HALKAISIJA / 2;
+
+        colorMode (HSB, 100);
+        final float PUNAINEN_SAVY = 0, ORANSSI_SAVY = 10, VIHREA_SAVY = 33;
+        float ylemmanSavy, alemmanSavy;
+	float ylemmanKirkkaus, alemmanKirkkaus;
+
+        background (0);
+
+        if (P <= 100)
+        {
+          ylemmanSavy = PUNAINEN_SAVY;
+          alemmanSavy = ORANSSI_SAVY;
+	  ylemmanKirkkaus = 100 - P;
+	  alemmanKirkkaus = P;
+        }
+        else
+        {
+          ylemmanSavy = ORANSSI_SAVY;
+          alemmanSavy = VIHREA_SAVY;
+	  ylemmanKirkkaus = 200 - P;
+	  alemmanKirkkaus = P - 100;
+        }
+
+        fill (ylemmanSavy, 100, ylemmanKirkkaus);
+        ellipse (SADE, SADE, HALKAISIJA, HALKAISIJA);
+        fill (alemmanSavy, 100, alemmanKirkkaus);
+        ellipse (SADE, HALKAISIJA + SADE, HALKAISIJA, HALKAISIJA);
+      #+END_SRC
+   3. Kirjoita ohjelma, joka piirtää piirtoikkunaan kaksi
       mahdollisimman suurta ympyrää joko päällekkäin tai vierekkäin
       riippuen siitä, kummalla tavalla saadaan piirrettyä suuremmat
       ympyrät. Toisen ympyrän tulee olla alla olevan esimerkkikuvan
@@ -253,6 +300,10 @@
         }
       #+END_SRC
    2. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<kaksi-liikennevaloa>>
+      #+END_SRC
+   3. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<suurin-ympyräpari>>
       #+END_SRC
