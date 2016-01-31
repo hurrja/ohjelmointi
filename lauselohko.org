@@ -20,7 +20,7 @@
   taustaväriin että ympyrän halkaisijaan. Ehdon ollessa tosi halutaan
   siis suorittaa useampi lauseke.
   
-  Ohjelma voidaan kirjoittaa /lauselohkojen/ avulla.
+  /Lauselohkot/ helpottavat ohjelman kirjoittamista.
 
   #+BEGIN_QUOTE
   Lauselohko alkaa ~{~-merkillä ja päättyy
@@ -79,92 +79,169 @@
    Ohjelma piirtää suorakulmion, jonka vastakkaiset kärkipisteet ovat
    $A$ ja \(B.\)
 
-   Suorakulmion piirtämiseen tarvitaan yläkulman koordinaatit sekä
-   suorakulmion leveys ja korkeus. Nämä riippuvat siitä, miten $A$ ja
-   $B$ sijaitsevat. Alla olevassa kuvassa on piste $A(300, 200$ sekä
-   vaihtoehtoja pisteelle \(B.\) Vaakasuunnassa pätee:
-   - jos $A$ on \(B\):n oikealla puolella, niin yläkulman
-     \(x\)-koordinaatti on ~X_B~ ja leveys on ~(X_A - X_B)~
-   - muuten yläkulman \(x\)-koordinaatti on ~X_A~ ja leveys on ~(X_B -
-     X_A)~.
-   Pystysuunnassa vastaavat ehdot ovat:
-   - jos $A$ on \(B\):n alapuolella, niin yläkulman \(y\)-koordinaatti
-     on ~Y_B~ ja korkeus on ~(Y_A - Y_B)~
-   - muuten yläkulman \(y\)-koordinaatti on ~Y_A~ ja korkeus on
-     ~(Y_B - Y_A)~.
+   Suorakulmio voidaan piirtää sen jälkeen, kun on selvitetty vasen
+   yläkulma ja oikea alakulma. Nämä riippuvat siitä, miten $A$ ja $B$
+   sijaitsevat. Alla olevassa kuvassa on piste $A(300, 200$ sekä
+   vaihtoehtoja pisteelle \(B.\) Jos piste $B$ on kuvaan piirretty
+   vihreä piste, niin silloin vasen yläkulma on punainen piste ja
+   oikea alakulma sininen piste. Kulmien koordinaatit voidaan päätellä
+   seuraavasti.
+   - Vasemman yläkulman \(x\)-koordinaatti on aina pienempi pisteiden
+     $A$ ja $B$ \(x\)-koordinaateista. Esimerkiksi kuvassa se on
+     pienempi luvuista 300 ja 120, eli 120.
+   - Oikean alakulman \(x\)-koordinaatti on aina suurempi pisteiden
+     $A$ ja $B$ \(x\)-koordinaateista.  Esimerkiksi kuvassa se on
+     suurempi luvuista 300 ja 120, eli 300.
+   - Vastaavasti vasemman yläkulman \(y\)-koordinaatti on aina
+     pienempi pisteiden $A$ ja $B$ \(y\)-koordinaateista. Ja niin
+     edelleen.
 
-   #+BEGIN_SRC asymptote :file suorakulmio-karkipisteista.svg
+   #+BEGIN_SRC asymptote :file suorakulmio-karkipisteista.svg :cache yes
      int LEVEYS = 600, KORKEUS = 400;
      size (LEVEYS, KORKEUS);
-     draw (xscale (LEVEYS) * yscale (KORKEUS) * unitsquare);
+     filldraw (xscale (LEVEYS) * yscale (KORKEUS) * unitsquare, white);
 
      // muunnos Processing-koordinaatistosta perinteiseen koordinaatistoon
      transform T = shift ((0, KORKEUS)) * yscale (-1); 
 
      pair A = (LEVEYS / 2, KORKEUS / 2);
      dot ("$A$" + ((string) A), T * A);
-     real[] osuudet = { .3, .7};
+     real[] osuudet = { .2, .8};
      int i = 0;
      for (real m : osuudet)
        for (real n : osuudet)
          {
-        pair B = (m * LEVEYS, n * KORKEUS);
-        string BTeksti = "$B$";
-        if (++i == 2)
+   	pair B = (m * LEVEYS, n * KORKEUS);
+   	string BTeksti = "$B$";
+   	pen BVari = black;
+   	if (++i == 2)
              {
                pair alakulma = minbound (A, B);
                pair ylakulma = maxbound (A, B);
                dot ((string) alakulma, T * alakulma,
-         	   unit (T * alakulma - T * A));
+   		unit (T * alakulma - T * A), 
+   		red);
+               dot ((string) ylakulma, T * ylakulma,
+   		unit (T * ylakulma - T * A), 
+   		blue);
                real l = ylakulma.x - alakulma.x; // suorakaiteen leveys
                real k = ylakulma.y - alakulma.y; // suorakaiteen korkeus
                draw (T * shift (alakulma) * scale (l, k) * unitsquare);
                BTeksti += (string) B;
-               label ("$" + (string) l + "="
-                      + (string) ylakulma.x + "-"
-                      + (string) alakulma.x + "$",
-                      T * (alakulma -- (ylakulma.x, alakulma.y)));
-               label ("$" + (string) k + "="
-                      + (string) ylakulma.y + "-"
-                      + (string) alakulma.y + "$",
-                      T * ((alakulma.x, ylakulma.y) -- alakulma));
+               BVari = green;
              }
-             dot (BTeksti, T * B, unit (T * B - T * A));
+             dot (BTeksti, T * B, unit (T * B - T * A), BVari);
          }
    #+END_SRC
 
-   #+RESULTS:
+   #+RESULTS[c2a9f690bced7a87d82327f9d49f10ebf681491f]:
    [[file:suorakulmio-karkipisteista.svg]]
 
    Vastaava ohjelma näyttää seuraavalta.
    #+BEGIN_SRC processing :exports both
      size (600, 400);
      final float X_A = 300, Y_A = 200;
-     final float X_B = 180, Y_B = 280;
+     final float X_B = 120, Y_B = 320;
 
-     float ylakulmaX, ylakulmaY, leveys, korkeus;
+     float ylakulmaX, ylakulmaY; // vasemman yläkulman koordinaatit
+     float alakulmaX, alakulmaY; // oikean alakulman koordinaatit
 
-     if (X_A > X_B)
-     {
-       ylakulmaX = X_B;
-       leveys = X_A - X_B;
-     }
-     else
+     if (X_A < X_B)
      {
        ylakulmaX = X_A;
-       leveys = X_B - X_A;
-     }
-
-     if (Y_A > Y_B)
-     {
-       ylakulmaY = Y_B;
-       korkeus = Y_A - Y_B;
+       alakulmaX = X_B;
      }
      else
      {
-       ylakulmaY = Y_A;
-       korkeus = Y_B - Y_A;
+       ylakulmaX = X_B;
+       alakulmaX = X_A;
      }
+
+     if (Y_A < Y_B)
+     {
+       ylakulmaY = Y_A;
+       alakulmaY = Y_B;
+     }
+     else
+     {
+       ylakulmaY = Y_B;
+       alakulmaY = Y_A;
+     }
+
+     // suorakulmion leveys ja korkeus
+     float leveys = alakulmaX - ylakulmaX;
+     float korkeus = alakulmaY - ylakulmaY;
 
      rect (ylakulmaX, ylakulmaY, leveys, korkeus);
    #+END_SRC
+** Tehtävät
+   1. Kirjoita ohjelma, joka piirtää \(400\times 400\)-kokoisen
+      piirtoikkunan yläreunaan erilaisen kuvion vakion ~P~ arvosta
+      riippuen. Vakion ~P~ arvo on vähintään 10 ja korkeintaan 200.
+      - Jos ~P~ on alle 100, piirretään punainen neliö, jonka sivun
+        pituus on ~P~.
+      - Muuten piirretään vihreä ympyrä, jonka halkaisija on ~P~.
+      Testaa ohjelmasi toimivuus eri vakion ~P~ arvoilla.
+   2. Kirjoita ohjelma, joka piirtää piirtoikkunaan kaksi
+      mahdollisimman suurta ympyrää joko päällekkäin tai vierekkäin
+      riippuen siitä, kummalla tavalla saadaan piirrettyä suuremmat
+      ympyrät. Toisen ympyrän tulee olla piirtoikkunan vasemmassa
+      yläkulmassa ja toisen suoraan ensimmäisen vieressä tai
+      alla. Testaa ohjelmasi toimivuutta seuraavan kokoisilla
+      piirtoikkunoilla: \((500 \times 400\)), \((500 \times 200\)),
+      \((400 \times 500\)) sekä \((200 \times 500\)).
+      #+NAME: suurin-ympyräpari
+      #+BEGIN_SRC processing exports both
+        size (500, 200);
+
+        float halkaisija;
+        // toisen ympyrän keskipisteen koordinaatit
+        float toisenKpXEro, toisenKpYEro; 
+        if (width > height)
+        {
+          // piirretään vierekkäin
+          if (width / 2.0 < height)
+            halkaisija = width / 2.0;
+          else
+            halkaisija = height;
+
+          toisenKpXEro = halkaisija;
+          toisenKpYEro = 0;
+        }
+        else
+        {
+          // piirretään päällekkäin
+          if (height / 2.0 < width)
+            halkaisija = height / 2.0;
+          else
+            halkaisija = width;
+          toisenKpXEro = 0;
+          toisenKpYEro = halkaisija;
+        }
+
+        float sade = halkaisija / 2.0;
+        ellipse (sade, sade, halkaisija, halkaisija);
+        ellipse (sade+ toisenKpXEro, sade + toisenKpYEro, halkaisija, halkaisija);
+      #+END_SRC
+
+** Esimerkkiratkaisuja
+   1. 
+      #+NAME: punainen-nelio-vihrea-ympyra
+      #+BEGIN_SRC processing :exports both
+        size (400, 400);
+        final float P = 70;
+        colorMode (HSB, 100);
+	noStroke (); // ei piirretä ääriviivoja
+        if (P < 100)
+        {
+          fill (0, 70, 100); // punainen väri
+          rect (0, 0, P, P);
+        }
+        else
+        {
+          fill (30, 70, 100); // vihreä väri
+          final float SADE = P / 2;
+          ellipse (SADE, SADE, P, P);
+        }
+      #+END_SRC
+   2. 
