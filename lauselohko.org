@@ -185,43 +185,51 @@
    2. Kirjoita ohjelma, joka piirtää piirtoikkunaan kaksi
       mahdollisimman suurta ympyrää joko päällekkäin tai vierekkäin
       riippuen siitä, kummalla tavalla saadaan piirrettyä suuremmat
-      ympyrät. Toisen ympyrän tulee olla piirtoikkunan vasemmassa
-      yläkulmassa ja toisen suoraan ensimmäisen vieressä tai
-      alla. Testaa ohjelmasi toimivuutta seuraavan kokoisilla
-      piirtoikkunoilla: \((500 \times 400\)), \((500 \times 200\)),
-      \((400 \times 500\)) sekä \((200 \times 500\)).
+      ympyrät. Toisen ympyrän tulee olla alla olevan esimerkkikuvan
+      mukaisesti piirtoikkunan vasemmassa yläkulmassa ja toisen
+      suoraan ensimmäisen vieressä tai alla. Testaa ohjelmasi
+      toimivuutta seuraavan kokoisilla piirtoikkunoilla: \((500 \times
+      400\)), \((500 \times 200\)), \((400 \times 500\)) sekä \((200
+      \times 500\)).
       #+NAME: suurin-ympyräpari
       #+BEGIN_SRC processing exports both
         size (500, 200);
 
-        float halkaisija;
-        // toisen ympyrän keskipisteen koordinaatit
-        float toisenKpXEro, toisenKpYEro; 
+        float halkaisija; // ympyröiden halkaisija
+
+        // ympyröiden keskipisteiden välinen erotus x- ja y-suunnissa
+        float kpErotusX, kpErotusY;
+
         if (width > height)
         {
           // piirretään vierekkäin
+
+	  // rajoittaako ympyrän koon ikkunan leveys vai korkeus?
           if (width / 2.0 < height)
             halkaisija = width / 2.0;
           else
             halkaisija = height;
 
-          toisenKpXEro = halkaisija;
-          toisenKpYEro = 0;
+          kpErotusX = halkaisija;
+          kpErotusY = 0;
         }
         else
         {
           // piirretään päällekkäin
+
+	  // rajoittaako ympyrän koon ikkunan korkeus vai leveys?
           if (height / 2.0 < width)
             halkaisija = height / 2.0;
           else
             halkaisija = width;
-          toisenKpXEro = 0;
-          toisenKpYEro = halkaisija;
+
+          kpErotusX = 0;
+          kpErotusY = halkaisija;
         }
 
         float sade = halkaisija / 2.0;
         ellipse (sade, sade, halkaisija, halkaisija);
-        ellipse (sade+ toisenKpXEro, sade + toisenKpYEro, halkaisija, halkaisija);
+        ellipse (sade + kpErotusX, sade + kpErotusY, halkaisija, halkaisija);
       #+END_SRC
 
 ** Esimerkkiratkaisuja
@@ -245,3 +253,6 @@
         }
       #+END_SRC
    2. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<suurin-ympyräpari>>
+      #+END_SRC
