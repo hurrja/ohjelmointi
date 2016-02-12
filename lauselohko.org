@@ -243,8 +243,6 @@
      rect (ylakulmaX, ylakulmaY, leveys, korkeus);
    #+END_SRC
 
-   
-
 ** Tehtävät
    1. Kirjoita ohjelma, joka piirtää \(400\times 400\)-kokoisen
       piirtoikkunan yläreunaan erilaisen kuvion vakion ~P~ arvosta
@@ -253,7 +251,29 @@
         pituus on ~P~.
       - Muuten piirretään vihreä ympyrä, jonka halkaisija on ~P~.
       Testaa ohjelmasi toimivuus eri vakion ~P~ arvoilla.
-   2. Kirjoita ohjelma, jossa piirretään \(200\times 400\)-kokoiseen
+   2. Kirjoita ohjelma, joka piirtää vakion ~K~ arvosta riippuen eri
+      värisen neliön: jos arvo on
+      - alle 10, neliö on punainen
+      - vähintään 10 mutta alle 20, neliö on keltainen
+      - vähintään 20, neliö on vihreä.
+   3. Kirjoita ohjelma, joka piirtää keskelle neliön kokoista
+      piirtoikkunaa mahdollisimman suuren ympyrän värillä, jonka
+      värisävy on 17. Ympyrän värin kirkkauden määrää vakio ~KIRKKAUS~
+      ja värikylläisyyden vakio ~KYLLAISYYS~. Piirtoikkunan taustan
+      väri määräytyy seuraavan taulukon mukaisesti.
+
+      #+BEGIN_CENTER
+      +----------------+-----------------+-----------+
+      |                | KYLLAISYYS                  |
+      +----------------+-----------------+-----------+
+      | KIRKKAUS       | korkeintaan 50  | yli 50    |
+      +----------------+-----------------+-----------+
+      | korkeintaan 50 | kirkas punainen | valkoinen |
+      | yli 50         | tumma sininen   | musta     |
+      +----------------+-----------------+-----------+
+      #+END_CENTER
+	
+   4. Kirjoita ohjelma, jossa piirretään \(200\times 400\)-kokoiseen
       piirtoikkunaan mustalle taustalle päällekkäin kaksi ympyrää,
       joiden halkaisija on 200. Ohjelmassa määritellään yksi vakio
       ~P~, jonka arvo on vähintään 0 ja korkeintaan 200. 
@@ -300,7 +320,7 @@
         fill (alemmanSavy, 100, alemmanKirkkaus);
         ellipse (SADE, HALKAISIJA + SADE, HALKAISIJA, HALKAISIJA);
       #+END_SRC
-   3. Kirjoita ohjelma, joka piirtää piirtoikkunaan kaksi
+   5. Kirjoita ohjelma, joka piirtää piirtoikkunaan kaksi
       mahdollisimman suurta ympyrää joko päällekkäin tai vierekkäin
       riippuen siitä, kummalla tavalla saadaan piirrettyä suuremmat
       ympyrät. Toisen ympyrän tulee olla alla olevan esimerkkikuvan
@@ -309,7 +329,7 @@
       toimivuutta seuraavan kokoisilla piirtoikkunoilla: \((500 \times
       400\)), \((500 \times 200\)), \((400 \times 500\)) sekä \((200
       \times 500\)).
-      #+NAME: suurin-ympyräpari
+      #+NAME: suurin-ympyrapari
       #+BEGIN_SRC processing exports both
         size (500, 200);
 
@@ -370,10 +390,87 @@
         }
       #+END_SRC
    2. 
+      #+BEGIN_SRC processing :exports both
+        size (200, 200);
+        final float SIVU = 100;
+	colorMode (HSB, 100);
+
+        final float K = 11;
+
+        float savy;
+
+        if (K < 10)
+          savy = 0; // punainen
+        else
+        {
+          if (K < 20)
+            savy = 17; // keltainen
+          else
+            savy = 30; // vihreä
+        }
+
+        fill (savy, 100, 100);
+        rect (0, 0, SIVU, SIVU);
+      #+END_SRC
+   3. 
+      #+BEGIN_SRC processing :exports both
+        size (400, 400);
+        final float HALKAISIJA = width;
+        final float KESKIPISTE = width / 2.0;
+        colorMode (HSB, 100);
+
+        // ympyrän väri
+        final float SAVY = 17;
+        final float KYLLAISYYS = 50;
+        final float KIRKKAUS = 51;
+
+        float taustaSavy, taustaKyllaisyys, taustaKirkkaus;
+
+        if (KIRKKAUS <= 50)
+        {
+          if (KYLLAISYYS <= 50)
+          {
+            // kirkas punainen
+            taustaSavy = 0;
+            taustaKyllaisyys = 100;
+            taustaKirkkaus = 100;
+          }
+          else
+          {
+            // valkoinen
+            taustaSavy = 0;
+            taustaKyllaisyys = 0;
+            taustaKirkkaus = 100;
+          }
+        }
+        else
+        {
+	  // tässä lohkossa kirkkaus on siis yli 50
+          if (KYLLAISYYS <= 50)
+          {
+            // tumma sininen
+            taustaSavy = 62;
+            taustaKyllaisyys = 100;
+            taustaKirkkaus = 20;
+          }
+          else
+          {
+            // musta
+            taustaSavy = 0;
+            taustaKyllaisyys = 0;
+            taustaKirkkaus = 0;
+          }
+        }
+
+        background (taustaSavy, taustaKyllaisyys, taustaKirkkaus);
+	fill (SAVY, KYLLAISYYS, KIRKKAUS);
+        ellipse (KESKIPISTE, KESKIPISTE, HALKAISIJA, HALKAISIJA);
+      #+END_SRC
+   4. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<kaksi-liikennevaloa>>
       #+END_SRC
-   3. 
+   5. 
       #+BEGIN_SRC processing :exports code :noweb yes
-      <<suurin-ympyräpari>>
+      <<suurin-ympyrapari>>
       #+END_SRC
