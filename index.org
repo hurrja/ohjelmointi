@@ -18,7 +18,7 @@
 * [[file:ehdollinen-suorittaminen.org]]
 * [[file:muuttuja.org]]
 * [[file:lauselohko.org]]
-* ~while~-silmukka
+* [[file:while-silmukka.org]]
 * ~for~-silmukka
 * Funktion määritteleminen
 * Animaatio

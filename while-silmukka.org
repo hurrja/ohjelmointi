@@ -1,0 +1,99 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* ~while~-silmukka
+** Esimerkki
+   Piirretään alla oleva kuva, jossa on \(10\times 10\)-kokoisia
+   neliöitä piirtoikkunan lävistäjällä.
+
+   #+NAME: nelioita-lavistajalla
+   #+BEGIN_SRC processing
+     size (400, 400);
+     final float SIVU = 20;
+     float k = 0; // neliön yläkulman x- ja y-koordinaatti
+
+     while (k < width) // niin kauan kuin ollaan ikkunan sisällä...
+     {
+       // ... suoritetaan tämä lauselohko
+       rect (k, k, SIVU, SIVU); // piirretään neliö
+       k = k + SIVU; // kasvatetaan yläkulman koordinaattia
+     }
+   #+END_SRC
+
+   Sen sijaan, että joutuisimme kirjoittamaan yhden koodirivin kutakin
+   neliötä kohden, ohjelma voidaan kirjoittaa
+   ~while~-kontrollirakenteen avulla.
+
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<nelioita-lavistajalla>>
+   #+END_SRC
+** ~while~-rakenne
+   #+BEGIN_QUOTE
+   ~while~-rakenteessa on
+   1. ~ehto~, joka määrää kuinka kauan lauseke tai lausekelohko suoritetaan
+   2. lauseke tai lausekelohko, joka suoritetaan niin kauan kuin ehto
+      on tosi
+   #+BEGIN_EXAMPLE
+     while (ehto)
+       lauseke tai lohko, joka suoritetaan niin kauan kuin ehto tosi;
+   #+END_EXAMPLE
+   #+END_QUOTE
+
+   Huomaa, että
+   - ~ehto~ kirjoitetaan sulkujen sisään
+   - ~while~-rivin lopussa ei ole puolipistettä.
+** Nimitys ~while~-silmukka
+   ~while~-rakennetta kutsutaan yleisemmin ~while~-/silmukaksi/.
+   Tietokoneohjelman toimintaa kuvaavissa piirroksissa, joita
+   kutsutaan /vuokaavioiksi/, ~while~-rakenne muodostaa silmukan. Alla
+   on piirretty vuokaavio edellä kuvatusta ohjelmasta. Alla olevassa
+   vuokaaviossa
+   - ympyrät kuvaavat ohjelman alkua ja loppua
+   - alusta liikutaan loppuun nuolien suuntaisesti
+   - ruutu kuvaa ehtoa, josta voidaan lähteä useaan suuntaan
+   - suorakaide kuvaa toimintaa.
+   Piirrokseen muodostuu silmukka taaksepäin, kun tietokoneohjelman
+   suoritus palaa takaisin ohjelman aiemmalle riville.
+
+   #+BEGIN_SRC asymptote :file while-silmukka.svg
+     import flowchart;
+     import unicode;
+
+     size (8cm, 0);
+
+
+     block beginBlock = circle("alku",(0, 0));
+     block initBlock = rectangle ("k = 0", (0, -.5));
+     block conditionBlock = diamond ("k $<$ width",(0,-1));
+     block actionBlock= rectangle ("piirretään neliö kohtaan (k, k)",(0,-1.6));
+     block postBlock = rectangle ("k = k + \texttt{SIVU} ",(0,-2));
+     block endBlock = circle("loppu",(0,-2.5));
+     pair p = (-1, -1);
+     pair q = (1, -1);
+     dot (q, invisible); // to make x bounding well defined
+
+     draw (beginBlock);
+     draw (initBlock);
+     draw (conditionBlock);
+     draw (actionBlock);
+     draw (postBlock);
+     draw (endBlock);
+
+     add(new void(picture pic, transform t) {
+   	draw(pic,path(new pair[]{beginBlock.bottom(t),initBlock.top(t)},
+   		      Vertical),Arrow,PenMargin);
+   	draw(pic,path(new pair[]{initBlock.bottom(t),conditionBlock.top(t)},Vertical),
+   	     Arrow,PenMargin);
+   	draw(pic,Label("kyllä",0.2,SW),path(new pair[]{conditionBlock.bottom(t),actionBlock.top(t)},
+   					    Vertical),Arrow,PenMargin);
+   	draw(pic,path(new pair[]{actionBlock.bottom(t),postBlock.top(t)},
+   		      Vertical),Arrow,PenMargin);
+   	draw(pic,path(new pair[]{postBlock.left(t),t*p},
+   		      Horizontal),PenMargin);
+   	draw(pic,path(new pair[]{t*p,conditionBlock.left(t)},
+   		      Horizontal),Arrow,PenMargin);
+   	draw(pic,Label("ei",0.5,NE),path(new pair[]{conditionBlock.right(t),t*q},Horizontal),PenMargin);
+   	draw(pic,path(new pair[]{t*q,endBlock.right(t)},
+   		      Vertical),Arrow,PenMargin);
+         });
+
+   #+END_SRC
