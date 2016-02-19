@@ -97,3 +97,24 @@
          });
 
    #+END_SRC
+** Esimerkki
+   Piirretään \(400\times 400\)-kokoiseen ikkunaan alla olevan
+   kaltainen kuva. Kunkin viivan päätepisteen \(x\)-koordinaatti
+   määrää viivan värisävyn siten, että värisävy on \[
+   \frac{x}{\text{width}} \cdot 100. \]
+
+   #+BEGIN_SRC processing
+     size (400, 400);
+
+     float x = 0;
+
+     colorMode (HSB, 100);
+     background (0);
+
+     while (x < width)
+     {
+       stroke (x / width * 100, 100, 100);
+       line (0, 0, x, height);
+       x = x + 5;
+     }
+   #+END_SRC
