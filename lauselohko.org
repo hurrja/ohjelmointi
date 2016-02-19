@@ -256,7 +256,32 @@
       - alle 10, neliö on punainen
       - vähintään 10 mutta alle 20, neliö on keltainen
       - vähintään 20, neliö on vihreä.
-   3. Kirjoita ohjelma, joka piirtää keskelle neliön kokoista
+   3. Kirjoita ohjelma, jossa piirtoikkunaan piirretään eri kuvio
+      riippuen vakion ~Y~ arvosta.
+      - Jos ~Y~ on pienempi tai yhtä suuri kuin 0, taustaväriksi
+        asetetaan punainen väri eikä ikkunaan piirretä mitään kuviota.
+      - Muussa tapauksessa piirretään viiva pisteestä \((0, 0)\)
+        ikkunan oikeassa reunassa olevaan pisteeseen, jonka
+        \(y\)-koordinaatti on ~Y~. Jos ~Y~ on suurempi kuin
+        piirtoikkunan korkeus, viiva on punainen, muussa tapauksessa
+        se on musta. Alla on ohjelman piirtämä kuva vakion ~Y~ arvolla
+        500, kun piirtoikkunan koko on \(400\times 300\).
+	#+NAME: viiva-oikeaan-reunaan
+	#+BEGIN_SRC processing
+          size (400, 300);
+          colorMode (HSB, 100);
+
+          final float Y = 500;
+          if (Y < 0)
+            background (0, 100, 100);
+          else
+          {
+            if (Y > height)
+              stroke (0, 100, 100);
+            line (0, 0, width, Y);
+          }
+	#+END_SRC
+   4. Kirjoita ohjelma, joka piirtää keskelle neliön kokoista
       piirtoikkunaa mahdollisimman suuren ympyrän värillä, jonka
       värisävy on 17. Ympyrän värin kirkkauden määrää vakio ~KIRKKAUS~
       ja värikylläisyyden vakio ~KYLLAISYYS~. Piirtoikkunan taustan
@@ -273,7 +298,7 @@
       +----------------+-----------------+-----------+
       #+END_CENTER
 	
-   4. Kirjoita ohjelma, jossa piirretään \(200\times 400\)-kokoiseen
+   5. Kirjoita ohjelma, jossa piirretään \(200\times 400\)-kokoiseen
       piirtoikkunaan mustalle taustalle päällekkäin kaksi ympyrää,
       joiden halkaisija on 200. Ohjelmassa määritellään yksi vakio
       ~P~, jonka arvo on vähintään 0 ja korkeintaan 200. 
@@ -320,7 +345,7 @@
         fill (alemmanSavy, 100, alemmanKirkkaus);
         ellipse (SADE, HALKAISIJA + SADE, HALKAISIJA, HALKAISIJA);
       #+END_SRC
-   5. Kirjoita ohjelma, joka piirtää piirtoikkunaan kaksi
+   6. Kirjoita ohjelma, joka piirtää piirtoikkunaan kaksi
       mahdollisimman suurta ympyrää joko päällekkäin tai vierekkäin
       riippuen siitä, kummalla tavalla saadaan piirrettyä suuremmat
       ympyrät. Toisen ympyrän tulee olla alla olevan esimerkkikuvan
@@ -369,6 +394,45 @@
         ellipse (sade, sade, halkaisija, halkaisija);
         ellipse (sade + kpErotusX, sade + kpErotusY, halkaisija, halkaisija);
       #+END_SRC
+   7. Kirjoita ohjelma, joka piirtää neliön muotoiseen piirtoikkunaan
+      viivan \(AB\). Viivan toinen päätepiste \(A\) on neliön
+      keskellä. Toisen päätepisteen sijainnin määrää vakio ~P~, jonka
+      arvo on vähintään 0 ja korkeintaan 100. Piste $B$ on neliön
+      piirillä origosta ~P~ prosenttia myötäpäivään. Alla oleva kuva
+      on piirretty vakion ~P~ arvolla 40.
+      #+NAME: piste-nelion-piirilla
+      #+BEGIN_SRC processing
+        size (400, 400);
+
+        final float SIVU = width;
+
+        final float P = 40;
+
+        float paatepisteX, paatepisteY;
+
+        if (P <= 25)
+        {
+          paatepisteX = P / 25 * SIVU;
+          paatepisteY = 0;
+        }
+        else if (P <= 50)
+        {
+          paatepisteX = SIVU;
+          paatepisteY = (P - 25) / 25 * SIVU;
+        }
+        else if (P <= 75)
+        {
+          paatepisteX = SIVU - (P - 50) / 25 * SIVU;
+          paatepisteY = SIVU;
+        }
+        else
+        {
+          paatepisteX = 0;
+          paatepisteY = SIVU - (P - 75) / 25 * SIVU;
+        }
+
+        line (SIVU / 2, SIVU / 2, paatepisteX, paatepisteY);
+      #+END_SRC
 
 ** Esimerkkiratkaisuja
    1. 
@@ -413,6 +477,10 @@
         rect (0, 0, SIVU, SIVU);
       #+END_SRC
    3. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<viiva-oikeaan-reunaan>>
+      #+END_SRC
+   4. 
       #+BEGIN_SRC processing :exports both
         size (400, 400);
         final float HALKAISIJA = width;
@@ -466,11 +534,15 @@
 	fill (SAVY, KYLLAISYYS, KIRKKAUS);
         ellipse (KESKIPISTE, KESKIPISTE, HALKAISIJA, HALKAISIJA);
       #+END_SRC
-   4. 
+   5. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<kaksi-liikennevaloa>>
       #+END_SRC
-   5. 
+   6. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<suurin-ympyrapari>>
+      #+END_SRC
+   7. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<piste-nelion-piirilla>>
       #+END_SRC
