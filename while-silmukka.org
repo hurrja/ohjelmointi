@@ -42,7 +42,7 @@
    - ~ehto~ kirjoitetaan sulkujen sisään
    - ~while~-rivin lopussa ei ole puolipistettä.
 ** Nimitys ~while~-silmukka
-   ~while~-rakennetta kutsutaan yleisemmin ~while~-/silmukaksi/.
+   ~while~-rakennetta kutsutaan yleisemmin ~while~-silmukaksi.
    Tietokoneohjelman toimintaa kuvaavissa piirroksissa, joita
    kutsutaan /vuokaavioiksi/, ~while~-rakenne muodostaa silmukan. Alla
    on piirretty vuokaavio edellä kuvatusta ohjelmasta. Alla olevassa
@@ -99,22 +99,28 @@
    #+END_SRC
 ** Esimerkki
    Piirretään \(400\times 400\)-kokoiseen ikkunaan alla olevan
-   kaltainen kuva. Kunkin viivan päätepisteen \(x\)-koordinaatti
-   määrää viivan värisävyn siten, että värisävy on \[
-   \frac{x}{\text{width}} \cdot 100. \]
+   kaltainen kuva. Kunkin viivan kuvan alareunassa olevan päätepisteen
+   \(x\)-koordinaatti määrää viivan värisävyn siten, että värisävy on
+   \[ \frac{x}{4}. \] Kuvan alareunan vierekkäisten päätepisteiden
+   väli on 5 pikseliä.
 
+   #+NAME: viivoja-origosta-alareunaan
    #+BEGIN_SRC processing
      size (400, 400);
 
-     float x = 0;
+     float x = 0; // alareunassa olevan päätepisteen x-koordinaatti
 
      colorMode (HSB, 100);
-     background (0);
+     background (0); // musta tausta
 
-     while (x < width)
+     while (x < width) // niin kauan kun piste on kuvan sisällä
      {
-       stroke (x / width * 100, 100, 100);
-       line (0, 0, x, height);
+       stroke (x / 4, 100, 100); // asetetaan väri
+       line (0, 0, x, height); // piirretään viiva
        x = x + 5;
      }
+   #+END_SRC
+
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<viivoja-origosta-alareunaan>>
    #+END_SRC
