@@ -124,3 +124,57 @@
    #+BEGIN_SRC processing :exports code :noweb yes
    <<viivoja-origosta-alareunaan>>
    #+END_SRC
+* Esimerkki
+  Piirretään alla oleva kuva, jossa neliön muotoiseen piirtoikkunaan
+  piirretään ruudukko. Ruudukossa vierekkäisten yhdensuuntaisten
+  viivojen välinen etäisyys on vakio ~L~.
+  #+NAME: ruudukko-alku
+  #+BEGIN_SRC processing :exports none
+    size (400, 400);
+    final float L = 10; // viivojen välinen etäisyys
+  #+END_SRC
+
+  #+NAME: ruudukko-kahdella-silmukalla
+  #+BEGIN_SRC processing :noweb yes
+    <<ruudukko-alku>>
+
+    float x = 0; // pystysuoran viivan x-koordinaatti
+    while (x < width)
+    {
+      line (x, 0, x, height);
+      x = x + L;
+    }
+
+    float y = 0; // vaakasuoran viivan y-koordinaatti
+    while (y < height)
+    {
+      line (0, y, width, y);
+      y = y + L;
+    }
+
+  #+END_SRC
+
+
+  Kirjoitetaan kaksi erilaista ratkaisua. Ensimmäisessä piirretään
+  ensin pystyviivat yhdessä ~while~-silmukassa ja sen jälkeen
+  vaakaviivat toisessa silmukassa.
+  
+  #+BEGIN_SRC processing :noweb yes :exports code
+  <<ruudukko-kahdella-silmukalla>>
+  #+END_SRC
+
+  Toisessa ratkaisussa riittää yksi silmukka, jonka sisällä piirretään
+  yksi vaakasuora ja yksi pystysuora viiva.
+  #+BEGIN_SRC processing :exports both
+    size (400, 400);
+    float p = 0; // viivan toinen koordinaatti
+    final float L = 10;
+
+    while (p <= width)
+    {
+      line (p, 0, p, height); // pystysuora viiva
+      line (0, p, width, p); // vaakasuora viiva
+      p = p + L;
+    }
+
+  #+END_SRC
