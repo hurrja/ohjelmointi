@@ -103,8 +103,8 @@
    Piirretään \(400\times 400\)-kokoiseen ikkunaan alla olevan
    kaltainen kuva. Kunkin viivan kuvan alareunassa olevan päätepisteen
    \(x\)-koordinaatti määrää viivan värisävyn siten, että värisävy on
-   \[ \frac{x}{4}. \] Kuvan alareunan vierekkäisten päätepisteiden
-   väli on 5 pikseliä.
+   \(\displaystyle\frac{x}{4}.\) Kuvan alareunan vierekkäisten
+   päätepisteiden väli on 5 pikseliä.
 
    #+NAME: viivoja-origosta-alareunaan
    #+BEGIN_SRC processing
@@ -185,65 +185,160 @@
 
   #+END_SRC
 ** Esimerkki
+   Piirretään alla oleva sahalaitakuvio piirtoikkunaan, jonka koko on
+   \(400\times 400\). Origosta alkavan janan pituus on 10, ja kukin
+   seuraava jana on 10 prosenttia edellistä pidempi. Viivaan voidaan
+   käyttää yhteensä korkeintaan 700 pikseliä. Kulmapisteissä
+   päällekkäin meneviä yksittäisiä pikseleitä ei tarvitse ottaa
+   huomioon.
+
+   #+NAME: sahalaita-pitenevin-askelin
    #+BEGIN_SRC processing
      size (400, 400);
-     colorMode (HSB, 100);
-     background (0);
-     stroke (100);
-     float x = 0, y = 0;
 
-     while (x <= width)
+     colorMode (HSB, 100);
+     background (0); // musta tausta
+     stroke (100); // valkoiset viivat
+
+     float askel = 10; // kunkin askeleen pituus
+     float pikseleitaJaljella = 700; // jäljellä olevien pikselien määrä
+
+     float x = 0, y = 0; // viivan kärkipiste, alussa origossa
+     float xSuunta = 1, ySuunta = 0; // määräävät seuraavan askeleen suunnan
+
+     // niin kauan kun pikseleitä on jäljellä riittävästi...
+     while (pikseleitaJaljella >= askel)
      {
-       float xAskel, yAskel;
+       // lasketaan viivan seuraava kärkipiste
+       float xSeuraava = x + xSuunta * askel;
+       float ySeuraava = y + ySuunta * askel;
+
+       line (x, y, xSeuraava, ySeuraava); // piirretään viiva
+
+       // päivitetään viivan kärkipisteen koordinaatit
+       x = xSeuraava;
+       y = ySeuraava;
+       
+       // vähennetään jäljellä olevien pikseleiden määrää
+       pikseleitaJaljella = pikseleitaJaljella - askel;
+
+       askel = 1.1 * askel; // kasvatetaan askelta 10 prosenttia
   
-       if (y <= x)
+       // päätellään seuraavan askeleen suunta
+       if (xSuunta == 1)
        {
-         xAskel = 7;
-         yAskel = 11;
+         xSuunta = 0;
+         ySuunta = 1;
        }
        else
        {
-         xAskel = 5;
-         yAskel = 2;
+         xSuunta = 1;
+         ySuunta = 0;
        }
-       float seuraavaX = x + xAskel;
-       float seuraavaY = y + yAskel;
-
-       line (x, y, seuraavaX, seuraavaY);
-       x = seuraavaX;
-       y = seuraavaY;
-     }
-
-   #+END_SRC
-** Esimerkki
-   #+BEGIN_SRC processing
-     size (600, 600);
-
-     colorMode (HSB, 100);
-     background (0);
-
-     final float SADE = 10;
-     final float ASKEL = 10 * SADE;
-
-     float kohde = SADE;
-     float jahtaajaX = 0;
-     float jahtaajaY = height;
-
-     while (kohde <= width - SADE)
-     {
-       float varisavy = kohde / width * 100;
-       stroke (varisavy, 100, 100);
-       fill (varisavy, 100, 100);
-       
-       ellipse (kohde, kohde, SADE, SADE);
-
-       float jahtaajaSeuraavaX = (jahtaajaX + kohde) / 2;
-       float jahtaajaSeuraavaY = (jahtaajaY + kohde) / 2;
-       line (jahtaajaX, jahtaajaY, jahtaajaSeuraavaX, jahtaajaSeuraavaY);
-       jahtaajaX = jahtaajaSeuraavaX;
-       jahtaajaY = jahtaajaSeuraavaY;
-       ellipse (jahtaajaX, jahtaajaY, SADE / 2, SADE / 2);
-
-       kohde = kohde + ASKEL;
      }
    #+END_SRC
+
+   Alla olevassa ohjelmassa muuttujat ~x~ ja ~y~ sisältävät tiedon
+   piirrettävän viivan kärkipisteestä. Kullakin kierroksella
+   ~while~-silmukan sisällä lasketaan seuraavan kärkipisteen
+   koordinaatit muuttujiin ~xSeuraava~ ja ~ySeuraava~, piirretään
+   viiva ja päivitetään kärkipisteen koordinaatit.
+
+   Viivan suunta muuttuu kierroksesta toiseen. Suunta ilmaistaan
+   ohjelmassa muuttujien ~xSuunta~ ja ~ySuunta~ avulla. Tällaisten
+   muuttujien käytön avulla voidaan tehtävissä kirjoittaa myös
+   monimutkaisempia ohjelmia. Jos muuttujan ~xSuunta~ arvo on
+   - 1, liikutaan oikealle
+   - 0, ei liikuta \(x\)-akselin suunnassa.
+   Vastaavasti jos muuttujan ~ySuunta~ arvo on
+   - 1, liikutaan alaspäin
+   - 0, ei liikuta \(y\)-akselin suunnassa.
+   Näiden muuttujien arvot voidaan päivittää kullakin kierroksella
+   huomaamalla, että 
+   - jos muuttujan ~xSuunta~ arvo on 1, seuraavalla kierroksella
+     liikutaan alas
+   - muuten liikutaan seuraavalla kierroksella oikealle.
+
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<sahalaita-pitenevin-askelin>>
+   #+END_SRC
+
+** Tehtävät
+   1. 
+      #+BEGIN_SRC processing
+        size (400, 400);
+        colorMode (HSB, 100);
+        background (0);
+        stroke (100);
+        float x = width / 2.0, y = height / 2.0;
+        float narua = 1500;
+        float xSuunta = 0, ySuunta = 1;
+        float askel = 5;
+
+        while (narua >= askel)
+        {
+          float xSeuraava = x + xSuunta * askel;
+          float ySeuraava = y + ySuunta * askel;
+          line (x, y, xSeuraava, ySeuraava);
+
+          x = xSeuraava;
+          y = ySeuraava;
+
+          narua = narua - askel;
+          askel = askel * 1.2;
+
+          if (xSuunta == 0)
+          {
+            if (ySuunta == 1)
+      	xSuunta = 1;
+            else
+      	xSuunta = -1;
+
+            ySuunta = 0;
+          }
+          else
+          {
+            if (xSuunta == 1)
+      	ySuunta = -1;
+            else
+      	ySuunta = 1;
+
+            xSuunta = 0;
+          }
+        }
+   #+END_SRC
+   2. 
+      #+BEGIN_SRC processing
+        size (600, 600);
+
+        colorMode (HSB, 100);
+        background (0);
+
+        final float SADE = 10;
+        final float ASKEL = 10 * SADE;
+
+        float kohde = SADE;
+        float jahtaajaX = 0;
+        float jahtaajaY = height;
+
+        while (kohde <= width - SADE)
+        {
+          float varisavy = kohde / width * 100;
+          stroke (varisavy, 100, 100);
+          fill (varisavy, 100, 100);
+
+          ellipse (kohde, kohde, SADE, SADE);
+
+          float jahtaajaSeuraavaX = (jahtaajaX + kohde) / 2;
+          float jahtaajaSeuraavaY = (jahtaajaY + kohde) / 2;
+          line (jahtaajaX, jahtaajaY, jahtaajaSeuraavaX, jahtaajaSeuraavaY);
+          jahtaajaX = jahtaajaSeuraavaX;
+          jahtaajaY = jahtaajaSeuraavaY;
+          ellipse (jahtaajaX, jahtaajaY, SADE / 2, SADE / 2);
+
+          kohde = kohde + ASKEL;
+        }
+	#+END_SRC
+
+
+
