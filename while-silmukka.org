@@ -200,7 +200,7 @@
      background (0); // musta tausta
      stroke (100); // valkoiset viivat
 
-     float askel = 10; // kunkin askeleen pituus
+     float askel = 10; // seuraavaksi otettavan askeleen pituus
      float pikseleitaJaljella = 700; // jäljellä olevien pikselien määrä
 
      float x = 0, y = 0; // viivan kärkipiste, alussa origossa
