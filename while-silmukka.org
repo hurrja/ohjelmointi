@@ -2,13 +2,15 @@
 
 * ~while~-silmukka
 ** Esimerkki
-   Piirretään alla oleva kuva, jossa on \(10\times 10\)-kokoisia
+   Piirretään alla oleva kuva, jossa on \(20\times 20\)-kokoisia
    neliöitä piirtoikkunan lävistäjällä.
 
    #+NAME: nelioita-lavistajalla
    #+BEGIN_SRC processing
      size (400, 400);
      final float SIVU = 20;
+     noStroke (); // ei piirretä neliöiden ääriviivoja
+
      float k = 0; // neliön yläkulman x- ja y-koordinaatti
 
      while (k < width) // niin kauan kuin ollaan ikkunan sisällä...
@@ -124,13 +126,13 @@
    #+BEGIN_SRC processing :exports code :noweb yes
    <<viivoja-origosta-alareunaan>>
    #+END_SRC
-* Esimerkki
+** Esimerkki
   Piirretään alla oleva kuva, jossa neliön muotoiseen piirtoikkunaan
   piirretään ruudukko. Ruudukossa vierekkäisten yhdensuuntaisten
-  viivojen välinen etäisyys on vakio ~L~.
+  viivojen välinen etäisyys on vakio ~L~. 
   #+NAME: ruudukko-alku
   #+BEGIN_SRC processing :exports none
-    size (400, 400);
+    size (401, 401);
     final float L = 10; // viivojen välinen etäisyys
   #+END_SRC
 
@@ -151,9 +153,14 @@
       line (0, y, width, y);
       y = y + L;
     }
-
   #+END_SRC
 
+  Yllä olevassa esimerkissa piirtoikkunan koko on \(401\times 401\) ja
+  vakion ~L~ arvo 10. Tällöin viimeinen pystyviiva piirtyy ruudukon
+  oikeaan reunaan: ensimmäinen pystyviiva piirretään 1. pikselin
+  kohdalle, toinen pystyviiva 11. pikselin kohdalle jne., jolloin
+  viimeinen kuvaan piirrettävä pystyviiva tulee 401. pikselin
+  kohdalle.
 
   Kirjoitetaan kaksi erilaista ratkaisua. Ensimmäisessä piirretään
   ensin pystyviivat yhdessä ~while~-silmukassa ja sen jälkeen
@@ -165,11 +172,10 @@
 
   Toisessa ratkaisussa riittää yksi silmukka, jonka sisällä piirretään
   yksi vaakasuora ja yksi pystysuora viiva.
-  #+BEGIN_SRC processing :exports both
-    size (400, 400);
-    float p = 0; // viivan toinen koordinaatti
-    final float L = 10;
+  #+BEGIN_SRC processing :exports both :noweb yes
+    <<ruudukko-alku>>
 
+    float p = 0; // viivan toinen koordinaatti
     while (p <= width)
     {
       line (p, 0, p, height); // pystysuora viiva
@@ -178,3 +184,66 @@
     }
 
   #+END_SRC
+** Esimerkki
+   #+BEGIN_SRC processing
+     size (400, 400);
+     colorMode (HSB, 100);
+     background (0);
+     stroke (100);
+     float x = 0, y = 0;
+
+     while (x <= width)
+     {
+       float xAskel, yAskel;
+  
+       if (y <= x)
+       {
+         xAskel = 7;
+         yAskel = 11;
+       }
+       else
+       {
+         xAskel = 5;
+         yAskel = 2;
+       }
+       float seuraavaX = x + xAskel;
+       float seuraavaY = y + yAskel;
+
+       line (x, y, seuraavaX, seuraavaY);
+       x = seuraavaX;
+       y = seuraavaY;
+     }
+
+   #+END_SRC
+** Esimerkki
+   #+BEGIN_SRC processing
+     size (600, 600);
+
+     colorMode (HSB, 100);
+     background (0);
+
+     final float SADE = 10;
+     final float ASKEL = 10 * SADE;
+
+     float kohde = SADE;
+     float jahtaajaX = 0;
+     float jahtaajaY = height;
+
+     while (kohde <= width - SADE)
+     {
+       float varisavy = kohde / width * 100;
+       stroke (varisavy, 100, 100);
+       fill (varisavy, 100, 100);
+       
+       ellipse (kohde, kohde, SADE, SADE);
+
+       float jahtaajaSeuraavaX = (jahtaajaX + kohde) / 2;
+       float jahtaajaSeuraavaY = (jahtaajaY + kohde) / 2;
+       line (jahtaajaX, jahtaajaY, jahtaajaSeuraavaX, jahtaajaSeuraavaY);
+       jahtaajaX = jahtaajaSeuraavaX;
+       jahtaajaY = jahtaajaSeuraavaY;
+       ellipse (jahtaajaX, jahtaajaY, SADE / 2, SADE / 2);
+
+       kohde = kohde + ASKEL;
+     }
+   #+END_SRC
