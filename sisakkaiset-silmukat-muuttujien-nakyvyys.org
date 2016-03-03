@@ -1,0 +1,59 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* Sisäkkäiset silmukat ja muuttujien näkyvyys
+** Esimerkki
+   Piirretään \(400\times 400\)-kokoiseen piirtoikkunaan ympyröitä
+   alla olevan kuvan mukaisesti. Ympyröiden halkaisija on 20.
+
+   #+NAME: sisakkaiset-valkoiset-ympyrat
+   #+BEGIN_SRC processing
+     size (400, 400);
+
+     final float HALKAISIJA = 20;
+     final float SADE = HALKAISIJA / 2;
+
+     float x = SADE;
+
+     // ulommassa silmukassa käydään läpi muuttujan x arvot,
+     // eli ympyräkuvion pystyrivit
+     while (x < width)
+     {
+
+       // sisemmässä silmukassa käydään läpi muuttujan y arvot,
+       // eli tietyn pystyrivin kaikki ympyrät
+       // sisemmässä silmukassa muuttujan x arvo ei muutu
+       float y = SADE;
+       while (y < height)
+       {
+         ellipse (x, y, HALKAISIJA, HALKAISIJA);
+         y = y + HALKAISIJA;
+       }
+
+       x = x + HALKAISIJA;
+     }
+   #+END_SRC
+
+   Ohjelma voidaan kirjoittaa kahden /sisäkkäisen silmukan/ avulla.
+
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<sisakkaiset-valkoiset-ympyrat>>
+   #+END_SRC
+
+   Mietitäänpä, miten ohjelma toimii.
+   1. Ensin muuttujan ~x~ arvoksi asetetaan säde, eli 10, rivillä ~float x = SADE;~
+   2. Tämän jälkeen mennään ulomman silmukan sisään, jossa muuttujan
+      ~y~ arvoksi asetetaan myös 10 rivillä ~float y = SADE;~
+   3. Seuraavaksi suoritetaan sisempää silmukkaan niin kauan, kun ~y~
+      on pienempi kuin ~height~. Tässä sisemmässä silmukassa muuttujan
+      ~x~ arvoa ei muuteta. Niinpä muuttujan ~x~ arvo on koko ajan 10,
+      ja muuttuja ~y~ kasvaa askeleittain halkaisijan pituudella eli
+      luvulla 20 saaden siten arvot \(10, 30, 50, 70,
+      \ldots\). Sisemmässä silmukassa piirretään siis ensin
+      ympyräkuvion ensimmäinen pystyrivi.
+   4. Kun sisemmästä silmukasta poistutaan, muuttujan ~x~ uudeksi
+      arvoksi tulee 30.
+   5. Tämän jälkeen mennään uudestaan sisempään silmukkaan, ja ~y~ saa
+      taas arvot \(10, 30, 50, 70, \ldots\). Näin piirretään siis
+      toinen pystyrivi.
+
+   Ohjelmassa ympyrät piirretään siis pystyrivi kerrallaan.
