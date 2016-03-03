@@ -279,11 +279,11 @@
         }
 
       #+END_SRC
-   2. Piirrä alla oleva kuva piirtoikkunaan, jonka koko on \(1000\times
-      100\). Kuvassa olevien ympyröiden halkaisija on yhtä suuri kuin
-      piirtoikkkunan korkeus. Jos ympyrän keskipisteen
+   2. Piirrä alla oleva kuva piirtoikkunaan, jonka koko on
+      \(1000\times 100\). Kuvassa olevien ympyröiden halkaisija on
+      yhtä suuri kuin piirtoikkunan korkeus. Jos ympyrän keskipisteen
       \(x\)-koordinaatti on ~x~, niin ympyrän värisävy on
-      \(\displaystyle\frac{\mathtt{x}}{10}\). 
+      \(\displaystyle\frac{\mathtt{x}}{6}\).
       #+NAME: while-varikkaita-ympyroita
       #+BEGIN_SRC processing
         size (1000, 100);
@@ -303,7 +303,26 @@
           x = x + HALKAISIJA;
         }
       #+END_SRC
-   3. Piirrä seuraavat kuvat. Piirtoikkunan koko on \(400\times 400\)
+   3. Piirrä alla oleva kuva, jonka tulee skaalautua piirtoikkunan
+      koon mukana. Kunkin pystyviivan värisävy on \[
+      \frac{\mathtt{x}}{\mathtt{width}}\cdot 100, \] missä ~x~ on
+      pystyviivan \(x\)-koordinaatti.
+
+      #+NAME: while-varikkaita-pystyviivoja
+      #+BEGIN_SRC processing
+        size (300, 100);
+
+        colorMode (HSB, 100);
+
+        float x = 0;
+        while (x < width)
+        {
+          stroke (x / width * 100, 100, 100);
+          line (x, 0, x, height);
+          x = x + 1;
+        }
+      #+END_SRC
+   4. Piirrä seuraavat kuvat. Piirtoikkunan koko on \(400\times 400\)
       ja valkoisten neliöiden koko \(20\times 20\). 
       #+NAME: while-valkoisia-nelioita-alku
       #+BEGIN_SRC processing :exports none
@@ -350,7 +369,36 @@
              y = y - SIVU;
            }
 	 #+END_SRC
-   4. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
+   5. Piirrä alla oleva kuvio \(600\times 400\)-kokoiseen
+      piirtoikkunaan. Valkoinen viiva koostuu lyhyistä
+      janoista. Vasemmalla ylhäällä olevan janan vasemmanpuoleinen
+      päätepiste on koordinaateissa \((1, 1)\). Jos viivan
+      tämänhetkinen kärkipiste on kohdassa \((x, y)\), niin seuraava
+      kärkipiste on kohdassa \((x + 5; 1\text{,}05y)\).
+      #+NAME: while-eksponentiaalinen
+      #+BEGIN_SRC processing
+        size (600, 400);
+
+        colorMode (HSB, 100);
+        background (0);
+        stroke (100);
+
+        float x = 1, y = 1; // viivan kärkipiste
+
+        while (x < width)
+        {
+          // seuraavan kärkipisteen koordinaatit
+          float xSeuraava = x + 5;
+          float ySeuraava = 1.05 * y;
+
+          line (x, y, xSeuraava, ySeuraava); // jana
+
+          // päivitetään kärkipisteen koordinaatit
+          x = xSeuraava;
+          y = ySeuraava;
+        }
+      #+END_SRC
+   6. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
       murtoviiva. Viiva alkaa piirtoikkunan keskeltä. Ensimmäisen,
       piirtoikkunan keskeltä alkavan janan pituus on 5, ja seuraava
       jana on 20 prosenttia edellistä pidempi. Viivaan voidaan käyttää
@@ -367,7 +415,7 @@
       | ~ySuunta~   | 1 | 0 | -1 |  0 | 1 | 0 | -1 |  0 |
       #+END_CENTER
 
-      #+NAME: laajeneva-spiraali
+      #+NAME: while-laajeneva-spiraali
       #+BEGIN_SRC processing
         size (400, 400);
         colorMode (HSB, 100);
@@ -410,38 +458,6 @@
           }
         }
    #+END_SRC
-   5. 
-      #+BEGIN_SRC processing
-        size (600, 600);
-
-        colorMode (HSB, 100);
-        background (0);
-
-        final float SADE = 10;
-        final float ASKEL = 10 * SADE;
-
-        float kohde = SADE;
-        float jahtaajaX = 0;
-        float jahtaajaY = height;
-
-        while (kohde <= width - SADE)
-        {
-          float varisavy = kohde / width * 100;
-          stroke (varisavy, 100, 100);
-          fill (varisavy, 100, 100);
-
-          ellipse (kohde, kohde, SADE, SADE);
-
-          float jahtaajaSeuraavaX = (jahtaajaX + kohde) / 2;
-          float jahtaajaSeuraavaY = (jahtaajaY + kohde) / 2;
-          line (jahtaajaX, jahtaajaY, jahtaajaSeuraavaX, jahtaajaSeuraavaY);
-          jahtaajaX = jahtaajaSeuraavaX;
-          jahtaajaY = jahtaajaSeuraavaY;
-          ellipse (jahtaajaX, jahtaajaY, SADE / 2, SADE / 2);
-
-          kohde = kohde + ASKEL;
-        }
-	#+END_SRC
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports code :noweb yes
@@ -452,6 +468,10 @@
       <<while-varikkaita-ympyroita>>
       #+END_SRC
    3. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<while-varikkaita-pystyviivoja>>
+      #+END_SRC
+   4. 
       a) 
 	 #+BEGIN_SRC processing :exports code :noweb yes
 	 <<while-valkoisia-nelioita-dy-pienempi>>
@@ -464,9 +484,13 @@
 	 #+BEGIN_SRC processing :exports code :noweb yes
 	 <<while-valkoisia-nelioita-dy-negatiivinen>>
 	 #+END_SRC
-   4. 
+   5. 
        #+BEGIN_SRC processing :exports code :noweb yes
-       <<laajeneva-spiraali>>
+       <<while-eksponentiaalinen>>
+       #+END_SRC
+   6. 
+       #+BEGIN_SRC processing :exports code :noweb yes
+       <<while-laajeneva-spiraali>>
        #+END_SRC
 
 
