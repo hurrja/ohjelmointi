@@ -198,7 +198,7 @@
 
      colorMode (HSB, 100);
      background (0); // musta tausta
-     stroke (100); // valkoiset viivat
+     stroke (0, 100, 100); // punaiset viivat
 
      float askel = 10; // seuraavaksi otettavan askeleen pituus
      float pikseleitaJaljella = 700; // jäljellä olevien pikselien määrä
@@ -264,18 +264,121 @@
    #+END_SRC
 
 ** Tehtävät
-   1. 
+   1. Piirrä alla oleva kuva. Piirtoikkunan koko on \(400\times 400\)
+      ja ympyröiden halkaisija 20.
+      #+NAME: while-ympyroita-halkaisijalla
+      #+BEGIN_SRC processing
+        size (400, 400);
+        final float HALKAISIJA = 20;
+        float k = HALKAISIJA / 2;
+
+        while (k < width)
+        {
+          ellipse (k, k, HALKAISIJA, HALKAISIJA);
+          k = k + HALKAISIJA;
+        }
+
+      #+END_SRC
+   2. Piirrä alla oleva kuva piirtoikkunaan, jonka koko on \(1000\times
+      100\). Kuvassa olevien ympyröiden halkaisija on yhtä suuri kuin
+      piirtoikkkunan korkeus. Jos ympyrän keskipisteen
+      \(x\)-koordinaatti on ~x~, niin ympyrän värisävy on
+      \(\displaystyle\frac{\mathtt{x}}{10}\). 
+      #+NAME: while-varikkaita-ympyroita
+      #+BEGIN_SRC processing
+        size (1000, 100);
+        final float HALKAISIJA = height;
+        final float SADE = HALKAISIJA / 2;
+
+        colorMode (HSB, 100);
+	noStroke ();
+        background (0);
+
+        float x = HALKAISIJA / 2;
+
+        while (x < width)
+        {
+          fill (x / 10, 100, 100);
+          ellipse (x, SADE, HALKAISIJA, HALKAISIJA);
+          x = x + HALKAISIJA;
+        }
+      #+END_SRC
+   3. Piirrä seuraavat kuvat. Piirtoikkunan koko on \(400\times 400\)
+      ja valkoisten neliöiden koko \(20\times 20\). 
+      #+NAME: while-valkoisia-nelioita-alku
+      #+BEGIN_SRC processing :exports none
+        size (400, 400);
+        final float SIVU = 20;
+        noStroke ();
+
+      #+END_SRC
+      a) 
+	 #+NAME: while-valkoisia-nelioita-dy-pienempi
+	 #+BEGIN_SRC processing :noweb yes
+	   <<while-valkoisia-nelioita-alku>>
+           float x = 0, y = 0;
+
+           while (x < width)
+           {
+             rect (x, y, SIVU, SIVU);
+             x = x + SIVU;
+             y = y + SIVU / 2;
+           }
+	 #+END_SRC
+      b) 
+	 #+NAME: while-valkoisia-nelioita-dx-pienempi
+	 #+BEGIN_SRC processing :noweb yes
+	   <<while-valkoisia-nelioita-alku>>
+           float x = 0, y = 0;
+
+           while (y < height)
+           {
+             rect (x, y, SIVU, SIVU);
+             x = x + SIVU / 2;
+             y = y + SIVU;
+           }
+	 #+END_SRC
+      c) 
+	 #+NAME: while-valkoisia-nelioita-dy-negatiivinen
+	 #+BEGIN_SRC processing :noweb yes
+           <<while-valkoisia-nelioita-alku>>
+           float x = 0, y = height - SIVU;
+           while (x < width)
+           {
+             rect (x, y, SIVU, SIVU);
+             x = x + SIVU;
+             y = y - SIVU;
+           }
+	 #+END_SRC
+   4. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
+      murtoviiva. Viiva alkaa piirtoikkunan keskeltä. Ensimmäisen,
+      piirtoikkunan keskeltä alkavan janan pituus on 5, ja seuraava
+      jana on 20 prosenttia edellistä pidempi. Viivaan voidaan käyttää
+      yhteensä korkeintaan 1500 pikseliä. Kulmapisteissä päällekkäin
+      meneviä yksittäisiä pikseleitä ei tarvitse ottaa huomioon.
+
+      Jos kullakin askeleella piirrettävän janan suunta ilmaistaan
+      yllä olevan esimerkin tapaan muuttujien ~xSuunta~ ja ~ySuunta~
+      avulla, niin nämä muuttujat saavat seuraavia arvoja:
+      #+BEGIN_CENTER
+      | askeleen no | 1 | 2 |  3 |  4 | 5 | 6 |  7 |  8 |
+      |-------------+---+---+----+----+---+---+----+----|
+      | ~xSuunta~   | 0 | 1 |  0 | -1 | 0 | 1 |  0 | -1 |
+      | ~ySuunta~   | 1 | 0 | -1 |  0 | 1 | 0 | -1 |  0 |
+      #+END_CENTER
+
+      #+NAME: laajeneva-spiraali
       #+BEGIN_SRC processing
         size (400, 400);
         colorMode (HSB, 100);
         background (0);
         stroke (100);
         float x = width / 2.0, y = height / 2.0;
-        float narua = 1500;
+        float pikseleitaJaljella = 1500;
         float xSuunta = 0, ySuunta = 1;
         float askel = 5;
 
-        while (narua >= askel)
+        while (pikseleitaJaljella >= askel)
         {
           float xSeuraava = x + xSuunta * askel;
           float ySeuraava = y + ySuunta * askel;
@@ -284,30 +387,30 @@
           x = xSeuraava;
           y = ySeuraava;
 
-          narua = narua - askel;
+          pikseleitaJaljella = pikseleitaJaljella - askel;
           askel = askel * 1.2;
 
           if (xSuunta == 0)
           {
             if (ySuunta == 1)
-      	xSuunta = 1;
+              xSuunta = 1;
             else
-      	xSuunta = -1;
+              xSuunta = -1;
 
             ySuunta = 0;
           }
           else
           {
             if (xSuunta == 1)
-      	ySuunta = -1;
+              ySuunta = -1;
             else
-      	ySuunta = 1;
+              ySuunta = 1;
 
             xSuunta = 0;
           }
         }
    #+END_SRC
-   2. 
+   5. 
       #+BEGIN_SRC processing
         size (600, 600);
 
@@ -339,6 +442,31 @@
           kohde = kohde + ASKEL;
         }
 	#+END_SRC
-
+** Ratkaisuja
+   1. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<while-ympyroita-halkaisijalla>>
+      #+END_SRC
+   2. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<while-varikkaita-ympyroita>>
+      #+END_SRC
+   3. 
+      a) 
+	 #+BEGIN_SRC processing :exports code :noweb yes
+	 <<while-valkoisia-nelioita-dy-pienempi>>
+	 #+END_SRC
+      b) 
+	 #+BEGIN_SRC processing :exports code :noweb yes
+	 <<while-valkoisia-nelioita-dx-pienempi>>
+	 #+END_SRC
+      c) 
+	 #+BEGIN_SRC processing :exports code :noweb yes
+	 <<while-valkoisia-nelioita-dy-negatiivinen>>
+	 #+END_SRC
+   4. 
+       #+BEGIN_SRC processing :exports code :noweb yes
+       <<laajeneva-spiraali>>
+       #+END_SRC
 
 
