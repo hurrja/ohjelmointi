@@ -19,7 +19,7 @@
 * [[file:muuttuja.org]]
 * [[file:lauselohko.org]]
 * [[file:while-silmukka.org]]
-* [[file:sisakkaiset-silmukat-muuttujien-nakyvyys.org]]
+* [[file:sisakkaiset-silmukat.org]]
 * ~for~-silmukka
 * Funktion määritteleminen
 * Animaatio
