@@ -1,5 +1,90 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * Kokonaislukumuuttuja ja -vakio
+** Liukuluvun ja kokonaisluvun ero
+   Tietokoneessa liukulukujen eli ~float~-tyyppisten muuttujien esitys
+   poikkeaa kokonaislukujen esityksestä. Täten Processing kielen luvut
+   ~1~ ja ~1.0~ esitetään tietokoneessa eril lailla, joten ne eivät
+   välttämättä ole täsmälleen yhtä suuria. Niinpä seuraavassa
+   ohjelmassa /ei voida taata/, että ehto ~(a == 1)~ on tosi, vaikka
+   selvästi muuttujan ~a~ arvo on ~1.000~.
 
-  
+   #+BEGIN_SRC processing :exports both
+     size (200, 200);
+     colorMode (HSB, 100);
+
+     float a = 0.1; // muuttujan a arvo alussa
+
+     // lisätään 0.1 niin kauan, kun a < 0.99
+     while (a < 0.99)
+       a = a + 0.1;
+     // tämän jälkeen muuttujan a arvo lienee 1
+
+     if (a == 1) // MUTTA tämä ehto voi olla tosi tai sitten ei
+       background (30, 100, 100); // vihreä jos a:n arvo on 1
+     else
+       background (0, 100, 100); // punainen, jos a:n arvo ei ole 1
+
+     // piirretään vielä luku a tekstinä kuvan keskelle
+     fill (0);
+     textAlign (CENTER, CENTER);
+     text (a, width / 2.0, height / 2.0);
+   #+END_SRC
+
+   #+BEGIN_QUOTE
+   Tietokoneohjelmassa liukuluku ~1.000~ ja kokonaisluku ~1~ eivät
+   välttämättä ole täsmälleen sama luku. Tällä on merkitystä
+   erityisesti silloin, kun lukuja vertaillaan jollain
+   vertailuoperaattoreista ~==~, ~>=~ tai ~<=~, ~>~ tai ~<~.
+   #+END_QUOTE
+** Kokonaislukumuuttuja ja -vakio
+   #+BEGIN_QUOTE
+   Jos jokin muuttuja tai vakio on kokonaisluku, määrittelyssä
+   käytetään ~float~ sanan sijasta sanaa ~int~, joka tulee englannin
+   kielen kokonaislukua tarkoittavasta sanasta /integer/. Tällöin on
+   syytä muistaa aiemmin esitetyt kokonaislukujen jakolaskun
+   ominaisuudet: kahden kokonaisluvun jakolaskun tulos on aina
+   kokonaisluku.
+   #+END_QUOTE
+** Esimerkki
+   Piirretään \(1000\times 100\)-kokoiseen ikkunaan mustalle taustalle
+   25 pientä ympyrää vasemmalta oikealle. Pisteet ovat pystysuunnassa
+   piirtoikkunan keskellä. Kunkin ympyrän kohdalle piirretään numero,
+   joka kertoo kuinka monentena ympyrä on piirretty. Kymmenes ympyrä
+   on punainen, muut ovat sinisiä. Ympyröiden keskipisteiden väli on
+   30, joka on myös vasemmanpuoleisen pisteen
+   \(x\)-koordinaatti. Tekstin koko on 16 pikseliä.
+
+   #+NAME: kokonaisluku-pisteet-rivissa
+   #+BEGIN_SRC processing
+     size (1000, 100);
+     colorMode (HSB, 100);
+     background (0);
+     noStroke ();
+     textSize (16); // asetetaan tekstin koko
+     textAlign (CENTER, CENTER); // tekstin keskikohta annetuissa koordinaateissa
+     
+     final float VALI = 30; // keskipisteiden väli
+     float x = VALI; // ympyrän keskipisteen x-koordinaatti
+     final float Y = height / 2.0; // ympyrän keskipisteen Y-koordinaatti
+
+     int n = 1; // piirrettävän ympyrän järjestysnumero
+
+     // piirretään 25 numeroa
+     while (n <= 25) // turvallista vertailla, kun n on kokonaisluku
+     {
+       fill (100);
+       if (n == 10) // turvallista vertailla
+         fill (0, 100, 100);
+
+       // valkoinen numero
+       text (n, x, Y);
+
+       x = x + VALI; // seuraavan ympyrän keskipisteen x
+       n = n + 1; // seuraavan ympyrän järjestysnumero
+     }
+   #+END_SRC
+
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<kokonaisluku-pisteet-rivissa>>
+   #+END_SRC
