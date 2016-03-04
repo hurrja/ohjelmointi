@@ -304,9 +304,9 @@
         }
       #+END_SRC
    3. Piirrä alla oleva kuva, jonka tulee skaalautua piirtoikkunan
-      koon mukana. Kunkin pystyviivan värisävy on \[
-      \frac{\mathtt{x}}{\mathtt{width}}\cdot 100, \] missä ~x~ on
-      pystyviivan \(x\)-koordinaatti.
+      koon mukana. Kunkin pystyviivan värisävy on Processing-koodina
+      ilmaistuna ~(x / width * 100)~, missä ~x~ on pystyviivan
+      \(x\)-koordinaatti.
 
       #+NAME: while-varikkaita-pystyviivoja
       #+BEGIN_SRC processing
@@ -322,7 +322,40 @@
           x = x + 1;
         }
       #+END_SRC
-   4. Piirrä seuraavat kuvat. Piirtoikkunan koko on \(400\times 400\)
+   4. Piirrä alla oleva kuvio ~while~-silmukan avulla piirtämällä
+      ensin suuri musta ympyrä, sen päälle pienempi valkoinen ympyrä,
+      jonka päälle edelleen pienempi musta ympyrä. Piirtoikkuna on
+      neliön muotoinen, ja kuvan tulee skaalautua piirtoikkunan
+      mukana. Piirretyn ympyrän halkaisija pienenee 10 pikseliä
+      kullakin askeleella. 
+
+      #+NAME: while-tikkataulu
+      #+BEGIN_SRC processing
+        size (400, 400);
+        colorMode (HSB, 100);
+        noStroke ();
+
+        // keskipisteen koordinaatti (sekä x että y)
+        final float K = width / 2.0; 
+
+        float halkaisija = width; // ympyrän halkaisija
+
+        // piirretyn ympyrän kirkkaus, vuorotellen 0 ja 100
+        float kirkkaus = 0; 
+
+        while (halkaisija > 0)
+        {
+          fill (kirkkaus);
+          ellipse (K, K, halkaisija, halkaisija);
+
+          halkaisija = halkaisija - 10;
+          if (kirkkaus == 100)
+            kirkkaus = 0;
+          else
+            kirkkaus = 100;
+        }
+      #+END_SRC
+   5. Piirrä seuraavat kuvat. Piirtoikkunan koko on \(400\times 400\)
       ja valkoisten neliöiden koko \(20\times 20\). 
       #+NAME: while-valkoisia-nelioita-alku
       #+BEGIN_SRC processing :exports none
@@ -369,7 +402,7 @@
              y = y - SIVU;
            }
 	 #+END_SRC
-   5. Piirrä alla oleva kuvio \(600\times 400\)-kokoiseen
+   6. Piirrä alla oleva kuvio \(600\times 400\)-kokoiseen
       piirtoikkunaan. Valkoinen viiva koostuu lyhyistä
       janoista. Vasemmalla ylhäällä olevan janan vasemmanpuoleinen
       päätepiste on koordinaateissa \((1, 1)\). Jos viivan
@@ -398,7 +431,7 @@
           y = ySeuraava;
         }
       #+END_SRC
-   6. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
+   7. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
       murtoviiva. Viiva alkaa piirtoikkunan keskeltä. Ensimmäisen,
       piirtoikkunan keskeltä alkavan janan pituus on 5, ja seuraava
       jana on 20 prosenttia edellistä pidempi. Viivaan voidaan käyttää
@@ -472,6 +505,10 @@
       <<while-varikkaita-pystyviivoja>>
       #+END_SRC
    4. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<while-tikkataulu>>
+      #+END_SRC
+   5. 
       a) 
 	 #+BEGIN_SRC processing :exports code :noweb yes
 	 <<while-valkoisia-nelioita-dy-pienempi>>
@@ -484,11 +521,11 @@
 	 #+BEGIN_SRC processing :exports code :noweb yes
 	 <<while-valkoisia-nelioita-dy-negatiivinen>>
 	 #+END_SRC
-   5. 
+   6. 
        #+BEGIN_SRC processing :exports code :noweb yes
        <<while-eksponentiaalinen>>
        #+END_SRC
-   6. 
+   7. 
        #+BEGIN_SRC processing :exports code :noweb yes
        <<while-laajeneva-spiraali>>
        #+END_SRC
