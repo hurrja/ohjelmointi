@@ -12,24 +12,25 @@
      final float HALKAISIJA = 20;
      final float SADE = HALKAISIJA / 2;
 
-     float x = SADE;
+     float x = SADE; // ympyrän keskipisteen x-koordinaatti
 
      // ulommassa silmukassa käydään läpi muuttujan x arvot,
      // eli ympyräkuvion pystyrivit
      while (x < width)
      {
-
        // sisemmässä silmukassa käydään läpi muuttujan y arvot,
        // eli tietyn pystyrivin kaikki ympyrät
        // sisemmässä silmukassa muuttujan x arvo ei muutu
-       float y = SADE;
+
+       float y = SADE; // ympyrän keskipisteen x-koordinaatti
+
        while (y < height)
        {
          ellipse (x, y, HALKAISIJA, HALKAISIJA);
-         y = y + HALKAISIJA;
+         y = y + HALKAISIJA; // siirrytään alaspäin
        }
 
-       x = x + HALKAISIJA;
+       x = x + HALKAISIJA; // siirrytään oikealle
      }
    #+END_SRC
 
