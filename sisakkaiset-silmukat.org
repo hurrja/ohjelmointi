@@ -1,6 +1,62 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
-* Sisäkkäiset silmukat ja muuttujien näkyvyys
+* Sisäkkäiset silmukat
+** Esimerkki
+   Piirretään alla oleva kuva, jossa on pieniä sinisiä ympyröitä 60
+   pikselin välein. Kunkin ympyrän kohdalla oleva numero kertoo,
+   kuinka monentena ympyrä on piirretty.
+   #+NAME: sisakkaiset-siniset-pisteet
+   #+BEGIN_SRC processing
+     size (400, 400);
+     colorMode (HSB, 100);
+     background (0);
+
+     final float ASKEL = 40;
+     final float SADE = 5;
+     float x = ASKEL;
+     int numero = 1;
+
+     while (x < width)
+     {
+       float y = ASKEL;
+       while (y < height)
+       {
+         fill (62, 100, 100);
+         ellipse (x, y, SADE, SADE);
+         fill (100);
+         text (numero, x, y);
+         numero = numero + 1;
+         y = y + ASKEL;
+       }
+       x = x + ASKEL;
+     }
+   #+END_SRC
+
+   Ohjelma voidaan kirjoittaa kahden /sisäkkäisen silmukan/ avulla.
+
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<sisakkaiset-siniset-pisteet>>
+   #+END_SRC
+
+   Mietitäänpä, miten ohjelma toimii.
+   1. Ensin muuttujan ~x~ arvoksi asetetaan säde, eli 10, rivillä ~float x = SADE;~
+   2. Tämän jälkeen mennään ulomman silmukan sisään, jossa muuttujan
+      ~y~ arvoksi asetetaan myös 10 rivillä ~float y = SADE;~
+   3. Seuraavaksi suoritetaan sisempää silmukkaan niin kauan, kun ~y~
+      on pienempi kuin ~height~. Tässä sisemmässä silmukassa muuttujan
+      ~x~ arvoa ei muuteta. Niinpä muuttujan ~x~ arvo on koko ajan 10,
+      ja muuttuja ~y~ kasvaa askeleittain halkaisijan pituudella eli
+      luvulla 20 saaden siten arvot \(10, 30, 50, 70,
+      \ldots\). Sisemmässä silmukassa piirretään siis ensin
+      ympyräkuvion ensimmäinen pystyrivi.
+   4. Kun sisemmästä silmukasta poistutaan, muuttujan ~x~ uudeksi
+      arvoksi tulee 30.
+   5. Tämän jälkeen mennään uudestaan sisempään silmukkaan, ja ~y~ saa
+      taas arvot \(10, 30, 50, 70, \ldots\). Näin piirretään siis
+      toinen pystyrivi.
+
+   Ohjelmassa ympyrät piirretään siis pystyrivi kerrallaan.
+
 ** Esimerkki
    Piirretään \(400\times 400\)-kokoiseen piirtoikkunaan ympyröitä
    alla olevan kuvan mukaisesti. Ympyröiden halkaisija on 20.
@@ -58,3 +114,6 @@
       toinen pystyrivi.
 
    Ohjelmassa ympyrät piirretään siis pystyrivi kerrallaan.
+** Esimerkki
+   Piirretään alla oleva kuva, joka skaalautuu piirtoikkunan koon
+   mukana. Kuvassa on sisäkkäisiä ympy

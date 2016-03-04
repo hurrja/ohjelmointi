@@ -1,0 +1,5 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* Kokonaislukumuuttuja ja -vakio
+
+  

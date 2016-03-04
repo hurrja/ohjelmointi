@@ -19,6 +19,7 @@
 * [[file:muuttuja.org]]
 * [[file:lauselohko.org]]
 * [[file:while-silmukka.org]]
+* [[file:kokonaislukumuuttuja-vakio.org]]
 * [[file:sisakkaiset-silmukat.org]]
 * [[file:funktion-maaritteleminen.org]]
 * ~for~-silmukka
