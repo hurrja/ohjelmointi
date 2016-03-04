@@ -20,8 +20,8 @@
 * [[file:lauselohko.org]]
 * [[file:while-silmukka.org]]
 * [[file:sisakkaiset-silmukat.org]]
+* [[file:funktion-maaritteleminen.org]]
 * ~for~-silmukka
-* Funktion määritteleminen
 * Animaatio
 * Aika
 * Hiiri

@@ -56,7 +56,7 @@
    Piirrokseen muodostuu silmukka taaksepäin, kun tietokoneohjelman
    suoritus palaa takaisin ohjelman aiemmalle riville.
 
-   #+BEGIN_SRC asymptote :file while-silmukka.svg
+   #+BEGIN_SRC asymptote :file while-silmukka-vuokaavio.svg
      import flowchart;
      import unicode;
 
@@ -263,6 +263,10 @@
    <<sahalaita-pitenevin-askelin>>
    #+END_SRC
 
+   Huomaa, että ohjelmakoodissa muuttujat ~xSeuraava~ ja ~ySeuraava~
+   määritellään lauselohkon sisällä. Ne voitaisiin määritellä myös
+   lauselohkon ulkopuolella, mutta niitä ei tarvita siellä. Tähän
+   asiaan palataan [[file:funktion-maaritteleminen.org][kappaleessa, jossa määritellään funktioita]].
 ** Tehtävät
    1. Piirrä alla oleva kuva. Piirtoikkunan koko on \(400\times 400\)
       ja ympyröiden halkaisija 20.
