@@ -7,7 +7,7 @@
    ~1~ ja ~1.0~ esitetään tietokoneessa eril lailla, joten ne eivät
    välttämättä ole täsmälleen yhtä suuria. Niinpä seuraavassa
    ohjelmassa /ei voida taata/, että ehto ~(a == 1)~ on tosi, vaikka
-   selvästi muuttujan ~a~ arvo on ~1.000~.
+   muuttujan ~a~ arvo on kolmen desimaalin tarkkuudella ~1.000~.
 
    #+BEGIN_SRC processing :exports both
      size (200, 200);
@@ -27,12 +27,12 @@
 
      // piirretään vielä luku a tekstinä kuvan keskelle
      fill (0);
-     textAlign (CENTER, CENTER);
-     text (a, width / 2.0, height / 2.0);
+     textAlign (CENTER, CENTER); // selitys alla
+     text (a, width / 2.0, height / 2.0); // selitys alla
    #+END_SRC
 
    #+BEGIN_QUOTE
-   Tietokoneohjelmassa liukuluku ~1.000~ ja kokonaisluku ~1~ eivät
+   Tietokoneohjelmassa liukuluku ~1.0~ ja kokonaisluku ~1~ eivät
    välttämättä ole täsmälleen sama luku. Tällä on merkitystä
    erityisesti silloin, kun lukuja vertaillaan jollain
    vertailuoperaattoreista ~==~, ~>=~ tai ~<=~, ~>~ tai ~<~.
@@ -46,6 +46,25 @@
    ominaisuudet: kahden kokonaisluvun jakolaskun tulos on aina
    kokonaisluku.
    #+END_QUOTE
+** Luvun piirtäminen tekstinä piirtoikkunaan
+   Luku voidaan piirtää tekstinä funktion ~text()~ avulla. Tekstin
+   kokoa voidaan muuttaa funktiolla ~textSize()~, ja tekstin
+   sijoittelua suhteessa annettuun kohtaan funktiolla
+   ~textAlign()~. Alla esimerkki.
+
+   #+BEGIN_SRC processing :exports both
+     size (200, 200);
+     colorMode (HSB, 100);
+     background (0); // musta tausta
+     fill (100); // valkoinen teksti
+
+     textSize (60); // tekstin koko 30 pikseliä
+
+     // tekstin keskikohta piirretään annettuun kohtaan
+     textAlign (CENTER, CENTER);
+
+     text (42, 100, 100);
+   #+END_SRC
 ** Esimerkki
    Piirretään \(1000\times 100\)-kokoiseen ikkunaan mustalle taustalle
    25 pientä ympyrää vasemmalta oikealle. Pisteet ovat pystysuunnassa
@@ -55,7 +74,7 @@
    30, joka on myös vasemmanpuoleisen pisteen
    \(x\)-koordinaatti. Tekstin koko on 16 pikseliä.
 
-   #+NAME: kokonaisluku-pisteet-rivissa
+   #+NAME: kokonaisluku-luvut-rivissa
    #+BEGIN_SRC processing
      size (1000, 100);
      colorMode (HSB, 100);
@@ -63,25 +82,26 @@
      noStroke ();
      textSize (16); // asetetaan tekstin koko
      textAlign (CENTER, CENTER); // tekstin keskikohta annetuissa koordinaateissa
-     
-     final float VALI = 30; // keskipisteiden väli
-     float x = VALI; // ympyrän keskipisteen x-koordinaatti
-     final float Y = height / 2.0; // ympyrän keskipisteen Y-koordinaatti
 
-     int n = 1; // piirrettävän ympyrän järjestysnumero
+     final float VALI = 30; // tekstin keskipisteiden väli
+     float x = VALI; // tekstin keskipisteen x-koordinaatti
+     final float Y = height / 2.0; // tekstin keskipisteen Y-koordinaatti
+
+     int n = 1; // piirrettävä numero
 
      // piirretään 25 numeroa
      while (n <= 25) // turvallista vertailla, kun n on kokonaisluku
      {
-       fill (100);
        if (n == 10) // turvallista vertailla
-         fill (0, 100, 100);
-
-       // valkoinen numero
+         fill (0, 100, 100); // punainen teksti
+       else
+         fill (100); // valkoinen teksti
+    
+       // luku tekstinä
        text (n, x, Y);
 
-       x = x + VALI; // seuraavan ympyrän keskipisteen x
-       n = n + 1; // seuraavan ympyrän järjestysnumero
+       x = x + VALI; // seuraavan keskipisteen x
+       n = n + 1; // seuraava numero
      }
    #+END_SRC
 
