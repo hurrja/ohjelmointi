@@ -140,54 +140,34 @@
    #+END_QUOTE
 
 ** Esimerkki
-   Tässä esimerkissä piirretään valkoiselle pohjalle kolmesta
-   kolmiosta koostuva suunnikas. Seuraavat vakiot määrittävät kuvion
+   Tässä esimerkissä piirretään mustalle pohjalle valkoinen
+   suunnikas. Seuraavat vakiot ja ominaisuudet määrittävät kuvion
    mitat.
    - ~KANTA~ on suunnikkaan kannan pituus ja ~KORKEUS~ suunnikkaan
      korkeus
-   - ~VASEN_YLAKULMA_X~ on suunnikkaan vasemman yläkulman
-     \(x\)-koordinaatti; \(y\)-koordinaatti on aina 0 (vasemman
-     alakulman \(x\)-koordinaatti on aina 0)
-   Nämä vakiot puolestaan määrittävät kolmioiden värit.
-   - ~SAVY~ on kaikkien kolmioiden värisävy
-   - ~KYLLAISYYS_SUURIN~ on räikeimmän kolmion värikylläisyys
-   - ~KIRKKAUS_SUURIN~ on räikeimmän kolmion kirkkaus
-   - ~VARIARVO_LASKU~ on se arvo, jolla sekä kylläisyys että kirkkaus
-     vähenevät kolmiosta toiseen.
+   - ~OIKEA_YLAKULMA_X~ on suunnikkaan oikean yläkulman
+     \(x\)-koordinaatti; \(y\)-koordinaatti on aina 0
+   - ~VASEN_ALAKULMA_X~ on suunnikkaan vasemman alakulman
+     \(x\)-koordinaatti
 
-   Ohjelmassa tarvitaan kahteen kertaan suunnikkaan oikean yläkulman
-   \(x\)-koordinaattia. Se voidaan laskea vasemman yläkulman
-   \(x\)-koordinaatista ja suunnikkaan leveydestä.
-
-   Ohjelmakoodissa pienet kolmiot piirretään ensin suurempina, koska
-   se on helpompaa kuin suunnikkaan keskipisteet laskeminen. Isoin
-   kolmio piirretään osittain toisten kolmioiden päälle.
+   Suunnikkaan vasemman yläkulman sekä oikean alakulman
+   \(x\)-koordinaatit voidaan laskea annetuista tiedoista.
    
    #+NAME: suunnikas-vakioilla-runko
    #+BEGIN_SRC processing :exports none
-     // lasketaan oikean yläkulman x-koordinaatti ja tallennetaan se
-     // vakioon
-     final float OIKEA_YLAKULMA_X = KANTA + VASEN_YLAKULMA_X;
+     // lasketaan vielä tuntemattomat x-koordinaatit ja tallennetaan ne
+     // vakioihin
+     final float VASEN_YLAKULMA_X = OIKEA_YLAKULMA_X - KANTA;
+     final float OIKEA_ALAKULMA_X = VASEN_ALAKULMA_X + KANTA;
 
      colorMode (HSB, 100);
      noStroke ();
-     background (100);
+     background (0);
 
-     // räikein ja kirkkain kolmio
-     fill (SAVY,  KYLLAISYYS_SUURIN, KIRKKAUS_SUURIN);
-     triangle (0, KORKEUS, KANTA, KORKEUS, OIKEA_YLAKULMA_X, 0);
-
-     // toiseksi räikein ja kirkkain kolmio
-     fill (SAVY,
-           KYLLAISYYS_SUURIN - VARIARVO_LASKU,
-           KIRKKAUS_SUURIN - VARIARVO_LASKU);
-     triangle (VASEN_YLAKULMA_X, 0, 0, KORKEUS, KANTA, KORKEUS);
-
-     // suurin, harmain ja tummin kolmio
-     fill (SAVY, 
-           KYLLAISYYS_SUURIN - 2 * VARIARVO_LASKU,
-           KIRKKAUS_SUURIN - 2 * VARIARVO_LASKU);
-     triangle (0, KORKEUS, OIKEA_YLAKULMA_X, 0, VASEN_YLAKULMA_X, 0);
+     quad (VASEN_YLAKULMA_X, 0,
+           OIKEA_YLAKULMA_X, 0,
+           OIKEA_ALAKULMA_X, KORKEUS,
+           VASEN_ALAKULMA_X, KORKEUS);
    #+END_SRC
 
 
@@ -198,14 +178,9 @@
      final float KANTA = 250; // suunnikkaan leveys
      final float KORKEUS = 330; // suunnikkaan korkeus
      // suunnikkaan vasemman yläkulman x-koordinaatti
-     final float VASEN_YLAKULMA_X = 150;
-
-     // väreihin liittyvät vakiot
-     final float SAVY = 55; // värien värisävy
-     final float KYLLAISYYS_SUURIN = 70; // räikeimmän värin kylläisyys
-     final float KIRKKAUS_SUURIN = 50; // vaaleimman värin kirkkaus
-     // kylläisyys ja kirkkaus vähenevät alueesta toiseen näin paljon
-     final float VARIARVO_LASKU = 10; 
+     final float OIKEA_YLAKULMA_X = 400;
+     // suunnikkaan vasemman alakulman x-koordinaatti
+     final float VASEN_ALAKULMA_X = 80;
 
      <<suunnikas-vakioilla-runko>>
    #+END_SRC
@@ -217,17 +192,12 @@
      size (600, 400);
 
      // kuvion mitat määrittävät vakiot
-     final float KANTA = 500; // suunnikkaan leveys
-     final float KORKEUS = 150; // suunnikkaan korkeus
+     final float KANTA = 350; // suunnikkaan leveys
+     final float KORKEUS = 50; // suunnikkaan korkeus
      // suunnikkaan vasemman yläkulman x-koordinaatti
-     final float VASEN_YLAKULMA_X = 20;
-
-     // väreihin liittyvät vakiot
-     final float SAVY = 0; // värien värisävy
-     final float KYLLAISYYS_SUURIN = 90; // räikeimmän värin kylläisyys
-     final float KIRKKAUS_SUURIN = 100; // vaaleimman värin kirkkaus
-     // kylläisyys ja kirkkaus vähenevät alueesta toiseen näin paljon
-     final float VARIARVO_LASKU = 45; 
+     final float OIKEA_YLAKULMA_X = 400;
+     // suunnikkaan vasemman alakulman x-koordinaatti
+     final float VASEN_ALAKULMA_X = 80;
 
      <<suunnikas-vakioilla-runko>>
    #+END_SRC
