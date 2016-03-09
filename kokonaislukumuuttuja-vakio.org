@@ -27,6 +27,7 @@
 
      // piirretään vielä luku a tekstinä kuvan keskelle
      fill (0);
+     textSize (40); // selitys alla
      textAlign (CENTER, CENTER); // selitys alla
      text (a, width / 2.0, height / 2.0); // selitys alla
    #+END_SRC
@@ -78,9 +79,8 @@
    #+BEGIN_SRC processing
      size (1000, 100);
      colorMode (HSB, 100);
-     background (0);
-     noStroke ();
-     textSize (16); // asetetaan tekstin koko
+     background (0); // musta tausta
+     textSize (16); // tekstin koko
      textAlign (CENTER, CENTER); // tekstin keskikohta annetuissa koordinaateissa
 
      final float VALI = 30; // tekstin keskipisteiden väli
@@ -106,5 +106,10 @@
    #+END_SRC
 
    #+BEGIN_SRC processing :exports code :noweb yes
-   <<kokonaisluku-pisteet-rivissa>>
+   <<kokonaisluku-luvut-rivissa>>
    #+END_SRC
+
+   Esimerkissä myös vakiot sekä moni muu muuttuja /voitaisiin/
+   määritellä kokonaisluvuiksi. Muuttuja ~n~ on /pakko/ määritellä
+   kokonaislukuna, jotta vertailut onnistuvat varmasti.
+
