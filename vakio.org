@@ -208,14 +208,22 @@
       sivun pituus vakiona ~SIVU~, jonka arvo on ensimmäisessä
       versiossasi 200. Muuntele vakion suuruutta ja varmista, että
       ohjelmasi toimii kuten pitääkin.
-   2. Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan suorakaide,
-      jonka leveyden ja korkeuden suhde on aina \(3:1,\) ja jonka
-      korkeutta voit säädellä vakion avulla. Suorakaiteen vasen
-      yläkulma on \(y\)-akselilla, ja vasemman yläkulman etäisyys
-      origosta on sama kuin suorakaiteen korkeus. Muuntele vakion
-      suuruutta.
+   2. Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan alla olevan
+      kuvan mukaisesti suorakaide, jonka leveyden ja korkeuden suhde
+      on aina \(3:1,\) ja jonka korkeutta voit säädellä vakion
+      ~KORKEUS~ avulla. Suorakaiteen vasen yläkulma on
+      \(y\)-akselilla, ja vasemman yläkulman etäisyys origosta on sama
+      kuin suorakaiteen korkeus. Muuntele vakion suuruutta.
+      #+NAME: vakio-suorakaide-3-1
+      #+BEGIN_SRC processing
+        size (400, 400);
+
+        final float KORKEUS = 100;
+        rect (0, KORKEUS, 3 * KORKEUS, KORKEUS);
+      #+END_SRC
+   
    3. Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan alla olevan
-      kuvan mukaisesti kaksi suorakulmaista tasasivuista
+      kuvan mukaisesti kaksi suorakulmaista tasakylkistä
       kolmiota. Kolmioiden kylkien pituutta sekä kolmioiden välistä
       etäisyyttä \(x\)-akselilla täytyy voida säätää vakioiden ~KYLKI~
       sekä ~VALI~ avulla. Molempien kolmioiden kaksi kärkipistettä on
@@ -234,7 +242,7 @@
                   OIKEA_KOLMIO_VASEN_X, KYLKI,
                   OIKEA_KOLMIO_VASEN_X + KYLKI, 0);
       #+END_SRC
-   4. Piirrä \((600\times 400)\)-kokoiseen piirtoikkunaan valkoiselle
+   4. Piirrä \((600\times 400)\)-kokoiseen piirtoikkunaan siniselle
       pohjalle musta suorakulmio ja suorakulmion sisään valkoinen
       suunnikas alla olevan kuvion mukaisesti. Suorakulmion vasen
       yläkulma on origossa. Seuraavat vakiot määräävät kuvan tarkan
@@ -256,12 +264,12 @@
         final float SUUNNIKAS_Y = 250;
 
         colorMode (HSB, 100);
-        background (100);
+        background (62, 100, 100); // sininen tausta
 
-	fill (0);
+	fill (0); // musta väri
         rect (0, 0, LEVEYS, KORKEUS);
 
-	fill (100);
+	fill (100); // valkoinen väri
         quad (SUUNNIKAS_X, 0,
               0, SUUNNIKAS_Y,
               LEVEYS - SUUNNIKAS_X, KORKEUS,
@@ -362,11 +370,8 @@
         rect (0, 0, SIVU, SIVU);
       #+END_SRC
    2. 
-      #+BEGIN_SRC processing :exports both
-        size (400, 400);
-
-        final float KORKEUS = 100;
-        rect (0, KORKEUS, 3 * KORKEUS, KORKEUS);
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<vakio-suorakaide-3-1>>
       #+END_SRC
    3. 
       #+BEGIN_SRC processing :exports code :noweb yes
