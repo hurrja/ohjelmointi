@@ -109,7 +109,84 @@
    <<kokonaisluku-luvut-rivissa>>
    #+END_SRC
 
-   Esimerkissä myös vakiot sekä moni muu muuttuja /voitaisiin/
-   määritellä kokonaisluvuiksi. Muuttuja ~n~ on /pakko/ määritellä
+   Esimerkissä myös vakio ~VALI~ sekä muuttuja ~x~ /voitaisiin/
+   määritellä kokonaisluvuiksi, koska ne saavat vain
+   kokonaislukuarvoja. Muuttuja ~n~ on kuitenkin /pakko/ määritellä
    kokonaislukuna, jotta vertailut onnistuvat varmasti.
 
+** Milloin käytetään kokonaislukumuuttujaa tai -vakiota?
+   #+BEGIN_QUOTE
+   Kokonaislukumuuttujaa täytyy käyttää silloin, kun
+   - muuttuja saa vain kokonaislukuarvoja ja
+   - muuttujaa käytetään myös muuhun kuin piirtokoordinaattien
+     laskemiseen (kuten muuttujan arvon vertaamiseen kokonaislukuun).
+   Kokonaislukuvakiota täytyy käyttää samanlaisissa tilanteissa.
+
+   Liukulukumuuttujaa (tai vakiota) täytyy käyttää silloin, kun
+   muuttuja saa desimaalilukuarvoja.
+
+   Muissa tapauksissa ohjelmoija voi valita, haluaako hän käyttää
+   kokonaisluku- vai liukulukumuuttujaa. Kokonaisluvut vievät vähemmän
+   tilaa tietokoneen muistista, ja niillä laskeminen on nopeampaa.
+   #+END_QUOTE
+** Jakojäännös
+   #+BEGIN_QUOTE
+   Jos ~n~ ja ~m~ ovat epänegatiivisa kokonaislukuja ja ~m~ ei ole 0,
+   niin Processing-kielen laskutoimitus ~n % m~ antaa jakojäännöksen,
+   kun luku ~n~ jaeteen luvulla ~m~.
+   #+END_QUOTE
+** Esimerkki
+   #+BEGIN_SRC processing :exports both
+     size (800, 200);
+
+     final float Y = height / 2.0; // tekstin y-koordinaatti
+
+     textSize (30);
+     textAlign (CENTER, CENTER);
+
+     text (49 % 7, 100, Y); // jakojäännös, kun 49 jaetaan luvulla 7
+     text (7 % 5, 200, Y); 
+     text (5 % 7, 300, Y);
+     text (0 % 2, 400, Y);
+     text (1 % 2, 500, Y);
+     text (2 % 2, 600, Y);
+     text (3 % 2, 700, Y);
+   #+END_SRC
+   Esimerkin viimeisistä luvuista huomataan, että kokonaisluvun
+   jakojäännös jaettaessa luvulla 2 on
+   - 0, jos luku on parillinen
+   - 1, jos luku on pariton.
+** Kokonaislukumuuttujan arvon muuttaminen yhdellä
+   #+BEGIN_QUOTE
+   Koska ohjelmissa joudutaan usein kasvattamaan kokonaislukumuuttujan
+   arvoa yhdellä, tätä varten on olemassa erillinen merkintä. Merkintä
+   ~n++~ tarkoittaa samaa kuin ~n = n + 1.~
+
+   Vastaavasti merkintä ~n--~ tarkoittaa samaa kuin ~n = n - 1.~
+   #+END_QUOTE
+** Esimerkki
+   Piirretään alla olevan kuvan mukaisesti siniselle taustalle
+   mahdollisimman monta mustaa neliötä piirtoikkunaan, jonka leveys on
+   suurempi kuin korkeus. Kahden mustan neliön välissä on yhtä suuri
+   sininen neliö. Neliöiden sivun pituus on yhtä suuri kuin
+   piirtoikkunan korkeus.
+   #+BEGIN_SRC processing :exports both
+     size (1000, 110);
+     colorMode (HSB, 100);
+     background (62, 100, 100); // sininen tausta
+     fill (0); // piirretään mustia neliöitä
+
+     int sivu = height; // neliön sivun pituus on ikkunan korkeus
+     int NELIOITA = width / sivu; // neliöiden lukumäärä
+
+     int n = 0; // kuinka monta neliötä on jo piirretty
+
+     while (n < NELIOITA) // niin kauan kun neliöitä ei ole riittävästi
+     {
+       // jos on piirretty parillinen määrä, piirretään musta neliö
+       if (n % 2 == 0)
+         rect (n * sivu, 0, sivu, sivu);
+
+       n++; // kasvatetaan järjestysnumeroa
+     }
+   #+END_SRC
