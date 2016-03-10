@@ -143,7 +143,7 @@
      textSize (30);
      textAlign (CENTER, CENTER);
 
-     text (49 % 7, 100, Y); // jakojäännös, kun 49 jaetaan luvulla 7
+     text (49 % 9, 100, Y); // jakojäännös, kun 49 jaetaan luvulla 9
      text (7 % 5, 200, Y); 
      text (5 % 7, 300, Y);
      text (0 % 2, 400, Y);
@@ -151,7 +151,7 @@
      text (2 % 2, 600, Y);
      text (3 % 2, 700, Y);
    #+END_SRC
-   Esimerkin viimeisistä luvuista huomataan, että kokonaisluvun
+   Esimerkin oikeanpuoleisista luvuista huomataan, että kokonaisluvun
    jakojäännös jaettaessa luvulla 2 on
    - 0, jos luku on parillinen
    - 1, jos luku on pariton.
