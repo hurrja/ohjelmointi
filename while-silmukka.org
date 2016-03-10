@@ -176,7 +176,7 @@
     <<ruudukko-alku>>
 
     float p = 0; // viivan toinen koordinaatti
-    while (p <= width)
+    while (p < width)
     {
       line (p, 0, p, height); // pystysuora viiva
       line (0, p, width, p); // vaakasuora viiva
@@ -333,7 +333,22 @@
              y = y - SIVU;
            }
 	 #+END_SRC
-   5. Piirrä alla oleva kuvio \(600\times 400\)-kokoiseen
+   5. Piirrä alla oleva kuvio piirtoikkunaan, jonka koko on
+      \(401\times 401\). Vierekkäisten janojen päätepisteiden välinen
+      etäisyys sekä \(x\)- että \(y\)-akselilla on 10.
+      #+NAME: while-tiimalasi
+      #+BEGIN_SRC processing
+        size (401, 401);
+
+        float x = 0;
+        while (x < width)
+        {
+          line (x, 0, width - x, height);
+          x = x + 10;
+        }
+
+      #+END_SRC
+   6. Piirrä alla oleva kuvio \(600\times 400\)-kokoiseen
       piirtoikkunaan. Valkoinen viiva koostuu lyhyistä
       janoista. Vasemmalla ylhäällä olevan janan vasemmanpuoleinen
       päätepiste on koordinaateissa \((1, 1)\). Jos viivan
@@ -389,6 +404,11 @@
 	 <<while-valkoisia-nelioita-dy-negatiivinen>>
 	 #+END_SRC
    5. 
+       #+BEGIN_SRC processing :exports code :noweb yes
+       <<while-tiimalasi>>
+       #+END_SRC
+
+   6. 
        #+BEGIN_SRC processing :exports code :noweb yes
        <<while-eksponentiaalinen>>
        #+END_SRC
