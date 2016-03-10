@@ -228,41 +228,33 @@
      background (0); // musta tausta
      stroke (0, 100, 100); // punaiset viivat
 
-     float askel = 10; // seuraavaksi otettavan askeleen pituus
+     float askelpituus = 10; // seuraavaksi otettavan askeleen pituus
      float pikseleitaJaljella = 700; // jäljellä olevien pikselien määrä
 
      float x = 0, y = 0; // viivan kärkipiste, alussa origossa
-     int xSuunta = 1, ySuunta = 0; // määräävät seuraavan askeleen suunnan
+     int n = 1; // otettavan askeleen järjestysnumero
 
      // niin kauan kun pikseleitä on jäljellä riittävästi...
-     while (pikseleitaJaljella >= askel)
+     while (pikseleitaJaljella >= askelpituus)
      {
-       // lasketaan viivan seuraava kärkipiste
-       float xSeuraava = x + xSuunta * askel;
-       float ySeuraava = y + ySuunta * askel;
+       float xSeuraava = x;
+       float ySeuraava = y;
+       if (n % 2 == 1)
+         xSeuraava = xSeuraava + askelpituus;
+       else
+         ySeuraava = ySeuraava + askelpituus;
 
        line (x, y, xSeuraava, ySeuraava); // piirretään viiva
 
        // päivitetään viivan kärkipisteen koordinaatit
        x = xSeuraava;
        y = ySeuraava;
-       
-       // vähennetään jäljellä olevien pikseleiden määrää
-       pikseleitaJaljella = pikseleitaJaljella - askel;
 
-       askel = 1.1 * askel; // kasvatetaan askelta 10 prosenttia
-  
-       // päätellään seuraavan askeleen suunta
-       if (xSuunta == 1)
-       {
-         xSuunta = 0;
-         ySuunta = 1;
-       }
-       else
-       {
-         xSuunta = 1;
-         ySuunta = 0;
-       }
+       // vähennetään jäljellä olevien pikseleiden määrää
+       pikseleitaJaljella = pikseleitaJaljella - askelpituus;
+
+       askelpituus = 1.1 * askelpituus; // kasvatetaan askelta 10 prosenttia
+       n++;
      }
    #+END_SRC
 
