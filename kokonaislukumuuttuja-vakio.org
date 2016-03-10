@@ -156,11 +156,11 @@
    jakojäännös jaettaessa luvulla 2 on
    - 0, jos luku on parillinen
    - 1, jos luku on pariton.
-** Kokonaislukumuuttujan arvon muuttaminen yhdellä
+** Muuttujan arvon muuttaminen yhdellä
    #+BEGIN_QUOTE
-   Koska ohjelmissa joudutaan usein kasvattamaan kokonaislukumuuttujan
-   arvoa yhdellä, tätä varten on olemassa erillinen merkintä. Merkintä
-   ~n++~ tarkoittaa samaa kuin ~n = n + 1.~
+   Koska ohjelmissa joudutaan usein kasvattamaan muuttujan arvoa
+   yhdellä, tätä varten on olemassa erillinen merkintä. Merkintä ~n++~
+   tarkoittaa samaa kuin ~n = n + 1.~
 
    Vastaavasti merkintä ~n--~ tarkoittaa samaa kuin ~n = n - 1.~
    #+END_QUOTE
