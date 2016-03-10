@@ -287,7 +287,33 @@
    #+END_SRC
 
 ** Tehtävät
-   1. Piirrä alla oleva kuvio ~while~-silmukan avulla piirtämällä
+   1. Piirrä \(400\times 400\)-kokoisen piirtoikkunan lävistäjälle
+      ensimmäiset 15 positiivista kokonaislukua alla olevan kuvan
+      mukaisesti. Kahden vierekkäisen luvun keskipisteiden
+      \(x\)-koordinaattien väli on 20, samoin kuin
+      \(y\)-koordinaattien väli. Tekstin koko on 16 pikseliä.
+      #+NAME: kokonaisluku-luvut-diagonaalilla
+      #+BEGIN_SRC processing
+        size (400, 400);
+        colorMode (HSB, 100);
+        background (0);
+        fill (100);
+        textSize (16);
+        textAlign (CENTER, CENTER);
+
+        final int VALI = 20;
+
+        int n = 1;
+        float k = VALI;
+
+        while (n <= 15)
+        {
+          text (n, k, k);
+          k = k + VALI;
+          n++;
+        }
+      #+END_SRC
+   2. Piirrä alla oleva kuvio ~while~-silmukan avulla piirtämällä
       ensin suuri musta ympyrä, sen päälle pienempi valkoinen ympyrä,
       jonka päälle edelleen pienempi musta ympyrä. Piirtoikkuna on
       neliön muotoinen, ja kuvan tulee skaalautua piirtoikkunan
@@ -304,23 +330,25 @@
         final float K = width / 2.0; 
 
         float halkaisija = width; // ympyrän halkaisija
-
-        // piirretyn ympyrän kirkkaus, vuorotellen 0 ja 100
-        float kirkkaus = 0; 
+        int n = 1; // piirrettävän ympyrän järjestysnumero
 
         while (halkaisija > 0)
         {
-          fill (kirkkaus);
-          ellipse (K, K, halkaisija, halkaisija);
-
-          halkaisija = halkaisija - 10;
-          if (kirkkaus == 100)
-            kirkkaus = 0;
+          // lasketaan ympyrän kirkkaus (musta tai valkoinen)
+          float kirkkaus;
+          if (n % 2 == 1)
+            kirkkaus = 0; // parittomat mustia
           else
             kirkkaus = 100;
+          fill (kirkkaus);
+
+          ellipse (K, K, halkaisija, halkaisija);
+
+          n++;
+          halkaisija = halkaisija - 10;
         }
       #+END_SRC
-   2. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
+   3. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
       murtoviiva. Viiva alkaa piirtoikkunan keskeltä. Ensimmäisen,
       piirtoikkunan keskeltä alkavan janan pituus on 5, ja seuraava
       jana on 20 prosenttia edellistä pidempi. Viivaan voidaan käyttää
@@ -383,9 +411,13 @@
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports code :noweb yes
-      <<kokonaisluku-tikkataulu>>
+      <<kokonaisluku-luvut-diagonaalilla>>
       #+END_SRC
    2. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<kokonaisluku-tikkataulu>>
+      #+END_SRC
+   3. 
        #+BEGIN_SRC processing :exports code :noweb yes
        <<kokonaisluku-laajeneva-spiraali>>
        #+END_SRC
