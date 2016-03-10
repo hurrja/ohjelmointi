@@ -36,7 +36,7 @@
    Tietokoneohjelmassa liukuluku ~1.0~ ja kokonaisluku ~1~ eivät
    välttämättä ole täsmälleen sama luku. Tällä on merkitystä
    erityisesti silloin, kun lukuja vertaillaan jollain
-   vertailuoperaattoreista ~==~, ~>=~ tai ~<=~, ~>~ tai ~<~.
+   vertailuoperaattoreista ~==~, ~!=~, ~>=~ tai ~<=~, ~>~ tai ~<~.
    #+END_QUOTE
 ** Kokonaislukumuuttuja ja -vakio
    #+BEGIN_QUOTE
@@ -64,15 +64,14 @@
      // tekstin keskikohta piirretään annettuun kohtaan
      textAlign (CENTER, CENTER);
 
-     text (42, 100, 100);
+     text (100 / 6, 100, 100); // jakolaskun tulos kokonaislukuosa
    #+END_SRC
 ** Esimerkki
    Piirretään \(1000\times 100\)-kokoiseen ikkunaan mustalle taustalle
-   25 pientä ympyrää vasemmalta oikealle. Pisteet ovat pystysuunnassa
-   piirtoikkunan keskellä. Kunkin ympyrän kohdalle piirretään numero,
-   joka kertoo kuinka monentena ympyrä on piirretty. Kymmenes ympyrä
-   on punainen, muut ovat sinisiä. Ympyröiden keskipisteiden väli on
-   30, joka on myös vasemmanpuoleisen pisteen
+   25 ensimmäistä positiivista kokonaislukua vasemmalta
+   oikealle. Luvut ovat pystysuunnassa piirtoikkunan keskellä. Luku 10
+   on punainen, muut ovat valkoisia. Lukujen keskipisteiden väli on
+   30, joka on myös vasemmanpuoleisen luvun
    \(x\)-koordinaatti. Tekstin koko on 16 pikseliä.
 
    #+NAME: kokonaisluku-luvut-rivissa
@@ -131,9 +130,9 @@
    #+END_QUOTE
 ** Jakojäännös
    #+BEGIN_QUOTE
-   Jos ~n~ ja ~m~ ovat epänegatiivisa kokonaislukuja ja ~m~ ei ole 0,
-   niin Processing-kielen laskutoimitus ~n % m~ antaa jakojäännöksen,
-   kun luku ~n~ jaeteen luvulla ~m~.
+   Jos ~n~ ja ~m~ ovat epänegatiivisia kokonaislukuja ja ~m~\(\,\neq
+   0\), niin Processing-kielen laskutoimitus ~n % m~ antaa
+   jakojäännöksen, kun luku ~n~ jaetaan luvulla ~m~.
    #+END_QUOTE
 ** Esimerkki
    #+BEGIN_SRC processing :exports both
