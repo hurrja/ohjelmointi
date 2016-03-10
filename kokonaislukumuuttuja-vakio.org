@@ -213,3 +213,191 @@
    #+BEGIN_SRC processing :noweb yes :exports code
    <<vakio-siniset-keltaiset-ympyrat>>
    #+END_SRC
+** Esimerkki
+   Piirretään alla oleva sahalaitakuvio piirtoikkunaan, jonka koko on
+   \(400\times 400\). Origosta alkavan janan pituus on 10, ja kukin
+   seuraava jana on 10 prosenttia edellistä pidempi. Viivaan voidaan
+   käyttää yhteensä korkeintaan 700 pikseliä. Kulmapisteissä
+   päällekkäin meneviä yksittäisiä pikseleitä ei tarvitse ottaa
+   huomioon.
+
+   #+NAME: kokonaisluku-sahalaita-pitenevin-askelin
+   #+BEGIN_SRC processing
+     size (400, 400);
+
+     colorMode (HSB, 100);
+     background (0); // musta tausta
+     stroke (0, 100, 100); // punaiset viivat
+
+     float askel = 10; // seuraavaksi otettavan askeleen pituus
+     float pikseleitaJaljella = 700; // jäljellä olevien pikselien määrä
+
+     float x = 0, y = 0; // viivan kärkipiste, alussa origossa
+     int xSuunta = 1, ySuunta = 0; // määräävät seuraavan askeleen suunnan
+
+     // niin kauan kun pikseleitä on jäljellä riittävästi...
+     while (pikseleitaJaljella >= askel)
+     {
+       // lasketaan viivan seuraava kärkipiste
+       float xSeuraava = x + xSuunta * askel;
+       float ySeuraava = y + ySuunta * askel;
+
+       line (x, y, xSeuraava, ySeuraava); // piirretään viiva
+
+       // päivitetään viivan kärkipisteen koordinaatit
+       x = xSeuraava;
+       y = ySeuraava;
+       
+       // vähennetään jäljellä olevien pikseleiden määrää
+       pikseleitaJaljella = pikseleitaJaljella - askel;
+
+       askel = 1.1 * askel; // kasvatetaan askelta 10 prosenttia
+  
+       // päätellään seuraavan askeleen suunta
+       if (xSuunta == 1)
+       {
+         xSuunta = 0;
+         ySuunta = 1;
+       }
+       else
+       {
+         xSuunta = 1;
+         ySuunta = 0;
+       }
+     }
+   #+END_SRC
+
+   Alla olevassa ohjelmassa muuttujat ~x~ ja ~y~ sisältävät tiedon
+   piirrettävän viivan kärkipisteestä. Kullakin kierroksella
+   ~while~-silmukan sisällä lasketaan seuraavan kärkipisteen
+   koordinaatit muuttujiin ~xSeuraava~ ja ~ySeuraava~, piirretään
+   viiva ja päivitetään kärkipisteen koordinaatit.
+
+   Viivan suunta muuttuu kierroksesta toiseen. Suunta ilmaistaan
+   ohjelmassa kokonaislukumuuttujien ~xSuunta~ ja ~ySuunta~
+   avulla. Tällaisten muuttujien käytön avulla voidaan tehtävissä
+   kirjoittaa myös monimutkaisempia ohjelmia. Jos muuttujan ~xSuunta~
+   arvo on
+   - 1, liikutaan oikealle
+   - 0, ei liikuta \(x\)-akselin suunnassa.
+   Vastaavasti jos muuttujan ~ySuunta~ arvo on
+   - 1, liikutaan alaspäin
+   - 0, ei liikuta \(y\)-akselin suunnassa.
+   Näiden muuttujien arvot voidaan päivittää kullakin kierroksella
+   huomaamalla, että 
+   - jos muuttujan ~xSuunta~ arvo on 1, seuraavalla kierroksella
+     liikutaan alas
+   - muuten liikutaan seuraavalla kierroksella oikealle.
+
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<kokonaisluku-sahalaita-pitenevin-askelin>>
+   #+END_SRC
+
+   Huomaa, että ohjelmakoodissa muuttujat ~xSeuraava~ ja ~ySeuraava~
+   määritellään lauselohkon sisällä. Ne voitaisiin määritellä myös
+   lauselohkon ulkopuolella, mutta niitä ei tarvita siellä. Tähän
+   asiaan palataan [[file:funktion-maaritteleminen.org][kappaleessa, jossa määritellään funktioita]].
+** Tehtävät
+   1. Piirrä alla oleva kuvio ~while~-silmukan avulla piirtämällä
+      ensin suuri musta ympyrä, sen päälle pienempi valkoinen ympyrä,
+      jonka päälle edelleen pienempi musta ympyrä. Piirtoikkuna on
+      neliön muotoinen, ja kuvan tulee skaalautua piirtoikkunan
+      mukana. Piirretyn ympyrän halkaisija pienenee 10 pikseliä
+      kullakin askeleella. 
+
+      #+NAME: kokonaisluku-tikkataulu
+      #+BEGIN_SRC processing
+        size (400, 400);
+        colorMode (HSB, 100);
+        noStroke ();
+
+        // keskipisteen koordinaatti (sekä x että y)
+        final float K = width / 2.0; 
+
+        float halkaisija = width; // ympyrän halkaisija
+
+        // piirretyn ympyrän kirkkaus, vuorotellen 0 ja 100
+        float kirkkaus = 0; 
+
+        while (halkaisija > 0)
+        {
+          fill (kirkkaus);
+          ellipse (K, K, halkaisija, halkaisija);
+
+          halkaisija = halkaisija - 10;
+          if (kirkkaus == 100)
+            kirkkaus = 0;
+          else
+            kirkkaus = 100;
+        }
+      #+END_SRC
+   2. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
+      murtoviiva. Viiva alkaa piirtoikkunan keskeltä. Ensimmäisen,
+      piirtoikkunan keskeltä alkavan janan pituus on 5, ja seuraava
+      jana on 20 prosenttia edellistä pidempi. Viivaan voidaan käyttää
+      yhteensä korkeintaan 1500 pikseliä. Kulmapisteissä päällekkäin
+      meneviä yksittäisiä pikseleitä ei tarvitse ottaa huomioon.
+
+      Jos kullakin askeleella piirrettävän janan suunta ilmaistaan
+      yllä olevan esimerkin tapaan muuttujien ~xSuunta~ ja ~ySuunta~
+      avulla, niin nämä muuttujat saavat seuraavia arvoja:
+      #+BEGIN_CENTER
+      | askeleen no | 1 | 2 |  3 |  4 | 5 | 6 |  7 |  8 |
+      |-------------+---+---+----+----+---+---+----+----|
+      | ~xSuunta~   | 0 | 1 |  0 | -1 | 0 | 1 |  0 | -1 |
+      | ~ySuunta~   | 1 | 0 | -1 |  0 | 1 | 0 | -1 |  0 |
+      #+END_CENTER
+
+      #+NAME: kokonaisluku-laajeneva-spiraali
+      #+BEGIN_SRC processing
+        size (400, 400);
+        colorMode (HSB, 100);
+        background (0);
+        stroke (100);
+        float x = width / 2.0, y = height / 2.0;
+        float pikseleitaJaljella = 1500;
+        float xSuunta = 0, ySuunta = 1;
+        float askel = 5;
+
+        while (pikseleitaJaljella >= askel)
+        {
+          float xSeuraava = x + xSuunta * askel;
+          float ySeuraava = y + ySuunta * askel;
+          line (x, y, xSeuraava, ySeuraava);
+
+          x = xSeuraava;
+          y = ySeuraava;
+
+          pikseleitaJaljella = pikseleitaJaljella - askel;
+          askel = askel * 1.2;
+
+          if (xSuunta == 0)
+          {
+            if (ySuunta == 1)
+              xSuunta = 1;
+            else
+              xSuunta = -1;
+
+            ySuunta = 0;
+          }
+          else
+          {
+            if (xSuunta == 1)
+              ySuunta = -1;
+            else
+              ySuunta = 1;
+
+            xSuunta = 0;
+          }
+        }
+   #+END_SRC
+** Ratkaisuja
+   1. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<kokonaisluku-tikkataulu>>
+      #+END_SRC
+   2. 
+       #+BEGIN_SRC processing :exports code :noweb yes
+       <<kokonaisluku-laajeneva-spiraali>>
+       #+END_SRC
+   
