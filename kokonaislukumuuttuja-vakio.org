@@ -166,11 +166,9 @@
    #+END_QUOTE
 ** Esimerkki
    Piirretään alla olevan kuvan mukaisesti mustalle taustalle
-   mahdollisimman ympyrää piirtoikkunaan, jonka leveys on suurempi
-   kuin korkeus. Kahden mustan neliön välissä on yhtä suuri sininen
-   neliö. Neliöiden sivun pituus on yhtä suuri kuin piirtoikkunan
-   korkeus.
-   #+NAME: vakio-mustat-siniset-neliot
+   mahdollisimman monta ympyrää piirtoikkunaan. Ympyröiden halkaisija
+   on vakio ~HALKAISIJA~.
+   #+NAME: vakio-siniset-keltaiset-ympyrat
    #+BEGIN_SRC processing
      size (990, 100);
      colorMode (HSB, 100);
@@ -189,7 +187,7 @@
 
      while (n <= ympyroita)
      {
-       if (n % 2 == 1) // 1. ja muut parittomat sinisellä
+       if (n % 2 == 1) // ensimmäinen ja muut parittomat sinisellä
          fill (62, 100, 100);
        else
          fill (17, 100, 100);
@@ -201,20 +199,17 @@
 
    Alla olevassa ohjelmakoodissa on seuraavia ideoita.
    - ~HALKAISIJA~ määritellään kokonaislukuna, jotta kuvaan mahtuvien
-     ympyröiden määrä on helppo laskea kokonaislukujen jakolaskuna.
+     ympyröiden määrä on helppo laskea kokonaislukujen jakolaskuna
+     ~width / HALKAISIJA~.
    - Ensin lasketaan piirtoikkunaan mahtuvien ympyröiden lukumäärä
      muuttujaan ~ympyroita~.
-   - Kokonaislukumuuttuja ~n~ ilmaisee /jo piirrettyjen/ neliöiden
-     lukumäärän, ja sen arvo on alussa 0.
-   - ~while~-silmukkaa toistetaan niin kauan, kun piirrettyjen
-     neliöiden lukumäärä on pienempi kuin piirrettävien lukumäärä.
-   - Piirtoikkunan tausta asetetaan siniseksi, jolloin vain mustat
-     neliöt tarvitsee piirtää.
-   - Neliö on musta silloin, kun jo piirrettyjen neliöiden määrä on
-     parillinen.
-   - Jo piirrettyjen neliöiden leveys on ~n*sivu~, joten tämä on myös
-     seuraavan neliön vasemman yläkulman \(x\)-koordinaatti.
+   - Ympyrä on sininen piirrettäessä ympyrää, jonka järjestysnumero on
+     pariton.
+   - Piirrettävän ympyrän keskipisteen vasemmalla puolella ovat
+     aiemmin piirretyt ympyrät sekä puolet nyt piirrettävän ympyrän
+     halkaisijasta. Niinpä piirrettävän ympyrän keskipisteen
+     \(x\)-koordinaatti on ~((n - 0.5) * HALKAISIJA)~.
 
    #+BEGIN_SRC processing :noweb yes :exports code
-   <<vakio-mustat-siniset-neliot>>
+   <<vakio-siniset-keltaiset-ympyrat>>
    #+END_SRC
