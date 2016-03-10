@@ -267,12 +267,6 @@
      }
    #+END_SRC
 
-   Alla olevassa ohjelmassa muuttujat ~x~ ja ~y~ sisältävät tiedon
-   piirrettävän viivan kärkipisteestä. Kullakin kierroksella
-   ~while~-silmukan sisällä lasketaan seuraavan kärkipisteen
-   koordinaatit muuttujiin ~xSeuraava~ ja ~ySeuraava~, piirretään
-   viiva ja päivitetään kärkipisteen koordinaatit.
-
    Viivan suunta muuttuu kierroksesta toiseen. Suunta ilmaistaan
    ohjelmassa kokonaislukumuuttujien ~xSuunta~ ja ~ySuunta~
    avulla. Tällaisten muuttujien käytön avulla voidaan tehtävissä
@@ -293,10 +287,6 @@
    <<kokonaisluku-sahalaita-pitenevin-askelin>>
    #+END_SRC
 
-   Huomaa, että ohjelmakoodissa muuttujat ~xSeuraava~ ja ~ySeuraava~
-   määritellään lauselohkon sisällä. Ne voitaisiin määritellä myös
-   lauselohkon ulkopuolella, mutta niitä ei tarvita siellä. Tähän
-   asiaan palataan [[file:funktion-maaritteleminen.org][kappaleessa, jossa määritellään funktioita]].
 ** Tehtävät
    1. Piirrä alla oleva kuvio ~while~-silmukan avulla piirtämällä
       ensin suuri musta ympyrä, sen päälle pienempi valkoinen ympyrä,
