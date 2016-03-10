@@ -258,22 +258,6 @@
      }
    #+END_SRC
 
-   Viivan suunta muuttuu kierroksesta toiseen. Suunta ilmaistaan
-   ohjelmassa kokonaislukumuuttujien ~xSuunta~ ja ~ySuunta~
-   avulla. Tällaisten muuttujien käytön avulla voidaan tehtävissä
-   kirjoittaa myös monimutkaisempia ohjelmia. Jos muuttujan ~xSuunta~
-   arvo on
-   - 1, liikutaan oikealle
-   - 0, ei liikuta \(x\)-akselin suunnassa.
-   Vastaavasti jos muuttujan ~ySuunta~ arvo on
-   - 1, liikutaan alaspäin
-   - 0, ei liikuta \(y\)-akselin suunnassa.
-   Näiden muuttujien arvot voidaan päivittää kullakin kierroksella
-   huomaamalla, että 
-   - jos muuttujan ~xSuunta~ arvo on 1, seuraavalla kierroksella
-     liikutaan alas
-   - muuten liikutaan seuraavalla kierroksella oikealle.
-
    #+BEGIN_SRC processing :exports code :noweb yes
    <<kokonaisluku-sahalaita-pitenevin-askelin>>
    #+END_SRC
@@ -409,16 +393,6 @@
       yhteensä korkeintaan 1500 pikseliä. Kulmapisteissä päällekkäin
       meneviä yksittäisiä pikseleitä ei tarvitse ottaa huomioon.
 
-      Jos kullakin askeleella piirrettävän janan suunta ilmaistaan
-      yllä olevan esimerkin tapaan muuttujien ~xSuunta~ ja ~ySuunta~
-      avulla, niin nämä muuttujat saavat seuraavia arvoja:
-      #+BEGIN_CENTER
-      | askeleen no | 1 | 2 |  3 |  4 | 5 | 6 |  7 |  8 |
-      |-------------+---+---+----+----+---+---+----+----|
-      | ~xSuunta~   | 0 | 1 |  0 | -1 | 0 | 1 |  0 | -1 |
-      | ~ySuunta~   | 1 | 0 | -1 |  0 | 1 | 0 | -1 |  0 |
-      #+END_CENTER
-
       #+NAME: kokonaisluku-laajeneva-spiraali
       #+BEGIN_SRC processing
         size (400, 400);
@@ -427,39 +401,30 @@
         stroke (100);
         float x = width / 2.0, y = height / 2.0;
         float pikseleitaJaljella = 1500;
-        float xSuunta = 0, ySuunta = 1;
-        float askel = 5;
+        float askelpituus = 5;
+        int n = 1;
 
-        while (pikseleitaJaljella >= askel)
+        while (pikseleitaJaljella >= askelpituus)
         {
-          float xSeuraava = x + xSuunta * askel;
-          float ySeuraava = y + ySuunta * askel;
+          float xSeuraava = x, ySeuraava = y;
+          int jakojaannos = n % 4;
+          if (jakojaannos == 1)
+            ySeuraava = ySeuraava + askelpituus; // alas
+          else if (jakojaannos == 2) 
+            xSeuraava = xSeuraava + askelpituus; // oikealle
+          else if (jakojaannos == 3)
+            ySeuraava = ySeuraava - askelpituus; // ylös
+          else
+            xSeuraava = xSeuraava - askelpituus; // vasemmalle
+  
           line (x, y, xSeuraava, ySeuraava);
 
           x = xSeuraava;
           y = ySeuraava;
 
-          pikseleitaJaljella = pikseleitaJaljella - askel;
-          askel = askel * 1.2;
-
-          if (xSuunta == 0)
-          {
-            if (ySuunta == 1)
-              xSuunta = 1;
-            else
-              xSuunta = -1;
-
-            ySuunta = 0;
-          }
-          else
-          {
-            if (xSuunta == 1)
-              ySuunta = -1;
-            else
-              ySuunta = 1;
-
-            xSuunta = 0;
-          }
+          pikseleitaJaljella = pikseleitaJaljella - askelpituus;
+          askelpituus = askelpituus * 1.2;
+          n++;
         }
    #+END_SRC
 ** Ratkaisuja
