@@ -263,7 +263,26 @@
    #+END_SRC
 
 ** Tehtävät
-   1. Piirrä alla olevan kuvan mukaisesti 8 neliötä neliön muotoisen
+   1. Piirrä alla olevan kuvan mukaisesti 45 neliötä piirtoikkunaan,
+      jonka mitat ovat \(600\times 100\). Kunkin neliön sivun pituus
+      on 13.
+      #+NAME: kokonaisluku-neliot-rivissa
+      #+BEGIN_SRC processing
+        size (600, 100);
+
+        final float SIVU = 13;
+
+        int n = 1;
+        float x = 0;
+
+        while (n <= 45)
+        {
+          rect (x, 0, SIVU, SIVU);
+          x = x + SIVU;
+          n++;
+        }
+      #+END_SRC
+   2. Piirrä alla olevan kuvan mukaisesti 8 neliötä neliön muotoisen
       piirtoikkunan lävistäjälle. Kunkin neliön sivun pituus tulee
       olla kymmenesosa piirtoikkunan leveydestä, ja kuvion tulee
       skaalautua piirtoikkunan mukana.
@@ -283,7 +302,7 @@
         }
 
       #+END_SRC
-   2. Piirrä \(400\times 400\)-kokoisen piirtoikkunan lävistäjälle
+   3. Piirrä \(400\times 400\)-kokoisen piirtoikkunan lävistäjälle
       ensimmäiset 15 positiivista kokonaislukua alla olevan kuvan
       mukaisesti. Kahden vierekkäisen luvun keskipisteiden
       \(x\)-koordinaattien väli on 20, samoin kuin
@@ -297,7 +316,7 @@
         textSize (16);
         textAlign (CENTER, CENTER);
 
-        final int VALI = 20;
+        final float VALI = 20;
 
         int n = 1;
         float k = VALI;
@@ -309,7 +328,7 @@
           n++;
         }
       #+END_SRC
-   3. Piirrä alla oleva kuvio ~while~-silmukan avulla piirtämällä
+   4. Piirrä alla oleva kuvio ~while~-silmukan avulla piirtämällä
       ensin suuri musta ympyrä, sen päälle pienempi valkoinen ympyrä,
       jonka päälle edelleen pienempi musta ympyrä. Piirtoikkuna on
       neliön muotoinen, ja kuvan tulee skaalautua piirtoikkunan
@@ -344,7 +363,7 @@
           halkaisija = halkaisija - 10;
         }
       #+END_SRC
-   4. Alla olevassa taulukossa on Processing-lausekkeen ~n % 3~ arvoja
+   5. Alla olevassa taulukossa on Processing-lausekkeen ~n % 3~ arvoja
       eri muuttujan ~n~ arvoilla.
       #+BEGIN_CENTER
       | ~n~     | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
@@ -354,13 +373,14 @@
       Piirrä alla olevan kaltainen kuva \(1000\times 100\)-kokoiseen
       piirtoikkunaan. Suorakulmioita on 95, ja kunkin niistä leveys
       on 10.
+      #+NAME: kokonaisluku-rgb-palkit
       #+BEGIN_SRC processing
         size (1000, 100);
         colorMode (HSB, 100);
         noStroke ();
         background (0);
 
-        final int LEVEYS = 10; // kunkin suorakulmion leveys
+        final float LEVEYS = 10; // kunkin suorakulmion leveys
 
         int n = 1; // piirrettävän suorakulmion järjestysnumero
 
@@ -386,7 +406,7 @@
           x = x + LEVEYS;
         }
       #+END_SRC
-   5. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
+   6. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
       murtoviiva. Viiva alkaa piirtoikkunan keskeltä. Ensimmäisen,
       piirtoikkunan keskeltä alkavan janan pituus on 5, ja seuraava
       jana on 20 prosenttia edellistä pidempi. Viivaan voidaan käyttää
@@ -430,17 +450,25 @@
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports code :noweb yes
-      <<kokonaisluku-neliot-lavistajalla>>
+      <<kokonaisluku-neliot-rivissa>>
       #+END_SRC
    2. 
       #+BEGIN_SRC processing :exports code :noweb yes
-      <<kokonaisluku-luvut-lavistajalla>>
+      <<kokonaisluku-neliot-lavistajalla>>
       #+END_SRC
    3. 
       #+BEGIN_SRC processing :exports code :noweb yes
-      <<kokonaisluku-tikkataulu>>
+      <<kokonaisluku-luvut-lavistajalla>>
       #+END_SRC
    4. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<kokonaisluku-tikkataulu>>
+      #+END_SRC
+   5. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<kokonaisluku-rgb-palkit>>
+      #+END_SRC
+   6. 
        #+BEGIN_SRC processing :exports code :noweb yes
        <<kokonaisluku-laajeneva-spiraali>>
        #+END_SRC
