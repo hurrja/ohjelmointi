@@ -64,7 +64,7 @@
      // tekstin keskikohta piirretään annettuun kohtaan
      textAlign (CENTER, CENTER);
 
-     text (100 / 6, 100, 100); // jakolaskun tulos kokonaislukuosa
+     text (42, 100, 100);
    #+END_SRC
 ** Esimerkki
    Piirretään \(1000\times 100\)-kokoiseen ikkunaan mustalle taustalle
@@ -287,12 +287,32 @@
    #+END_SRC
 
 ** Tehtävät
-   1. Piirrä \(400\times 400\)-kokoisen piirtoikkunan lävistäjälle
+   1. Piirrä alla olevan kuvan mukaisesti 8 neliötä neliön muotoisen
+      piirtoikkunan lävistäjälle. Kunkin neliön sivun pituus tulee
+      olla kymmenesosa piirtoikkunan leveydestä, ja kuvion tulee
+      skaalautua piirtoikkunan mukana.
+      #+NAME: kokonaisluku-neliot-lavistajalla
+      #+BEGIN_SRC processing
+        size (400, 400);
+        float sivu = width / 10.0;
+
+        int n = 1; // piirrettävän neliön järjestysnumero
+        float k = 0; // piirrettävän neliön koordinaatti (sekä x että y)
+
+        while (n <= 8)
+        {
+          rect (k, k, sivu, sivu);
+          k = k + sivu;
+          n++;
+        }
+
+      #+END_SRC
+   2. Piirrä \(400\times 400\)-kokoisen piirtoikkunan lävistäjälle
       ensimmäiset 15 positiivista kokonaislukua alla olevan kuvan
       mukaisesti. Kahden vierekkäisen luvun keskipisteiden
       \(x\)-koordinaattien väli on 20, samoin kuin
       \(y\)-koordinaattien väli. Tekstin koko on 16 pikseliä.
-      #+NAME: kokonaisluku-luvut-diagonaalilla
+      #+NAME: kokonaisluku-luvut-lavistajalla
       #+BEGIN_SRC processing
         size (400, 400);
         colorMode (HSB, 100);
@@ -313,7 +333,7 @@
           n++;
         }
       #+END_SRC
-   2. Piirrä alla oleva kuvio ~while~-silmukan avulla piirtämällä
+   3. Piirrä alla oleva kuvio ~while~-silmukan avulla piirtämällä
       ensin suuri musta ympyrä, sen päälle pienempi valkoinen ympyrä,
       jonka päälle edelleen pienempi musta ympyrä. Piirtoikkuna on
       neliön muotoinen, ja kuvan tulee skaalautua piirtoikkunan
@@ -348,7 +368,49 @@
           halkaisija = halkaisija - 10;
         }
       #+END_SRC
-   3. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
+   4. Alla olevassa taulukossa on Processing-lausekkeen ~n % 3~ arvoja
+      eri muuttujan ~n~ arvoilla.
+      #+BEGIN_CENTER
+      | ~n~     | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+      |---------+---+---+---+---+---+---+---|
+      | ~n % 3~ | 1 | 2 | 0 | 1 | 2 | 0 | 1 |
+      #+END_CENTER
+      Piirrä alla olevan kaltainen kuva \(1000\times 100\)-kokoiseen
+      piirtoikkunaan. Suorakulmioita on 95, ja kunkin niistä leveys
+      on 10.
+      #+BEGIN_SRC processing
+        size (1000, 100);
+        colorMode (HSB, 100);
+        noStroke ();
+        background (0);
+
+        final int LEVEYS = 10; // kunkin suorakulmion leveys
+
+        int n = 1; // piirrettävän suorakulmion järjestysnumero
+
+        // piirrettävän suorakulmion vasemman reunan x-koordinaatti
+        float x = 0; 
+
+        while (n <= 90)
+        {
+          // päätellään, millä värillä piirretään
+          float varisavy;
+          int jakojaannos = n % 3;
+          if (jakojaannos == 1)
+            varisavy = 0; // punainen
+          else if (jakojaannos == 2)
+            varisavy = 35; // vihreä
+          else
+            varisavy = 62; // sininen
+          fill (varisavy, 100, 100);
+
+          rect (x, 0, LEVEYS, height);
+
+          n++;
+          x = x + LEVEYS;
+        }
+      #+END_SRC
+   5. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
       murtoviiva. Viiva alkaa piirtoikkunan keskeltä. Ensimmäisen,
       piirtoikkunan keskeltä alkavan janan pituus on 5, ja seuraava
       jana on 20 prosenttia edellistä pidempi. Viivaan voidaan käyttää
@@ -411,13 +473,17 @@
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports code :noweb yes
-      <<kokonaisluku-luvut-diagonaalilla>>
+      <<kokonaisluku-neliot-lavistajalla>>
       #+END_SRC
    2. 
       #+BEGIN_SRC processing :exports code :noweb yes
-      <<kokonaisluku-tikkataulu>>
+      <<kokonaisluku-luvut-lavistajalla>>
       #+END_SRC
    3. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<kokonaisluku-tikkataulu>>
+      #+END_SRC
+   4. 
        #+BEGIN_SRC processing :exports code :noweb yes
        <<kokonaisluku-laajeneva-spiraali>>
        #+END_SRC
