@@ -1,3 +1,123 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * Funktion määritteleminen
+** Funktiot ~setup()~ ja ~draw()~
+   Ennen kuin ryhdymme määrittelemään funktioita ja piirtämään
+   animaatioita, meidän täytyy tutustua Processing-ohjelmoinnin
+   funktioihin ~setup()~ ja ~draw()~. Kun kirjoitetaan
+   Processing-ohjelmia, jotka toimivat ns. /aktiivisessa/ tilassa
+   - funktion ~setup()~ sisällä tehdään valmistelevat toimenpiteet,
+     kuten piirtoikkunan koon asettaminen
+   - funktion ~draw()~ sisällä piirretään.
+   Seuraava esimerkki havainnollistaa näiden funktioiden käyttämistä.
+   #+BEGIN_SRC processing :exports both
+     void setup ()
+     {
+       // alustavat toimenpiteet
+       size (400, 400);
+     }
+
+     void draw ()
+     {
+       // piirtäminen
+       rect (200, 100, 150, 50);
+     }
+   #+END_SRC
+
+   #+BEGIN_QUOTE
+   Jos halutaan kirjoittaa omia funktioita tai piirtää animaatioita,
+   täytyy käyttää Processing-kielen funktioita ~setup()~ ja
+   ~draw()~. Ensimmäisessä tehdään alustavat toimenpiteet, toisessa
+   piirretään.
+   #+END_QUOTE
+** Funktio
+  Kaikki aiemmissa esimerkeissämme käyttämät piirtokomennot, kuten
+  ~size()~ ja ~rect()~, ovat Processing-ohjelmointikielen
+  /funktioita/. Tällaisia funktioita on valmiina suuri joukko, ja
+  ohjelmoija voi kirjoittaa niitä lisää.
+
+  Edellisessä esimerkissä on määritelty funktio ~setup()~. Katsotaanpa
+  tarkemmin, mistä funktion määrittely koostuu.
+   #+BEGIN_SRC processing :exports code
+     void setup ()
+     {
+       size (400, 400);
+     }
+   #+END_SRC
+   Kaikkein mystisin on ensimmäinen rivi.
+   \[
+   \underbrace{\texttt{void}}_\text{paluuarvo "tyhjä"}
+   \overbrace{\texttt{setup}}^\text{funktion nimi}
+   \underbrace{\texttt{()}}_\text{ei parametreja}
+   \]
+   Ensimmäinen rivi kertoo, että 
+   - funktio ei anna tuloksena lukua tms. eli /paluuarvo/ on tyhjä:
+     englannin kielen sana /void/ tarkoittaa tyhjää
+   - funktion nimi on ~setup~
+   - funktio ei tarvitse mitään lisätietoja eli /parametreja/
+     toimiakseen: sulkujen sisällä ei ole mitään.
+
+   #+BEGIN_QUOTE
+   Jokaisella funktiolla on nimi. Funktiolla voi olla lisäksi
+   - /paluuarvo/ eli luku tms. jonka funktio antaa tuloksena
+   - /parametreja/ eli lähtötietoja, jotka funktio tarvitsee
+     toimiakseen; esimerkiksi funktio ~size()~ tarvitsee parametreina
+     piirtoikkunan leveyden ja korkeuden.
+   #+END_QUOTE
+
+   Ensimmäisen rivin jälkeinen osa on funktion /runko/, joka
+   kirjoitetaan lauselohkon sisään.
+   #+BEGIN_SRC processing :exports code
+     {
+       size (400, 400);
+     }
+   #+END_SRC
+** Funktion määrittelyn osat
+   #+BEGIN_QUOTE
+   Funktion määrittelyssä on seuraavat osat:
+   #+BEGIN_EXAMPLE
+   paluuarvon_tyyppi nimi (parametrit)
+   {
+     funktion runko
+   }
+   #+END_EXAMPLE
+   #+END_QUOTE
+** Esimerkki
+   Piirretään alla oleva kuva, jossa on vierekkäisiä ympyröitä eri
+   kohdissa piirtoikkunaa.
+   #+NAME: funktio-ympyraparit
+   #+BEGIN_SRC processing
+     void setup ()
+     {
+       size (400, 400);
+     }
+
+     void piirraYmpyraPari (float x, float y)
+     {
+       final float HALKAISIJA = 30; // kunkin ympyrän halkaisija
+       final float SADE = HALKAISIJA / 2.0; // kunkin ympyrän säde
+       ellipse (x - SADE, y, HALKAISIJA, HALKAISIJA); // vasen ympyrä
+       ellipse (x + SADE, y, HALKAISIJA, HALKAISIJA); // oikea ympyrä
+     }
+
+     void draw ()
+     {
+       piirraYmpyraPari (100, 150); // ympyräpari kohtaan (100, 150)
+       piirraYmpyraPari (200, 100);
+       piirraYmpyraPari (300, 190);
+     }
+   #+END_SRC
+   Koska ympyröiden piirtäminen halutaan tehdä moneen kertaan
+   epäsäännöllisissä kohdissa, sitä varten kannattaa kirjoittaa
+   funktio. 
+   1. Annetaan funktion nimeksi ~piirraYmpyraPari~.
+   2. Funktio tarvitsee kaksi lähtötietoa eli parametria: ympyräparin
+      keskikohdan \(x\)- sekä \(y\)-koordinaatin. Annetaan näille
+      nimiksi ~x~ ja ~y~.
+   3. Funktio ei anna tuloksena mitään lukua, eli sillä ei ole
+      paluuarvoa. Niinpä paluuarvon tyyppi on ~void~.
+
+   Ohjelmakoodi näyttää seuraavalta.
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<funktio-ympyraparit>>
+   #+END_SRC
