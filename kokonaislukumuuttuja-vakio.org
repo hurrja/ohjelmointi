@@ -364,7 +364,7 @@
         }
       #+END_SRC
    5. Alla olevassa taulukossa on Processing-lausekkeen ~n % 3~ arvoja
-      eri muuttujan ~n~ arvoilla.
+      muuttujan ~n~ eri arvoilla.
       #+BEGIN_CENTER
       | ~n~     | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
       |---------+---+---+---+---+---+---+---|
