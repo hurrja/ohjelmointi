@@ -33,8 +33,9 @@
 ** Funktio
   Kaikki aiemmissa esimerkeissämme käyttämät piirtokomennot, kuten
   ~size()~ ja ~rect()~, ovat Processing-ohjelmointikielen
-  /funktioita/. Tällaisia funktioita on valmiina suuri joukko, ja
-  ohjelmoija voi kirjoittaa niitä lisää.
+  /funktioita/. Kohdat, joissa funktiota käytetään ohjelmassa ovat
+  /funktiokutsuja/. Funktioita on valmiina suuri joukko, ja ohjelmoija
+  voi kirjoittaa niitä lisää.
 
   Edellisessä esimerkissä on määritelty funktio ~setup()~. Katsotaanpa
   tarkemmin, mistä funktion määrittely koostuu.
@@ -86,7 +87,7 @@
    Tässä kappaleessa funktioilla ei ole paluuarvoa, eli paluuarvon
    tyyppi on aina ~void~.
 ** Esimerkki
-   Piirretään alla oleva kuva, jossa on vierekkäisiä ympyröitä eri
+   Piirretään alla oleva kuva, jossa on päällekkäisiä ympyröitä eri
    kohdissa piirtoikkunaa.
    #+NAME: funktio-ympyraparit
    #+BEGIN_SRC processing
@@ -100,8 +101,8 @@
      {
        final float HALKAISIJA = 30; // kunkin ympyrän halkaisija
        final float SADE = HALKAISIJA / 2.0; // kunkin ympyrän säde
-       ellipse (x - SADE, y, HALKAISIJA, HALKAISIJA); // vasen ympyrä
-       ellipse (x + SADE, y, HALKAISIJA, HALKAISIJA); // oikea ympyrä
+       ellipse (x, y - SADE, HALKAISIJA, HALKAISIJA); // ylempi ympyrä
+       ellipse (x, y + SADE, HALKAISIJA, HALKAISIJA); // alempi ympyrä
      }
 
      void draw ()
@@ -219,3 +220,39 @@
    - ohjelmakoodin selkiyttämiseen (yksittäisen tikkataulun
      piirtämisen erottaminen tikkataulurivin piirtämisestä).
    #+END_QUOTE
+** Tehtävät
+   1. Alla on määritelty funktio ~piirraS()~. Kopioi koodi
+      Processing-ohjelmaan ja kirjoita funktio ~setup()~, jossa
+      kutsutaan funktiota ~piirraS()~ useaan kertaan, sekä funktio
+      ~draw()~, jossa määritellään piirtoikkunan koko.
+      #+NAME: funktio-silmat
+      #+BEGIN_SRC processing :exports code
+        void piirraS (float x, float y)
+        {
+          colorMode (HSB, 100);
+          final float H = 10, S = H / 2;
+          fill (100);
+          ellipse (x - S, y, H, H);
+          ellipse (x + S, y, H, H);
+          fill (0);
+          ellipse (x - S, y, S, S);
+          ellipse (x + S, y, S, S);
+        }
+      #+END_SRC
+** Ratkaisuja
+   1.
+      #+BEGIN_SRC processing :exports both :noweb yes
+        void setup ()
+        {
+          size (600, 400);
+        }
+
+        <<funktio-silmat>>
+
+        void draw ()
+        {
+          piirraS (50, 50);
+          piirraS (400, 100);
+          piirraS (300, 200);
+        }
+      #+END_SRC
