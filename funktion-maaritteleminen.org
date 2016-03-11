@@ -82,6 +82,9 @@
    }
    #+END_EXAMPLE
    #+END_QUOTE
+
+   Tässä kappaleessa funktioilla ei ole paluuarvoa, eli paluuarvon
+   tyyppi on aina ~void~.
 ** Esimerkki
    Piirretään alla oleva kuva, jossa on vierekkäisiä ympyröitä eri
    kohdissa piirtoikkunaa.
@@ -124,3 +127,21 @@
    #+BEGIN_SRC processing :exports code :noweb yes
    <<funktio-ympyraparit>>
    #+END_SRC
+** Muuttujien, vakioiden ja parametrien näkyvyysalue
+   Mistä tiedetään, etteivät kahdessa eri funktiossa olevat
+   samannimiset muuttujat mene keskenään sekaisin?
+
+   #+BEGIN_QUOTE
+   Muuttujan /näkyvyysalueella/ tarkoitetaan sitä ohjelman osaa, jossa
+   muuttujaa voidaan käyttää. Muuttujan näkyvyysalue on se lauselohko,
+   jossa muuttuja määritellään, sekä lauselohkon sisällä olevat muut
+   lauselohkot. Sama pätee myös vakioille.
+
+   Parametrien näkyvyysalue on sen funktio runko, jonka ensimmäisellä
+   rivillä parametrit määritellään.
+   #+END_QUOTE
+** Esimerkki
+   Alla olevassa ohjelmakoodissa on kaksi funktiota, joissa molemmissa
+   määritellään muuttuja ~n~. Kukin muuttuja ~n~ näkyy vain oman
+   funktionsa rungossa, joten ne ovat käytännössä kaksi eri muuttujaa.
+   Sama pätee molempien funktioiden parametrille ~x~.
