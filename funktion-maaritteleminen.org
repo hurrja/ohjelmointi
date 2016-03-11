@@ -139,9 +139,9 @@
    ~piirraYmpyraPari()~ ilman paluuarvon tai parametrien tyyppejä tai
    parametrien nimiä. Joskus myös tyypit sekä parametrien nimet
    mainitaan tyyliin 
-   #+BEGIN_CENTER
-   ~void piirraYmpyraPari (float x, float y)~
-   #+END_CENTER
+   #+BEGIN_EXAMPLE
+   void piirraYmpyraPari (float x, float y)
+   #+END_EXAMPLE
    #+END_QUOTE
 ** Muuttujien, vakioiden ja parametrien näkyvyysalue
    Mistä tiedetään, etteivät kahdessa eri funktiossa olevat
@@ -257,9 +257,9 @@
         }
       #+END_SRC
    2. Määrittele funktio 
-      #+BEGIN_CENTER
-      ~void piirraNelioPari (float x, float y)~
-      #+END_CENTER
+      #+BEGIN_EXAMPLE
+      void piirraNelioPari (float x, float y)
+      #+END_EXAMPLE
       joka piirtää kaksi neliötä vierekkäin siten, että
       vasemmanpuoleisen neliön vasen yläkulma on kohdassa ~(x,
       y)~. Käytä kirjoittamaasi funktiota yhdessä funktioiden
@@ -288,6 +288,41 @@
           piirraNelioPari (250, 270);
         }
       #+END_SRC
+   3. Määrittele funktio
+      #+BEGIN_EXAMPLE
+      void piirraRasti (float x, float y, float varisavy)
+      #+END_EXAMPLE
+      joka piirtää rastin kohtaan ~(x, y)~ käyttämällä värisävyä
+      ~varisavy~. Jos rastin keskikohta on pisteessä ~(x, y)~, niin
+      vasen yläkulma on kohdassa ~(x - 10, y - 10)~. Piirrä funktion
+      avulla alla olevan kaltainen kuva, jossa on erivärisiä rasteja
+      mustalla taustalla.
+      #+NAME: funktio-rasti
+      #+BEGIN_SRC processing
+        void setup ()
+        {
+          size (400, 400);
+          colorMode (HSB, 100);
+          background (0);
+          noLoop ();
+        }
+
+        void piirraRasti (float x, float y, float varisavy)
+        {
+          final float S = 10;
+          stroke (varisavy, 100, 100);
+          line (x - S, y - S, x + S, y + S);
+          line (x - S, y + S, x + S, y - S);
+        }
+
+        void draw ()
+        {
+          piirraRasti (30, 50, 0);
+          piirraRasti (300, 350, 17);
+          piirraRasti (70, 200, 62);
+          piirraRasti (300, 50, 35);
+        }
+      #+END_SRC
 
 ** Ratkaisuja
    1. 
@@ -310,4 +345,8 @@
    2. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<funktio-vierekkaiset-neliot>>
+      #+END_SRC
+   3. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<funktio-rasti>>
       #+END_SRC
