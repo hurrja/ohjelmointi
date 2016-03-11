@@ -20,7 +20,6 @@
 * [[file:lauselohko.org]]
 * [[file:while-silmukka.org]]
 * [[file:kokonaislukumuuttuja-vakio.org]]
-* [[file:sisakkaiset-silmukat.org]]
 * [[file:funktion-maaritteleminen.org]]
 * ~for~-silmukka
 * Animaatio
@@ -28,5 +27,6 @@
 * Hiiri
 * [[file:pikseli.org]]
 * Satunnaisuus
+* [[file:sisakkaiset-silmukat.org]]
 * Rekursio
 
