@@ -96,7 +96,7 @@
      }
 
      // funktiolla ei paluuarvoa, parametreina kaksi liukulukua
-     void piirraYmpyraPari (float x, float y)
+     void piirraYmpyrapari (float x, float y)
      {
        final float HALKAISIJA = 30; // kunkin ympyrän halkaisija
        final float SADE = HALKAISIJA / 2.0; // kunkin ympyrän säde
@@ -107,15 +107,15 @@
      void draw ()
      {
        // voimme käyttää määrittelemäämme funktiota piirtämisessä
-       piirraYmpyraPari (100, 150); // ympyräpari kohtaan (100, 150)
-       piirraYmpyraPari (200, 100);
-       piirraYmpyraPari (300, 190);
+       piirraYmpyrapari (100, 150); // ympyräpari kohtaan (100, 150)
+       piirraYmpyrapari (200, 100);
+       piirraYmpyrapari (300, 190);
      }
    #+END_SRC
    Koska ympyröiden piirtäminen halutaan tehdä moneen kertaan
    epäsäännöllisissä kohdissa, sitä varten kannattaa kirjoittaa
    funktio. 
-   1. Annetaan funktion nimeksi ~piirraYmpyraPari~.
+   1. Annetaan funktion nimeksi ~piirraYmpyrapari~.
    2. Funktio tarvitsee kaksi lähtötietoa eli parametria: ympyräparin
       keskikohdan \(x\)- sekä \(y\)-koordinaatin. Annetaan näille
       nimiksi ~x~ ja ~y~. Molemmat ovat liukulukuja eli tyyppiä
@@ -135,13 +135,87 @@
    Muuttujan /näkyvyysalueella/ tarkoitetaan sitä ohjelman osaa, jossa
    muuttujaa voidaan käyttää. Muuttujan näkyvyysalue on se lauselohko,
    jossa muuttuja määritellään, sekä lauselohkon sisällä olevat muut
-   lauselohkot. Sama pätee myös vakioille.
+   lauselohkot. 
+
+   Kaikkien lauselohkojen ulkopuolella määritellyt muuttujat ovat
+   ns. /globaaleja/ muuttujia ja näkyvät kaikissa lauselohkoissa.
+
+   Samat säännöt pätevät myös vakioille.
 
    Parametrien näkyvyysalue on sen funktio runko, jonka ensimmäisellä
    rivillä parametrit määritellään.
+
    #+END_QUOTE
 ** Esimerkki
    Alla olevassa ohjelmakoodissa on kaksi funktiota, joissa molemmissa
    määritellään muuttuja ~n~. Kukin muuttuja ~n~ näkyy vain oman
    funktionsa rungossa, joten ne ovat käytännössä kaksi eri muuttujaa.
-   Sama pätee molempien funktioiden parametrille ~x~.
+   Sama pätee molempien funktioiden parametreihin ~x~ ja ~y~.
+
+   #+BEGIN_SRC processing :exports both
+     // tikkataulun halkaisija on globaali vakio, joka näkyy kaikissa
+     // funktioissa
+     final float TAULUN_H = 70; 
+
+     void setup ()
+     {
+       // alkuasetukset
+       size (800, 500);
+       colorMode (HSB, 100);
+       noStroke (); // ei ääriviivoja
+     }
+
+     // piirretään yksittäinen tikkataulu parametreina annettuun kohtaan
+     void piirraTikkataulu (float x, float y)
+     {
+       final float N = 10; // tikkataulun sisäkkäisten ympyröiden lukumäärä
+       final float ASKEL = TAULUN_H / N; // ympyröiden halkaisijoiden ero
+
+       // seuraavaksi piirrettävän ympyrän halkaisija
+       float ympyranHalkaisija = TAULUN_H;
+
+       int n = 1; // piirrettävän ympyrän järjestysnumero
+       while (n <= N)
+       {
+         if (n % 2 == 1)
+           fill (100);
+         else
+           fill (0);
+
+         ellipse (x, y, ympyranHalkaisija, ympyranHalkaisija);
+         ympyranHalkaisija = ympyranHalkaisija - ASKEL;
+         n++;
+       }
+     }
+
+     // piirretään lkm tikkataulua siten, että ensimmäisen keskikohta on
+     // (x, y) ja muut ovat siitä oikealle
+     void piirraTikkatauluRivi (int lkm, float x, float y)
+     {
+       float kpX = x; // tikkataulun keskipisteen x-koordinaatti
+       int n = 1; // piirrettävän tikkataulun järjestysnumero
+
+       while (n <= lkm)
+       {
+         piirraTikkataulu (kpX, y);
+         kpX = kpX + TAULUN_H;
+         n++;
+       }
+     }
+
+     void draw ()
+     {
+       piirraTikkatauluRivi (3, 100, 100);
+       piirraTikkatauluRivi (6, 50, 200);
+       piirraTikkatauluRivi (4, 350, 300);
+       piirraTikkataulu (70, 400);
+     }
+   #+END_SRC
+** Funktioiden käyttötarkoituksia
+   #+BEGIN_QUOTE
+   Ohjelmoijat käyttävät funktioita mm.
+   - usein tarvittujen toimintojen automatisointiin (esim. tikkataulun
+     piirtäminen useaan eri kohtaan tai peräti useassa eri ohjelmassa)
+   - ohjelmakoodin selkiyttämiseen (yksittäisen tikkataulun
+     piirtämisen erottaminen tikkataulurivin piirtämisestä).
+   #+END_QUOTE
