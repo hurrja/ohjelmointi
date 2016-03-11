@@ -92,6 +92,7 @@
        size (400, 400);
      }
 
+     // funktiolla ei paluuarvoa, parametreina kaksi liukulukua
      void piirraYmpyraPari (float x, float y)
      {
        final float HALKAISIJA = 30; // kunkin ympyrän halkaisija
@@ -102,6 +103,7 @@
 
      void draw ()
      {
+       // voimme käyttää määrittelemäämme funktiota piirtämisessä
        piirraYmpyraPari (100, 150); // ympyräpari kohtaan (100, 150)
        piirraYmpyraPari (200, 100);
        piirraYmpyraPari (300, 190);
@@ -113,7 +115,8 @@
    1. Annetaan funktion nimeksi ~piirraYmpyraPari~.
    2. Funktio tarvitsee kaksi lähtötietoa eli parametria: ympyräparin
       keskikohdan \(x\)- sekä \(y\)-koordinaatin. Annetaan näille
-      nimiksi ~x~ ja ~y~.
+      nimiksi ~x~ ja ~y~. Molemmat ovat liukulukuja eli tyyppiä
+      ~float~.
    3. Funktio ei anna tuloksena mitään lukua, eli sillä ei ole
       paluuarvoa. Niinpä paluuarvon tyyppi on ~void~.
 
