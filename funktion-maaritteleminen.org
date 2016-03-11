@@ -14,7 +14,8 @@
      void setup ()
      {
        // alustavat toimenpiteet
-       size (400, 400);
+       size (400, 400); // asetetaan ikkunan koko
+       noLoop (); // ei piirretä animaatioita (vielä)
      }
 
      void draw ()
@@ -28,11 +29,13 @@
    Jos halutaan kirjoittaa omia funktioita tai piirtää animaatioita,
    täytyy käyttää Processing-kielen funktioita ~setup()~ ja
    ~draw()~. Ensimmäisessä tehdään alustavat toimenpiteet, toisessa
-   piirretään.
+   piirretään. Jos ei piirretä animaatioita, funktiossa ~setup()~
+   kannattaa viimeisenä antaa komento ~noLoop()~, joka keventää
+   tietokoneen kuormaa.
    #+END_QUOTE
 ** Funktio
-  Kaikki aiemmissa esimerkeissämme käyttämät piirtokomennot, kuten
-  ~size()~ ja ~rect()~, ovat Processing-ohjelmointikielen
+  Kaikki aiemmissa esimerkeissämme käytetyt piirtokomennot kuten
+  ~size()~ ja ~rect()~ ovat Processing-ohjelmointikielen
   /funktioita/. Kohdat, joissa funktiota käytetään ohjelmassa ovat
   /funktiokutsuja/. Funktioita on valmiina suuri joukko, ja ohjelmoija
   voi kirjoittaa niitä lisää.
@@ -43,6 +46,7 @@
      void setup ()
      {
        size (400, 400);
+       noLoop ();
      }
    #+END_SRC
    Kaikkein mystisin on ensimmäinen rivi.
@@ -82,10 +86,10 @@
      funktion runko
    }
    #+END_EXAMPLE
-   #+END_QUOTE
-
    Tässä kappaleessa funktioilla ei ole paluuarvoa, eli paluuarvon
    tyyppi on aina ~void~.
+   #+END_QUOTE
+
 ** Esimerkki
    Piirretään alla oleva kuva, jossa on päällekkäisiä ympyröitä eri
    kohdissa piirtoikkunaa.
@@ -94,10 +98,11 @@
      void setup ()
      {
        size (400, 400);
+       noLoop ();
      }
 
      // funktiolla ei paluuarvoa, parametreina kaksi liukulukua
-     void piirraYmpyrapari (float x, float y)
+     void piirraYmpyraPari (float x, float y)
      {
        final float HALKAISIJA = 30; // kunkin ympyrän halkaisija
        final float SADE = HALKAISIJA / 2.0; // kunkin ympyrän säde
@@ -108,15 +113,15 @@
      void draw ()
      {
        // voimme käyttää määrittelemäämme funktiota piirtämisessä
-       piirraYmpyrapari (100, 150); // ympyräpari kohtaan (100, 150)
-       piirraYmpyrapari (200, 100);
-       piirraYmpyrapari (300, 190);
+       piirraYmpyraPari (100, 150); // ympyräpari kohtaan (100, 150)
+       piirraYmpyraPari (200, 100);
+       piirraYmpyraPari (300, 190);
      }
    #+END_SRC
    Koska ympyröiden piirtäminen halutaan tehdä moneen kertaan
    epäsäännöllisissä kohdissa, sitä varten kannattaa kirjoittaa
    funktio. 
-   1. Annetaan funktion nimeksi ~piirraYmpyrapari~.
+   1. Annetaan funktion nimeksi ~piirraYmpyraPari~.
    2. Funktio tarvitsee kaksi lähtötietoa eli parametria: ympyräparin
       keskikohdan \(x\)- sekä \(y\)-koordinaatin. Annetaan näille
       nimiksi ~x~ ja ~y~. Molemmat ovat liukulukuja eli tyyppiä
@@ -128,12 +133,15 @@
    #+BEGIN_SRC processing :exports code :noweb yes
    <<funktio-ympyraparit>>
    #+END_SRC
-** Funktioista kirjoittaminen
+** Funktioiden nimet kirjoitetussa tekstissä
    #+BEGIN_QUOTE
    Toisinaan funktioiden nimet esitetään tekstissä muodossa
-   ~piirraYmpyrapari()~ ilman paluuarvon tai parametrien tyyppejä tai
+   ~piirraYmpyraPari()~ ilman paluuarvon tai parametrien tyyppejä tai
    parametrien nimiä. Joskus myös tyypit sekä parametrien nimet
-   mainitaan tyyliin ~void piirraYmpyrapari (float x, float y)~.
+   mainitaan tyyliin 
+   #+BEGIN_CENTER
+   ~void piirraYmpyraPari (float x, float y)~
+   #+END_CENTER
    #+END_QUOTE
 ** Muuttujien, vakioiden ja parametrien näkyvyysalue
    Mistä tiedetään, etteivät kahdessa eri funktiossa olevat
@@ -171,6 +179,7 @@
        size (800, 500);
        colorMode (HSB, 100);
        noStroke (); // ei ääriviivoja
+       noLoop ();
      }
 
      // piirretään yksittäinen tikkataulu parametreina annettuun kohtaan
@@ -231,7 +240,8 @@
    1. Alla on määritelty funktio ~piirraS()~. Kopioi koodi
       Processing-ohjelmaan ja kirjoita funktio ~draw()~, jossa
       kutsutaan funktiota ~piirraS()~ useaan kertaan, sekä funktio
-      ~setup()~, jossa määritellään piirtoikkunan koko.
+      ~setup()~, jossa määritellään piirtoikkunan koko ja kutsutaan
+      funktiota ~noLoop()~.
       #+NAME: funktio-silmat
       #+BEGIN_SRC processing :exports code
         void piirraS (float x, float y)
@@ -254,13 +264,14 @@
       vasemmanpuoleisen neliön vasen yläkulma on kohdassa ~(x,
       y)~. Käytä kirjoittamaasi funktiota yhdessä funktioiden
       ~setup()~ ja ~draw()~ kanssa alla olevan tyyppisen kuvan
-      piirtämiseen. Neliön sivun pituus on 20. Muut arvot ja mitat
-      voit valita vapaasti.
+      piirtämiseen. Neliön sivun pituus on 20. Muut mitat voit valita
+      vapaasti.
       #+NAME: funktio-vierekkaiset-neliot
       #+BEGIN_SRC processing
         void setup ()
         {
           size (400, 400);
+          noLoop ();
         }
 
         void piirraNelioPari (float x, float y)
@@ -284,6 +295,7 @@
          void setup ()
          {
            size (600, 400);
+           noLoop ();
          }
 
          <<funktio-silmat>>
