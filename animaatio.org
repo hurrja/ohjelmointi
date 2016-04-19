@@ -47,7 +47,7 @@
      jonka \(x\)-koordinaatti on muuttujassa ~x~.
    - Muuttuja ~x~ on globaali muuttuja, jotta se säilyttää arvonsa
      koko ohjelman suorituksen ajan.
-   - Jos ympyrän keskipiste siirtyisi kuvan ulkopuolelle (~x >
+   - Jos ympyrän keskipiste siirtyisi kuvan ulkopuolelle (~x >=
      width~), siirrytään takaisin kuvan vasempaan reunaan (~x = 0~).
    #+BEGIN_SRC processing :noweb yes :exports code
    <<animaatio-ympyra>>
