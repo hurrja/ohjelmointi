@@ -375,6 +375,39 @@
           piirraRasti (300, 50, 35);
         }
       #+END_SRC
+   6. Alla olevan ohjelman pitäisi piirtää viisi pystyriviä ympyröitä,
+      mutta pystyrivejä piirretäänkin vain yksi. Kopioi koodi
+      Processing-ohjelmaan ja korjaa virhe.
+      #+BEGIN_SRC processing :exports both
+        int n;
+
+        void setup ()
+        {
+          size (400, 400);
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          n = 1;
+          while (n <= 5)
+          {
+            piirraPystyrivi (n * 20);
+            n++;
+          }
+        }
+
+        void piirraPystyrivi (float x)
+        {
+          final float HALKAISIJA = 10;
+          n = 1;
+          while (n <= 10)
+          {
+            ellipse (x, n * HALKAISIJA, HALKAISIJA, HALKAISIJA);
+            n++;
+          }
+        }
+      #+END_SRC
 
 ** Ratkaisuja
    1. 
@@ -413,7 +446,6 @@
           rect (100, 100, 100, 100);
         }
       #+END_SRC
-
    3. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<funktio-ympyra>>
@@ -426,3 +458,5 @@
       #+BEGIN_SRC processing :exports code :noweb yes
       <<funktio-rasti>>
       #+END_SRC
+   6. Muuttuja ~n~ täytyy määritellä erikseen funktioissa ~draw()~ ja
+      ~piirraPystyrivi()~.
