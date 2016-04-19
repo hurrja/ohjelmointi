@@ -256,7 +256,39 @@
           ellipse (x + S, y, S, S);
         }
       #+END_SRC
-   2. Määrittele funktio 
+   2. Määrittele funktio
+      #+BEGIN_EXAMPLE
+      void piirraYmpyra (float x, float y)
+      #+END_EXAMPLE
+      joka piirtää ympyrän, jonka keskipiste on kohdassa ~(x,
+      y)~. Ympyrän halkaisija on 20. Käytä kirjoittamaasi funktiota
+      yhdessä funktioiden ~setup()~ ja ~draw()~ kanssa alla olevan
+      tyyppisen kuvan piirtämiseen. Voit valita piirtoikkunan koon
+      sekä ympyröiden paikat vapaasti.
+      #+NAME: funktio-ympyra
+      #+BEGIN_SRC processing
+        void setup ()
+        {
+          size (400, 400);
+          noLoop ();
+        }
+
+        void piirraYmpyra (float x, float y)
+        {
+          final float HALKAISIJA = 20;
+          ellipse (x, y, HALKAISIJA, HALKAISIJA);
+        }
+
+        void draw ()
+        {
+          piirraYmpyra (40, 90);
+          piirraYmpyra (120, 100);
+          piirraYmpyra (150, 170);
+          piirraYmpyra (350, 300);
+        }
+
+      #+END_SRC
+   3. Määrittele funktio 
       #+BEGIN_EXAMPLE
       void piirraNelioPari (float x, float y)
       #+END_EXAMPLE
@@ -288,7 +320,7 @@
           piirraNelioPari (250, 270);
         }
       #+END_SRC
-   3. Määrittele funktio
+   4. Määrittele funktio
       #+BEGIN_EXAMPLE
       void piirraRasti (float x, float y, float varisavy)
       #+END_EXAMPLE
@@ -344,9 +376,13 @@
        #+END_SRC
    2. 
       #+BEGIN_SRC processing :exports code :noweb yes
-      <<funktio-vierekkaiset-neliot>>
+      <<funktio-ympyra>>
       #+END_SRC
    3. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<funktio-vierekkaiset-neliot>>
+      #+END_SRC
+   4. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<funktio-rasti>>
       #+END_SRC
