@@ -225,6 +225,66 @@
             savy = 0;
         }
       #+END_SRC
+   3. Tee alla näkyvän kaltainen animaatio. Kokeile mitä animaatiossa
+      tapahtuu, jos funktiosta ~draw()~ poistetaan funktion
+      ~background()~ kutsu.
+      #+NAME: animaatio-viiva
+      #+BEGIN_SRC processing
+        float x;
+
+        void setup ()
+        {
+          size (400, 400);
+          colorMode (HSB, 100);
+          stroke (100);
+          x = 0;
+          frameRate (1);
+        }
+
+        void draw ()
+        {
+          background (0);
+          line (0, 0, x, height);
+
+          x = x + 10;
+          if (x > width)
+            x = 0;
+        }
+     #+END_SRC
+   4. Tee alla olevan kaltaisen liikennevalot, joissa valo vaihtuu
+      toiseksi viiden sekunnin välein. [Vihjeitä. Kuluneiden 5
+      sekunnin jaksojen lukumäärän saat jakamalla sekuntien lukumäärän
+      luvulla 5. Sen, minkä kolmesta valosta pitäisi olla päällä voi
+      tämän jälkeen selvittää laskemalla jakojäännöksen, kun jaksojen
+      lukumäärän jaetaan luvulla 3.]
+      #+NAME: animaatio-liikennevalot-runko
+      #+BEGIN_SRC processing
+        int aika; // alusta kulunut aika kokonaisina sekunteina
+
+        void setup ()
+        {
+          size (200, 200);
+          colorMode (HSB, 100);
+          aika = 0;
+          frameRate (1);
+        }
+
+        void draw ()
+        {
+          float savy;
+          int jaksot = floor (aika / 5); // kuinka monta 5s jaksoa on kulunut
+          int vaihe = jaksot % 3; // mikä vaihe on menossa
+          if (vaihe == 0)
+            savy = 0;
+          else if (vaihe == 1)
+            savy = 10;
+          else
+            savy = 35;
+
+          background (savy, 100, 100);
+          aika++;
+        }
+      #+END_SRC
 ** Ratkaisuja
    1. 
        #+BEGIN_SRC processing :noweb yes :exports code
@@ -233,4 +293,13 @@
    2. 
        #+BEGIN_SRC processing :noweb yes :exports code
        <<animaatio-varisavy>>
+       #+END_SRC
+   3. Jos funktiota ~background()~ ei kutsuta, kaikki piirretyt viivat
+      jäävät näkyviin. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<animaatio-viiva>>
+       #+END_SRC
+   4. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<animaatio-liikennevalot>>
        #+END_SRC
