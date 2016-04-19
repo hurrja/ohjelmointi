@@ -27,7 +27,7 @@
        x = x + HALKAISIJA; // kasvatetaan muuttujan x arvoa
 
        // takaisin vasempaan reunaan, jos mentiin oikeasta reunasta yli
-       if (x > width)
+       if (x >= width)
          x = 0;
      }
    #+END_SRC
@@ -176,3 +176,34 @@
      }
 
    #+END_SRC
+** Tehtäviä
+   1. Tee alla olevan kuvan kaltainen animaatio. Voit valita
+      piirtoikkunan ja neliön koon vapaasti.
+      #+NAME: animaatio-nelio
+      #+BEGIN_SRC processing
+        final float SIVU = 40;
+        float y; // neliön vasemman yläkulman y-koordinaatti
+
+        void setup ()
+        {
+          size (400, 400);
+          colorMode (HSB, 100);
+          fill (100);
+          y = 0;
+          frameRate (1);
+        }
+
+        void draw ()
+        {
+          background (0);
+          rect (0, y, SIVU, SIVU);
+          y = y + SIVU;
+          if (y >= height)
+            y = 0;
+        }
+      #+END_SRC
+** Ratkaisuja
+   1.
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<animaatio-nelio>>
+      #+END_SRC
