@@ -251,7 +251,7 @@
             x = 0;
         }
      #+END_SRC
-   4. Tee alla olevan kaltaisen liikennevalot, joissa valo vaihtuu
+   4. Tee alla olevan kaltaisen liikennevalot, joissa väri vaihtuu
       toiseksi viiden sekunnin välein. [Vihjeitä. Kuluneiden 5
       sekunnin jaksojen lukumäärän saat jakamalla sekuntien lukumäärän
       luvulla 5. Sen, minkä kolmesta valosta pitäisi olla päällä voi
@@ -277,11 +277,11 @@
           "; // kuinka monta 5s jaksoa on kulunut
           int vaihe = jaksot % 3; // mikä vaihe on menossa
           if (vaihe == 0)
-            savy = 0;
+            savy = 0; // punainen
           else if (vaihe == 1)
-            savy = 10;
+            savy = 17; // keltainen
           else
-            savy = 35;
+            savy = 35; // vihreä
 
           background (savy, 100, 100);
           aika++;
