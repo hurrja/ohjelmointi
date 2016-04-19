@@ -156,7 +156,7 @@
 
        halkaisija = 10; // halkaisija alussa 10
        muutos = 30; // halkaisija kasvaa alussa 30 kullakin askeleella
-       frameRate (2); // kaksi kuvaa sekunnissa
+       frameRate (1); 
      }
 
      void draw ()
@@ -167,12 +167,12 @@
        // ryhdytään pienentämään halkaisijaa, jos ympyrä ei mahtuisi enää
        // kuvaan, tai suurentamaan halkaisijaa, jos sen arvo ei olisi enää
        // positiivinen luku
-       if (halkaisija + askel > width)
-         askel = -askel;
-       else if (halkaisija + askel <= 0)
-         askel = -askel;
+       if (halkaisija + muutos > width)
+         muutos = -muutos;
+       else if (halkaisija + muutos <= 0)
+         muutos = -muutos;
 
-       halkaisija = halkaisija + askel;
+       halkaisija = halkaisija + muutos;
      }
 
    #+END_SRC
@@ -257,9 +257,9 @@
       luvulla 5. Sen, minkä kolmesta valosta pitäisi olla päällä voi
       tämän jälkeen selvittää laskemalla jakojäännöksen, kun jaksojen
       lukumäärän jaetaan luvulla 3.]
-      #+NAME: animaatio-liikennevalot
-      #+BEGIN_SRC processing
-        int aika; // alusta kulunut aika kokonaisina sekunteina
+      #+NAME: animaatio-liikennevalot-generaattori
+      #+BEGIN_SRC elisp :var toIntegerStr="%s" :exports none
+        (concat "int aika; // alusta kulunut aika kokonaisina sekunteina
 
         void setup ()
         {
@@ -272,7 +272,9 @@
         void draw ()
         {
           float savy;
-          int jaksot = floor (aika / 5); // kuinka monta 5s jaksoa on kulunut
+          int jaksot = "
+          (format toIntegerStr "aika / 5")
+          "; // kuinka monta 5s jaksoa on kulunut
           int vaihe = jaksot % 3; // mikä vaihe on menossa
           if (vaihe == 0)
             savy = 0;
@@ -284,7 +286,13 @@
           background (savy, 100, 100);
           aika++;
         }
+        ")
       #+END_SRC
+
+      #+BEGIN_SRC processing :noweb yes
+      <<animaatio-liikennevalot-generaattori("floor(%s)")>>
+      #+END_SRC
+
 ** Ratkaisuja
    1. 
        #+BEGIN_SRC processing :noweb yes :exports code
@@ -301,5 +309,5 @@
        #+END_SRC
    4. 
        #+BEGIN_SRC processing :noweb yes :exports code
-       <<animaatio-liikennevalot>>
+       <<animaatio-liikennevalot-generaattori()>>
        #+END_SRC
