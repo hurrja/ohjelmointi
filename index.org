@@ -21,8 +21,8 @@
 * [[file:while-silmukka.org]]
 * [[file:kokonaislukumuuttuja-vakio.org]]
 * [[file:funktion-maaritteleminen.org]]
+* [[file:animaatio.org]]
 * ~for~-silmukka
-* Animaatio
 * Aika
 * Hiiri
 * [[file:pikseli.org]]
