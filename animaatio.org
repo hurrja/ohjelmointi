@@ -257,7 +257,7 @@
       luvulla 5. Sen, minkä kolmesta valosta pitäisi olla päällä voi
       tämän jälkeen selvittää laskemalla jakojäännöksen, kun jaksojen
       lukumäärän jaetaan luvulla 3.]
-      #+NAME: animaatio-liikennevalot-runko
+      #+NAME: animaatio-liikennevalot
       #+BEGIN_SRC processing
         int aika; // alusta kulunut aika kokonaisina sekunteina
 
