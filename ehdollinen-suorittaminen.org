@@ -159,7 +159,7 @@
       arvoa.
    3. Kirjoita ohjelma, joka asettaa piirtoikkunan taustaväriksi
       valkoisen, mikäli piirtoikkuna on neliön muotoinen. Muussa
-      tapauksessa taustaväriksi asetetaan valkoinen. Testaa ohjelmasi
+      tapauksessa taustaväriksi asetetaan musta. Testaa ohjelmasi
       toimivuus muuttamalla piirtoikkunan kokoa.
    4. Kirjoita ohjelma, joka piirtää piirtoikkunan vasempaan
       yläkulmaan \(100\times 100\)-kokoisen neliön, jos ikkunan leveys
