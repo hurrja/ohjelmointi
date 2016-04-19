@@ -256,7 +256,27 @@
           ellipse (x + S, y, S, S);
         }
       #+END_SRC
-   2. Määrittele funktio
+   2. Alla olevassa ohjelmassa on virhe, joka johtuu vakion
+      näkyvyysalueesta. Kopioi koodi Processing-ohjelmaan ja korjaa
+      virhe.
+      #+BEGIN_SRC processing :exports code
+        void setup ()
+        {
+          final float VARISAVY = 20;
+
+          size (400, 400);
+          colorMode (HSB, 100);
+          background (VARISAVY, 100, 100);
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          fill (VARISAVY + 20, 100, 100);
+          rect (100, 100, 100, 100);
+        }
+      #+END_SRC
+   3. Määrittele funktio
       #+BEGIN_EXAMPLE
       void piirraYmpyra (float x, float y)
       #+END_EXAMPLE
@@ -288,7 +308,7 @@
         }
 
       #+END_SRC
-   3. Määrittele funktio 
+   4. Määrittele funktio 
       #+BEGIN_EXAMPLE
       void piirraNelioPari (float x, float y)
       #+END_EXAMPLE
@@ -320,7 +340,7 @@
           piirraNelioPari (250, 270);
         }
       #+END_SRC
-   4. Määrittele funktio
+   5. Määrittele funktio
       #+BEGIN_EXAMPLE
       void piirraRasti (float x, float y, float varisavy)
       #+END_EXAMPLE
@@ -374,15 +394,35 @@
            piirraS (300, 200);
          }
        #+END_SRC
-   2. 
+   2. Vakio ~VARISAVY~ täytyy siirtää globaaliksi vakioksi, jotta se
+      näkyy molemmissa funktioissa.
+      #+BEGIN_SRC processing :exports both
+        final float VARISAVY = 20;
+
+        void setup ()
+        {
+          size (400, 400);
+          colorMode (HSB, 100);
+          background (VARISAVY, 100, 100);
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          fill (VARISAVY + 20, 100, 100);
+          rect (100, 100, 100, 100);
+        }
+      #+END_SRC
+
+   3. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<funktio-ympyra>>
       #+END_SRC
-   3. 
+   4. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<funktio-vierekkaiset-neliot>>
       #+END_SRC
-   4. 
+   5. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<funktio-rasti>>
       #+END_SRC
