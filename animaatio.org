@@ -120,56 +120,24 @@
    #+END_SRC
 
 ** Esimerkki
-   Alla oleva ohjelmakoodi piirtää animaation, jossa piirtoikkunan
-   keskellä oleva ympyrä vuorotellen suurenee ja pienenee. Ympyrä on
-   vihreä, jos halkaisija on yli puolet ikkunan leveydestä; muuten
-   ympyrä on sininen. 
+   Alla oleva ohjelmakoodi piirtää [[file:animaatio-oskilloiva-ympyra-sivu.org][tällä sivulla]] olevan animaation,
+   jossa piirtoikkunan keskellä oleva ympyrä vuorotellen suurenee ja
+   pienenee. Ympyrä on vihreä, jos halkaisija on yli puolet ikkunan
+   leveydestä; muuten ympyrä on sininen.
 
    Ohjelmassa halkaisijan muutos yhdellä askeella on tallennettu
    muuttujaan ~muutos~. Halkaisijan muutos on ohjelman alussa yhdellä
-   askeleella 30. Jos ympyrä ei enää mahtuisi piirtoikkunaan, ympyrää
+   askeleella 1. Jos ympyrä ei enää mahtuisi piirtoikkunaan, ympyrää
    aletaan pienentää, jolloin muuttujan ~muutos~ arvoksi tulee
-   ~-muutos~ eli \(-30.\) Vastaavasti, kun halkaisijaa pienennetään
-   voi käydä niin, että halkaisijan arvo olisi seuraavalla askeleella
+   ~-muutos~ eli \(-1.\) Vastaavasti, kun halkaisijaa pienennetään voi
+   käydä niin, että halkaisijan arvo olisi seuraavalla askeleella
    pienempi tai yhtä suuri kuin nolla. Tällöin halkaisijaa ryhdytään
    taas kasvattamaan.
-   #+BEGIN_SRC processing :exports both
-     float halkaisija; // ympyrän halkaisija
-     float muutos; // halkaisijan muutos yhdellä askeleella
 
-     void setup ()
-     {
-       size (400, 400);
-       colorMode (HSB, 100);
-
-       halkaisija = 10; // halkaisija alussa 10
-       muutos = 30; // halkaisija kasvaa alussa 30 kullakin askeleella
-       frameRate (1); 
-     }
-
-     void draw ()
-     {
-       background (0);
-
-       if (halkaisija > width / 2.0)
-         fill (35, 100, 100); // vihreä ympyrä
-       else
-         fill (65, 100, 100); // sininen
-  
-       ellipse (width / 2.0, height / 2.0, halkaisija, halkaisija);
-
-       // ryhdytään pienentämään halkaisijaa, jos ympyrä ei mahtuisi enää
-       // kuvaan, tai suurentamaan halkaisijaa, jos sen arvo ei olisi enää
-       // positiivinen luku
-       if (halkaisija + muutos > width)
-         muutos = -muutos;
-       else if (halkaisija + muutos <= 0)
-         muutos = -muutos;
-
-       halkaisija = halkaisija + muutos;
-     }
-
+   #+BEGIN_SRC processing :noweb yes :exports code
+   <<animaatio-oskilloiva-ympyra>>
    #+END_SRC
+   
 ** Tehtäviä
    1. Tee alla näkyvän kaltainen animaatio. Voit valita piirtoikkunan
       ja neliön koon vapaasti.
@@ -315,3 +283,4 @@
 
 #+INCLUDE: animaatio-valmiuspalkki.org
 #+INCLUDE: animaatio-kulunut-aika.org
+#+INCLUDE: animaatio-oskilloiva-ympyra.org
