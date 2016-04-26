@@ -106,33 +106,19 @@
 ** Animaatiot näillä sivuilla
    #+BEGIN_QUOTE
    Koska useat animaatiot samalla sivulla voivat aiheuttaa ongelmia
-   verkkoselaimessa, näillä sivuilla on korkeintaan yksi animaatio
+   selaimessa, näillä sivuilla on korkeintaan yksi animaatio
    sivulla. Tämän takia alla olevat animaatiot ovat kukin omalla
    sivullaan.
    #+END_QUOTE
 ** Esimerkki
-   Alle oleva ohjelmakoodi piirtää animaation, jossa piirtoikkunan
-   keskellä näytetään ohjelman alusta kulunut aika sekunteina.
-   #+BEGIN_SRC processing :exports both
-     int n;
+   Alle oleva ohjelmakoodi piirtää [[file:animaatio-kulunut-aika-sivu.org][tällä sivulla]] näkyvän animaation,
+   jossa piirtoikkunan keskellä näytetään ohjelman alusta kulunut aika
+   sekunteina.
 
-     void setup ()
-     {
-       size (400, 400);
-       textAlign (CENTER, CENTER);
-       colorMode (HSB, 100);
-       textSize (30);
-       frameRate (1);
-       n = 0;
-     }
-
-     void draw ()
-     {
-       background (0);
-       text (n, width / 2.0, height / 2.0);
-       n++;
-     }
+   #+BEGIN_SRC processing :noweb yes :exports code
+   <<animaatio-kulunut-aika>>
    #+END_SRC
+
 ** Esimerkki
    Alla oleva ohjelmakoodi piirtää animaation, jossa piirtoikkunan
    keskellä oleva ympyrä vuorotellen suurenee ja pienenee. Ympyrä on
@@ -328,3 +314,4 @@
        #+END_SRC
 
 #+INCLUDE: animaatio-valmiuspalkki.org
+#+INCLUDE: animaatio-kulunut-aika.org
