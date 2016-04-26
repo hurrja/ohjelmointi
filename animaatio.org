@@ -5,15 +5,15 @@
    Kirjoitetaan ohjelma, joka piirtää alla olevan animaation.
    #+NAME: animaatio-ympyra
    #+BEGIN_SRC processing 
-     float x; // piirretyn ympyrän keskipisteen x-koordinaatti
+     int x; // piirretyn ympyrän keskipisteen x-koordinaatti
 
      void setup ()
      {
        size (400, 400);
        colorMode (HSB, 100);
 
-       // piirtotaajuus: funktiota draw() kutsutaan kerran sekunnissa
-       frameRate (1); 
+       // piirtotaajuus: funktiota draw() kutsutaan 30 kertaa sekunnissa
+       frameRate (30); 
 
        // ympyrän keskipiste on alussa vasemmassa reunassa
        x = 0;
@@ -24,7 +24,7 @@
        final float HALKAISIJA = 20;
        background (0); // musta tausta
        ellipse (x, height / 2.0, HALKAISIJA, HALKAISIJA); // ympyrä
-       x = x + HALKAISIJA; // kasvatetaan muuttujan x arvoa
+       x++; // kasvatetaan muuttujan x arvoa
 
        // takaisin vasempaan reunaan, jos mentiin oikeasta reunasta yli
        if (x >= width)
@@ -39,10 +39,10 @@
    - Tällöin funktiota ~draw()~ kutsutaan automaattisesti toistuvasti.
    - Funktiokutsu 
      #+BEGIN_EXAMPLE
-     frameRate (1); 
+     frameRate (30); 
      #+END_EXAMPLE
      aiheuttaa sen, että funktiota ~draw()~ kutsutaan toistuvasti
-     yhden kerran sekunnissa.
+     30 kertaa sekunnissa.
    - Funktiossa ~draw()~ piirretään musta tausta ja valkoinen ympyrä,
      jonka \(x\)-koordinaatti on muuttujassa ~x~.
    - Muuttuja ~x~ on globaali muuttuja, jotta se säilyttää arvonsa
@@ -103,6 +103,13 @@
    #+RESULTS[319bf6f9ef2ddbc805a8f726152680b68b0eb98a]: animaatiosilmukka
    [[file:animaatiosilmukka.svg]]
 
+** Animaatiot näillä sivuilla
+   #+BEGIN_QUOTE
+   Koska useat animaatiot samalla sivulla voivat aiheuttaa ongelmia
+   verkkoselaimessa, näillä sivuilla on korkeintaan yksi animaatio
+   sivulla. Tämän takia alla olevat animaatiot ovat kukin omalla
+   sivullaan.
+   #+END_QUOTE
 ** Esimerkki
    Alle oleva ohjelmakoodi piirtää animaation, jossa piirtoikkunan
    keskellä näytetään ohjelman alusta kulunut aika sekunteina.
@@ -126,13 +133,6 @@
        n++;
      }
    #+END_SRC
-** Animaatioiden piirtotaajuus tällä sivulla
-   #+BEGIN_QUOTE
-   Tällä sivulla olevien animaatioiden piirtotaajuus (kuvaa
-   sekunnissa) on pieni, koska korkeampi piirtotaajuus aiheuttaisi
-   kuormaa tietokoneelle sivua luettaessa. Esimerkiksi yllä olevissa
-   animaatioissa piirtotaajuus on yksi kuva sekunnissa.
-   #+END_QUOTE
 ** Esimerkki
    Alla oleva ohjelmakoodi piirtää animaation, jossa piirtoikkunan
    keskellä oleva ympyrä vuorotellen suurenee ja pienenee. Ympyrä on
