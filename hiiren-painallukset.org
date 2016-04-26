@@ -77,11 +77,13 @@
 ** Tehtäviä
    1. Tee [[file:hiiren-painallukset-x-koordinaatti-sivu.org][tällä sivulla]] oleva interaktiivinen ohjelma, joka piirtää
       hiiren painalluskohtaan kursorin \(x\)-koordinaatin.
-   2. Kirjoita [[file:hiiren-painallukset-murtoviiva-sivu.org][tällainen]] interaktiivinen ohjelma, joka piirtää
+   2. Tee [[file:hiiren-painallukset-ristikko-sivu.org][tällainen]] ohjelma, joka piirtää ristikon hiiren kursorin
+      kohtaan. 
+   3. Kirjoita [[file:hiiren-painallukset-murtoviiva-sivu.org][tällainen]] interaktiivinen ohjelma, joka piirtää
       murtoviivaa. Murtoviivan pää on alussa origossa, ja pää siirtyy
       hiiren nappia painettaessa kursorin koordinaatteihin. [Vihje:
       funktio ~draw()~ ei tee mitään tässä ohjelmassa.]
-   3. Kirjoita ohjelma, joka toteuttaa [[file:hiiren-painallukset-oskilloiva-ympyra-sivu.org][tällä sivulla]] olevan
+   4. Kirjoita ohjelma, joka toteuttaa [[file:hiiren-painallukset-oskilloiva-ympyra-sivu.org][tällä sivulla]] olevan
       interaktiivisen animaation. Alussa ympyrän koko ei muutu. Kun
       hiiren nappia painetaan, ympyrä alkaa kasvaa. Tämän jälkeen
       uudet hiiren nappien painallukset alkavat vuorotellen pienentää
@@ -98,9 +100,13 @@
        #+END_SRC
    2. 
        #+BEGIN_SRC processing :noweb yes :exports code
-       <<hiiren-painallukset-murtoviiva>>
+       <<hiiren-painallukset-ristikko>>
        #+END_SRC
    3. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<hiiren-painallukset-murtoviiva>>
+       #+END_SRC
+   4. 
        #+BEGIN_SRC processing :noweb yes :exports code
        <<hiiren-painallukset-oskilloiva-ympyra>>
        #+END_SRC
@@ -111,4 +117,5 @@
    #+INCLUDE: hiiren-painallukset-x-koordinaatti.org
    #+INCLUDE: hiiren-painallukset-oskilloiva-ympyra.org
    #+INCLUDE: hiiren-painallukset-murtoviiva.org
+   #+INCLUDE: hiiren-painallukset-ristikko.org
    
