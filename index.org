@@ -22,9 +22,9 @@
 * [[file:kokonaislukumuuttuja-vakio.org]]
 * [[file:funktion-maaritteleminen.org]]
 * [[file:animaatio.org]]
+* [[file:hiiren-painallukset.org]]
 * ~for~-silmukka
 * Aika
-* Hiiri
 * [[file:pikseli.org]]
 * Satunnaisuus
 * [[file:sisakkaiset-silmukat.org]]

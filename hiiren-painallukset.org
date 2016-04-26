@@ -1,0 +1,69 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* Hiiren painallukset
+** Esimerkki
+   Vie hiiren kursori alla olevaan piirtoikkunaan ja painele hiiren
+   nappia eri kohdissa.
+   #+NAME: hiiren-painallukset-neliot
+   #+BEGIN_SRC processing
+     void setup ()
+     {
+       size (400, 400);
+     }
+
+     // tyhjä piirtofunktio, joka vain pitää ohjelman käynnissä
+     void draw ()
+     {
+     }
+
+     // tätä funktiota kutsutaan, kun hiirtä on painettu
+     void mousePressed ()
+     {
+       final int SIVU = 20;
+       // hiiren koordinaatit ovat automaattisesti muuttujissa 
+       // mouseX ja mouseY
+       rect (mouseX, mouseY, SIVU, SIVU);
+     }
+   #+END_SRC
+
+   Yllä oleva interaktiivinen ohjelma on tehty alla olevalla
+   Processing-ohjelmalla. Huomaa, että aiemmin piirretyt neliöt jäävät
+   piirtoikkunaan: ohjelmassa ei missään vaiheessa piirretä taustaa
+   uudestaan funktiolla ~background()~.
+
+   #+BEGIN_SRC processing :noweb yes :exports code
+   <<hiiren-painallukset-neliot>>
+   #+END_SRC
+** Hiiren painallukset Processing-ohjelmassa
+
+   #+BEGIN_QUOTE
+   Jos Processing-ohjelmaan on kirjoitettu funktio ~mousePressed()~,
+   niin funktiota kutsutaan aina, kun käyttäjä painaa hiiren nappia
+   piirtoikkunan sisällä. Funktion sisällä muuttujien ~mouseX~ ja
+   ~mouseY~ arvot ovat hiiren kursorin \(x\)- ja \(y\)-koordinaatit.
+   #+END_QUOTE
+** Esimerkki
+   Alla oleva ohjelmakoodin tuloksena saadaan [[file:hiiren-napin-painallukset-ympyran-ohjaus-sivu.org][tällä sivulla]] oleva
+   interaktiivinen animaatio. Animaatiossa ympyrä liikkuu oikealle tai
+   vasemmalle riippuen siitä, painetaanko hiiren painiketta ympyrän
+   keskipisteen oikealla vai vasemmalla puolella.
+   #+BEGIN_SRC processing :noweb yes :exports code
+   <<hiiren-painallukset-ympyran-ohjaus>>
+   #+END_SRC
+
+** Esimerkki
+   Alla oleva ohjelmakoodin tuloksena saadaan [[file:hiiren-painallukset-varin-valinta-sivu.org][tällä sivulla]] oleva
+   interaktiivinen ohjelmaa. Käyttäjä voi valita vasemmassa reunassa
+   olevasta väripaletista sen värin, jolla ympyrä piirretään. Ohjelman
+   toteutus perustuu siihen, että esimerkiksi värisävyä 50 vastaava
+   viiva piirretään \(y\)-koordinaattiin 50. Niinpä väriä valittaessa
+   värisävy saadaan suoraan hiiren \(y\)-koordinaatista. (Ohjelma ei
+   tarkista, onko hiiren painalluskohta väripaletin sisällä.)
+
+   #+BEGIN_SRC processing :noweb yes :exports code
+   <<hiiren-painallukset-varin-valinta>>
+   #+END_SRC
+
+   #+INCLUDE: hiiren-painallukset-ympyran-ohjaus.org
+   #+INCLUDE: hiiren-painallukset-varin-valinta.org
+   
