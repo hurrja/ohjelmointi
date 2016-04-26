@@ -51,6 +51,14 @@
    <<hiiren-painallukset-ympyran-ohjaus>>
    #+END_SRC
 
+   Yllä olevassa ohjelmassa ei kutsuta funktiota ~frameRate()~,
+   jolloin päivitystaajuudessa käytetään oletusarvoa 60.
+** Animaatioiden oletusarvoinen piirtonopeus 
+   #+BEGIN_QUOTE
+   Jos Processing-animaatiossa ei kutsuta funktiota ~frameRate()~,
+   niin tällöin piirretään oletusarvoisella nopeudella, joka on 60
+   kuvaa sekunnissa.
+   #+END_QUOTE
 ** Esimerkki
    Alla oleva ohjelmakoodin tuloksena saadaan [[file:hiiren-painallukset-varin-valinta-sivu.org][tällä sivulla]] oleva
    interaktiivinen ohjelmaa. Käyttäjä voi valita vasemmassa reunassa
@@ -67,13 +75,29 @@
 ** Tehtäviä
    1. Tee [[file:hiiren-painallukset-x-koordinaatti-sivu.org][tällä sivulla]] oleva interaktiivinen ohjelma, joka piirtää
       hiiren painalluskohtaan kursorin \(x\)-koordinaatin.
+   2. Kirjoita ohjelma, joka toteuttaa [[file:hiiren-painallukset-oskilloiva-ympyra-sivu.org][tällä sivulla]] olevan
+      interaktiivisen animaation. Alussa ympyrän koko ei muutu. Kun
+      hiiren nappia painetaan, ympyrä alkaa kasvaa. Tämän jälkeen
+      uudet hiiren nappien painallukset alkavat vuorotellen pienentää
+      tai suurentaa ympyrää.
+
+      Processing-kielessä voi piirtää ympyrän, jolla on negatiivinen
+      halkaisija (tällöin ohjelma ei välitä halkaisijan
+      etumerkistä). Jotta ohjelmasi toimisi oikein, päivitä halkaisija
+      vain jos uusi halkaisija on positiivinen.
 ** Ratkaisuja
-   1.
-      #+BEGIN_SRC processing :noweb yes :exports code
-      <<hiiren-painallukset-x-koordinaatti>>
-      #+END_SRC
+   1. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<hiiren-painallukset-x-koordinaatti>>
+       #+END_SRC
+   2. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<hiiren-painallukset-oskilloiva-ympyra>>
+       #+END_SRC
+      
    
    #+INCLUDE: hiiren-painallukset-ympyran-ohjaus.org
    #+INCLUDE: hiiren-painallukset-varin-valinta.org
    #+INCLUDE: hiiren-painallukset-x-koordinaatti.org
+   #+INCLUDE: hiiren-painallukset-oskilloiva-ympyra.org
    
