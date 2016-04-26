@@ -135,9 +135,12 @@
    #+END_QUOTE
 ** Esimerkki
    Alla oleva ohjelmakoodi piirtää animaation, jossa piirtoikkunan
-   keskellä oleva ympyrä vuorotellen suurenee ja pienenee. Ohjelmassa
-   halkaisijan muutos yhdellä askeella on tallennettu muuttujaan
-   ~muutos~. Halkaisijan muutos on ohjelman alussa yhdellä
+   keskellä oleva ympyrä vuorotellen suurenee ja pienenee. Ympyrä on
+   vihreä, jos halkaisija on yli puolet ikkunan leveydestä; muuten
+   ympyrä on sininen. 
+
+   Ohjelmassa halkaisijan muutos yhdellä askeella on tallennettu
+   muuttujaan ~muutos~. Halkaisijan muutos on ohjelman alussa yhdellä
    askeleella 30. Jos ympyrä ei enää mahtuisi piirtoikkunaan, ympyrää
    aletaan pienentää, jolloin muuttujan ~muutos~ arvoksi tulee
    ~-muutos~ eli \(-30.\) Vastaavasti, kun halkaisijaa pienennetään
@@ -162,6 +165,12 @@
      void draw ()
      {
        background (0);
+
+       if (halkaisija > width / 2.0)
+         fill (35, 100, 100); // vihreä ympyrä
+       else
+         fill (65, 100, 100); // sininen
+  
        ellipse (width / 2.0, height / 2.0, halkaisija, halkaisija);
 
        // ryhdytään pienentämään halkaisijaa, jos ympyrä ei mahtuisi enää
