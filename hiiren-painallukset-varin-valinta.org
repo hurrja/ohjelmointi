@@ -30,7 +30,7 @@
       while (savy < 100)
       {
         stroke (savy, 100, 100);
-        line (0, savy, VARIT_LEVEYS, savy);
+        line (0, savy, VARIT_LEVEYS, savy); // viivan y-koordinaatti on värisävy
         savy++;
       }
 
