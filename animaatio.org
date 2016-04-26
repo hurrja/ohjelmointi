@@ -128,9 +128,9 @@
    #+END_SRC
 ** Animaatioiden piirtotaajuus tällä sivulla
    #+BEGIN_QUOTE
-   Tällä sivulla olevien animaatioiden piirtotaajuus on alhainen
-   sekunnissa, koska korkeampi piirtotaajuus aiheuttaisi kuormaa
-   tietokoneelle sivua luettaessa. Esimerkiksi yllä olevissa
+   Tällä sivulla olevien animaatioiden piirtotaajuus (kuvaa
+   sekunnissa) on pieni, koska korkeampi piirtotaajuus aiheuttaisi
+   kuormaa tietokoneelle sivua luettaessa. Esimerkiksi yllä olevissa
    animaatioissa piirtotaajuus on yksi kuva sekunnissa.
    #+END_QUOTE
 ** Esimerkki
@@ -155,7 +155,6 @@
      {
        size (400, 400);
        colorMode (HSB, 100);
-       fill (100);
 
        halkaisija = 10; // halkaisija alussa 10
        muutos = 30; // halkaisija kasvaa alussa 30 kullakin askeleella
@@ -211,8 +210,8 @@
             y = 0;
         }
       #+END_SRC
-   2. Tee alla näkyvän kaltainen animaatio, jossa ikkunan taustaväri
-      muuttuu viidellä yksiköllä kunkin askeleen aikana.
+   2. Tee alla näkyvän kaltainen animaatio, jossa ikkunan taustavärin
+      värisävy muuttuu viidellä yksiköllä kunkin askeleen aikana.
       #+NAME: animaatio-varisavy
       #+BEGIN_SRC processing
         float savy;
@@ -260,9 +259,9 @@
             x = 0;
         }
      #+END_SRC
-   4. Tee alla olevan kaltaisen liikennevalot, joissa väri vaihtuu
-      toiseksi viiden sekunnin välein. [Vihjeitä. Kuluneiden 5
-      sekunnin jaksojen lukumäärän saat jakamalla sekuntien lukumäärän
+   4. Tee alla olevan kaltainen liikennevalo, joissa väri vaihtuu
+      viiden sekunnin välein. [Vihjeitä. Kuluneiden 5 sekunnin
+      jaksojen lukumäärän saat jakamalla sekuntien lukumäärän
       luvulla 5. Sen, minkä kolmesta valosta pitäisi olla päällä voi
       tämän jälkeen selvittää laskemalla jakojäännöksen, kun jaksojen
       lukumäärän jaetaan luvulla 3.]
@@ -301,7 +300,10 @@
       #+BEGIN_SRC processing :noweb yes
       <<animaatio-liikennevalot-generaattori("floor(%s)")>>
       #+END_SRC
-
+   5. Tee ohjelma, joka piirtää [[file:animaatio-valmiuspalkki-sivu.org][tällä sivulla]] näkyvän
+      animaation. Animaatiossa palkki on vihreä, jos sen pituus on yli
+      75\thinsp{}% piirtoikkunan leveydestä; muutoin palkki on
+      punainen.
 ** Ratkaisuja
    1. 
        #+BEGIN_SRC processing :noweb yes :exports code
@@ -320,3 +322,9 @@
        #+BEGIN_SRC processing :noweb yes :exports code
        <<animaatio-liikennevalot-generaattori()>>
        #+END_SRC
+   5. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<animaatio-valmiuspalkki>>
+       #+END_SRC
+
+#+INCLUDE: animaatio-valmiuspalkki.org
