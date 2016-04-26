@@ -156,6 +156,9 @@
       luvulla 5. Sen, minkä kolmesta valosta pitäisi olla päällä voi
       tämän jälkeen selvittää laskemalla jakojäännöksen, kun jaksojen
       lukumäärän jaetaan luvulla 3.]
+   6. Tee [[file:animaatio-auringonpimennys-sivu.org][tällä sivulla]] näkyvä animaatio, joka havainnollistaa
+      auringonpimennystä. Auringonpimennyksessä Kuu sijoittuu Maan ja
+      Auringon väliin.
 ** Ratkaisuja
    1. 
        #+BEGIN_SRC processing :noweb yes :exports code
@@ -178,6 +181,10 @@
        #+BEGIN_SRC processing :noweb yes :exports code
        <<animaatio-liikennevalo-generaattori()>>
        #+END_SRC
+   6. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<animaatio-auringonpimennys>>
+       #+END_SRC
 
 #+INCLUDE: animaatio-kulunut-aika.org
 #+INCLUDE: animaatio-oskilloiva-ympyra.org
@@ -186,3 +193,4 @@
 #+INCLUDE: animaatio-viiva.org
 #+INCLUDE: animaatio-valmiuspalkki.org
 #+INCLUDE: animaatio-liikennevalo.org
+#+INCLUDE: animaatio-auringonpimennys.org
