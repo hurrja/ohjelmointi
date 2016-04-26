@@ -143,32 +143,9 @@
       neliön koot vapaasti.
    2. Tee [[file:animaatio-varisavy-sivu.org][tällä sivulla]] näkyvä animaatio, jossa ikkunan taustavärin
       värisävy muuttuu yhdellä yksiköllä kunkin askeleen aikana.
-   3. Tee alla näkyvän kaltainen animaatio. Kokeile mitä animaatiossa
+   3. Tee [[file:animaatio-viiva-sivu.org][tällä sivulla]] näkyvä animaatio. Kokeile mitä animaatiossa
       tapahtuu, jos funktiosta ~draw()~ poistetaan funktion
       ~background()~ kutsu.
-      #+NAME: animaatio-viiva
-      #+BEGIN_SRC processing
-        float x;
-
-        void setup ()
-        {
-          size (400, 400);
-          colorMode (HSB, 100);
-          stroke (100);
-          x = 0;
-          frameRate (1);
-        }
-
-        void draw ()
-        {
-          background (0);
-          line (0, 0, x, height);
-
-          x = x + 10;
-          if (x > width)
-            x = 0;
-        }
-     #+END_SRC
    4. Tee alla olevan kaltainen liikennevalo, joissa väri vaihtuu
       viiden sekunnin välein. [Vihjeitä. Kuluneiden 5 sekunnin
       jaksojen lukumäärän saat jakamalla sekuntien lukumäärän
@@ -242,3 +219,4 @@
 #+INCLUDE: animaatio-oskilloiva-ympyra.org
 #+INCLUDE: animaatio-nelio.org
 #+INCLUDE: animaatio-varisavy.org
+#+INCLUDE: animaatio-viiva.org
