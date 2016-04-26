@@ -141,29 +141,8 @@
 ** Tehtäviä
    1. Tee [[file:animaatio-nelio-sivu.org][tällä sivulla]] näkyvä animaatio. Voit valita piirtoikkunan ja
       neliön koot vapaasti.
-   2. Tee alla näkyvän kaltainen animaatio, jossa ikkunan taustavärin
-      värisävy muuttuu viidellä yksiköllä kunkin askeleen aikana.
-      #+NAME: animaatio-varisavy
-      #+BEGIN_SRC processing
-        float savy;
-
-        void setup ()
-        {
-          size (400, 400);
-          colorMode (HSB, 100);
-          savy = 0;
-          frameRate (1);
-        }
-
-        void draw ()
-        {
-          background (savy, 100, 100);
-          savy = savy + 5;
-
-          if (savy > 100)
-            savy = 0;
-        }
-      #+END_SRC
+   2. Tee [[file:animaatio-varisavy-sivu.org][tällä sivulla]] näkyvä animaatio, jossa ikkunan taustavärin
+      värisävy muuttuu yhdellä yksiköllä kunkin askeleen aikana.
    3. Tee alla näkyvän kaltainen animaatio. Kokeile mitä animaatiossa
       tapahtuu, jos funktiosta ~draw()~ poistetaan funktion
       ~background()~ kutsu.
@@ -262,3 +241,4 @@
 #+INCLUDE: animaatio-kulunut-aika.org
 #+INCLUDE: animaatio-oskilloiva-ympyra.org
 #+INCLUDE: animaatio-nelio.org
+#+INCLUDE: animaatio-varisavy.org
