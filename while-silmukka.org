@@ -247,7 +247,7 @@
       \(1000\times 100\). Kuvassa olevien ympyröiden halkaisija on
       yhtä suuri kuin piirtoikkunan korkeus. Jos ympyrän keskipisteen
       \(x\)-koordinaatti on ~x~, niin ympyrän värisävy on
-      \(\displaystyle\frac{\mathtt{x}}{6}\).
+      \(\displaystyle\frac{\mathtt{x}}{10}\).
       #+NAME: while-varikkaita-ympyroita
       #+BEGIN_SRC processing
         size (1000, 100);
