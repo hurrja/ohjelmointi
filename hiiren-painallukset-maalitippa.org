@@ -1,0 +1,35 @@
+#+NAME: hiiren-painallukset-maalitippa
+#+BEGIN_SRC processing :exports none
+  float x, y; // ympyrän keskipisteen koordinaatit
+  int sade; // ympyrän säde
+  float kirkkaus; // ympyrän kirkkaus
+
+  void setup ()
+  {
+    size (600, 400);
+    colorMode (HSB, 100);
+    background (0);
+
+    sade = 0;
+  }
+
+  void draw ()
+  {
+    background (0);
+    if (sade > 0)
+    {
+      fill (kirkkaus);
+      ellipse (x, y, sade, sade);
+      sade++;
+      kirkkaus = 0.97 * kirkkaus;
+    }
+  }
+
+  void mousePressed ()
+  {
+    x = mouseX;
+    y = mouseY;
+    sade = 10;
+    kirkkaus = 100;
+  }
+#+END_SRC
