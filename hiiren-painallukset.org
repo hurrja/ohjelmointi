@@ -45,7 +45,7 @@
    ~mouseY~ arvot ovat hiiren kursorin \(x\)- ja \(y\)-koordinaatit.
    #+END_QUOTE
 ** Esimerkki
-   Alla oleva ohjelmakoodin tuloksena saadaan [[file:hiiren-napin-painallukset-ympyran-ohjaus-sivu.org][tällä sivulla]] oleva
+   Alla oleva ohjelmakoodin tuloksena saadaan [[file:hiiren-painallukset-ympyran-ohjaus-sivu.org][tällä sivulla]] oleva
    interaktiivinen animaatio. Animaatiossa ympyrä liikkuu oikealle tai
    vasemmalle riippuen siitä, painetaanko hiiren painiketta ympyrän
    keskipisteen oikealla vai vasemmalla puolella.

@@ -1,24 +1,20 @@
-* 
-  :PROPERTIES:
-  :noweb-ref: hiiren-painallukset-x-koordinaatti
-  :END:
-  
-  #+BEGIN_SRC processing :exports none
-    void setup ()
-    {
-      size (600, 400);
-      colorMode (HSB, 100);
-      textAlign (CENTER, CENTER);
-    }
+#+NAME: hiiren-painallukset-x-koordinaatti
+#+BEGIN_SRC processing :exports none
+  void setup ()
+  {
+    size (600, 400);
+    colorMode (HSB, 100);
+    textAlign (CENTER, CENTER);
+  }
 
-    void draw ()
-    {
-    }
+  void draw ()
+  {
+  }
 
-    void mousePressed ()
-    {
-      background (0);
-      text (mouseX, mouseX, mouseY);
-    }
+  void mousePressed ()
+  {
+    background (0);
+    text (mouseX, mouseX, mouseY);
+  }
 
-  #+END_SRC
+#+END_SRC
