@@ -74,6 +74,24 @@
    <<hiiren-painallukset-varin-valinta>>
    #+END_SRC
 
+** Ohjelmarunko tehtävien ratkaisuihin
+   Useimmissa alla olevien tehtävien ratkaisuissa on sama
+   ohjelmarunko. Voit kopioida alla olevan ohjelmakoodin tehtävän
+   ratkaisun pohjaksi.
+   #+BEGIN_SRC processing :exports code
+     void setup ()
+     {
+       size (600, 400);
+       colorMode (HSB, 100);
+     }
+
+     void draw ()
+     }
+
+     void mousePressed ()
+     {
+     }
+   #+END_SRC
 ** Tehtäviä
    1. Tee [[file:hiiren-painallukset-x-koordinaatti-sivu.org][tällä sivulla]] oleva interaktiivinen ohjelma, joka piirtää
       hiiren painalluskohtaan kursorin \(x\)-koordinaatin.
