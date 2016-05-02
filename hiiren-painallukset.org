@@ -118,6 +118,8 @@
       laajenee yhden yksikön kunkin askeleen aikana. Ympyrän kirkkaus
       puolestaan on heti painalluksen jälkeen 100 ja vähenee 3
       prosenttia kullakin askeleella.
+   6. Tee [[file:hiiren-painallukset-aaltoliike-sivu.org][tällä sivulla]] oleva interaktiivinen animaatio. Voit valita
+      tarpeelliset mitat itse.
 ** Ratkaisuja
    1. 
        #+BEGIN_SRC processing :noweb yes :exports code
@@ -139,7 +141,10 @@
        #+BEGIN_SRC processing :noweb yes :exports code
        <<hiiren-painallukset-maalitippa>>
        #+END_SRC
-      
+   6. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<hiiren-painallukset-aaltoliike>>
+       #+END_SRC
    
    #+INCLUDE: hiiren-painallukset-ympyran-ohjaus.org
    #+INCLUDE: hiiren-painallukset-varin-valinta.org
@@ -148,4 +153,5 @@
    #+INCLUDE: hiiren-painallukset-murtoviiva.org
    #+INCLUDE: hiiren-painallukset-ristikko.org
    #+INCLUDE: hiiren-painallukset-maalitippa.org
+   #+INCLUDE: hiiren-painallukset-aaltoliike.org
    
