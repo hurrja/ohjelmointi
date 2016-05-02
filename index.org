@@ -23,6 +23,7 @@
 * [[file:funktion-maaritteleminen.org]]
 * [[file:animaatio.org]]
 * [[file:hiiren-painallukset.org]]
+* [[file:loogiset-lausekkeet-muuttujat.org]]
 * ~for~-silmukka
 * Aika
 * [[file:pikseli.org]]

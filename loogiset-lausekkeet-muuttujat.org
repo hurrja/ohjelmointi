@@ -1,0 +1,45 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* Loogiset lausekkeet ja muuttujat
+** Looginen lauseke
+   #+BEGIN_QUOTE
+   Loogisen lausekkeen arvo on joko tosi tai epätosi. Esimerkkejä
+   loogisista lausekkeista ovat
+   - ~1 < 2~, jonka arvo on tosi
+   - ~x != y~, jonka arvo riippuu muuttujien ~x~ ja ~y~ arvoista.
+   #+END_QUOTE
+** Loogiset operaattorit
+   Loogiset operaattoreilla voidaan yhdistää loogisia lauseita samaan
+   tapaan kuin tekstissä sanoilla \ldquo{}ja\rdquo, \ldquo{}tai\rdquo
+   sekä \ldquo{}ei\rdquo. Niiden tarkka toiminta on helpointa kuvata
+   taulukoiden avulla.
+*** Ja-operaattori ~&&~
+   #+BEGIN_QUOTE
+   | ~A~     | ~B~     | ~A && B~ |
+   |---------+---------+----------|
+   | epätosi | epätosi | epätosi  |
+   | epätosi | tosi    | epätosi  |
+   | tosi    | epätosi | epätosi  |
+   | tosi    | tosi    | tosi     |
+   #+END_QUOTE
+*** Tai-operaattori ~||~
+   #+BEGIN_QUOTE
+   | ~A~     | ~B~     | ~A \|\| B~   |
+   |---------+---------+----------|
+   | epätosi | epätosi | epätosi  |
+   | epätosi | tosi    | tosi     |
+   | tosi    | epätosi | tosi     |
+   | tosi    | tosi    | tosi     |
+   #+END_QUOTE
+*** Ei-operaattori ~!~
+   #+BEGIN_QUOTE
+   | ~A~     | ~!A~    |
+   |---------+---------|
+   | epätosi | tosi    |
+   | tosi    | epätosi |
+   #+END_QUOTE
+** Loogiset muuttujat
+   #+BEGIN_QUOTE
+   Tyyppiä ~boolean~ olevan muuttujan arvo on joko ~true~ (tosi) tai
+   ~false~ (epätosi).
+   #+END_QUOTE
