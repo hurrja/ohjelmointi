@@ -93,6 +93,12 @@
       halkaisija (tällöin ohjelma ei välitä halkaisijan
       etumerkistä). Jotta ohjelmasi toimisi oikein, päivitä halkaisija
       vain jos uusi halkaisija on positiivinen.
+   5. Kirjoita [[file:hiiren-painallukset-maalitippa-sivu.org][tällä sivulla]] oleva interaktiivinen ohjelma. Ohjelmassa
+      hiiren painallus synnyttää laajenevan ja tummenevan valkoisen
+      ympyrän. Ympyrän halkaisija on heti painalluksen jälkeen 10 ja
+      laajenee yhden yksikön kunkin askeleen aikana. Ympyrän kirkkaus
+      puolestaan on heti painalluksen jälkeen 100 ja vähenee 3
+      prosenttia kullakin askeleella.
 ** Ratkaisuja
    1. 
        #+BEGIN_SRC processing :noweb yes :exports code
@@ -110,6 +116,10 @@
        #+BEGIN_SRC processing :noweb yes :exports code
        <<hiiren-painallukset-oskilloiva-ympyra>>
        #+END_SRC
+   5. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<hiiren-painallukset-maalitippa>>
+       #+END_SRC
       
    
    #+INCLUDE: hiiren-painallukset-ympyran-ohjaus.org
@@ -118,4 +128,5 @@
    #+INCLUDE: hiiren-painallukset-oskilloiva-ympyra.org
    #+INCLUDE: hiiren-painallukset-murtoviiva.org
    #+INCLUDE: hiiren-painallukset-ristikko.org
+   #+INCLUDE: hiiren-painallukset-maalitippa.org
    
