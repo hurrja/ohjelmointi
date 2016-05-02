@@ -138,6 +138,22 @@
    <<animaatio-oskilloiva-ympyra>>
    #+END_SRC
    
+** Ohjelmarunko tehtävien ratkaisuihin
+   Useimmissa alla olevien tehtävien ratkaisuissa on sama
+   ohjelmarunko. Voit kopioida alla olevan ohjelmakoodin tehtävän
+   ratkaisun pohjaksi ja muuttaa siinä olevia lukuja tarvittaessa.
+   #+BEGIN_SRC processing :exports code
+     void setup ()
+     {
+       size (400, 400);
+       colorMode (HSB, 100);
+     }
+
+     void draw ()
+     {
+     }
+   #+END_SRC
+
 ** Tehtäviä
    1. Tee [[file:animaatio-nelio-sivu.org][tällä sivulla]] näkyvä animaatio. Voit valita piirtoikkunan ja
       neliön koot vapaasti.
