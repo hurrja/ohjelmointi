@@ -86,6 +86,7 @@
      }
 
      void draw ()
+     {
      }
 
      void mousePressed ()
