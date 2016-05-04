@@ -14,6 +14,9 @@
    sekä \ldquo{}ei\rdquo. Niiden tarkka toiminta on helpointa kuvata
    taulukoiden avulla.
 *** Ja-operaattori ~&&~
+    Operaattori ~&&~ vastaa suomen kielen sanaa
+    \ldquo{}ja\rdquo{}. Sen arvo on tosi täsmälleen silloin, kun
+    molemmat sen yhdistämät lausekkeet ovat tosia.
    #+BEGIN_QUOTE
    | ~A~     | ~B~     | ~A && B~ |
    |---------+---------+----------|
@@ -22,14 +25,44 @@
    | tosi    | epätosi | epätosi  |
    | tosi    | tosi    | tosi     |
    #+END_QUOTE
+*** Esimerkki
+    #+BEGIN_SRC processing
+      final int X = 100, LEVEYS = 200;
+      void setup ()
+      {
+        size (600, 400);
+        colorMode (HSB, 100);
+        background (0);
+        fill (100); // alkutilanteessa piirretään valkoinen suorakulmio
+      }
+
+      void draw ()
+      {
+        rect (X, 0, LEVEYS, height);
+      }
+
+      void mousePressed ()
+      {
+        float savy; // suorakaiteen värisävy
+
+        // vihreä väri, jos hiiren x-koordinaatti on suorakaiteen sisällä
+        if (mouseX >= X && mouseX < X + LEVEYS)
+          savy = 35;
+        else
+          savy = 0;
+
+        fill (savy, 100, 100);
+      }
+
+    #+END_SRC
 *** Tai-operaattori ~||~
    #+BEGIN_QUOTE
-   | ~A~     | ~B~     | ~A \|\| B~   |
-   |---------+---------+----------|
-   | epätosi | epätosi | epätosi  |
-   | epätosi | tosi    | tosi     |
-   | tosi    | epätosi | tosi     |
-   | tosi    | tosi    | tosi     |
+   | ~A~     | ~B~     | ~A~ \vert\vert ~B~ |
+   |---------+---------+--------------------|
+   | epätosi | epätosi | epätosi            |
+   | epätosi | tosi    | tosi               |
+   | tosi    | epätosi | tosi               |
+   | tosi    | tosi    | tosi               |
    #+END_QUOTE
 *** Ei-operaattori ~!~
    #+BEGIN_QUOTE
