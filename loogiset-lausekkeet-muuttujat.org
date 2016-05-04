@@ -26,14 +26,18 @@
    | tosi    | tosi    | tosi     |
    #+END_QUOTE
 *** Esimerkki
+    Alla olevassa interaktiivisessa animaatiossa piirretään eri
+    värinen pystypalkki sen mukaan, onko hiiren painallus palkin sisä-
+    vai ulkopuolella. 
+    #+NAME: loogiset-lausekkeet-muuttujat-palkki
     #+BEGIN_SRC processing
-      final int X = 100, LEVEYS = 200;
+      final int X = 200, LEVEYS = 100; // palkin x-koordinaatti ja leveys
       void setup ()
       {
         size (600, 400);
         colorMode (HSB, 100);
         background (0);
-        fill (100); // alkutilanteessa piirretään valkoinen suorakulmio
+        fill (100); // alkutilanteessa piirretään valkoinen palkki
       }
 
       void draw ()
@@ -43,7 +47,7 @@
 
       void mousePressed ()
       {
-        float savy; // suorakaiteen värisävy
+        float savy; // palkin värisävy
 
         // vihreä väri, jos hiiren x-koordinaatti on suorakaiteen sisällä
         if (mouseX >= X && mouseX < X + LEVEYS)
@@ -53,7 +57,13 @@
 
         fill (savy, 100, 100);
       }
-
+    #+END_SRC
+    Alla oleva ohjelmakoodi toteuttaa animaation. Painallus on palkin
+    sisällä, jos hiiren \(x\)-koordinaatti on palkin oikean ja
+    vasemman reunan välissä eli jos ~(mouseX >= X && mouseX < X +
+    LEVEYS)~.
+    #+BEGIN_SRC processing :noweb yes :exports code
+    <<loogiset-lausekkeet-muuttujat-palkki>>
     #+END_SRC
 *** Tai-operaattori ~||~
    #+BEGIN_QUOTE
