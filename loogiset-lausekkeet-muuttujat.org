@@ -11,9 +11,8 @@
 ** Loogiset operaattorit
    Loogiset operaattoreilla voidaan yhdistää loogisia lauseita samaan
    tapaan kuin tekstissä sanoilla \ldquo{}ja\rdquo, \ldquo{}tai\rdquo
-   sekä \ldquo{}ei\rdquo. Niiden tarkka toiminta on helpointa kuvata
-   taulukoiden avulla.
-*** Ja-operaattori ~&&~
+   sekä \ldquo{}ei\rdquo.
+** Ja-operaattori ~&&~
     Operaattori ~&&~ vastaa suomen kielen sanaa
     \ldquo{}ja\rdquo{}. Sen arvo on tosi täsmälleen silloin, kun
     molemmat sen yhdistämät lausekkeet ovat tosia.
@@ -65,24 +64,69 @@
     #+BEGIN_SRC processing :noweb yes :exports code
     <<loogiset-lausekkeet-muuttujat-palkki>>
     #+END_SRC
-*** Tai-operaattori ~||~
-   #+BEGIN_QUOTE
-   | ~A~     | ~B~     | ~A~ \vert\vert ~B~ |
-   |---------+---------+--------------------|
-   | epätosi | epätosi | epätosi            |
-   | epätosi | tosi    | tosi               |
-   | tosi    | epätosi | tosi               |
-   | tosi    | tosi    | tosi               |
-   #+END_QUOTE
-*** Ei-operaattori ~!~
-   #+BEGIN_QUOTE
-   | ~A~     | ~!A~    |
-   |---------+---------|
-   | epätosi | tosi    |
-   | tosi    | epätosi |
-   #+END_QUOTE
 ** Loogiset muuttujat
    #+BEGIN_QUOTE
    Tyyppiä ~boolean~ olevan muuttujan arvo on joko ~true~ (tosi) tai
    ~false~ (epätosi).
    #+END_QUOTE
+** Tai-operaattori ~||~
+   Suomen kielessä sanan \ldquo{}tai\rdquo käyttö on joskus
+   monitulkintainen. Kuvitellaan, että joku sanoo: \ldquo{}Lähden
+   retkelle, jos Ville tai Marika lähteen mukaan.\rdquo Mitä tällöin
+   tapahtuu, jos sekä Ville että Marika lähtevät mukaan?
+
+   Ohjelmointikielessä tällaista epätäsmällisyyttä ei voi
+   olla. Processing-kielessä tai-operaattorin ~||~ arvo on tosi
+   täsmälleen silloin, kun vähintään toinen sen yhdistämistä
+   lausekkeista on tosi.
+   #+BEGIN_QUOTE
+   | ~A~     | ~B~     | ~A~ \vert\thinsp\vert ~B~ |
+   |---------+---------+---------------------------|
+   | epätosi | epätosi | epätosi                   |
+   | epätosi | tosi    | tosi                      |
+   | tosi    | epätosi | tosi                      |
+   | tosi    | tosi    | tosi                      |
+   #+END_QUOTE
+** Esimerkki
+   Alla oleva esimerkki havainnollistaa sekä loogisten muuttujien että
+   operaattorin ~||~ käyttöä.
+
+   #+NAME: loogiset-lausekkeet-muuttujat-ristikko
+   #+BEGIN_SRC processing
+     final int X = 200, Y = 300; // ristikon risteyskohdan koordinaatit
+     void setup ()
+     {
+       size (600, 400);
+       colorMode (HSB, 100);
+       background (0);
+       stroke (100);
+     }
+
+     void draw ()
+     {
+       line (X, 0, X, height);
+       line (0, Y, width, Y);
+     }
+
+     void mousePressed ()
+     {
+       boolean vasemmalla = mouseX < X;
+       boolean ylapuolella = mouseY < Y;
+
+       float savy;
+       if (vasemmalla || ylapuolella)
+         savy = 0;
+       else
+         savy = 65;
+
+       stroke (savy, 100, 100);
+     }
+    #+END_SRC
+   
+** Ei-operaattori ~!~
+  #+BEGIN_QUOTE
+  | ~A~     | ~!A~    |
+  |---------+---------|
+  | epätosi | tosi    |
+  | tosi    | epätosi |
+  #+END_QUOTE
