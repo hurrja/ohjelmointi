@@ -143,7 +143,15 @@
    <<loogiset-lausekkeet-muuttujat-ristikko>>
    #+END_SRC
 ** Operaattorien laskujärjestys
+   Ohjelmointikielen lausekkeissa käytetään enemmän laskutoimituksia
+   kuin matematiikassa. Mistä tiedetään, missä järjestyksessä
+   tietokone laskee eri laskutoimitukset?
+
    #+BEGIN_QUOTE
+   Processing-kielen \ldquo{}laskujärjestys\rdquo määräytyy alla
+   olevan taulukon mukaisesti. Taulukossa ylempänä olevat operaatiot
+   ovat laskujärjestyksessä korkeammalla.
+
    | operaatioiden nimet                  | operaattorit                        |
    |--------------------------------------+-------------------------------------|
    | negaatio                             | ~!~                                 |
@@ -151,9 +159,20 @@
    | yhteen- ja vähennyslasku             | ~+~ \emsp ~-~                       |
    | suuruusvertailut                     | ~<~ \emsp ~<=~ \emsp ~>~ \emsp ~>=~ |
    | yhtäsuuruusvertailut                 | ~==~ \emsp ~!=~                     |
-   | ja sekä tai                          | ~&&~ \emsp \vert\thinsp\vert        |
+   | ja                                   | ~&&~                                |
+   | tai                                  | \vert\thinsp\vert                   |
    | sijoittaminen                        | ~=~                                 |
    #+END_QUOTE
+
+   Esimerkiksi seuraavat kaksi lauseketta ovat yhtäpitäviä, koska
+   suuruusvertailut ovat laskujärjestyksessä ennen ~&&~-operaattoria.
+   #+BEGIN_EXAMPLE
+   (mouseX >= X) && (mouseX < X + LEVEYS)
+   mouseX >= X && mouseX < X + LEVEYS
+   #+END_EXAMPLE
+   Sulkuja voi käyttää tarvittaessa tai varmuuden vuoksi. 
+** Tehtäviä
+** Ratkaisuja
 
 #+INCLUDE: loogiset-lausekkeet-muuttujat-alternoiva.org
 #+INCLUDE: loogiset-lausekkeet-muuttujat-ristikko.org
