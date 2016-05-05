@@ -176,7 +176,14 @@
    1. Tee ohjelma, joka piirtää [[file:loogiset-lausekkeet-muuttujat-alternoiva-tausta-sivu.org][tällä sivulla]] olevan animaation. Käytä
       ohjelmassasi ~boolean~-tyyppistä muuttujaa, jonka arvo vaihtuu
       sekunnista toiseen.
-   2. vaakapalkki
+   2. [[file:loogiset-lausekkeet-muuttujat-vaakapalkki-sivu.org][Tällä sivulla]] oleva interaktiivinen animaatio toimii seuraavasti:
+      - Alkutilanteessa ikkunan tausta on punainen.
+      - Kun hiiren nappia painetaan, ikkunan taustaväri vaihtuu
+        punaisesta siniseksi tai toisin päin seuraavalla ehdolla:
+        tausta on punainen tai hiirtä painetaan mustan osan
+        ulkopuolella.
+      Kirjoita vastaava ohjelma. Käytä ohjelmassasi
+      ~boolean~-tyyppistä muuttujaa, jonka arvo vaihtuu tarvittaessa.
    3. lukujonosta parilliset ja kolmella jaolliset
    4. piirtoikkunan sisällä
    5. boksi
@@ -188,7 +195,12 @@
       #+BEGIN_SRC processing :exports code :noweb yes
       <<loogiset-lausekkeet-muuttujat-alternoiva-tausta>>
       #+END_SRC
+   2. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<loogiset-lausekkeet-muuttujat-vaakapalkki>>
+      #+END_SRC
 
 #+INCLUDE: loogiset-lausekkeet-muuttujat-alternoiva.org
 #+INCLUDE: loogiset-lausekkeet-muuttujat-ristikko.org
 #+INCLUDE: loogiset-lausekkeet-muuttujat-alternoiva-tausta.org
+#+INCLUDE: loogiset-lausekkeet-muuttujat-vaakapalkki.org
