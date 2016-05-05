@@ -13,9 +13,16 @@
    tapaan kuin tekstissä sanoilla \ldquo{}ja\rdquo, \ldquo{}tai\rdquo
    sekä \ldquo{}ei\rdquo.
 ** Ja-operaattori ~&&~
-    Operaattori ~&&~ vastaa suomen kielen sanaa
-    \ldquo{}ja\rdquo{}. Sen arvo on tosi täsmälleen silloin, kun
-    molemmat sen yhdistämät lausekkeet ovat tosia.
+   Operaattori ~&&~ vastaa suomen kielen sanaa
+   \ldquo{}ja\rdquo{}. Operaattori yhdistää kaksi loogista lauseketta.
+   Sen arvo on tosi täsmälleen silloin, kun molemmat sen yhdistämät
+   lausekkeet ovat tosia. Esimerkiksi seuraavan lausekkeen arvo on
+   tosi.
+   #+BEGIN_EXAMPLE
+   (1 < 2) && (3 != 4)
+   #+END_EXAMPLE
+   Seuraava taulukko kuvaa tarkalleen operaattorin toiminnan, kun ~A~
+   ja ~B~ ovat loogisia lausekkeita.
    #+BEGIN_QUOTE
    | ~A~     | ~B~     | ~A && B~ |
    |---------+---------+----------|
@@ -24,7 +31,7 @@
    | tosi    | epätosi | epätosi  |
    | tosi    | tosi    | tosi     |
    #+END_QUOTE
-*** Esimerkki
+** Esimerkki
     Alla olevassa interaktiivisessa animaatiossa piirretään eri
     värinen pystypalkki sen mukaan, onko hiiren painallus palkin sisä-
     vai ulkopuolella. 
@@ -49,7 +56,7 @@
         float savy; // palkin värisävy
 
         // vihreä väri, jos hiiren x-koordinaatti on suorakaiteen sisällä
-        if (mouseX >= X && mouseX < X + LEVEYS)
+        if ((mouseX >= X) && (mouseX < X + LEVEYS))
           savy = 35;
         else
           savy = 0;
@@ -59,25 +66,61 @@
     #+END_SRC
     Alla oleva ohjelmakoodi toteuttaa animaation. Painallus on palkin
     sisällä, jos hiiren \(x\)-koordinaatti on palkin oikean ja
-    vasemman reunan välissä eli jos ~(mouseX >= X && mouseX < X +
-    LEVEYS)~.
+    vasemman reunan välissä eli jos 
+    #+BEGIN_EXAMPLE
+    (mouseX >= X) && (mouseX < X + LEVEYS)
+    #+END_EXAMPLE
     #+BEGIN_SRC processing :noweb yes :exports code
     <<loogiset-lausekkeet-muuttujat-palkki>>
     #+END_SRC
-** Loogiset muuttujat
+   
+** Negaatio-operaattori ~!~
+   Operaattori ~!~ vastaa suomen kielen sanaa \ldquo{}ei\rdquo{}. Sen
+   arvo on tosi täsmälleen silloin, kun sen jälkeen seuraavan
+   lausekkeen arvo on epätosi. Esimerkiksi seuraavan lausekkeen arvo
+   on tosi.
+   #+BEGIN_EXAMPLE
+   !(-2 == 3)
+   #+END_EXAMPLE
+   Seuraava taulukko kuvaa tarkalleen operaattorin toiminnan, kun ~A~
+   on looginen lauseke.
+   #+BEGIN_QUOTE
+   | ~A~     | ~!A~    |
+   |---------+---------|
+   | epätosi | tosi    |
+   | tosi    | epätosi |
+   #+END_QUOTE
+** Looginen muuttuja
    #+BEGIN_QUOTE
    Tyyppiä ~boolean~ olevan muuttujan arvo on joko ~true~ (tosi) tai
-   ~false~ (epätosi).
+   ~false~ (epätosi). Muuttujaan voidaan tallentaa loogisen lausekkeen
+   arvo.
    #+END_QUOTE
+** Esimerkki
+   [[file:loogiset-lausekkeet-muuttujat-alternoiva-sivu.org][Tällä sivulla]] olevan animaation ohjelmoinnissa käytetään loogista
+   muuttujaa sekä negaatiota. Animaation piirtävä ohjelmakoodi on
+   alla. Ohjelmassa ~boolean~-tyyppisen muuttujan ~piirretaan~ arvo
+   vaihtuu sekunnista toiseen todesta epätodeksi ja toisin
+   päin. Huomaa, että muuttujaa voidaan käyttää suoraan ~if~-ehdossa:
+   #+BEGIN_EXAMPLE
+   if (piirretaan)
+   #+END_EXAMPLE
+   Sama testi olisi voitu kirjoittaa pidemmälläkin tavalla:
+   #+BEGIN_EXAMPLE
+   if (piirretaan == true)
+   #+END_EXAMPLE
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<loogiset-lausekkeet-muuttujat-alternoiva>>
+   #+END_SRC
 ** Tai-operaattori ~||~
    Suomen kielessä sanan \ldquo{}tai\rdquo käyttö on joskus
    monitulkintainen. Kuvitellaan, että joku sanoo: \ldquo{}Lähden
-   retkelle, jos Ville tai Marika lähteen mukaan.\rdquo Mitä tällöin
-   tapahtuu, jos sekä Ville että Marika lähtevät mukaan?
+   retkelle, jos Ville tai Marika lähtee mukaan.\rdquo Mitä tällöin
+   tapahtuu, jos /sekä/ Ville /että/ Marika lähtevät mukaan?
 
    Ohjelmointikielessä tällaista epätäsmällisyyttä ei voi
    olla. Processing-kielessä tai-operaattorin ~||~ arvo on tosi
-   täsmälleen silloin, kun vähintään toinen sen yhdistämistä
+   täsmälleen silloin, kun /vähintään toinen/ sen yhdistämistä
    lausekkeista on tosi.
    #+BEGIN_QUOTE
    | ~A~     | ~B~     | ~A~ \vert\thinsp\vert ~B~ |
@@ -88,45 +131,29 @@
    | tosi    | tosi    | tosi                      |
    #+END_QUOTE
 ** Esimerkki
-   Alla oleva esimerkki havainnollistaa sekä loogisten muuttujien että
-   operaattorin ~||~ käyttöä.
+   [[file:loogiset-lausekkeet-muuttujat-ristikko-sivu.org][Tällä sivulla]] oleva interaktiivinen animaatio havainnollistaa sekä
+   loogisten muuttujien että operaattorin ~||~ käyttöä. Animaatio on
+   piirretty alla olevalla ohjelmakoodilla. Hiirtä painettaessa
+   testataan, missä suhteessa painalluskohta on viivojen
+   risteyskohtaan. Jos painallus on risteyskohdan vasemmalla puolella
+   tai yläpuolella, viivat piirretään punaisina. Muussa tapauksessa
+   viivat piirretään sinisinä.
 
-   #+NAME: loogiset-lausekkeet-muuttujat-ristikko
-   #+BEGIN_SRC processing
-     final int X = 200, Y = 300; // ristikon risteyskohdan koordinaatit
-     void setup ()
-     {
-       size (600, 400);
-       colorMode (HSB, 100);
-       background (0);
-       stroke (100);
-     }
+   #+BEGIN_SRC processing :noweb yes :exports code
+   <<loogiset-lausekkeet-muuttujat-ristikko>>
+   #+END_SRC
+** Operaattorien laskujärjestys
+   #+BEGIN_QUOTE
+   | operaatioiden nimet                  | operaattorit                        |
+   |--------------------------------------+-------------------------------------|
+   | negaatio                             | ~!~                                 |
+   | kerto- ja jakolasku sekä jakojäännös | ~*~ \emsp ~/~ \emsp ~%~             |
+   | yhteen- ja vähennyslasku             | ~+~ \emsp ~-~                       |
+   | suuruusvertailut                     | ~<~ \emsp ~<=~ \emsp ~>~ \emsp ~>=~ |
+   | yhtäsuuruusvertailut                 | ~==~ \emsp ~!=~                     |
+   | ja sekä tai                          | ~&&~ \emsp \vert\thinsp\vert        |
+   | sijoittaminen                        | ~=~                                 |
+   #+END_QUOTE
 
-     void draw ()
-     {
-       line (X, 0, X, height);
-       line (0, Y, width, Y);
-     }
-
-     void mousePressed ()
-     {
-       boolean vasemmalla = mouseX < X;
-       boolean ylapuolella = mouseY < Y;
-
-       float savy;
-       if (vasemmalla || ylapuolella)
-         savy = 0;
-       else
-         savy = 65;
-
-       stroke (savy, 100, 100);
-     }
-    #+END_SRC
-   
-** Ei-operaattori ~!~
-  #+BEGIN_QUOTE
-  | ~A~     | ~!A~    |
-  |---------+---------|
-  | epätosi | tosi    |
-  | tosi    | epätosi |
-  #+END_QUOTE
+#+INCLUDE: loogiset-lausekkeet-muuttujat-alternoiva.org
+#+INCLUDE: loogiset-lausekkeet-muuttujat-ristikko.org
