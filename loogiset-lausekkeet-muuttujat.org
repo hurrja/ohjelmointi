@@ -173,7 +173,22 @@
    Sulkuja voi käyttää tarvittaessa tai varmuuden vuoksi. 
 #+INCLUDE: hiiren-painallukset-ratkaisurunko.org
 ** Tehtäviä
+   1. Tee ohjelma, joka piirtää [[file:loogiset-lausekkeet-muuttujat-alternoiva-tausta-sivu.org][tällä sivulla]] olevan animaation. Käytä
+      ohjelmassasi ~boolean~-tyyppistä muuttujaa, jonka arvo vaihtuu
+      sekunnista toiseen.
+   2. vaakapalkki
+   3. lukujonosta parilliset ja kolmella jaolliset
+   4. piirtoikkunan sisällä
+   5. boksi
+      1. sisällä
+      2. ulkopuolella
+   6. jotain kivaa
 ** Ratkaisuja
+   1. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<loogiset-lausekkeet-muuttujat-alternoiva-tausta>>
+      #+END_SRC
 
 #+INCLUDE: loogiset-lausekkeet-muuttujat-alternoiva.org
 #+INCLUDE: loogiset-lausekkeet-muuttujat-ristikko.org
+#+INCLUDE: loogiset-lausekkeet-muuttujat-alternoiva-tausta.org
