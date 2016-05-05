@@ -171,6 +171,7 @@
    mouseX >= X && mouseX < X + LEVEYS
    #+END_EXAMPLE
    Sulkuja voi käyttää tarvittaessa tai varmuuden vuoksi. 
+#+INCLUDE: hiiren-painallukset-ratkaisurunko.org
 ** Tehtäviä
 ** Ratkaisuja
 
