@@ -216,11 +216,23 @@
           n++;
         }
       #+END_SRC
-   4. piirtoikkunan sisällä
-   5. boksi
-      1. sisällä
-      2. ulkopuolella
-   6. jotain kivaa
+   4. Tee ohjelma, joka piirtää [[file:loogiset-lausekkeet-muuttujat-suorakulmiossa-sivu.org][tällä sivulla]] olevan interaktiivisen
+      animaation: suorakulmion väri on vihreä täsmälleen silloin, kun
+      hiirtä painetaan suorakulmion sisällä. Suorakulmion sijainnin ja
+      koon määräävät ohjelmasi vakiot ~X~, ~Y~, ~LEVEYS~ ja ~KORKEUS~.
+   5. jotain kivaa
+   6. Tee [[file:loogiset-lausekkeet-muuttujat-ympyra-sivu.org][tällä sivulla]] näkyvä interaktiivinen animaatio. Ympyrä on
+      alussa kuvan keskellä. Hiiren painalluksella ympyrä lähtee
+      liikkeelle johonkin neljästä vinosuunnasta sen mukaan, mihin
+      hiirtä painetaan.
+      - Jos painalluskohta on keskipisteen oikealle puolella, niin
+        ympyrä lähtee oikealle, muuten vasemmalla.
+      - Jos painalluskohta on keskipisteen alapuolella, niin ympyrä
+        lähtee alas, muuten ylös.
+      Kun ympyrä on lähtenyt liikkeelle, se kulkee asetettuun suuntaan
+      kunnes keskipiste siirtyy kuvan ulkopuolelle, minkä jälkeen
+      ympyrä palaa piirtoikkunan keskelle. Kun ympyrä on liikkeessä,
+      animaatio ei reagoi hiiren painalluksiin.
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports code :noweb yes
@@ -234,8 +246,19 @@
       #+BEGIN_SRC processing :exports code :noweb yes
       <<loogiset-lausekkeet-muuttujat-jaollisuus>>
       #+END_SRC
+   4. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<loogiset-lausekkeet-muuttujat-suorakulmiossa>>
+      #+END_SRC
+   5. 
+   6. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<loogiset-lausekkeet-muuttujat-ympyra>>
+      #+END_SRC
 
 #+INCLUDE: loogiset-lausekkeet-muuttujat-alternoiva.org
 #+INCLUDE: loogiset-lausekkeet-muuttujat-ristikko.org
 #+INCLUDE: loogiset-lausekkeet-muuttujat-alternoiva-tausta.org
 #+INCLUDE: loogiset-lausekkeet-muuttujat-vaakapalkki.org
+#+INCLUDE: loogiset-lausekkeet-muuttujat-suorakulmiossa.org
+#+INCLUDE: loogiset-lausekkeet-muuttujat-ympyra.org
