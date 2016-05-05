@@ -1,25 +1,30 @@
 #+NAME: loogiset-lausekkeet-muuttujat-nelio
 #+BEGIN_SRC processing :exports none
-  float sivu;
-  boolean kaynnissa;
+  int sivu;
+  boolean kaynnissa; // true jos animaatio käynnissä
   int sivuMuutos;
 
   void setup ()
   {
     size (400, 400);
     colorMode (HSB, 100);
-    kaynnissa = false;
-    sivu = 0;
-    sivuMuutos = 1;
+
+    kaynnissa = false; // alussa animaatio pysähdyksissä
+    sivu = 0; // alussa neliön sivun pituus nolla
+    sivuMuutos = 1; // neliö lähtee kasvamaan, kun animaatio käynnistetään
   }
 
   void draw ()
   {
     background (0);
+
+    // muutetaan sivun pituutta, jos animaatio käynnissä
     if (kaynnissa)
     {
       sivu = sivu + sivuMuutos;
-      if (sivu < 0 || sivu > width)
+
+      // neliön sivun muutos vaihtuu, jos neliö liian pieni tai suuri
+      if (sivu <= 0 || sivu > width)
         sivuMuutos = -sivuMuutos;
     }
 
@@ -30,5 +35,4 @@
   {
     kaynnissa = !kaynnissa;
   }
-
 #+END_SRC

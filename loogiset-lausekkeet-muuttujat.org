@@ -220,7 +220,9 @@
       animaation: suorakulmion väri on vihreä täsmälleen silloin, kun
       hiirtä painetaan suorakulmion sisällä. Suorakulmion sijainnin ja
       koon määräävät ohjelmasi vakiot ~X~, ~Y~, ~LEVEYS~ ja ~KORKEUS~.
-   5. jotain kivaa
+   5. Kirjoita [[file:loogiset-lausekkeet-muuttujat-nelio-sivu.org][tällä sivulla]] olevaa interaktiivista animaatiota
+      vastaava ohjelma. Animaatiossa hiiren painallus käynnistää tai
+      pysäyttää animaation, jossa neliö suurenee ja pienenee.
    6. Tee [[file:loogiset-lausekkeet-muuttujat-ympyra-sivu.org][tällä sivulla]] näkyvä interaktiivinen animaatio. Ympyrä on
       alussa kuvan keskellä. Hiiren painalluksella ympyrä lähtee
       liikkeelle johonkin neljästä vinosuunnasta sen mukaan, mihin
@@ -251,6 +253,9 @@
       <<loogiset-lausekkeet-muuttujat-suorakulmiossa>>
       #+END_SRC
    5. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<loogiset-lausekkeet-muuttujat-nelio>>
+      #+END_SRC
    6. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<loogiset-lausekkeet-muuttujat-ympyra>>
@@ -262,3 +267,4 @@
 #+INCLUDE: loogiset-lausekkeet-muuttujat-vaakapalkki.org
 #+INCLUDE: loogiset-lausekkeet-muuttujat-suorakulmiossa.org
 #+INCLUDE: loogiset-lausekkeet-muuttujat-ympyra.org
+#+INCLUDE: loogiset-lausekkeet-muuttujat-nelio.org
