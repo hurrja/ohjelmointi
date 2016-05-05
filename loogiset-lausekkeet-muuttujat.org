@@ -192,7 +192,30 @@
         ulkopuolella.
       Kirjoita vastaava ohjelma. Käytä ohjelmassasi
       ~boolean~-tyyppistä muuttujaa, jonka arvo vaihtuu tarvittaessa.
-   3. lukujonosta parilliset ja kolmella jaolliset
+   3. Kirjoita ohjelma, joka piirtää alla olevan kuvan. Kuvassa on
+      piirretty punaisella ne luvut, jotka ovat jaollisia luvulla 3
+      tai luvulla 7. Kunkin luvun ~n~ \(x\)-koordinaatti on ~(n *
+      25)~.
+      #+NAME: loogiset-lausekkeet-muuttujat-jaollisuus
+      #+BEGIN_SRC processing
+        size (600, 400);
+        colorMode (HSB, 100);
+        background (0);
+        textAlign (CENTER, CENTER);
+
+        int n = 1;
+
+        while (n <= 21)
+        {
+          float savy = 65;
+          if (n % 3 == 0 || n % 7 == 0)
+            savy = 0;
+          fill (savy, 100, 100);
+  
+          text (n, n * 25, height / 2.0);
+          n++;
+        }
+      #+END_SRC
    4. piirtoikkunan sisällä
    5. boksi
       1. sisällä
@@ -206,6 +229,10 @@
    2. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<loogiset-lausekkeet-muuttujat-vaakapalkki>>
+      #+END_SRC
+   3. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<loogiset-lausekkeet-muuttujat-jaollisuus>>
       #+END_SRC
 
 #+INCLUDE: loogiset-lausekkeet-muuttujat-alternoiva.org
