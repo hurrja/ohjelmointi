@@ -224,7 +224,7 @@
    6. Tee [[file:loogiset-lausekkeet-muuttujat-ympyra-sivu.org][tällä sivulla]] näkyvä interaktiivinen animaatio. Ympyrä on
       alussa kuvan keskellä. Hiiren painalluksella ympyrä lähtee
       liikkeelle johonkin neljästä vinosuunnasta sen mukaan, mihin
-      hiirtä painetaan.
+      kohtaan hiirtä painetaan.
       - Jos painalluskohta on keskipisteen oikealle puolella, niin
         ympyrä lähtee oikealle, muuten vasemmalla.
       - Jos painalluskohta on keskipisteen alapuolella, niin ympyrä
