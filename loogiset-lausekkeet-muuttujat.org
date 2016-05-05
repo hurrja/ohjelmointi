@@ -21,6 +21,14 @@
    #+BEGIN_EXAMPLE
    (1 < 2) && (3 != 4)
    #+END_EXAMPLE
+   Aivan kuten yhteenlaskullakin voidaan laskea useampia kuin kaksi
+   lukua yhteen, loogisella operaattorilla voidaan yhdistää useampia
+   kuin kaksi loogista lauseketta. Esimerkiksi seuraavan lausekkeen
+   arvo on epätosi.
+   #+BEGIN_EXAMPLE
+   (1 < 2) && (3 != 4) && (4 > 6)
+   #+END_EXAMPLE
+
    Seuraava taulukko kuvaa tarkalleen operaattorin toiminnan, kun ~A~
    ja ~B~ ovat loogisia lausekkeita.
    #+BEGIN_QUOTE
