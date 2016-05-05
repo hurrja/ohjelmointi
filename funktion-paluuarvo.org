@@ -1,0 +1,95 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* Funktion paluuarvo
+** Esimerkki
+   Useat funktiot /palauttavat/ jonkin arvon. Esimerkiksi
+   Processing-kielessä valmiina oleva funktio ~float min(float a,
+   float b)~ palauttaa pienemmän luvuista ~a~ ja ~b~. Funktion avulla
+   voimme piirtää helposti piirtoikkunaan mahdollisimman suuren
+   ympyrän.
+   
+   #+BEGIN_SRC processing :exports both
+     size (600, 400);
+
+     // halkaisija on leveydestä ja korkeudesta pienempi
+     float halkaisija = min (width, height);
+
+     ellipse (width / 2.0, height / 2.0, halkaisija, halkaisija);
+   #+END_SRC
+** Funktio, joka palauttaa arvon
+   #+BEGIN_QUOTE
+   Funktio
+   #+BEGIN_EXAMPLE
+   float min (float a, float b)
+   #+END_EXAMPLE
+   on esimerkki funktiosta, joka palauttaa arvon. Paluuarvon tyyppi
+   näkyy funktion nimen edessä olevasta sanasta. Jos sana on ~void~,
+   paluuarvoa ei ole.
+
+   Ohjelman suorituksessa funktiokutsu korvataan
+   paluuarvolla. Esimerkiksi rivillä
+   #+BEGIN_EXAMPLE
+   float halkaisija = min (width, height);
+   #+END_EXAMPLE
+   muuttujaan ~halkaisija~ sijoitetaan funktiokutsun paluuarvo.
+   #+END_QUOTE
+** Paluuarvon palauttaminen funktiosta
+   Funktion paluuarvo palautetaan käyttämällä Processing-kielen
+   varattua sanaa ~return~. Alla on esimerkki funktiosta
+   #+BEGIN_EXAMPLE
+   float suurempi (float a, float b)
+   #+END_EXAMPLE
+   joka palauttaa kahdesta luvusta suuremman. Jos luvut ovat yhtä
+   suuret, on sama kumpi niistä palautetaan.
+   #+BEGIN_SRC processing :exports both
+     float suurempi (float a, float b)
+     {
+       if (a > b)
+         return (a);
+       else
+         return (b);
+     }
+
+     void setup ()
+     {
+       size (600, 400);
+       float halkaisija = suurempi (width, height);
+       ellipse (width / 2.0, height / 2.0, halkaisija, halkaisija);
+     }
+
+     void draw ()
+     {
+     }
+   #+END_SRC
+   Vastaava funktio ~max()~ on olemassa valmiina Processing-kielessä.
+** Esimerkki
+   Alla olevassa esimerkissä määritellään funktio
+   #+BEGIN_EXAMPLE
+   boolean piirtoikkunassa (int x, int y)
+   #+END_EXAMPLE
+   joka palauttaa arvon ~true~ täsmälleen silloin, kun piste ~(x, y)~
+   on piirtoikkunan sisällä. Muuten funktio palauttaa arvon ~false~.
+   #+BEGIN_SRC processing :exports both
+     boolean piirtoikkunassa (int x, int y)
+     {
+       return (x >= 0 && x < width && y >=0 && y < height);
+     }
+
+     void setup ()
+     {
+       size (400, 400);
+
+       int x = 0, y = 0;
+       final int HALKAISIJA = 10;
+       while (piirtoikkunassa (x, y))
+       {
+         ellipse (x, y, HALKAISIJA, HALKAISIJA);
+         x = x + HALKAISIJA / 2;
+         y = y + HALKAISIJA;
+       }
+     }
+
+     void draw ()
+     {
+     }
+   #+END_SRC

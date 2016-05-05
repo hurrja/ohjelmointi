@@ -24,9 +24,10 @@
 * [[file:animaatio.org]]
 * [[file:hiiren-painallukset.org]]
 * [[file:loogiset-lausekkeet-muuttujat.org]]
-* Funktion paluuarvo
+* [[file:funktion-paluuarvo.org]]
 * Satunnaisuus
 * Taulukko
 * ~for~-silmukka
 * [[file:sisakkaiset-silmukat.org]]
 * Rekursio
+* Näppäinten painallukset
