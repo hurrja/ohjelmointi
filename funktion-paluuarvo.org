@@ -93,3 +93,43 @@
      {
      }
    #+END_SRC
+** Tehtäviä
+   1. Processing-kielen valmis funktio 
+      #+BEGIN_EXAMPLE
+      float dist (float x1, float y1, float x2, float y2)
+      #+END_EXAMPLE
+      palauttaa pisteiden ~(x1, y1)~ ja ~(x2, y2)~ välisen
+      etäisyyden. Käytä funktiota alla olevan interaktiivisen ohjelman
+      tekemiseen. Hiiren painallus aiheuttaa ympyrän
+      piirtämisen. Ympyrän kehä kulkee hiiren painalluskohdan kautta,
+      eli ympyrä säde on sama kuin painalluskohdan etäisyys
+      piirtoikkunan keskipisteestä.
+      #+NAME: funktion-paluuarvo-ympyra
+      #+BEGIN_SRC processing
+        void setup ()
+        {
+          size (400, 400);
+          colorMode (HSB, 100);
+          background (0);
+        }
+
+        void draw ()
+        {
+        }
+
+        void mousePressed ()
+        {
+          background (0);
+
+          // keskipisteen koordinaatit
+          float x = width / 2.0, y = height / 2.0;
+
+          float halkaisija = 2 * dist (mouseX, mouseY, x, y);
+          ellipse (x, y, halkaisija, halkaisija);
+        }
+      #+END_SRC
+** Ratkaisuja
+   1. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<funktion-paluuarvo-ympyra>>
+      #+END_SRC
