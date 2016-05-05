@@ -1,3 +1,0 @@
-#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
-
-* Pikseli

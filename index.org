@@ -24,10 +24,9 @@
 * [[file:animaatio.org]]
 * [[file:hiiren-painallukset.org]]
 * [[file:loogiset-lausekkeet-muuttujat.org]]
-* ~for~-silmukka
-* Aika
-* [[file:pikseli.org]]
+* Funktion paluuarvo
 * Satunnaisuus
+* Taulukko
+* ~for~-silmukka
 * [[file:sisakkaiset-silmukat.org]]
 * Rekursio
-

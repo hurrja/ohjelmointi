@@ -73,7 +73,7 @@
 
    Tarkalleen ottaen pikselit ovat pieniä neliöitä, mikä vaikuttaa
    hieman oikean alakulman tarkkoihin koordinaatteihin. Tähän palataan
-   kappaleessa [[file:pikseli.org][pikseli]].
+   kappaleessa [[file:sisakkaiset-silmukat.org][sisäkkäiset silmukat]].
 ** Ohjelmakoodin muoto
    Tietokoneohjelma koostuu tyypillisesti /ohjelmariveistä/, joita
    edellä olevasta ohjelmasta löytyy kaksi. Processing-ohjelma on
