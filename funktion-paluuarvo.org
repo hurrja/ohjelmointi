@@ -99,10 +99,11 @@
       float dist (float x1, float y1, float x2, float y2)
       #+END_EXAMPLE
       palauttaa pisteiden ~(x1, y1)~ ja ~(x2, y2)~ välisen
-      etäisyyden. Käytä funktiota alla olevan interaktiivisen ohjelman
-      tekemiseen. Hiiren painallus aiheuttaa ympyrän
-      piirtämisen. Ympyrän kehä kulkee hiiren painalluskohdan kautta,
-      eli ympyrä säde on sama kuin painalluskohdan etäisyys
+      etäisyyden. (Funktion nimi tulee englannin kielen etäisyyttä
+      tarkoittavasta sanasta /distance/.) Käytä funktiota alla olevan
+      interaktiivisen ohjelman tekemiseen. Hiiren painallus aiheuttaa
+      ympyrän piirtämisen. Ympyrän kehä kulkee hiiren painalluskohdan
+      kautta, eli ympyrä säde on sama kuin painalluskohdan etäisyys
       piirtoikkunan keskipisteestä.
       #+NAME: funktion-paluuarvo-ympyra
       #+BEGIN_SRC processing
