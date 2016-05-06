@@ -128,8 +128,44 @@
           ellipse (x, y, halkaisija, halkaisija);
         }
       #+END_SRC
+   2. Processing-kielen funktiot
+      #+BEGIN_EXAMPLE
+      int hour ()
+      int minute ()
+      int second ()
+      #+END_EXAMPLE
+      palauttavat tämänhetkisen kellonajan tunnit, minuutit ja
+      sekunnit. Tee näiden funktioiden avulla animaatio, joka näyttää
+      kellonajan.
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<funktion-paluuarvo-ympyra>>
+      #+END_SRC
+   2. 
+      #+BEGIN_SRC processing :exports code
+        void setup ()
+        {
+          size (600, 400);
+          colorMode (HSB, 100);
+          background (0);
+          fill (100);
+          textAlign (CENTER, CENTER);
+          textSize (40);
+
+          frameRate (1);
+        }
+
+        void draw ()
+        {
+          background (0);
+  
+          final float VALI = width / 6.0; // kellon eri osien välimatka
+          final float KORKEUS = height / 2.0;
+          text (hour (), VALI, KORKEUS);
+          text (":", 2 * VALI, KORKEUS);
+          text (minute (), 3 * VALI, KORKEUS);
+          text (":", 4 * VALI, KORKEUS);
+          text (second (), 5 * VALI, KORKEUS);
+        }
       #+END_SRC
