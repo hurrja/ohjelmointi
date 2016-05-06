@@ -181,6 +181,12 @@
         }
 
       #+END_SRC
+   4. Kaksi suorakulmion $A$ ja $B$ leikkaaminen voidaan testata
+      seuraavalla tavalla:
+      - Tarkistetaan onko jokin suorakulmion $A$ kärkipisteistä
+        suorakulmion $B$ sisällä.
+      - Tarkistetaan lisäksi, onko yksi (vapaasti valittu)
+        suorakulmion $B$ kärkipiste suorakulmion $A$ sisällä.
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports code :noweb yes
