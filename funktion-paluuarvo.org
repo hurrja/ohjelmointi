@@ -138,6 +138,49 @@
       palauttavat tämänhetkisen kellonajan tunnit, minuutit ja
       sekunnit. Tee näiden funktioiden avulla animaatio, joka näyttää
       kellonajan.
+   3. Kirjoita funktion ~dist ()~ avulla oma funktio
+      #+BEGIN_EXAMPLE
+      boolean ympyrassa (float x, float y, float kpX, float kpY, float sade)
+      #+END_EXAMPLE
+      joka palauttaa arvon ~true~, jos piste ~(x, y)~ on sellaisen
+      ympyrän sisällä, jonka keskipiste on ~(kpX, kpY)~ ja säde on
+      ~sade~. Muussa tapauksessa paluuarvo on ~false~. Käytä
+      funktiotasi alla olevan interaktiivisen animaation tekemiseen:
+      ympyrän väri riippuu siitä, onko hiirtä painettu ympyrän sisällä
+      vai sen ulkopuolella.
+      #+NAME: funktion-paluuarvo-ympyrassa
+      #+BEGIN_SRC processing
+        boolean ympyrassa (float x, float y, float kpX, float kpY, float sade)
+        {
+          return (dist (x, y, kpX, kpY) <= sade);
+        }
+
+        final float HALKAISIJA = 100;
+        float kpX, kpY; // ympyrän keskipisteen koordinaatit
+
+        void setup ()
+        {
+          size (600, 400);
+          colorMode (HSB, 100);
+          fill (100);
+          kpX = width / 2.0;
+          kpY = height / 2.0;
+        }
+
+        void draw ()
+        {
+          ellipse (kpX, kpY, HALKAISIJA, HALKAISIJA);
+        }
+
+        void mousePressed ()
+        {
+          if (ympyrassa (mouseX, mouseY, kpX, kpY, HALKAISIJA / 2.0))
+            fill (35, 100, 100);
+          else
+            fill (0, 100, 100);
+        }
+
+      #+END_SRC
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports code :noweb yes
@@ -170,3 +213,8 @@
           text (second (), 5 * VALI, KORKEUS);
         }
       #+END_SRC
+   3. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<funktion-paluuarvo-ympyrassa>>
+      #+END_SRC
+      
