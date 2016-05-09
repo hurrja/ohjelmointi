@@ -1,0 +1,66 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* Satunnaisuus
+** Funktio ~random()~
+   #+BEGIN_QUOTE
+   Processing kielen funktio
+   #+BEGIN_EXAMPLE
+   float random (float k)
+   #+END_EXAMPLE
+   palauttaa satunnaisen desimaaliluvun, joka arvo on vähintään nolla
+   ja korkeintaan ~k~.
+
+   Vaihtoehtoisesti funktio
+   #+BEGIN_EXAMPLE
+   float random (float v, float k)
+   #+END_EXAMPLE
+   palauttaa satunnaisen desimaaliluvun, joka arvo on vähintään ~v~ ja
+   korkeintaan ~k~.
+   #+END_QUOTE
+** Esimerkki
+   Alla oleva ohjelma piirtää 10 ympyrää satunnaisiin piirtoikkunan
+   kohtiin.
+   #+BEGIN_SRC processing
+     size (600, 400);
+     final int HALKAISIJA = 10;
+
+     int n = 1;
+     while (n < 10)
+     {
+       ellipse (random (width), random (height), HALKAISIJA, HALKAISIJA);
+       n++;
+     }
+   #+END_SRC
+** Esimerkki
+   #+BEGIN_SRC processing
+     final int HALKAISIJA = 30;
+     final float SADE = HALKAISIJA / 2.0;
+     float x, y;
+
+     void uusiKohta ()
+     {
+       x = random (SADE, width - SADE);
+       y = random (SADE, height - SADE);
+     }
+
+     void setup ()
+     {
+       size (600, 400);
+       colorMode (HSB, 100);
+       fill (100);
+
+       uusiKohta ();
+     }
+
+     void draw ()
+     {
+       background (0);
+       ellipse (x, y, HALKAISIJA, HALKAISIJA);
+     }
+
+     void mousePressed ()
+     {
+       if (dist (x, y, mouseX, mouseY) <= SADE)
+         uusiKohta ();
+     }
+   #+END_SRC
