@@ -30,4 +30,4 @@
 * ~for~-silmukka
 * [[file:sisakkaiset-silmukat.org]]
 * Rekursio
-* Näppäinten painallukset
+* Luokka ja olio
