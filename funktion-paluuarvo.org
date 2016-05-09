@@ -55,6 +55,7 @@
        size (600, 400);
        float halkaisija = suurempi (width, height);
        ellipse (width / 2.0, height / 2.0, halkaisija, halkaisija);
+       noLoop ();
      }
 
      void draw ()
