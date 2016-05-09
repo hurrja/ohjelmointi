@@ -181,12 +181,16 @@
         }
 
       #+END_SRC
-   4. Kaksi suorakulmion $A$ ja $B$ leikkaaminen voidaan testata
-      seuraavalla tavalla:
-      - Tarkistetaan onko jokin suorakulmion $A$ kärkipisteistä
-        suorakulmion $B$ sisällä.
-      - Tarkistetaan lisäksi, onko yksi (vapaasti valittu)
-        suorakulmion $B$ kärkipiste suorakulmion $A$ sisällä.
+   4. Kirjoita funktio
+      #+BEGIN_EXAMPLE
+      booolean ympyratLeikkaavat (float x1, float y1, float sade1, float x2, float y2, float sade2)
+      #+END_EXAMPLE
+      joka palauttaa arvon ~true~, jos kaksi ympyrää leikkaavat, ja
+      muussa tapauksessa arvon ~false~. Toisen ympyrän keskipiste on
+      ~(x1, y1)~ ja säde ~sade1~, ja toisen ympyrän keskipiste ~(x2,
+      y2)~ ja säde ~sade2~. Kirjoita funktiosi avulla [[file:funktion-paluuarvo-ympyrat-leikkaavat-sivu.org][tällä sivulla]]
+      näkyvä animaatio. Voit valita animaatiossa olevat mitat
+      vapaasti.
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports code :noweb yes
@@ -223,4 +227,9 @@
       #+BEGIN_SRC processing :exports code :noweb yes
       <<funktion-paluuarvo-ympyrassa>>
       #+END_SRC
+   4. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<funktion-paluuarvo-ympyrat-leikkaavat>>
+      #+END_SRC
       
+#+INCLUDE: funktion-paluuarvo-ympyrat-leikkaavat.org
