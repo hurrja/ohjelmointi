@@ -129,7 +129,39 @@
           ellipse (x, y, halkaisija, halkaisija);
         }
       #+END_SRC
-   2. Processing-kielen funktiot
+   2. Kirjoita funktio
+      #+BEGIN_EXAMPLE
+      float f (float x)
+      #+END_EXAMPLE
+      joka palauttaa arvon ~x / 2 + 50~. Piirrä funktion avulla alla
+      oleva kuva. Kuvassa kunkin pystyviivan päätepisteiden
+      koordinaatit ovat ~(x, 0)~ sekä ~(x, f (x))~, ja vierekkäisten
+      pystyviivojen etäisyys \(x\)-akselilla on 10.
+      #+NAME: funktion-paluuarvo-f
+      #+BEGIN_SRC processing
+        float f (float x)
+        {
+          return (x / 2 + 50);
+        }
+
+        void setup ()
+        {
+          size (600, 400);
+          colorMode (HSB, 100);
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          int x = 0;
+          while (x < width)
+          {
+            line (x, 0, x, f (x));
+            x = x + 10;
+          }
+        }
+      #+END_SRC
+   3. Processing-kielen funktiot
       #+BEGIN_EXAMPLE
       int hour ()
       int minute ()
@@ -138,7 +170,7 @@
       palauttavat tämänhetkisen kellonajan tunnit, minuutit ja
       sekunnit. Tee näiden funktioiden avulla animaatio, joka näyttää
       kellonajan.
-   3. Kirjoita funktion ~dist ()~ avulla oma funktio
+   4. Kirjoita funktion ~dist ()~ avulla oma funktio
       #+BEGIN_EXAMPLE
       boolean ympyrassa (float x, float y, float kpX, float kpY, float sade)
       #+END_EXAMPLE
@@ -181,7 +213,7 @@
         }
 
       #+END_SRC
-   4. Kirjoita funktio
+   5. Kirjoita funktio
       #+BEGIN_EXAMPLE
       booolean ympyratLeikkaavat (float x1, float y1, float sade1, float x2, float y2, float sade2)
       #+END_EXAMPLE
@@ -197,6 +229,10 @@
       <<funktion-paluuarvo-ympyra>>
       #+END_SRC
    2. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<funktion-paluuarvo-f>>
+      #+END_SRC
+   3. 
       #+BEGIN_SRC processing :exports code
         void setup ()
         {
@@ -223,11 +259,11 @@
           text (second (), 5 * VALI, KORKEUS);
         }
       #+END_SRC
-   3. 
+   4. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<funktion-paluuarvo-ympyrassa>>
       #+END_SRC
-   4. 
+   5. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<funktion-paluuarvo-ympyrat-leikkaavat>>
       #+END_SRC
