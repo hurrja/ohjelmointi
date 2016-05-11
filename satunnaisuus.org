@@ -48,4 +48,21 @@
    <<satunnaisuus-ympyrajahti>>
    #+END_SRC
 ** Satunnainen kokonaisluku
+** Esimerkki
+   #+BEGIN_SRC processing
+     size (600, 200);
+     colorMode (HSB, 100);
+     background (0);
+     fill (100);
+     textAlign (CENTER, CENTER);
+     textSize (20);
+
+     int n = 1;
+     while (n < 30)
+     {
+       text (floor (random (2)), 20 * n, height / 2.0);
+       n++;
+     }
+
+   #+END_SRC
 #+INCLUDE: satunnaisuus-ympyrajahti.org
