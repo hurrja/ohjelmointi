@@ -8,14 +8,14 @@
    float random (float k)
    #+END_EXAMPLE
    palauttaa satunnaisen desimaaliluvun, joka arvo on vähintään nolla
-   ja korkeintaan ~k~.
+   ja alle ~k~.
 
    Vaihtoehtoisesti funktio
    #+BEGIN_EXAMPLE
    float random (float v, float k)
    #+END_EXAMPLE
    palauttaa satunnaisen desimaaliluvun, joka arvo on vähintään ~v~ ja
-   korkeintaan ~k~.
+   alle ~k~.
    #+END_QUOTE
 ** Esimerkki
    Alla oleva ohjelma piirtää 10 ympyrää satunnaisiin piirtoikkunan
@@ -32,35 +32,20 @@
      }
    #+END_SRC
 ** Esimerkki
-   #+BEGIN_SRC processing
-     final int HALKAISIJA = 30;
-     final float SADE = HALKAISIJA / 2.0;
-     float x, y;
+   [[file:satunnaisuus-ympyrajahti-sivu.org][Tällä sivulla]] oleva interaktiivinen animaatio on ohjelmoitu alla
+   olevalla ohjelmakoodilla. Ohjelmassa piirretään ympyrä satunnaiseen
+   kohtaan sen jälkeen, kun käyttäjä on painanut hiiren painiketta
+   ympyrän sisällä. Ohjelmasta kannattaa huomata seuraavat seikat.
+   - Ympyrän keskipiste asetetaan satunnaiseen kohtaan funktion
+     ~uusiKohta()~ avulla. Funktiota kutsutaan kahdessa eri
+     tapauksessa: ohjelman alussa sekä painalluksen ollessa ympyrän
+     sisällä.
+   - Ympyrän keskipisteen \(x\)-koordinaatti on satunnaisluku, jonka
+     arvo on vähintään ~SADE~ ja alle ~(width - SADE)~. Näin
+     varmistetaan, että piirretty ympyrä on piirtoikkunan sisällä.
 
-     void uusiKohta ()
-     {
-       x = random (SADE, width - SADE);
-       y = random (SADE, height - SADE);
-     }
-
-     void setup ()
-     {
-       size (600, 400);
-       colorMode (HSB, 100);
-       fill (100);
-
-       uusiKohta ();
-     }
-
-     void draw ()
-     {
-       background (0);
-       ellipse (x, y, HALKAISIJA, HALKAISIJA);
-     }
-
-     void mousePressed ()
-     {
-       if (dist (x, y, mouseX, mouseY) <= SADE)
-         uusiKohta ();
-     }
+   #+BEGIN_SRC processing :noweb yes :exports code
+   <<satunnaisuus-ympyrajahti>>
    #+END_SRC
+** Satunnainen kokonaisluku
+#+INCLUDE: satunnaisuus-ympyrajahti.org
