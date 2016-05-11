@@ -8,14 +8,14 @@
    float random (float k)
    #+END_EXAMPLE
    palauttaa satunnaisen desimaaliluvun, joka arvo on vähintään nolla
-   ja alle ~k~.
+   ja pienempi kuin ~k~.
 
    Vaihtoehtoisesti funktio
    #+BEGIN_EXAMPLE
    float random (float v, float k)
    #+END_EXAMPLE
    palauttaa satunnaisen desimaaliluvun, joka arvo on vähintään ~v~ ja
-   alle ~k~.
+   pienempi kuin ~k~.
    #+END_QUOTE
 ** Esimerkki
    Alla oleva ohjelma piirtää 10 ympyrää satunnaisiin piirtoikkunan
@@ -41,7 +41,7 @@
      tapauksessa: ohjelman alussa sekä painalluksen ollessa ympyrän
      sisällä.
    - Ympyrän keskipisteen \(x\)-koordinaatti on satunnaisluku, jonka
-     arvo on vähintään ~SADE~ ja alle ~(width - SADE)~. Näin
+     arvo on vähintään ~SADE~ ja pienempi kuin ~(width - SADE)~. Näin
      varmistetaan, että piirretty ympyrä on piirtoikkunan sisällä.
 
    #+BEGIN_SRC processing :noweb yes :exports code
