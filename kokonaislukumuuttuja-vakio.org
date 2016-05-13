@@ -387,7 +387,7 @@
         // piirrettävän suorakulmion vasemman reunan x-koordinaatti
         float x = 0; 
 
-        while (n <= 90)
+        while (n <= 95)
         {
           // päätellään, millä värillä piirretään
           float varisavy;
