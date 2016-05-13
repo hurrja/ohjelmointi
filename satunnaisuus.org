@@ -20,7 +20,7 @@
 ** Esimerkki
    Alla oleva ohjelma piirtää 10 ympyrää satunnaisiin piirtoikkunan
    kohtiin.
-   #+BEGIN_SRC processing
+   #+BEGIN_SRC processing :exports both
      size (600, 400);
      final int HALKAISIJA = 10;
 
@@ -126,12 +126,32 @@
 #+INCLUDE: satunnaisuus-janat.org
 ** Tehtäviä
    1. Tee ohjelma, jossa asetetaan satunnaisen sävyinen taustaväri
-      \((400\times 400\)-kokoiseen piirtoikkunaan. Suorita ohjelmasi
+      \(400\times 400\)-kokoiseen piirtoikkunaan. Suorita ohjelmasi
       useita kertoja, jolloin näet taustavärin vaihtuvan kerrasta
       toiseen.
-   2. Pieni ympyrä satunnaiseen kohtaan.
-   3. Iso ympyrä satunnaiseen kohtaan, täytyy mahtua piirtoikkunaan.
-   4. Satunnainen määrä neliöitä.
+   2. Tee ohjelma, joka piirtää 100 erisävyistä neliötä \(600\times
+      400\)-kokoiseen piirtoikkunaan satunnaisiin kohtiin. Kunkin
+      neliön sivun pituus on 50. Neliöiden tulee sijaita piirtoikkunan
+      sisällä eikä neliöillä ole ääriviivoja. Alla on esimerkki
+      ohjelman piirtämästä kuvasta.
+      #+NAME: satunnaisuus-neliot
+      #+BEGIN_SRC processing
+        size (600, 400);
+        colorMode (HSB, 100);
+        noStroke ();
+        final int SIVU = 50;
+
+        int n = 1;
+        while (n <= 100)
+        {
+          fill (random (100), 100, 100);
+          rect (random (width - SIVU), random (height - SIVU), SIVU, SIVU);
+          n++;
+        }
+
+      #+END_SRC
+   3. Satunnainen määrä jotain
+   4. Satunnainen totuusarvo.
    5. Jotain tapahtuu satunnaisin väliajoin.
    6. Jokin peli
 ** Ratkaisuja
@@ -140,4 +160,8 @@
         size (400, 400);
         colorMode (HSB, 100);
         background (random (100), 100, 100);
+      #+END_SRC
+   2. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<satunnaisuus-neliot>>
       #+END_SRC
