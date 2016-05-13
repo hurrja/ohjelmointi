@@ -129,7 +129,15 @@
       \(400\times 400\)-kokoiseen piirtoikkunaan. Suorita ohjelmasi
       useita kertoja, jolloin näet taustavärin vaihtuvan kerrasta
       toiseen.
-   2. Tee ohjelma, joka piirtää 100 erisävyistä neliötä \(600\times
+   2. Tee ohjelma, joka piirtää janan \(600\times 400\)-kokoisen
+      piirtoikkunan satunnaisesta kohdasta toiseen satunnaiseen
+      kohtaan. Alla on esimerkki ohjelman piirtämästä kuvasta.
+      #+NAME: satunnaisuus-jana
+      #+BEGIN_SRC processing
+        size (600, 400);
+        line (random (width), random (height), random (width), random (height));
+      #+END_SRC
+   3. Tee ohjelma, joka piirtää 100 erisävyistä neliötä \(600\times
       400\)-kokoiseen piirtoikkunaan satunnaisiin kohtiin. Kunkin
       neliön sivun pituus on 50. Neliöiden tulee sijaita piirtoikkunan
       sisällä eikä neliöillä ole ääriviivoja. Alla on esimerkki
@@ -150,10 +158,9 @@
         }
 
       #+END_SRC
-   3. Satunnainen määrä jotain
-   4. Satunnainen totuusarvo.
-   5. Jotain tapahtuu satunnaisin väliajoin.
-   6. Jokin peli
+   4. Satunnainen määrä jotain
+   5. Satunnaisesti ympyrä, neliö tai kolmio.
+   6. Jotain tapahtuu satunnaisin väliajoin.
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports both
@@ -162,6 +169,10 @@
         background (random (100), 100, 100);
       #+END_SRC
    2. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<satunnaisuus-jana>>
+      #+END_SRC
+   3. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<satunnaisuus-neliot>>
       #+END_SRC
