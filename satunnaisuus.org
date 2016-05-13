@@ -48,21 +48,69 @@
    <<satunnaisuus-ympyrajahti>>
    #+END_SRC
 ** Satunnainen kokonaisluku
-** Esimerkki
-   #+BEGIN_SRC processing
-     size (600, 200);
+   Miten voidaan arpoa satunnainen kokonaisluku, joka on joko 0 tai 1?
+   Yksi tapa ratkaista ongelma on käyttää funktiota
+   #+BEGIN_EXAMPLE
+   int floor (float a)
+   #+END_EXAMPLE
+   Silloin, kun ~a~ on positiivinen, funktio palauttaa luvun ~a~
+   kokonaislukuosan. [fn:: Tarkalleen ottaen ~floor()~ pyöristää luvun
+   lähimpään pienempään kokonaislukuun. Esimerkiksi kutsun ~floor
+   (-2.1)~ arvo on \(-3.\)] Esimerkiksi funktiokutsu ~floor (1.99)~
+   palauttaa arvon 1. Jos arvotaan satunnaisluku, jonka arvo on
+   vähintään 0 ja pienempi kuin 2, niin saadun satunnaisluvun
+   kokonaislukuosa on yhtä suurella todennäköisyydellä 0 tai 1. Alla
+   olevaan kuvaan lukusuoralle punaisella merkittyjen lukujen
+   kokonaislukuosa on 0 ja sinisellä merkittyjen kokonaislukuosa 1.
+   #+NAME: satunnaisuus-kokonaisluku-lukusuora
+   #+BEGIN_SRC asymptote :file satunnaisuus-kokonaisluku-lukusuora.svg
+     import graph;
+
+     size (20cm, 0);
+     defaultpen (fontsize (16));
+     pen thickPen = linewidth (4) + squarecap;
+     draw ((0, 0) -- (1, 0), red + thickPen);
+     draw ((1, 0) -- (2, 0), blue + thickPen);
+     xaxis ("satunnainen desimaaliluku",
+            xmin = 0,
+            xmax = 2,
+            RightTicks);
+   #+END_SRC
+
+   #+RESULTS: satunnaisuus-kokonaisluku-lukusuora
+   [[file:satunnaisuus-kokonaisluku-lukusuora.svg]]
+
+   Alla olevassa esimerkissä piirtoikkunaan piirretään satunnaisesti
+   nollia ja ykkösiä.
+   #+BEGIN_SRC processing :exports both
+     size (620, 200);
      colorMode (HSB, 100);
      background (0);
      fill (100);
      textAlign (CENTER, CENTER);
      textSize (20);
 
+     // piirretään 30 satunnaista lukua 0 tai 1
      int n = 1;
-     while (n < 30)
+     while (n <= 30)
      {
        text (floor (random (2)), 20 * n, height / 2.0);
        n++;
      }
-
    #+END_SRC
+
+   Yleisemmin pätee seuraava.
+   #+BEGIN_QUOTE
+   Satunnainen kokonaisluku, jonka arvo on vähintään 0 ja korkeintaan
+   ~k~ voidaan arpoa funktiokutsulla
+   #+BEGIN_EXAMPLE
+   floor (random (k + 1))
+   #+END_EXAMPLE
+   Vastaavasti satunnainen kokonaisluku, jonka arvo on vähintään ~v~
+   ja korkeintaan ~k~ voidaan arpoa funktiokutsulla
+   #+BEGIN_EXAMPLE
+   floor (random (v, k + 1))
+   #+END_EXAMPLE
+   #+END_QUOTE
+
 #+INCLUDE: satunnaisuus-ympyrajahti.org
