@@ -124,3 +124,20 @@
 
 #+INCLUDE: satunnaisuus-ympyrajahti.org
 #+INCLUDE: satunnaisuus-janat.org
+** Tehtäviä
+   1. Tee ohjelma, jossa asetetaan satunnaisen sävyinen taustaväri
+      \((400\times 400\)-kokoiseen piirtoikkunaan. Suorita ohjelmasi
+      useita kertoja, jolloin näet taustavärin vaihtuvan kerrasta
+      toiseen.
+   2. Pieni ympyrä satunnaiseen kohtaan.
+   3. Iso ympyrä satunnaiseen kohtaan, täytyy mahtua piirtoikkunaan.
+   4. Satunnainen määrä neliöitä.
+   5. Jotain tapahtuu satunnaisin väliajoin.
+   6. Jokin peli
+** Ratkaisuja
+   1. 
+      #+BEGIN_SRC processing :exports both
+        size (400, 400);
+        colorMode (HSB, 100);
+        background (random (100), 100, 100);
+      #+END_SRC
