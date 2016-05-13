@@ -55,10 +55,10 @@
    #+END_EXAMPLE
    Silloin, kun ~a~ on positiivinen, funktio palauttaa luvun ~a~
    kokonaislukuosan. [fn:: Tarkalleen ottaen ~floor()~ pyöristää luvun
-   lähimpään pienempään kokonaislukuun. Esimerkiksi kutsun ~floor
-   (-2.1)~ arvo on \(-3.\)] Esimerkiksi funktiokutsu ~floor (1.99)~
-   palauttaa arvon 1. Jos arvotaan satunnaisluku, jonka arvo on
-   vähintään 0 ja pienempi kuin 2, niin saadun satunnaisluvun
+   lähimpään /pienempään/ kokonaislukuun. Esimerkiksi kutsun ~floor
+   (-2.1)~ paluuarvo on \(-3.\)] Esimerkiksi funktiokutsu ~floor
+   (1.99)~ palauttaa arvon 1. Jos arvotaan satunnaisluku, jonka arvo
+   on vähintään 0 ja pienempi kuin 2, niin saadun satunnaisluvun
    kokonaislukuosa on yhtä suurella todennäköisyydellä 0 tai 1. Alla
    olevaan kuvaan lukusuoralle punaisella merkittyjen lukujen
    kokonaislukuosa on 0 ja sinisellä merkittyjen kokonaislukuosa 1.
