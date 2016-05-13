@@ -112,5 +112,15 @@
    floor (random (v, k + 1))
    #+END_EXAMPLE
    #+END_QUOTE
+** Esimerkki
+   [[file:satunnaisuus-janat-sivu.org][Tällä sivulla]] oleva animaatio on piirretty alla olevalla
+   ohjelmakoodilla. Animaatiossa piirretään joka toinen sekunti
+   satunnainen määrä janoja satunnaisin värein piirtoikkunan
+   yläreunasta alareunaan satunnaisiin kohtiin.
+
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<satunnaisuus-janat>>
+   #+END_SRC
 
 #+INCLUDE: satunnaisuus-ympyrajahti.org
+#+INCLUDE: satunnaisuus-janat.org
