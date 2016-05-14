@@ -18,15 +18,15 @@
      final int HALKAISIJA = 10;
 
      // määritellään taulukkovakio ja siinä olevat luvut
-     final float[] X_T = {<<taulukko-ympyrat-annetut-x>>};
+     final float[] XT = {<<taulukko-ympyrat-annetut-x>>};
 
      int i = 0; // taulukon indeksi, alkaa nollasta
 
      // taulukkoa käydään läpi niin kauan, kun indeksi on pienempi kuin
      // taulukon pituus
-     while (i < X_T.length)
+     while (i < XT.length)
      {
-       ellipse (X_T [i], height / 2.0, HALKAISIJA, HALKAISIJA);
+       ellipse (XT [i], height / 2.0, HALKAISIJA, HALKAISIJA);
        i++;
      }
    #+END_SRC
@@ -44,25 +44,25 @@
    järjestyksessä tietty määrä lukuja tai muita arvoja. Taulukossa
    oleviin lukuihin voidaan viitata niiden järjestysnumerolla, joka
    kirjoitetaan hakasulkujen ~[]~ sisään. Järjestysnumerot /alkavat
-   nollasta/. Jos taulukon nimi on ~X_T~, niin taulukon
+   nollasta/. Jos taulukon nimi on ~XT~, niin taulukon
    ensimmäinen luku on
    #+BEGIN_EXAMPLE
-   X_T [0]
+   XT [0]
    #+END_EXAMPLE
    Hakasuluissa olevaa kokonaislukua kutsutaan
    /indeksiksi/. Välilyönti taulukon nimen ja hakasulkujen välissä on
    valinnainen.
 
    Taulukon /pituus/ on siihen mahtuvien lukujen määrä. Jos taulukon
-   nimi on ~X_T~, niin taulukon pituus saadaan ohjelmassa
+   nimi on ~XT~, niin taulukon pituus saadaan ohjelmassa
    lausekkeella 
    #+BEGIN_EXAMPLE
-   X_T.length
+   XT.length
    #+END_EXAMPLE
    #+END_QUOTE
    
    Jos edellisessä esimerkissä olevat luvut
-   call_taulukko-ympyrat-annetut-x() ovat taulukossa ~X_T~, niin
+   call_taulukko-ympyrat-annetut-x() ovat taulukossa ~XT~, niin
    niihin voidaan viitata alla olevan kuvan mukaisesti. Taulukossa on
    11 lukua, jolloin indeksin suurin arvo on 10.
    #+NAME: taulukko-xkoordinaatit-taulukossa
@@ -78,7 +78,7 @@
      for (int i = 0; i < coordinates.length; ++i)
        {
          tableSpecStr += "c";
-         headlineStr += "&" + "\texttt{X\_T} [" + (string) i + "]";
+         headlineStr += "&" + "\texttt{XT} [" + (string) i + "]";
          dataStr += "&" + (string) (coordinates [i]);
        }
      tableSpecStr += "}";
@@ -112,20 +112,20 @@
    varata tila.
 
    #+BEGIN_QUOTE
-   Desimaalukuja sisältävä taulukkomuuttuja ~x_t~ määritellään
+   Desimaalukuja sisältävä taulukkomuuttuja ~xt~ määritellään
    lausekkeella
    #+BEGIN_EXAMPLE
-   float[] x_t;
+   float[] xt;
    #+END_EXAMPLE
    Taulukkoon varataan tilaa 20 luvulle lausekkeella
    #+BEGIN_EXAMPLE
-   x_t = new float [20];
+   xt = new float [20];
    #+END_EXAMPLE
    Taulukkomuuttujan arvoa voidaan muuttaa sijoittamalla lukuja
    taulukkoon. Taulukon kolmanteen paikkaan (indeksi 2) sijoitetaan
    luku 75 lausekkeella
    #+BEGIN_EXAMPLE
-   x_t [2] = 75;
+   xt [2] = 75;
    #+END_EXAMPLE
    #+END_QUOTE
 
@@ -139,7 +139,22 @@
    #+BEGIN_SRC processing :exports code :noweb yes
    <<taulukko-ympyrat-savy>>
    #+END_SRC
+** Esimerkki
+   Yksittäinen piirtoikkunan piste kohdassa ~(x, y)~ voidaan piirtää
+   funktiolla
+   #+BEGIN_EXAMPLE
+   void point (float x, float y)
+   #+END_EXAMPLE
+   Pisteen väri voidaan määrätä funktiolla ~stroke()~.
+   
+   [[file:taulukko-pisteet-sivu.org][Tällä sivulla]] oleva animaatio piirretään alla olevalla ohjelmakoodilla. 
+
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<taulukko-pisteet>>
+   #+END_SRC
+
 
 #+INCLUDE: taulukko-ympyrat-savy.org
+#+INCLUDE: taulukko-pisteet.org
 
    
