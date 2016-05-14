@@ -161,10 +161,11 @@
 
       #+END_SRC
    4. Tee ohjelma, joka piirtää \(600\times 600\)-kokoiseen
-      piirtoikkunaan vähintään 2 ja korkeintaan 50 sisäkkäistä ympyrää
-      alla olevan kuvan mukaisesti. Ympyrät pienenevät uloimmasta
-      sisimpään. Uloimman ympyrän halkaisija on piirtoikkunan sivun
-      pituus. Sisemmän ympyrän halkaisija on aina 0,95 kertaa
+      piirtoikkunaan satunnaisen määrän sisäkkäisiä ympyröitä alla
+      olevan kuvan mukaisesti.  Ympyröitä on vähintään 2 ja
+      korkeintaan 50. Ympyrät pienenevät uloimmasta sisimpään. Uloin
+      ympyrä on aina valkoinen, ja sen halkaisija on piirtoikkunan
+      sivun pituus. Sisemmän ympyrän halkaisija on aina 0,95 kertaa
       edellisen ulomman ympyrän halkaisija.
       #+NAME: satunnaisuus-sisakkaiset-ympyrat
       #+BEGIN_SRC processing
