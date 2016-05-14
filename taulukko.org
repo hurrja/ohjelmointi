@@ -13,16 +13,95 @@
 
    #+NAME: taulukko-ympyrat-annetuissa
    #+BEGIN_SRC processing :noweb yes
-     size (600, 400);
+     size (600, 150);
 
      final int HALKAISIJA = 10;
 
-     float[] xKoordinaatit = {<<taulukko-ympyrat-annetut-x>>};
+     // määritellään taulukkovakio ja siinä olevat luvut
+     final float[] X_T = {<<taulukko-ympyrat-annetut-x>>};
 
-     int i = 0;
-     while (i < xKoordinaatit.length)
+     int i = 0; // taulukon indeksi, alkaa nollasta
+
+     // taulukkoa käydään läpi niin kauan, kun indeksi on pienempi kuin
+     // taulukon pituus
+     while (i < X_T.length)
      {
-       ellipse (xKoordinaatit [i], height / 2.0, HALKAISIJA, HALKAISIJA);
+       ellipse (X_T [i], height / 2.0, HALKAISIJA, HALKAISIJA);
        i++;
      }
    #+END_SRC
+
+   Ympyröitä ei voi piirtää tavallisen ~while~-silmukan avulla, koska
+   \(x\)-koordinaatit ovat epäsäännöllisissä kohdissa. Voisimme
+   piirtää ympyrät kirjoittamalla yhden koodirivin kutakin ympyrää
+   kohden, mutta se olisi kovin työlästä.
+
+   Ongelma voidaan ratkaista helpoiten taulukon avulla.
+
+** Taulukkovakio
+   #+BEGIN_QUOTE
+   /Taulukko/ on ohjelmoinnin tietorakenne, johon voidaan tallentaa
+   järjestyksessä tietty määrä lukuja tai muita arvoja. Taulukossa
+   oleviin lukuihin voidaan viitata niiden järjestysnumerolla, joka
+   kirjoitetaan hakasulkujen ~[]~ sisään. Järjestysnumerot /alkavat
+   nollasta/. Jos taulukon nimi on ~X_T~, niin taulukon
+   ensimmäinen luku on
+   #+BEGIN_EXAMPLE
+   X_T [0]
+   #+END_EXAMPLE
+   Hakasuluissa olevaa kokonaislukua kutsutaan
+   /indeksiksi/. Välilyönti taulukon nimen ja hakasulkujen välissä on
+   valinnainen.
+
+   Taulukon /pituus/ on siihen mahtuvien lukujen määrä. Jos taulukon
+   nimi on ~X_T~, niin taulukon pituus saadaan ohjelmassa
+   lausekkeella 
+   #+BEGIN_EXAMPLE
+   X_T.length
+   #+END_EXAMPLE
+   #+END_QUOTE
+   
+   Jos edellisessä esimerkissä olevat luvut
+   call_taulukko-ympyrat-annetut-x() ovat taulukossa ~X_T~, niin
+   niihin voidaan viitata alla olevan kuvan mukaisesti. Taulukossa on
+   11 lukua, jolloin indeksin suurin arvo on 10.
+   #+NAME: taulukko-xkoordinaatit-taulukossa
+   #+BEGIN_SRC asymptote :file taulukko-xkoordinaatit-taulukossa.svg :noweb yes
+     size (8cm, 0);
+
+     int[] coordinates = {<<taulukko-ympyrat-annetut-x>>};
+
+     string tableSpecStr = "{r|";
+     string headlineStr = "lauseke";
+     string dataStr = "arvo";
+
+     for (int i = 0; i < coordinates.length; ++i)
+       {
+         tableSpecStr += "c";
+         headlineStr += "&" + "\texttt{X\_T} [" + (string) i + "]";
+         dataStr += "&" + (string) (coordinates [i]);
+       }
+     tableSpecStr += "}";
+     headlineStr += "\\";
+
+     label ("\begin{tabular}" + tableSpecStr + headlineStr
+            + "\hline " + dataStr + "\end{tabular}",
+            (0, 0));
+   #+END_SRC
+
+   #+RESULTS: taulukko-xkoordinaatit-taulukossa
+   [[file:taulukko-xkoordinaatit-taulukossa.svg]]
+
+   #+BEGIN_QUOTE
+   Jos taulukossa on $n$ lukua, niin taulukon indeksi on korkeintaan
+   \((n - 1).\) Taulukon indeksin pienin arvo on aina 0.
+   #+END_QUOTE
+
+   Yllä oleva kuva on piirretty alla olevalla ohjelmalla. Ohjelmasta
+   näkyy, miten taulukkovakio määritellään, ja miten taulukon luvut
+   voidaan käydä läpi ~while~-silmukassa.
+
+   #+BEGIN_SRC processing :noweb yes :exports code
+   <<taulukko-ympyrat-annetuissa>>
+   #+END_SRC
+** Taulukkomuuttuja
