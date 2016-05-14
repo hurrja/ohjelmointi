@@ -124,8 +124,6 @@
    <<satunnaisuus-janat>>
    #+END_SRC
 
-#+INCLUDE: satunnaisuus-ympyrajahti.org
-#+INCLUDE: satunnaisuus-janat.org
 ** Tehtäviä
    1. Tee ohjelma, jossa asetetaan satunnaisen sävyinen taustaväri
       \(400\times 400\)-kokoiseen piirtoikkunaan. Suorita ohjelmasi
@@ -196,7 +194,10 @@
    5. Tee ohjelma, joka piirtää piirtoikkunaan satunnaisesti joko
       neliön, ympyrän tai kolmion. Voit valita ikkunan ja kuvioiden
       mitat vapaasti.
-   6. Jotain tapahtuu satunnaisin väliajoin.
+   6. Tee ohjelma, joka piirtää [[file:satunnaisuus-aikavali-sivu.org][tällä sivulla]] näkyvän
+      animaation. Animaatiossa satunnaiseen kohtaan piirretty ympyrä
+      on näkyvissä satunnaisen määrän kokonaisia sekunteja väliltä
+      1--3 sekuntia. Tämä sekuntimäärä piirretään ympyrän keskelle.
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports both
@@ -230,3 +231,12 @@
         else
           triangle (0, 0, width, 0, 0, height);
       #+END_SRC
+   6. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<satunnaisuus-aikavali>>
+      #+END_SRC
+      
+
+#+INCLUDE: satunnaisuus-ympyrajahti.org
+#+INCLUDE: satunnaisuus-janat.org
+#+INCLUDE: satunnaisuus-aikavali.org
