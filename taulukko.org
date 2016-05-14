@@ -1,0 +1,28 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+#+NAME: taulukko-ympyrat-annetut-x 
+#+BEGIN_SRC org :exports none
+20, 40, 90, 130, 170, 200, 300, 350, 470, 505, 550
+#+END_SRC
+
+* Taulukko
+** Esimerkki
+   Kirjoitetaan ohjelma, joka piirtää alla olevan kuvan. Kuvassa
+   ympyröiden keskipisteitä ei ole arvottu satunnaisesti, vaan ne on
+   annettu: call_taulukko-ympyrat-annetut-x().
+
+   #+NAME: taulukko-ympyrat-annetuissa
+   #+BEGIN_SRC processing :noweb yes
+     size (600, 400);
+
+     final int HALKAISIJA = 10;
+
+     float[] xKoordinaatit = {<<taulukko-ympyrat-annetut-x>>};
+
+     int i = 0;
+     while (i < xKoordinaatit.length)
+     {
+       ellipse (xKoordinaatit [i], height / 2.0, HALKAISIJA, HALKAISIJA);
+       i++;
+     }
+   #+END_SRC
