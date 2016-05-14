@@ -1,0 +1,37 @@
+#+NAME: taulukko-ympyrat-savy
+#+BEGIN_SRC processing :exports none
+  final int HALKAISIJA = 10;
+  float[] x_t; // määritellään taulukkomuuttuja
+
+  void setup ()
+  {
+    size (600, 150);
+    colorMode (HSB, 100);
+
+    x_t = new float [20]; // varataan tila taulukolle, jossa 20 lukua
+
+    // arvotaan satunnaiset x-koordinaatit
+    int i = 0;
+    while (i < x_t.length)
+    {
+      x_t [i] = random (width);
+      i++;
+    }
+
+    frameRate (1);
+  }
+
+
+  void draw ()
+  {
+    fill (random (100), 100, 100); // satunnainen värisävy
+
+    // piirretään ympyrät
+    int i = 0;
+    while (i < x_t.length)
+    {
+      ellipse (x_t [i], height / 2.0, HALKAISIJA, HALKAISIJA);
+      i++;
+    }
+  }
+#+END_SRC

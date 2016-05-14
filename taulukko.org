@@ -105,3 +105,41 @@
    <<taulukko-ympyrat-annetuissa>>
    #+END_SRC
 ** Taulukkomuuttuja
+   Taulukkomuuttujaa tarvitaan tyypillisesti silloin, kun muuttuvia
+   tai satunnaisia lukujoukkoja käytetään ohjelmassa
+   toistuvasti. Taulukkomuuttujan käyttö on hieman hankalampaa, koska
+   taulukkomuuttujan määrittelyn lisäksi taulukolle täytyy erikseen
+   varata tila.
+
+   #+BEGIN_QUOTE
+   Desimaalukuja sisältävä taulukkomuuttuja ~x_t~ määritellään
+   lausekkeella
+   #+BEGIN_EXAMPLE
+   float[] x_t;
+   #+END_EXAMPLE
+   Taulukkoon varataan tilaa 20 luvulle lausekkeella
+   #+BEGIN_EXAMPLE
+   x_t = new float [20];
+   #+END_EXAMPLE
+   Taulukkomuuttujan arvoa voidaan muuttaa sijoittamalla lukuja
+   taulukkoon. Taulukon kolmanteen paikkaan (indeksi 2) sijoitetaan
+   luku 75 lausekkeella
+   #+BEGIN_EXAMPLE
+   x_t [2] = 75;
+   #+END_EXAMPLE
+   #+END_QUOTE
+
+   [[file:taulukko-ympyrat-savy-sivu.org][Tällä sivulla]] olevassa animaatiossa arvotaan ensin ympyröiden
+   keskipisteille satunnaiset \(x\)-koordinaatit. Sen jälkeen kaikki
+   ympyrät piirretään kerran sekunnissa samalla satunnaisella
+   värisävyllä. Koordinaatit kannattaa tallentaa taulukkoon, koska
+   niitä tarvitaan toistuvasti piirtofunktiossa ~draw()~. Animaatio
+   piirretään alla olevalla ohjelmakoodilla.
+
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<taulukko-ympyrat-savy>>
+   #+END_SRC
+
+#+INCLUDE: taulukko-ympyrat-savy.org
+
+   
