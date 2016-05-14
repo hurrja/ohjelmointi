@@ -131,9 +131,9 @@
       \(400\times 400\)-kokoiseen piirtoikkunaan. Suorita ohjelmasi
       useita kertoja, jolloin näet taustavärin vaihtuvan kerrasta
       toiseen.
-   2. Tee ohjelma, joka piirtää janan \(600\times 400\)-kokoisen
-      piirtoikkunan satunnaisesta kohdasta toiseen satunnaiseen
-      kohtaan. Alla on esimerkki ohjelman piirtämästä kuvasta.
+   2. Tee ohjelma, joka piirtää janan satunnaisesta kohdasta toiseen
+      satunnaiseen kohtaan \(600\times 400\)-kokoiseen
+      piirtoikkunaan. Alla on esimerkki ohjelman piirtämästä kuvasta.
       #+NAME: satunnaisuus-jana
       #+BEGIN_SRC processing
         size (600, 400);
