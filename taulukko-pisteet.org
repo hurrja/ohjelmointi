@@ -5,15 +5,13 @@
   float[] xt, yt, xMuutokset, yMuutokset;
 
   // kuinka monta pistettä piirretään
-  final int PISTEITA = 500;
+  final int PISTEITA = 2000;
 
   void setup ()
   {
     size (1000, 800);
     colorMode (HSB, 100);
     stroke (100); // pisteiden väri
-
-    int xVali = width / PISTEITA;
 
     // varataan taulukoille tilat
     xt = new float [PISTEITA];
@@ -25,12 +23,13 @@
     int i = 0;
     while (i < PISTEITA)
     {
-      xt [i] = i * xVali; // x-koordinaatit tasavälein
+      xt [i] = random (width); // satunnainen x-koordinaatti
       yt [i] = height; // alussa kuvan alareunassa
       xMuutokset [i] = random (-1, 1); // muutokset x-suunnassa
       yMuutokset [i] = random (-2, 0); // muutokset y-suunnassa
       i++;
     }
+    frameRate (20);
   }
 
   void draw ()
