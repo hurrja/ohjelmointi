@@ -117,3 +117,6 @@
 ** Esimerkki
    Piirretään alla oleva kuva, joka skaalautuu piirtoikkunan koon
    mukana. Kuvassa on sisäkkäisiä ympy
+** Tehtäviä
+   1. viivat kaikkien ympyröiden välille
+** Ratkaisuja
