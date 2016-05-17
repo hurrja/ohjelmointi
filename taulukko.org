@@ -183,9 +183,9 @@
    2. Tee [[file:taulukko-varisavyt-sivu.org][tällä sivulla]] näkyvä animaatio seuraavasti. 
       - Määrittele ohjelmaasi taulukkovakio, jossa on seuraavat
         varisävyt: call_taulukko-varisavyarvot().
-      - Piirtofunktiossa ~draw()~ arvo satunnainen kokonaisluku ja
-        valitse taustavärin sävy käyttämällä tätä lukua taulukon
-        indeksinä.
+      - Piirtofunktiossa ~draw()~ arvo sopivan suuruinen satunnainen
+        kokonaisluku ja valitse taustavärin sävy käyttämällä arpomaasi
+        lukua taulukon indeksinä.
    3. Tee [[file:taulukko-ympyrat-halkaisijalla-sivu.org][tällä sivulla]] näkyvä animaatio, jossa piirtoikkunan
       halkaisijalle satunnaisiin kohtiin piirretyt ympyrät piirretään
       sekunnin välein vuorotellen valkoisella ja mustalla värillä.
