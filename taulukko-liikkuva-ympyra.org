@@ -1,0 +1,22 @@
+#+NAME: taulukko-liikkuva-ympyra-x
+#+BEGIN_SRC org :exports none
+30, 90, 120, 210, 330, 150
+#+END_SRC
+
+#+NAME: taulukko-liikkuva-ympyra-y
+#+BEGIN_SRC org :exports none
+210, 100, 20, 90, 220, 300
+#+END_SRC
+
+#+NAME: taulukko-liikkuva-ympyra
+#+BEGIN_SRC processing :exports none
+  final float XT = {<<taulukko-liikkuva-ympyra-x>>};
+  final float YT = {<<taulukko-liikkuva-ympyra-y>>};
+
+  void setup ()
+  {
+    size (400, 400);
+    frameRate (10);
+  }
+
+#+END_SRC
