@@ -9,14 +9,29 @@
 #+END_SRC
 
 #+NAME: taulukko-liikkuva-ympyra
-#+BEGIN_SRC processing :exports none
+#+BEGIN_SRC processing :noweb yes :exports none
   final float XT = {<<taulukko-liikkuva-ympyra-x>>};
   final float YT = {<<taulukko-liikkuva-ympyra-y>>};
+  final int HALKAISIJA = 10;
+
+  int indeksi;
 
   void setup ()
   {
     size (400, 400);
-    frameRate (10);
+    colorMode (HSB, 100);
+    fill (100);
+    frameRate (2);
+    indeksi = 0;
   }
 
+  void draw ()
+  {
+    background (0);
+
+    ellipse (XT [indeksi], YT [indeksi], HALKAISIJA, HALKAISIJA);
+    indeksi++;
+    if (indeksi == XT.length)
+      indeksi = 0;
+  }
 #+END_SRC

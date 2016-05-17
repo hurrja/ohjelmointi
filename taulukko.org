@@ -186,10 +186,25 @@
       - Piirtofunktiossa ~draw()~ arvo sopivan suuruinen satunnainen
         kokonaisluku ja valitse taustavärin sävy käyttämällä arpomaasi
         lukua taulukon indeksinä.
-   3. Tee [[file:taulukko-ympyrat-halkaisijalla-sivu.org][tällä sivulla]] näkyvä animaatio, jossa piirtoikkunan
+   3. Tee [[file:taulukko-liikkuva-ympyra-sivu.org][tällä sivulla]] oleva animaatio seuraavasti:
+      - Määrittele ohjelmaasi kaksi taulukkovakiota. Vakiossa ~XT~ on
+        luvut call_taulukko-liikkuva-ympyra-x() ja taulukossa ~YT~
+        luvut call_taulukko-liikkuva-ympyra-y(). Ensimmäinen taulukko
+        sisältää ympyröiden keskipisteiden \(x\)- ja toinen vastaavat
+        \(y\)-koordinaatit. Ympyröiden keskipisteet ovat siis
+        #+BEGIN_EXAMPLE
+        (XT [0], YT [0])
+        #+END_EXAMPLE
+        ja niin edelleen.
+      - Käytä ohjelmassasi kokonaislukumuuttujaa ~indeksi~ valitsemaan
+        vuorotellen taulukoista ympyrälle eri keskipiste. Muuttujan
+        ~indeksi~ arvo kasvaa yhdellä kullakin kierroksella ja palaa
+        arvoon nolla viimeisen keskipisteen jälkeen.
+   4. Tee [[file:taulukko-ympyrat-halkaisijalla-sivu.org][tällä sivulla]] näkyvä animaatio, jossa piirtoikkunan
       halkaisijalle satunnaisiin kohtiin piirretyt ympyrät piirretään
       sekunnin välein vuorotellen valkoisella ja mustalla värillä.
-   4. kaksi taulukkoa
+   5. kaksi taulukkoa
+   6. tähdenlentoja / hyperdrive star field
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports code :noweb yes
@@ -201,6 +216,10 @@
       #+END_SRC
    3. 
       #+BEGIN_SRC processing :exports code :noweb yes
+      <<taulukko-liikkuva-ympyra>>
+      #+END_SRC
+   4. 
+      #+BEGIN_SRC processing :exports code :noweb yes
       <<taulukko-ympyrat-halkaisijalla>>
       #+END_SRC
       
@@ -209,5 +228,6 @@
 #+INCLUDE: taulukko-pisteet.org
 #+INCLUDE: taulukko-ympyrat-halkaisijalla.org
 #+INCLUDE: taulukko-varisavyt.org
+#+INCLUDE: taulukko-liikkuva-ympyra.org
 
    
