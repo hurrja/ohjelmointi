@@ -93,9 +93,13 @@
    jos päivityslausekkeessa halutaan suorittaa useita lausekkeita,
    nekin voidaan erotella toisistaan pilkulla.
    #+END_QUOTE
-
-   #+BEGIN_SRC processing
+   
+   Alla olevan esimerkin silmukassa on kaksi muuttujaa, jotka molemmat
+   päivitetään silmukan lopussa.
+   #+BEGIN_SRC processing :exports both
      size (400, 400);
+     noStroke ();
+     
      final float SIVU = 10;
 
      for (float x = 0, y = height - SIVU; x < width; x += SIVU, y -= SIVU)
