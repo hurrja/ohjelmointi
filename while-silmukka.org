@@ -109,12 +109,10 @@
    #+NAME: viivoja-origosta-alareunaan
    #+BEGIN_SRC processing
      size (400, 400);
-
-     float x = 0; // alareunassa olevan päätepisteen x-koordinaatti
-
      colorMode (HSB, 100);
      background (0); // musta tausta
 
+     float x = 0; // alareunassa olevan päätepisteen x-koordinaatti
      while (x < width) // niin kauan kun piste on kuvan sisällä
      {
        stroke (x / 4, 100, 100); // asetetaan väri
