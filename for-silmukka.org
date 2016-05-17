@@ -1,0 +1,110 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* ~for~-silmukka
+** ~for~-silmukan rakenne
+   ~for~-silmukka on ~while~-silmukalle vaihtoehtoinen
+   kontrollirakenne. Se on näppärän rakenteensa takia
+   ~while~-silmukkaa yleisempi kokeneiden ohjelmoijien parissa.
+
+   #+BEGIN_QUOTE
+   Perinteisen ~for~-silmukan ensimmäinen rivi sisältää yleisen
+   ~while~-silmukkarakenteen kolme osaa. Ohjelmakoodi
+   #+BEGIN_EXAMPLE
+   float k = 0;
+   while (k < width)
+   {
+     rect (k, k, SIVU, SIVU);
+     k = k + SIVU;
+   }  
+   #+END_EXAMPLE
+   voidaan kirjoittaa ~for~-silmukan avulla seuraavasti:
+   #+BEGIN_EXAMPLE
+   for (float k = 0; k < width; k = k + SIVU)
+     rect (k, k, SIVU, SIVU);
+   #+END_EXAMPLE
+   ~for~-silmukassa on
+   1. ~alkulauseke~, joka suoritetaan kun silmukkaan tullaan
+      ensimmäisen kerran
+   2. ~ehto~, joka määrää kuinka kauan silmukkaa suoritetaan
+   3. ~päivityslauseke~, joka suoritetaan silmukan päätteeksi
+      jokaisella kierroksella
+   4. lauseke tai lausekelohko, joka suoritetaan niin kauan kuin ehto
+      on tosi
+
+   Rakenne on siis
+   #+BEGIN_EXAMPLE
+     for (alkulauseke; ehto; päivityslauseke)
+       lauseke tai lohko, joka suoritetaan niin kauan kuin ehto tosi;
+   #+END_EXAMPLE
+   #+END_QUOTE
+** Esimerkki
+   Alla oleva ohjelmakoodi piirtää neliön muotoiseen piirtoikkunaan
+   samanlaisen ruudukon kuin edellisessä kappaleessa.
+   #+BEGIN_SRC processing :exports both
+     size (401, 401);
+     final float L = 10;
+
+     for (float p = 0; p < width; p = p + L)
+     {
+       line (0, p, width, p); // vaakaviiva
+       line (p, 0, p, height); // pystyviiva
+     }
+   #+END_SRC
+** Lyhenteet muuttujien päivitykselle
+   Lausekkeen
+   #+BEGIN_EXAMPLE
+   k = k + SIVU;
+   #+END_EXAMPLE
+   kaltaiset muuttujien arvon päivitykset ovat niin yleisiä, että
+   niitä varten on olemassa erilliset lyhenteet. Lauseke voitaisiin
+   kirjoittaa myös
+   #+BEGIN_EXAMPLE
+   k += SIVU;
+   #+END_EXAMPLE
+   joka tarkoittaa siis sitä, että muuttujan ~k~ arvoon lisätään
+   ~SIVU~.
+
+   #+BEGIN_QUOTE
+   Seuraava taulukko sisältää yleisimmät muuttujien päivittämisessä
+   käytetyt lyhennemerkinnät. Huomaa, että muuttujan arvon
+   kasvattamiselle yhdellä ja vähentämiselle yhdelle on olemassa omat
+   merkinnät.
+   | lyhenne  | merkitys    |
+   |----------+-------------|
+   | ~x += 5~ | ~x = x + 5~ |
+   | ~x -= 5~ | ~x = x - 5~ |
+   | ~x *= 5~ | ~x = x * 5~ |
+   | ~x /= 5~ | ~x = x / 5~ |
+   | ~x++~    | ~x = x + 1~ |
+   | ~x--~    | ~x = x - 1~ |
+   #+END_QUOTE
+** Esimerkki
+   Alla oleva esimerkki piirtää janoja origosta kuvan alareunaan
+   siten, että kuvan alareunassa vierekkäisten janojen välinen
+   etäisyys on 5.
+
+   #+BEGIN_SRC processing :exports both
+     size (400, 400);
+
+     for (float x = 0; x < width; x += 5)
+       line (0, 0, x, height);
+   #+END_SRC
+** Useita muuttujia alkulausekkeessa tai useita lausekkeita päivityslausekkeessa
+   
+   #+BEGIN_QUOTE
+   Jos ~for~-silmukan alkulausekkeessa halutaan määritellä useita
+   muuttujia, ne voidaan erottaa toisistaan pilkulla. Samaan tapaan
+   jos päivityslausekkeessa halutaan suorittaa useita lausekkeita,
+   nekin voidaan erotella toisistaan pilkulla.
+   #+END_QUOTE
+
+   #+BEGIN_SRC processing
+     size (400, 400);
+     final float SIVU = 10;
+
+     for (float x = 0, y = height - SIVU; x < width; x += SIVU, y -= SIVU)
+       rect (x, y, SIVU, SIVU);
+
+   #+END_SRC
+** Tehtäviä
+** Ratkaisuja

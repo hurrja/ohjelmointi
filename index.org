@@ -19,6 +19,7 @@
 * [[file:muuttuja.org]]
 * [[file:lauselohko.org]]
 * [[file:while-silmukka.org]]
+* [[file:for-silmukka.org]]
 * [[file:kokonaislukumuuttuja-vakio.org]]
 * [[file:funktion-maaritteleminen.org]]
 * [[file:animaatio.org]]
@@ -27,7 +28,6 @@
 * [[file:funktion-paluuarvo.org]]
 * [[file:satunnaisuus.org]]
 * [[file:taulukko.org]]
-* ~for~-silmukka
 * [[file:sisakkaiset-silmukat.org]]
 * Rekursio
 * Luokka ja olio
