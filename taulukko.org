@@ -245,8 +245,17 @@
           i++;
         }
       #+END_SRC
-   6. kaksi taulukkoa
-   7. tähdenlentoja / hyperdrive star field
+   6. Alla oleva ohjelmakoodi arpoo muuttujiin ~xMuutos~ ja ~yMuutos~
+      satunnaisen mittaisen muutoksen satunnaiseen suuntaan
+      \(xy\)-tasossa. Muutoksen suuruus on korkeintaan yksi. Muuttujia
+      ~suunta~ ja ~pituus~ käytetään muutosten suuruuden laskemiseen,
+      mutta niitä ei tarvita koodissa muualla.
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<taulukko-rajahdys-satunnaismuutos>>
+      #+END_SRC
+      Ohjelmoi [[file:taulukko-rajahdys-sivu.org][tällä sivulla]] näkyvä animaatio yllä olevan
+      ohjelmakoodin avulla. Voit aloittaa kopioimalla ohjelmakoodin
+      tämän kappaleen viimeisestä esimerkistä.
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports code :noweb yes
@@ -268,6 +277,10 @@
       #+BEGIN_SRC processing :exports code :noweb yes
       <<taulukko-satunnaiset-ympyraparit>>
       #+END_SRC
+   6. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<taulukko-rajahdys>>
+      #+END_SRC
       
 
 #+INCLUDE: taulukko-ympyrat-savy.org
@@ -275,5 +288,6 @@
 #+INCLUDE: taulukko-ympyrat-halkaisijalla.org
 #+INCLUDE: taulukko-varisavyt.org
 #+INCLUDE: taulukko-liikkuva-ympyra.org
+#+INCLUDE: taulukko-rajahdys.org
 
    
