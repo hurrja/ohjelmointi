@@ -180,8 +180,9 @@
           i++;
         }
    #+END_SRC
-
-   2. yksi satunnaisesti arvottu taulukko
+   2. Tee [[file:taulukko-ympyrat-halkaisijalla-sivu.org][tällä sivulla]] näkyvä animaatio, jossa piirtoikkunan
+      halkaisijalle satunnaisiin kohtiin piirretyt ympyrät piirretään
+      sekunnin välein vuorotellen valkoisella ja mustalla värillä.
    3. kaksi taulukkoa
    4. 
 ** Ratkaisuja
@@ -189,8 +190,14 @@
       #+BEGIN_SRC processing :exports code :noweb yes
       <<taulukko-neliot-annetuissa>>
       #+END_SRC
+   2. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<taulukko-ympyrat-halkaisijalla>>
+      #+END_SRC
+      
 
 #+INCLUDE: taulukko-ympyrat-savy.org
 #+INCLUDE: taulukko-pisteet.org
+#+INCLUDE: taulukko-ympyrat-halkaisijalla.org
 
    
