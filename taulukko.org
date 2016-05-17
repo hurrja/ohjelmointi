@@ -2,7 +2,12 @@
 
 #+NAME: taulukko-ympyrat-annetut-x 
 #+BEGIN_SRC org :exports none
-20, 40, 90, 130, 170, 200, 300, 350, 470, 505, 550
+20, 550, 40, 90, 470, 130, 170, 200, 300, 505, 350
+#+END_SRC
+
+#+NAME: taulukko-neliot-annetut-y
+#+BEGIN_SRC org :exports none
+300, 55, 30, 90, 170, 220
 #+END_SRC
 
 * Taulukko
@@ -152,7 +157,38 @@
    #+BEGIN_SRC processing :exports code :noweb yes
    <<taulukko-pisteet>>
    #+END_SRC
+** Tehtäviä
+   1. Määrittele ohjelmaasi taulukko, jossa on seuraavat luvut:
+      call_taulukko-neliot-annetut-y(). Piirrä \(400\times
+      400\)-kokoiseen piirtoikkunaan \(20\times 20\)-kokoisia neliöitä
+      siten, että kunkin neliön vasemman yläkulman \(y\)-koordinaatti
+      on yksi taulukon luvuista. Neliöt ovat piirtoikkunan vasemmassa
+      reunassa alla olevan kuvan mukaisesti.
+      #+NAME: taulukko-neliot-annetuissa
+      #+BEGIN_SRC processing :noweb yes
+        size (400, 400);
 
+        final int SIVU = 20;
+
+        final float[] YT = {<<taulukko-neliot-annetut-y>>};
+
+        int i = 0;
+
+        while (i < YT.length)
+        {
+          rect (0, YT [i], SIVU, SIVU);
+          i++;
+        }
+   #+END_SRC
+
+   2. yksi satunnaisesti arvottu taulukko
+   3. kaksi taulukkoa
+   4. 
+** Ratkaisuja
+   1. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<taulukko-neliot-annetuissa>>
+      #+END_SRC
 
 #+INCLUDE: taulukko-ympyrat-savy.org
 #+INCLUDE: taulukko-pisteet.org
