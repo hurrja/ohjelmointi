@@ -4,11 +4,11 @@
 ** ~for~-silmukan rakenne
    ~for~-silmukka on ~while~-silmukalle vaihtoehtoinen
    kontrollirakenne. Se on näppärän rakenteensa takia
-   ~while~-silmukkaa yleisempi kokeneiden ohjelmoijien parissa.
+   ~while~-silmukkaa yleisempi.
 
    #+BEGIN_QUOTE
-   Perinteisen ~for~-silmukan ensimmäinen rivi sisältää yleisen
-   ~while~-silmukkarakenteen kolme osaa. Ohjelmakoodi
+   ~for~-silmukan ensimmäinen rivi sisältää ~while~-silmukkarakenteen
+   kolme osaa. Ohjelmakoodi
    #+BEGIN_EXAMPLE
    float k = 0;
    while (k < width)
@@ -65,18 +65,14 @@
    ~SIVU~.
 
    #+BEGIN_QUOTE
-   Seuraava taulukko sisältää yleisimmät muuttujien päivittämisessä
-   käytetyt lyhennemerkinnät. Huomaa, että muuttujan arvon
-   kasvattamiselle yhdellä ja vähentämiselle yhdelle on olemassa omat
-   merkinnät.
+   Seuraava taulukko sisältää muutamia keskeisiä muuttujien
+   päivittämisessä käytettyjä lyhenteitä. 
    | lyhenne  | merkitys    |
    |----------+-------------|
    | ~x += 5~ | ~x = x + 5~ |
    | ~x -= 5~ | ~x = x - 5~ |
    | ~x *= 5~ | ~x = x * 5~ |
    | ~x /= 5~ | ~x = x / 5~ |
-   | ~x++~    | ~x = x + 1~ |
-   | ~x--~    | ~x = x - 1~ |
    #+END_QUOTE
 ** Esimerkki
    Alla oleva esimerkki piirtää janoja origosta kuvan alareunaan
@@ -107,4 +103,57 @@
 
    #+END_SRC
 ** Tehtäviä
+   1. Muuta seuraava ohjelmakoodi käyttämään ~for~-silmukkaa sekä
+      muuttujien päivityslyhenteitä.
+      #+BEGIN_SRC processing :exports both
+        size (400, 400);
+
+        final int SIVU = 30;
+
+        float y = height - SIVU;
+
+        while (y >= 0)
+        {
+          rect (width / 2.0, y, SIVU, SIVU);
+          y = y - SIVU;
+        }
+      #+END_SRC
+   2. Muuta seuraava ohjelmakoodi käyttämään ~for~-silmukkaa sekä
+      muuttujien päivityslyhenteitä.
+      #+BEGIN_SRC processing :exports both
+        size (400, 400);
+
+        final float HALKAISIJA = 20;
+        final float SADE = HALKAISIJA / 2;
+
+        float x = SADE;
+        float y = SADE;
+
+        while (x < width)
+        {
+          ellipse (x, y, HALKAISIJA, HALKAISIJA);
+          x = x + SADE;
+          y = 1.1 * y;
+        }
+
+      #+END_SRC
 ** Ratkaisuja
+   1. 
+      #+BEGIN_SRC processing :exports both
+        size (400, 400);
+
+        final int SIVU = 30;
+
+        for (float y = height - SIVU; y >= 0; y -= SIVU)
+          rect (width / 2.0, y, SIVU, SIVU);
+      #+END_SRC
+   2. 
+      #+BEGIN_SRC processing :exports both
+        size (400, 400);
+
+        final float HALKAISIJA = 20;
+        final float SADE = HALKAISIJA / 2;
+
+        for (float x = SADE, y = SADE; x < width; x += SADE, y *= 1.1)
+          ellipse (x, y, HALKAISIJA, HALKAISIJA);
+      #+END_SRC
