@@ -159,7 +159,24 @@
           rect (x, 0, SIVU, SIVU);
 
       #+END_SRC
-   4. kokonaislukumäärä kuvioita
+   4. Piirrä alla oleva kuva ~for~-silmukan avulla. Kuvassa on
+      sisäkkäisiä neliöitä. Uloiman neliön sivun pituus on ~(width -
+      10)~. Kunkin sisemmän neliön sivun pituus on puolet edellisen
+      ulomman neliön sivun pituudesta. Sisempiä neliöitä piirretään
+      niin kauan, kuin niiden sivun pituus on suurempi kuin 2.
+      #+NAME: for-sisakkaiset-neliot
+      #+BEGIN_SRC processing
+        size (600, 600);
+
+        final float PUOLET = width / 2.0; // puolet piirtoikkunan leveydestä
+
+        for (float sivu = width - 10; sivu > 2; sivu /= 2)
+        {
+          float k = PUOLET - sivu / 2.0; // vas. yläkulman x- ja y-koordinaatti
+          rect (k, k, sivu, sivu);
+        }
+
+      #+END_SRC
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports both
@@ -183,4 +200,8 @@
    3. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<for-vierekkaiset-neliot>>
+      #+END_SRC
+   4. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<for-sisakkaiset-neliot>>
       #+END_SRC
