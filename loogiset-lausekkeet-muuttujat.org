@@ -203,9 +203,7 @@
         background (0);
         textAlign (CENTER, CENTER);
 
-        int n = 1;
-
-        while (n <= 21)
+        for (int n = 1; n <= 21; n++)
         {
           float savy = 65;
           if (n % 3 == 0 || n % 7 == 0)
@@ -213,7 +211,6 @@
           fill (savy, 100, 100);
   
           text (n, n * 25, height / 2.0);
-          n++;
         }
       #+END_SRC
    4. Tee ohjelma, joka piirtää [[file:loogiset-lausekkeet-muuttujat-suorakulmiossa-sivu.org][tällä sivulla]] olevan interaktiivisen
