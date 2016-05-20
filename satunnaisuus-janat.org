@@ -15,12 +15,10 @@
   {
     background (0);
     int janoja = floor (random (1, 31)); // korkeintaan 30 janaa
-    int n = 1;
-    while (n <= janoja)
+    for (int n = 1; n <= janoja; n++)
     {
       stroke (random (100), 100, 100); // satunnainen viivan värisävy
       line (random (width), 0, random (width), height);
-      n++;
     }
   }
 #+END_SRC

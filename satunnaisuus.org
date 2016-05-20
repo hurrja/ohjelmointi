@@ -24,12 +24,8 @@
      size (600, 400);
      final int HALKAISIJA = 10;
 
-     int n = 1;
-     while (n < 10)
-     {
+     for (n = 1; n <= 10; n++)
        ellipse (random (width), random (height), HALKAISIJA, HALKAISIJA);
-       n++;
-     }
    #+END_SRC
 ** Esimerkki
    [[file:satunnaisuus-ympyrajahti-sivu.org][Tällä sivulla]] oleva interaktiivinen animaatio on ohjelmoitu alla
@@ -89,12 +85,8 @@
      textSize (20);
 
      // piirretään 30 satunnaista lukua 0 tai 1
-     int n = 1;
-     while (n <= 30)
-     {
+     for (int n = 1; n <= 30; n++)
        text (floor (random (2)), 20 * n, height / 2.0);
-       n++;
-     }
    #+END_SRC
 
    Yleisemmin pätee seuraava.
@@ -149,12 +141,10 @@
         noStroke ();
         final int SIVU = 50;
 
-        int n = 1;
-        while (n <= 100)
+        for (int n = 1; n <= 100; n++)
         {
           fill (random (100), 100, 100);
           rect (random (width - SIVU), random (height - SIVU), SIVU, SIVU);
-          n++;
         }
 
       #+END_SRC
@@ -176,9 +166,7 @@
         float halkaisija = width;
         boolean valkoinen = true;
 
-        int n = 1;
-
-        while (n <= ympyroita)
+        for (int n = 1; n <= ympyroita; n++)
         {
           if (valkoinen)
             fill (100);
@@ -186,7 +174,7 @@
             fill (0);
 
           ellipse (width / 2.0, height / 2.0, halkaisija, halkaisija);
-          n++;
+
           halkaisija = 0.95 * halkaisija;
           valkoinen = !valkoinen;
         }
