@@ -191,7 +191,7 @@
        // seuraavaksi piirrettävän ympyrän halkaisija
        float ympyranHalkaisija = TAULUN_H;
 
-       for (int n = 1; n <= N; n++, ympyranHalkaisija -= ASKEL)
+       for (int n = 1; n <= N; n++)
        {
          if (n % 2 == 1)
            fill (100);
@@ -199,6 +199,7 @@
            fill (0);
 
          ellipse (x, y, ympyranHalkaisija, ympyranHalkaisija);
+         ympyranHalkaisija -= ASKEL;
        }
      }
 
@@ -208,8 +209,11 @@
      {
        float kpX = x; // tikkataulun keskipisteen x-koordinaatti
 
-       for (int n = 1; n <= lkm; n++, kpX += TAULUN_H)
+       for (int n = 1; n <= lkm; n++)
+       {
          piirraTikkataulu (kpX, y);
+         kpX += TAULUN_H;
+       }
      }
 
      void draw ()

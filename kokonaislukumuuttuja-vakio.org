@@ -82,7 +82,7 @@
      textSize (16); // tekstin koko
      textAlign (CENTER, CENTER); // tekstin keskikohta annetuissa koordinaateissa
 
-     final float VALI = 30; // tekstin keskipisteiden väli
+     final int VALI = 30; // tekstin keskipisteiden väli
      final float Y = height / 2.0; // tekstin keskipisteen Y-koordinaatti
 
      // piirretään 25 numeroa
@@ -278,8 +278,11 @@
         float sivu = width / 10.0;
 
         float k = 0; // piirrettävän neliön koordinaatti (sekä x että y)
-        for (int n = 1; n <= 8; n++, k += sivu)
+        for (int n = 1; n <= 8; n++)
+        {
           rect (k, k, sivu, sivu);
+          k += sivu;
+        }
       #+END_SRC
    3. Piirrä \(400\times 400\)-kokoisen piirtoikkunan lävistäjälle
       ensimmäiset 15 positiivista kokonaislukua alla olevan kuvan
@@ -316,7 +319,7 @@
         final float K = width / 2.0; 
 
         int n = 1; // piirrettävän ympyrän järjestysnumero
-        for (float halkaisija = width; halkaisija > 0; halkaisija -= 10, n++)
+        for (float halkaisija = width; halkaisija > 0; halkaisija -= 10)
         {
           // lasketaan ympyrän kirkkaus (musta tai valkoinen)
           float kirkkaus;
@@ -327,6 +330,7 @@
           fill (kirkkaus);
 
           ellipse (K, K, halkaisija, halkaisija);
+          n++;
         }
       #+END_SRC
    5. Alla olevassa taulukossa on Processing-lausekkeen ~n % 3~ arvoja
