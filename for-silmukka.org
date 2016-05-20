@@ -141,9 +141,14 @@
         }
 
       #+END_SRC
-   3. Tee ohjelma, joka piirtää alla olevan kaltaisen kuvan.
+   3. Tee ohjelma, joka piirtää ~for~-silmukan avulla alla olevan
+      kaltaisen kuvan.
       - Piirtoikkunan koko on \(600\times 200\).
-      - 
+      - Neliöiden sivun pituus on vakio ~SIVU~ ja neliöiden välinen
+        etäisyys vakio ~VALI~.
+      - Neliöitä piirretään niin monta kuin niitä mahtuu. Osittain
+        ikkunaan mahtuvia neliöitä ei piirretä.
+      #+NAME: for-vierekkaiset-neliot
       #+BEGIN_SRC processing
         size (600, 200);
 
@@ -151,7 +156,7 @@
         final float VALI = 20;
 
         for (float x = 0; x < width - SIVU; x += SIVU + VALI)
-          rect (x, height / 2.0, SIVU, SIVU);
+          rect (x, 0, SIVU, SIVU);
 
       #+END_SRC
    4. kokonaislukumäärä kuvioita
@@ -174,4 +179,8 @@
 
         for (float x = SADE, y = SADE; x < width; x += SADE, y *= 1.1)
           ellipse (x, y, HALKAISIJA, HALKAISIJA);
+      #+END_SRC
+   3. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<for-vierekkaiset-neliot>>
       #+END_SRC
