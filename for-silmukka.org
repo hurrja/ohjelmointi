@@ -91,7 +91,8 @@
    Jos ~for~-silmukan alkulausekkeessa halutaan määritellä useita
    muuttujia, ne voidaan erottaa toisistaan pilkulla. Samaan tapaan
    jos päivityslausekkeessa halutaan suorittaa useita lausekkeita,
-   nekin voidaan erotella toisistaan pilkulla.
+   nekin voidaan erotella toisistaan pilkulla. Nämä lausekkeet
+   suoritetaan järjestyksessä vasemmalta oikealle.
    #+END_QUOTE
    
    Alla olevan esimerkin silmukassa on kaksi muuttujaa, jotka molemmat
@@ -175,6 +176,21 @@
           float k = PUOLET - sivu / 2.0; // vas. yläkulman x- ja y-koordinaatti
           rect (k, k, sivu, sivu);
         }
+      #+END_SRC
+   5. Piirrä alla oleva kuva.
+      - Piirtoikkuna on neliön muotoinen.
+      - Vasemmassa yläkulmassa olevan neliön sivun pituus on puolet
+        piirtoikkunan sivun pituudesta.
+      - Kunkin seuraavan neliön sivun pituus on puolet edellisestä.
+      - Neliöitä piirretään niin kauan, kun sivun pituus on suurempi
+        kuin 2.
+      #+NAME: for-neliot-halkaisijalla
+      #+BEGIN_SRC processing
+        size (400, 400);
+
+        // k on neliön yläkulman koordinaatti (sekä x että y)
+        for (float sivu = width / 2.0, k = 0; sivu > 2; k += sivu, sivu /= 3)
+          rect (k, k, sivu, sivu);
 
       #+END_SRC
 ** Ratkaisuja
@@ -205,3 +221,8 @@
       #+BEGIN_SRC processing :noweb yes :exports code
       <<for-sisakkaiset-neliot>>
       #+END_SRC
+   5. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<for-neliot-halkaisijalla>>
+      #+END_SRC
+      
