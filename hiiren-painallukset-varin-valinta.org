@@ -22,12 +22,11 @@
 
     // piirretään paletti; kutakin värisävyä 0, 1, ..., 100 vastaava
     // viiva piirretään vaakatasoon vastaavaan y-koordinaattiin
-    int savy = 0;
-    while (savy < 100)
+    
+    for (int savy = 0; savy < 100; savy++)
     {
       stroke (savy, 100, 100);
       line (0, savy, VARIT_LEVEYS, savy); // viivan y-koordinaatti on värisävy
-      savy++;
     }
 
     // piirretään ympyrä

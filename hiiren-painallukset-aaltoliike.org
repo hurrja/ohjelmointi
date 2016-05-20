@@ -25,19 +25,14 @@
     background (0);
 
     // piirretään viivat
-    int viivaX = vasenViivaX;
     stroke (100);
-    while (viivaX < width)
-    {
+    for (int viivaX = vasenViivaX; viivaX < width; viivaX += VIIVAVALI)
       line (viivaX, 0, viivaX, height);
-      viivaX = viivaX + VIIVAVALI;
-    }
 
     // kasvatetaan vasemmanpuoleisimman viivan x-koordinaattia
     vasenViivaX++;
     if (vasenViivaX > VIIVAVALI)
       vasenViivaX = 0;
-
 
     // piirretään ympyrä sekä sen "suojaama" osa piirtoikkunasta
     // suorakulmiona

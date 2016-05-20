@@ -18,14 +18,13 @@
     {
       background (0);
       fill (100);
-      int arvo = 25;
-      while (arvo < 100)
+      
+      for (int arvo = 25; arvo < 100; arvo += 25)
       {
         textAlign (CENTER, TOP);
         text (arvo, arvo, 0);
         textAlign (LEFT, CENTER);
         text (arvo, 0, arvo);
-        arvo = arvo + 25;
       }
   
       noStroke ();
