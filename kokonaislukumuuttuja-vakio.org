@@ -83,13 +83,10 @@
      textAlign (CENTER, CENTER); // tekstin keskikohta annetuissa koordinaateissa
 
      final float VALI = 30; // tekstin keskipisteiden väli
-     float x = VALI; // tekstin keskipisteen x-koordinaatti
      final float Y = height / 2.0; // tekstin keskipisteen Y-koordinaatti
 
-     int n = 1; // piirrettävä numero
-
      // piirretään 25 numeroa
-     while (n <= 25) // turvallista vertailla, kun n on kokonaisluku
+     for (int n = 1, x = VALI; n <= 25; n += 1, x += VALI) // turvallista vertailla, kun n on kokonaisluku
      {
        if (n == 10) // turvallista vertailla
          fill (0, 100, 100); // punainen teksti
@@ -98,9 +95,6 @@
     
        // luku tekstinä
        text (n, x, Y);
-
-       x = x + VALI; // seuraavan keskipisteen x
-       n = n + 1; // seuraava numero
      }
    #+END_SRC
 
@@ -182,9 +176,7 @@
      // mahtuu leveyteen
      int ympyroita = width / HALKAISIJA;
 
-     int n = 1; // kuinka monetta ympyrää piirretään
-
-     while (n <= ympyroita)
+     for (int n = 1; n <= ympyroita; n++)
      {
        if (n % 2 == 1) // ensimmäinen ja muut parittomat sinisellä
          fill (62, 100, 100);
@@ -192,7 +184,6 @@
          fill (17, 100, 100);
 
        ellipse ((n - 0.5) * HALKAISIJA, Y, HALKAISIJA, HALKAISIJA);
-       n++; // kasvatetaan järjestysnumeroa
      }
    #+END_SRC
 
@@ -257,7 +248,9 @@
        n++;
      }
    #+END_SRC
-
+   Tässä tapauksessa käytän itse mieluummin ~while~- kuin
+   ~for~-silmukkaa. Tällöin ~while~-silmukka korostaa piirtämisen
+   jatkamisen ehtoa. 
    #+BEGIN_SRC processing :exports code :noweb yes
    <<kokonaisluku-sahalaita-pitenevin-askelin>>
    #+END_SRC
@@ -270,17 +263,10 @@
       #+BEGIN_SRC processing
         size (600, 100);
 
-        final float SIVU = 13;
+        final int SIVU = 13;
 
-        int n = 1;
-        float x = 0;
-
-        while (n <= 45)
-        {
+        for (int n = 1, x = 0; n <= 45; n++, x += SIVU)
           rect (x, 0, SIVU, SIVU);
-          x = x + SIVU;
-          n++;
-        }
       #+END_SRC
    2. Piirrä alla olevan kuvan mukaisesti 8 neliötä neliön muotoisen
       piirtoikkunan lävistäjälle. Kunkin neliön sivun pituus tulee
@@ -291,16 +277,9 @@
         size (400, 400);
         float sivu = width / 10.0;
 
-        int n = 1; // piirrettävän neliön järjestysnumero
         float k = 0; // piirrettävän neliön koordinaatti (sekä x että y)
-
-        while (n <= 8)
-        {
+        for (int n = 1; n <= 8; n++, k += sivu)
           rect (k, k, sivu, sivu);
-          k = k + sivu;
-          n++;
-        }
-
       #+END_SRC
    3. Piirrä \(400\times 400\)-kokoisen piirtoikkunan lävistäjälle
       ensimmäiset 15 positiivista kokonaislukua alla olevan kuvan
@@ -316,24 +295,16 @@
         textSize (16);
         textAlign (CENTER, CENTER);
 
-        final float VALI = 20;
+        final int VALI = 20;
 
-        int n = 1;
-        float k = VALI;
-
-        while (n <= 15)
-        {
+        for (int n = 1, k = VALI; n <= 15; n++, k += VALI)
           text (n, k, k);
-          k = k + VALI;
-          n++;
-        }
       #+END_SRC
-   4. Piirrä alla oleva kuvio ~while~-silmukan avulla piirtämällä
-      ensin suuri musta ympyrä, sen päälle pienempi valkoinen ympyrä,
-      jonka päälle edelleen pienempi musta ympyrä. Piirtoikkuna on
-      neliön muotoinen, ja kuvan tulee skaalautua piirtoikkunan
-      mukana. Piirretyn ympyrän halkaisija pienenee 10 pikseliä
-      kullakin askeleella. 
+   4. Piirrä alla oleva kuvio piirtämällä ensin suuri musta ympyrä,
+      sen päälle pienempi valkoinen ympyrä, jonka päälle edelleen
+      pienempi musta ympyrä. Piirtoikkuna on neliön muotoinen, ja
+      kuvan tulee skaalautua piirtoikkunan mukana. Piirretyn ympyrän
+      halkaisija pienenee 10 pikseliä kullakin askeleella.
 
       #+NAME: kokonaisluku-tikkataulu
       #+BEGIN_SRC processing
@@ -344,10 +315,8 @@
         // keskipisteen koordinaatti (sekä x että y)
         final float K = width / 2.0; 
 
-        float halkaisija = width; // ympyrän halkaisija
         int n = 1; // piirrettävän ympyrän järjestysnumero
-
-        while (halkaisija > 0)
+        for (float halkaisija = width; halkaisija > 0; halkaisija -= 10, n++)
         {
           // lasketaan ympyrän kirkkaus (musta tai valkoinen)
           float kirkkaus;
@@ -358,9 +327,6 @@
           fill (kirkkaus);
 
           ellipse (K, K, halkaisija, halkaisija);
-
-          n++;
-          halkaisija = halkaisija - 10;
         }
       #+END_SRC
    5. Alla olevassa taulukossa on Processing-lausekkeen ~n % 3~ arvoja
@@ -380,14 +346,9 @@
         noStroke ();
         background (0);
 
-        final float LEVEYS = 10; // kunkin suorakulmion leveys
+        final int LEVEYS = 10; // kunkin suorakulmion leveys
 
-        int n = 1; // piirrettävän suorakulmion järjestysnumero
-
-        // piirrettävän suorakulmion vasemman reunan x-koordinaatti
-        float x = 0; 
-
-        while (n <= 95)
+        for (int n = 1, x = 0; n <= 95; n++, x += LEVEYS)
         {
           // päätellään, millä värillä piirretään
           float varisavy;
@@ -401,9 +362,6 @@
           fill (varisavy, 100, 100);
 
           rect (x, 0, LEVEYS, height);
-
-          n++;
-          x = x + LEVEYS;
         }
       #+END_SRC
    6. Piirrä \(400\times 400\)-kokoiseen piirtoikkunaan alla oleva
