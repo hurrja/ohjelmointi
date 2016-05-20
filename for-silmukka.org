@@ -164,7 +164,7 @@
       sisäkkäisiä neliöitä. Uloimman neliön sivun pituus on ~(width -
       10)~. Kunkin sisemmän neliön sivun pituus on puolet edellisen
       ulomman neliön sivun pituudesta. Sisempiä neliöitä piirretään
-      niin kauan, kuin niiden sivun pituus on suurempi kuin 2.
+      niin kauan kuin niiden sivun pituus on suurempi kuin 2.
       #+NAME: for-sisakkaiset-neliot
       #+BEGIN_SRC processing
         size (600, 600);
@@ -182,7 +182,7 @@
       - Vasemmassa yläkulmassa olevan neliön sivun pituus on puolet
         piirtoikkunan sivun pituudesta.
       - Kunkin seuraavan neliön sivun pituus on puolet edellisestä.
-      - Neliöitä piirretään niin kauan, kun sivun pituus on suurempi
+      - Neliöitä piirretään niin kauan kuin sivun pituus on suurempi
         kuin 2.
       #+NAME: for-neliot-halkaisijalla
       #+BEGIN_SRC processing
@@ -191,8 +191,24 @@
         // k on neliön yläkulman koordinaatti (sekä x että y)
         for (float sivu = width / 2.0, k = 0; sivu > 2; k += sivu, sivu /= 3)
           rect (k, k, sivu, sivu);
-
       #+END_SRC
+   6. Piirrä alla oleva kuva. 
+      - Piirtoikkunan koko on \(800\times 250\).
+      - Vasemmanpuoleisen ympyrän halkaisija on piirtoikkunan korkeus.
+      - Siirryttäessä kuvassa oikealla kunkin seuraavan ympyrän
+        halkaisija on kaksi kolmasosaa edellisen ympyrän halkaisijasta.
+      - Ympyröitä piirretään niin kauan kuin halkaisija on suurempi
+        kuin 2.
+      #+NAME: for-pienenevat-ympyrat
+      #+BEGIN_SRC processing
+        size (800, 250);
+        
+        for (float halkaisija = height, x = halkaisija / 2.0;
+             halkaisija > 2;
+             x += halkaisija / 2.0, halkaisija *= 2.0 / 3, x += halkaisija / 2.0)
+          ellipse (x, height / 2.0, halkaisija, halkaisija);
+      #+END_SRC
+
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports both
@@ -224,5 +240,12 @@
    5. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<for-neliot-halkaisijalla>>
+      #+END_SRC
+   6. Alla olevassa ratkaisussa ~for~-silmukan päivitysosassa
+      muuttujaan ~x~ lisätään ensin isomman ja sitten pienemmän
+      ympyrän säde. Toinen vaihtoehto olisi lisätä luvun
+      \(\frac{5}{3}\) ja isomman ympyrän säteen tulo.
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<for-pienenevat-ympyrat>>
       #+END_SRC
       
