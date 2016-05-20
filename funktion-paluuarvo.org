@@ -71,28 +71,25 @@
    joka palauttaa arvon ~true~ täsmälleen silloin, kun piste ~(x, y)~
    on piirtoikkunan sisällä. Muuten funktio palauttaa arvon ~false~.
    #+BEGIN_SRC processing :exports both
-     boolean piirtoikkunassa (int x, int y)
-     {
-       return (x >= 0 && x < width && y >=0 && y < height);
-     }
+          boolean piirtoikkunassa (int x, int y)
+          {
+            return (x >= 0 && x < width && y >=0 && y < height);
+          }
 
-     void setup ()
-     {
-       size (400, 400);
+          void setup ()
+          {
+            size (400, 400);
 
-       int x = 0, y = 0;
-       final int HALKAISIJA = 10;
-       while (piirtoikkunassa (x, y))
-       {
-         ellipse (x, y, HALKAISIJA, HALKAISIJA);
-         x = x + HALKAISIJA / 2;
-         y = y + HALKAISIJA;
-       }
-     }
+            final int HALKAISIJA = 10;
+            for (int x = 0, y = 0; 
+                 piirtoikkunassa (x, y);
+                 x += HALKAISIJA / 2.0, y += HALKAISIJA)
+              ellipse (x, y, HALKAISIJA, HALKAISIJA);
+          }
 
-     void draw ()
-     {
-     }
+          void draw ()
+          {
+          }
    #+END_SRC
 ** Tehtäviä
    1. Alla oleva funktio palauttaa \(y\)-koordinaatin pisteelle, joka
@@ -121,12 +118,8 @@
 
         void draw ()
         {
-          float x = 0;
-          while (x < width)
-          {
+          for (float x = 0; x < width; x += 20)
             line (0, 0, x, kaariY (x));
-            x = x + 20;
-          }
         }
       #+END_SRC
    2. Processing-kielen valmis funktio 
@@ -188,12 +181,8 @@
 
         void draw ()
         {
-          int x = 0;
-          while (x < width)
-          {
+          for (int x = 0; x < width; x += 10)
             line (x, 0, x, f (x));
-            x = x + 10;
-          }
         }
       #+END_SRC
    4. Processing-kielen funktiot
