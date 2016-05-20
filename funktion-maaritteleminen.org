@@ -191,8 +191,7 @@
        // seuraavaksi piirrettävän ympyrän halkaisija
        float ympyranHalkaisija = TAULUN_H;
 
-       int n = 1; // piirrettävän ympyrän järjestysnumero
-       while (n <= N)
+       for (int n = 1; n <= N; n++, ympyranHalkaisija -= ASKEL)
        {
          if (n % 2 == 1)
            fill (100);
@@ -200,8 +199,6 @@
            fill (0);
 
          ellipse (x, y, ympyranHalkaisija, ympyranHalkaisija);
-         ympyranHalkaisija = ympyranHalkaisija - ASKEL;
-         n++;
        }
      }
 
@@ -210,14 +207,9 @@
      void piirraTikkatauluRivi (int lkm, float x, float y)
      {
        float kpX = x; // tikkataulun keskipisteen x-koordinaatti
-       int n = 1; // piirrettävän tikkataulun järjestysnumero
 
-       while (n <= lkm)
-       {
+       for (int n = 1; n <= lkm; n++, kpX += TAULUN_H)
          piirraTikkataulu (kpX, y);
-         kpX = kpX + TAULUN_H;
-         n++;
-       }
      }
 
      void draw ()
@@ -389,23 +381,15 @@
 
         void draw ()
         {
-          n = 1;
-          while (n <= 5)
-          {
+          for (n = 1; n <= 5; n++)
             piirraPystyrivi (n * 20);
-            n++;
-          }
         }
 
         void piirraPystyrivi (float x)
         {
           final float HALKAISIJA = 10;
-          n = 1;
-          while (n <= 10)
-          {
+          for (n = 1; n <= 10; n++)
             ellipse (x, n * HALKAISIJA, HALKAISIJA, HALKAISIJA);
-            n++;
-          }
         }
       #+END_SRC
 
