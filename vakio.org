@@ -221,7 +221,6 @@
         final float KORKEUS = 100;
         rect (0, KORKEUS, 3 * KORKEUS, KORKEUS);
       #+END_SRC
-   
    3. Piirrä \((400\times 400)\)-kokoiseen piirtoikkunaan alla olevan
       kuvan mukaisesti kaksi suorakulmaista tasakylkistä
       kolmiota. Kolmioiden kylkien pituutta sekä kolmioiden välistä
