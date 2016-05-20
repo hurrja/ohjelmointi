@@ -11,12 +11,8 @@
     xt = new float [20]; // varataan tila taulukolle, jossa 20 lukua
 
     // arvotaan satunnaiset x-koordinaatit
-    int i = 0;
-    while (i < xt.length)
-    {
+    for (int i = 0; i < xt.length; i++)
       xt [i] = random (width);
-      i++;
-    }
 
     frameRate (1);
   }
@@ -27,11 +23,7 @@
     fill (random (100), 100, 100); // satunnainen värisävy
 
     // piirretään ympyrät
-    int i = 0;
-    while (i < xt.length)
-    {
+    for (int i = 0; i < xt.length; i++)
       ellipse (xt [i], height / 2.0, HALKAISIJA, HALKAISIJA);
-      i++;
-    }
   }
 #+END_SRC

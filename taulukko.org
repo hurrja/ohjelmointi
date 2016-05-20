@@ -25,18 +25,14 @@
      // määritellään taulukkovakio ja siinä olevat luvut
      final float[] XT = {<<taulukko-ympyrat-annetut-x>>};
 
-     int i = 0; // taulukon indeksi, alkaa nollasta
 
-     // taulukkoa käydään läpi niin kauan, kun indeksi on pienempi kuin
-     // taulukon pituus
-     while (i < XT.length)
-     {
+     // Taulukon indeksi i alkaa nollasta. Taulukkoa käydään läpi niin
+     // kauan, kun indeksi on pienempi kuin taulukon pituus.
+     for (int i = 0; i < XT.length; i++)
        ellipse (XT [i], height / 2.0, HALKAISIJA, HALKAISIJA);
-       i++;
-     }
    #+END_SRC
 
-   Ympyröitä ei voi piirtää tavallisen ~while~-silmukan avulla, koska
+   Ympyröitä ei voi piirtää tavallisen ~for~-silmukan avulla, koska
    \(x\)-koordinaatit ovat epäsäännöllisissä kohdissa. Voisimme
    piirtää ympyrät kirjoittamalla yhden koodirivin kutakin ympyrää
    kohden, mutta se olisi kovin työlästä.
@@ -104,7 +100,7 @@
 
    Yllä oleva kuva on piirretty alla olevalla ohjelmalla. Ohjelmasta
    näkyy, miten taulukkovakio määritellään, ja miten taulukon luvut
-   voidaan käydä läpi ~while~-silmukassa.
+   voidaan käydä läpi ~for~-silmukassa.
 
    #+BEGIN_SRC processing :noweb yes :exports code
    <<taulukko-ympyrat-annetuissa>>
@@ -172,13 +168,8 @@
 
         final float[] YT = {<<taulukko-neliot-annetut-y>>};
 
-        int i = 0;
-
-        while (i < YT.length)
-        {
+        for (int i = 0; i < YT.length; i++)
           rect (0, YT [i], SIVU, SIVU);
-          i++;
-        }
    #+END_SRC
    2. Tee [[file:taulukko-varisavyt-sivu.org][tällä sivulla]] näkyvä animaatio seuraavasti. 
       - Määrittele ohjelmaasi taulukkovakio, jossa on seuraavat
@@ -228,21 +219,17 @@
         xt = new float [YMPYROITA];
         yt = new float [YMPYROITA];
 
-        int i = 0;
-        while (i < YMPYROITA)
+        for (int i = 0; i < YMPYROITA; i++)
         {
           xt [i] = random (width);
           yt [i] = random (height);
           ellipse (xt [i], yt [i], HALKAISIJA, HALKAISIJA);
-          i++;
         }
 
-        i = 0;
-        while (i < YMPYROITA)
+        for (int i = 0; i < YMPYROITA; i++)
         {
           int kohdeIndeksi = floor (random (YMPYROITA));
           line (xt [i], yt [i], xt [kohdeIndeksi], yt [kohdeIndeksi]);
-          i++;
         }
       #+END_SRC
    6. Alla oleva ohjelmakoodi arpoo muuttujiin ~xMuutos~ ja ~yMuutos~

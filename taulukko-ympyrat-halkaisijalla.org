@@ -14,12 +14,8 @@
     kt = new float [30];
 
     // arvotaan satunnaiset koordinaatit
-    int i = 0;
-    while (i < kt.length)
-    {
+    for (int i = 0; i < kt.length; i++)
       kt [i] = random (width);
-      i++;
-    }
 
     valkoisia = true;
   }
@@ -33,12 +29,10 @@
     else
       fill (0);
 
-    int i = 0;
-    while (i < kt.length)
+    for (int i = 0; i < kt.length; i++)
     {
       float k = kt [i]; // koordinaatti taulukosta
       ellipse (k, k, HALKAISIJA, HALKAISIJA);
-      i++;
     }
 
     valkoisia = !valkoisia;

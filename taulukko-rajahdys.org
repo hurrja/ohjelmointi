@@ -33,8 +33,7 @@
     float kpY = height / 2.0;
 
     // asetetaan alkuarvot taulukoihin
-    int i = 0;
-    while (i < PISTEITA)
+    for (int i = 0; i < PISTEITA; i++)
     {
       xt [i] = kpX;
       yt [i] = kpY;
@@ -43,7 +42,6 @@
 
       xMuutokset [i] = xMuutos; // muutokset x-suunnassa
       yMuutokset [i] = yMuutos; // muutokset y-suunnassa
-      i++;
     }
   }
 
@@ -52,13 +50,11 @@
     background (0);
 
     // käydään kaikki pisteet läpi
-    int i = 0;
-    while (i < PISTEITA)
+    for (int i = 0; i < PISTEITA; i++)
     {
       point (xt [i], yt [i]); // piirretään piste
       xt [i] = xt [i] + xMuutokset [i]; // siirretään x-suunnassa
       yt [i] = yt [i] + yMuutokset [i]; // siirretään y-suunnassa
-      i++;
     }
   }
 
