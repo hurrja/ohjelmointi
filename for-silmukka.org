@@ -160,7 +160,7 @@
 
       #+END_SRC
    4. Piirrä alla oleva kuva ~for~-silmukan avulla. Kuvassa on
-      sisäkkäisiä neliöitä. Uloiman neliön sivun pituus on ~(width -
+      sisäkkäisiä neliöitä. Uloimman neliön sivun pituus on ~(width -
       10)~. Kunkin sisemmän neliön sivun pituus on puolet edellisen
       ulomman neliön sivun pituudesta. Sisempiä neliöitä piirretään
       niin kauan, kuin niiden sivun pituus on suurempi kuin 2.
