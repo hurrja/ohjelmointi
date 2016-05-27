@@ -189,6 +189,28 @@
             stroke (random (100));
             point (x, y);
           }
+      #+END_SRC
+   3. Piirrä alla oleva kuva. Piirtoikkunan koko on \(400 \times 400\)
+      ja lukujen välimatka vaaka- ja pystysuunnassa 40.
+      #+NAME: sisakkaiset-silmukat-alakolmio
+      #+BEGIN_SRC processing
+        size (400, 400);
+        colorMode (HSB, 100);
+        background (0);
+        textSize (16);
+        textAlign (CENTER, CENTER);
+        fill (100);
+
+        final int VALI = 40;
+
+        int numero = 1;
+
+        for (float x = VALI; x < width; x += VALI)
+          for (float y = x; y < height; y += VALI)
+          {
+            text (numero, x, y);
+            numero++;
+          }
 
       #+END_SRC
 ** Ratkaisuja
@@ -199,5 +221,9 @@
    2. 
        #+BEGIN_SRC processing :noweb yes :exports code
        <<sisakkaiset-silmukat-satunnaiset-pikselit>>
+       #+END_SRC
+   3. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<sisakkaiset-silmukat-alakolmio>>
        #+END_SRC
       
