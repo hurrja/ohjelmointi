@@ -2,9 +2,8 @@
 
 * Sisäkkäiset silmukat
 ** Esimerkki
-   Piirretään alla oleva kuva, jossa on pieniä sinisiä ympyröitä 40
-   pikselin välein. Kunkin ympyrän kohdalla oleva numero kertoo,
-   kuinka monentena ympyrä on piirretty.
+   Piirretään alla oleva kuva, jossa on lukuja 40 pikselin välein.
+   Kukin luku kertoo, kuinka monentena se on piirretty.
    #+NAME: sisakkaiset-silmukat-numerot-sarakkeittain
    #+BEGIN_SRC processing
      size (400, 400);
@@ -36,7 +35,7 @@
       ~ASKEL~ eli 40.
    2. Tämän jälkeen /sisemmän silmukan/ alussa muuttujan ~y~ arvoksi
       asetetaan myös ~ASKEL~ eli 40.
-   3. Seuraavaksi suoritetaan sisempää silmukkaan niin kauan, kun ~y~
+   3. Seuraavaksi suoritetaan sisempää silmukkaa niin kauan, kun ~y~
       on pienempi kuin ~height~. Tässä sisemmässä silmukassa muuttujan
       ~x~ arvoa ei muuteta. Niinpä muuttujan ~x~ arvo on koko
       ajan 40. Sisemmässä silmukassa piirretään siis ensin
@@ -47,7 +46,51 @@
       saa taas eri arvot. Näin piirretään siis toinen pystyrivi.
 
    Ohjelmassa luvut piirretään siis pystyrivi kerrallaan.
+** Esimerkki
+   Processing-ohjelman piirtoikkuna koostuu /pikseleistä/, joista
+   kukin on pieni neliö näytöllä. Jos piirtoikkunan koko olisi
+   \(10\times 10\), suurennettuna se näyttäisi alla olevan kuvan
+   mukaiselta. Esimerkiksi koordinaatit \((0, 0)\) viittaavat
+   vasemmassa yläkulmassa olevaan pieneen neliöön.
+   #+NAME: sisakkaiset-silmukat-pikselit
+   #+BEGIN_SRC asymptote :file sisakkaiset-silmukat-pikselit.svg
+     size (12cm, 0);
+     int N = 10;
 
+     defaultpen (dotted + fontsize (18));
+
+     for (int n = 0; n <= N; ++n)
+       {
+         draw ((0, n) -- (N, n));
+         draw ((n, 0) -- (n, N));
+         if (n != N)
+           {
+             real pos = n + .5;
+             label ((string) n, (-1, N - pos));
+             label ((string) n, (pos, N + 1));
+           }
+       }
+   #+END_SRC
+
+   #+RESULTS: sisakkaiset-silmukat-pikselit
+   [[file:sisakkaiset-silmukat-pikselit.svg]]
+
+   Alla oleva ohjelmakoodi piirtää kuvan, jossa kunkin pikselin
+   värisävyn määrittää \(x\)-koordinaatti ja kirkkauden
+   \(y\)-koordinaatti.
+
+   #+BEGIN_SRC processing :exports both
+     size (600, 600);
+     colorMode (HSB, 100);
+
+     for (int x = 0; x < width; x++)
+       for (int y = 0; y < height; y++)
+       {
+         stroke (x / 6.0, 100, y / 6.0);
+         point (x, y);
+       }
+
+   #+END_SRC
 ** Tehtäviä
    1. 
       #+NAME: sisakkaiset-silmukat-valkoiset-ympyrat
@@ -61,6 +104,8 @@
           for (float y = SADE; y < height; y += HALKAISIJA)
             ellipse (x, y, HALKAISIJA, HALKAISIJA);
       #+END_SRC
+
+   2. pikseleillä satunnainen harmaasävy
 ** Ratkaisuja
    1.
       #+BEGIN_SRC processing :noweb yes :exports code
