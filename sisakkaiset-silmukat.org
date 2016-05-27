@@ -213,6 +213,48 @@
           }
 
       #+END_SRC
+   4. Alla olevassa kuvassa on kolme ympyrää vakioilla määrätyissä
+      koordinaateissa ~(X1, Y1)~, ~(X2, Y2)~ sekä ~(X3, Y3)~. Kukin
+      piirtoikkunan pikseli on piirretty eri värillä sen mukaan, mikä
+      ympyrä on pistettä lähinnä. Kirjoita ohjelma, joka piirtää
+      vastaavan kuvan. Pikselit, jotka ovat yhtä kaukana ympyröistä
+      voidaan ohjelmassa värittää millä tahansa värillä.
+      #+NAME: sisakkaiset-silmukat-voronoi
+      #+BEGIN_SRC processing
+        size (400, 400);
+        colorMode (HSB, 100);
+
+        // ympyröiden keskipisteet
+        final float X1 = 70, Y1 = 90;
+        final float X2 = 180, Y2 = 20;
+        final float X3 = 150, Y3 = 200;
+
+        for (int x = 0; x < width; x++)
+          for (int y = 0; y < height; y++)
+          {
+            // etäisyydet ympyröiden keskipisteisiin
+            float et1 = dist (x, y, X1, Y1);
+            float et2 = dist (x, y, X2, Y2);
+            float et3 = dist (x, y, X3, Y3);
+
+            float savy;
+            // onko et1 pienin...
+            if (et1 <= et2 && et1 <= et3)
+              savy = 0;
+            else if (et2 <= et3) // ... ei ole, pienin on joko et2 tai et3
+              savy = 35;
+            else
+              savy = 65;
+            stroke (savy, 100, 100);
+
+            point (x, y);
+          }
+
+        final float D = 10;
+        ellipse (X1, Y1, D, D);
+        ellipse (X2, Y2, D, D);
+        ellipse (X3, Y3, D, D);
+      #+END_SRC
 ** Ratkaisuja
    1. 
        #+BEGIN_SRC processing :noweb yes :exports code
@@ -225,5 +267,9 @@
    3. 
        #+BEGIN_SRC processing :noweb yes :exports code
        <<sisakkaiset-silmukat-alakolmio>>
+       #+END_SRC
+   4. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<sisakkaiset-silmukat-voronoi>>
        #+END_SRC
       
