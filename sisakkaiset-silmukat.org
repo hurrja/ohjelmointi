@@ -72,23 +72,93 @@
        }
    #+END_SRC
 
-   #+RESULTS: sisakkaiset-silmukat-pikselit
-   [[file:sisakkaiset-silmukat-pikselit.svg]]
-
    Alla oleva ohjelmakoodi piirtää kuvan, jossa kunkin pikselin
    värisävyn määrittää \(x\)-koordinaatti ja kirkkauden
    \(y\)-koordinaatti.
 
    #+BEGIN_SRC processing :exports both
-     size (600, 600);
+     size (400, 400);
      colorMode (HSB, 100);
 
      for (int x = 0; x < width; x++)
        for (int y = 0; y < height; y++)
        {
-         stroke (x / 6.0, 100, y / 6.0);
+         stroke (x / 4.0, 100, y / 4.0);
          point (x, y);
        }
+
+   #+END_SRC
+** Esimerkki
+   Kirjoitetaan ohjelma, joka piirtää valkoisia ympyröitä satunnaisiin
+   piirtoikkunan kohtiin ja valkoiset janat kaikkien ympyröiden
+   keskipisteiden välille.
+   
+   Ohjelma voidaan piirtää kahdella sisäkkäisellä silmukalla alla
+   olevassa kuvassa havainnollistetun idean mukaisesti. Kuvitellaan,
+   että ympyrät ovat rivissä, taulukon ensimmäinen ympyrä vasemmalla.
+   1. Ensimmäisestä, punaisella piirretystä ympyrästä piirretään
+      yhdistävä jana 2., 3. jne. ympyrään.
+   2. Toisesta, keltaisella piirretystä ympyrästä piirretään yhdistävä
+      jana 3., 4. jne. ympyrään. Ensimmäiseen ympyrään ei tarvitse
+      enää piirtää janaa, koska se on jo piirretty.
+   
+   Niinpä ympyrästä, jonka indeksi on ~i~ piirretään janat ympyröihin,
+   joiden indeksit alkavat luvusta ~(i + 1)~.
+
+   #+NAME: sisakkaiset-silmukat-taulukon-parit
+   #+BEGIN_SRC asymptote :file sisakkaiset-silmukat-taulukon-parit.svg
+     size (20cm, 0);
+     int N = 5;
+
+     for (int i = 0; i < N; ++i)
+       {
+         pair P = (i, 0);
+         pen p = hsv (i / N * 360, 1, 1) + linewidth (2);
+         for (int j = i + 1; j < N; ++j)
+           {
+             pair Q = (j, 0);
+             int sign = (-1)^(i % 2);
+             draw (P{sign * down} :: {right}(midpoint (P -- Q) + (0, -sign / (i + 2))){right} :: {sign * up}Q, p);
+           }
+         fill (shift ((i, 0)) * scale (.2) * unitcircle, p);
+       }
+
+     shipout (bbox (xmargin = 10, black, Fill));
+   #+END_SRC
+   
+   #+BEGIN_SRC processing :exports both
+     size (600, 400);
+     colorMode (HSB, 100);
+     background (0);
+     fill (100);
+     stroke (100);
+
+     final int N = 10; // ympyröiden lukumäärä
+     final float D = 30; // ympyröiden halkaisija
+     final float R = D / 2; // ympyröiden säde
+
+     float[] xt, yt; // ympyröiden keskipisteet
+
+     // varataan tila taulukoille
+     xt = new float [N];
+     yt = new float [N];
+     
+     // satunnaiset ympyröiden keskipisteet
+     for (int i = 0; i < N; i++)
+     {
+       xt [i] = random (R, width - R);
+       yt [i] = random (R, height - R);
+     }
+
+     // käydään kaikki keskipisteet läpi
+     for (int i = 0; i < N; i++)
+     {
+       ellipse (xt [i], yt [i], D, D); // piirretään ympyrä
+  
+       // piirretään viivat keskipisteiden välille
+       for (int j = i + 1; j < N; j++)
+         line (xt [i], yt [i], xt [j], yt [j]);
+     }
 
    #+END_SRC
 ** Tehtäviä
