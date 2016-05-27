@@ -162,22 +162,42 @@
 
    #+END_SRC
 ** Tehtäviä
-   1. 
+   1. Piirrä alla oleva kuva, jossa on ympyröitä \(400 \times
+      400\)-kokoisessa piirtoikkunassa. Kunkin ympyrän halkaisija
+      on 20.
       #+NAME: sisakkaiset-silmukat-valkoiset-ympyrat
       #+BEGIN_SRC processing
         size (400, 400);
 
-        final float HALKAISIJA = 20;
-        final float SADE = HALKAISIJA / 2;
+        final float D = 20;
+        final float R = D / 2;
 
-        for (float x = SADE; x < width; x += HALKAISIJA)
-          for (float y = SADE; y < height; y += HALKAISIJA)
-            ellipse (x, y, HALKAISIJA, HALKAISIJA);
+        for (float x = R; x < width; x += D)
+          for (float y = R; y < height; y += D)
+            ellipse (x, y, D, D);
       #+END_SRC
+   2. Alla olevassa kuvassa kunkin pikselin harmaasävyarvo on
+      satunnainen. Kirjoita ohjelma, joka piirtää vastaavan kuvan.
+      #+NAME: sisakkaiset-silmukat-satunnaiset-pikselit
+      #+BEGIN_SRC processing
+        size (600, 400);
+        colorMode (HSB, 100);
 
-   2. pikseleillä satunnainen harmaasävy
+        for (int x = 0; x < width; x++)
+          for (int y = 0; y < height; y++)
+          {
+            stroke (random (100));
+            point (x, y);
+          }
+
+      #+END_SRC
 ** Ratkaisuja
-   1.
-      #+BEGIN_SRC processing :noweb yes :exports code
-      <<sisakkaiset-silmukat-valkoiset-ympyrat>>
-      #+END_SRC
+   1. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<sisakkaiset-silmukat-valkoiset-ympyrat>>
+       #+END_SRC
+   2. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<sisakkaiset-silmukat-satunnaiset-pikselit>>
+       #+END_SRC
+      
