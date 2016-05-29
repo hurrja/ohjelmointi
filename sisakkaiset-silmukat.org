@@ -4,7 +4,7 @@
 ** Esimerkki
    Piirretään alla oleva kuva, jossa on lukuja 40 pikselin välein.
    Kukin luku kertoo, kuinka monentena se on piirretty.
-   #+NAME: sisakkaiset-silmukat-numerot-sarakkeittain
+   #+NAME: sisakkaiset-silmukat-luvut-sarakkeittain
    #+BEGIN_SRC processing
      size (400, 400);
      colorMode (HSB, 100);
@@ -14,20 +14,20 @@
      fill (100);
 
      final float ASKEL = 40;
-     int numero = 1;
+     int luku = 1;
 
      for (float x = ASKEL; x < width; x += ASKEL)
        for (float y = ASKEL; y < height; y += ASKEL)
        {
-         text (numero, x, y);
-         numero++;
+         text (luku, x, y);
+         luku++;
        }
    #+END_SRC
 
    Ohjelma voidaan kirjoittaa kahden /sisäkkäisen silmukan/ avulla.
 
    #+BEGIN_SRC processing :exports code :noweb yes
-   <<sisakkaiset-silmukat-numerot-sarakkeittain>>
+   <<sisakkaiset-silmukat-luvut-sarakkeittain>>
    #+END_SRC
 
    Mietitäänpä, miten ohjelma toimii.
@@ -162,7 +162,28 @@
 
    #+END_SRC
 ** Tehtäviä
-   1. Piirrä alla oleva kuva, jossa on ympyröitä \(400 \times
+   1. Muuta tämän kappaleen ensimmäisen esimerkin ohjelmakoodia siten,
+      että se piirtää alla olevan kuvan.
+      #+NAME: sisakkaiset-silmukat-luvut-riveittain
+      #+BEGIN_SRC processing
+        size (400, 400);
+        colorMode (HSB, 100);
+        textAlign (CENTER, CENTER);
+        textSize (16);
+        background (0);
+        fill (100);
+
+        final float ASKEL = 40;
+        int luku = 1;
+
+        for (float y = ASKEL; y < height; y += ASKEL)
+          for (float x = ASKEL; x < width; x += ASKEL)
+          {
+            text (luku, x, y);
+            luku++;
+          }
+      #+END_SRC
+   2. Piirrä alla oleva kuva, jossa on ympyröitä \(400 \times
       400\)-kokoisessa piirtoikkunassa. Kunkin ympyrän halkaisija
       on 20.
       #+NAME: sisakkaiset-silmukat-valkoiset-ympyrat
@@ -176,7 +197,7 @@
           for (float y = R; y < height; y += D)
             ellipse (x, y, D, D);
       #+END_SRC
-   2. Alla olevassa kuvassa kunkin pikselin harmaasävyarvo on
+   3. Alla olevassa kuvassa kunkin pikselin harmaasävyarvo on
       satunnainen. Kirjoita ohjelma, joka piirtää vastaavan kuvan.
       #+NAME: sisakkaiset-silmukat-satunnaiset-pikselit
       #+BEGIN_SRC processing
@@ -190,7 +211,7 @@
             point (x, y);
           }
       #+END_SRC
-   3. Piirrä alla oleva kuva. Piirtoikkunan koko on \(400 \times 400\)
+   4. Piirrä alla oleva kuva. Piirtoikkunan koko on \(400 \times 400\)
       ja lukujen välimatka vaaka- ja pystysuunnassa 40.
       #+NAME: sisakkaiset-silmukat-alakolmio
       #+BEGIN_SRC processing
@@ -203,17 +224,17 @@
 
         final int VALI = 40;
 
-        int numero = 1;
+        int luku = 1;
 
         for (float x = VALI; x < width; x += VALI)
           for (float y = x; y < height; y += VALI)
           {
-            text (numero, x, y);
-            numero++;
+            text (luku, x, y);
+            luku++;
           }
 
       #+END_SRC
-   4. Alla olevassa kuvassa on kolme ympyrää vakioilla määrätyissä
+   5. Alla olevassa kuvassa on kolme ympyrää vakioilla määrätyissä
       koordinaateissa ~(X1, Y1)~, ~(X2, Y2)~ sekä ~(X3, Y3)~. Kukin
       piirtoikkunan pikseli on piirretty eri värillä sen mukaan, mikä
       ympyrä on pistettä lähinnä. Kirjoita ohjelma, joka piirtää
@@ -258,17 +279,21 @@
 ** Ratkaisuja
    1. 
        #+BEGIN_SRC processing :noweb yes :exports code
-       <<sisakkaiset-silmukat-valkoiset-ympyrat>>
+       <<sisakkaiset-silmukat-luvut-riveittain>>
        #+END_SRC
    2. 
        #+BEGIN_SRC processing :noweb yes :exports code
-       <<sisakkaiset-silmukat-satunnaiset-pikselit>>
+       <<sisakkaiset-silmukat-valkoiset-ympyrat>>
        #+END_SRC
    3. 
        #+BEGIN_SRC processing :noweb yes :exports code
-       <<sisakkaiset-silmukat-alakolmio>>
+       <<sisakkaiset-silmukat-satunnaiset-pikselit>>
        #+END_SRC
    4. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<sisakkaiset-silmukat-alakolmio>>
+       #+END_SRC
+   5. 
        #+BEGIN_SRC processing :noweb yes :exports code
        <<sisakkaiset-silmukat-voronoi>>
        #+END_SRC
