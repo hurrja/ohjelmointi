@@ -276,6 +276,55 @@
         ellipse (X2, Y2, D, D);
         ellipse (X3, Y3, D, D);
       #+END_SRC
+   6. Kirjoita ohjelma, joka piirtää alla olevaa kuvaa vastaavan
+      kuvan.
+      - Ylärivissä on ~N~ ympyrää, missä ~N~ on vakio. Alarivissä on
+        yhtä monta ympyrää. Alla olevassa kuvassa vakion ~N~ arvo
+        on 7.
+      - Ympyröiden \(x\)-koordinaatit ovat satunnaisia, mutta kaikki
+        ympyrät ovat kokonaisuudessaan piirtoikkunan sisällä.
+      - Kaikkien ylärivin ympyröiden keskipisteistä on piirretty janat
+        kaikkien alarivin ympyröiden keskipisteisiin.
+      Käytä ohjelmassasi kaikkien ympyröiden keskipisteiden
+      koordinaateille taulukoita ~xt~ ja ~yt~, joissa molemmissa
+      ensimmäiset ~N~ lukua ovat ylärivin ympyröiden koordinaatteja ja
+      loput ~N~ lukua alarivin ympyröiden koordinaatteja.
+      #+NAME: sisakkaiset-silmukat-kaksijakoinen
+      #+BEGIN_SRC processing
+        size (600, 400);
+        colorMode (HSB, 100);
+        background (0);
+        fill (100);
+        stroke (100);
+
+        final float D = 20; // ympyröiden halkaisija
+        final float R = D / 2; // säde
+
+        final int N = 7; // yksittäisessä rivissä olevien ympyröiden lkm
+        final int M = 2 * N; // kaikkien ympyröiden lkm
+
+        // ympyröiden keskipisteiden koordinaatit
+        float[] xt, yt;
+        xt = new float [M];
+        yt = new float [M];
+
+        // arvotaan koordinaatit ja piirretään ympyrät
+        for (int i = 0; i < M; i++)
+        {
+          xt [i] = random (R, width - R);
+          if (i < N)
+            yt [i] = R; // ylärivin ympyrä
+          else
+            yt [i] = height - R; // alarivin ympyrä
+
+          ellipse (xt [i], yt [i], D, D);
+        }
+
+        // piirretään janat
+        for (int i = 0; i < N; i++)
+          for (int j = N; j < M; j++)
+            line (xt [i], yt [i], xt [j], yt [j]);
+      #+END_SRC
 ** Ratkaisuja
    1. 
        #+BEGIN_SRC processing :noweb yes :exports code
@@ -296,5 +345,9 @@
    5. 
        #+BEGIN_SRC processing :noweb yes :exports code
        <<sisakkaiset-silmukat-voronoi>>
+       #+END_SRC
+   6. 
+       #+BEGIN_SRC processing :noweb yes :exports code
+       <<sisakkaiset-silmukat-kaksijakoinen>>
        #+END_SRC
       
