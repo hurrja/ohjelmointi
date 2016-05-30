@@ -1,4 +1,5 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
 #+LATEX: \usepackage{qtree}
 
 * Rekursio
@@ -6,7 +7,8 @@
    Alla oleva kuva voitaisiin piirtää ~for~- tai ~while~-silmukan
    avulla. Se voidaan kuitenkin piirtää myös ilman silmukoita
    määrittelemällä funktio, joka kutsuu itse itseään.
-   #+BEGIN_SRC processing :exports both
+   #+NAME: rekursio-sisakkaiset-ympyrat
+   #+BEGIN_SRC processing
      void piirraYmpyrat (float d, boolean valkoinen, int piirretaan)
      {
        // palataan jos on piirretty jo riittävästi
@@ -41,13 +43,13 @@
 
   #+LATEX: \newcommand{\Circles}[1]{\texttt{piirraYmpyrat (#1)}}
   #+BEGIN_CENTER
-  #+BEGIN_EXPORT latex
+  #+BEGIN_SRC latex
   \Tree [ .{\Circles{7, 2, 1, 0}} [ .{\Circles{7, 3, 1, 1}} [ .{\Circles{7,
       4, 2, 1}} [ .{\Circles{7, 
       5, 3, 2}} [ .{\Circles{7,
           6, 5, 3}} [ .{\Circles{7,
           7, 8, 5}} [ .{\texttt{8}} ] ] ] ] ] ] ]
-  #+END_EXPORT
+  #+END_SRC
   #+END_CENTER
 
 
@@ -65,7 +67,6 @@
          return;
        else
          piirraNeliot (sivu / 2, !valkoinen, lkm + 1, nelioita);
-      
      }
 
      void setup ()
@@ -80,8 +81,8 @@
      {
        piirraNeliot (width / 2.0, true, 1, 10);
      }
-
    #+END_SRC
+
 ** Esimerkki
    #+BEGIN_SRC processing
      void piirraSuorakaiteet (float x, float leveys, int taso, int tasoja)
@@ -137,3 +138,4 @@
        piirraYmpyrat (width / 2.0, height / 2.0, width / 2.0, 0, 5);
      }
    #+END_SRC
+   

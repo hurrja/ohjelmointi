@@ -29,5 +29,5 @@
 * [[file:satunnaisuus.org]]
 * [[file:taulukko.org]]
 * [[file:sisakkaiset-silmukat.org]]
-* Rekursio
+* [[file:rekursio.org]]
 * Luokka ja olio
