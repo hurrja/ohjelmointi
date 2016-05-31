@@ -70,11 +70,18 @@
    #+END_CENTER
 ** Rekursio
    #+BEGIN_QUOTE
-   /Rekursiossa/ tehtävä ratkotaan pilkkomalla se pienempiin,
-   samanlaisiin tehtäviin. Yllä olevassa esimerkissä 5 sisäkkäisen
-   ympyrän piirtäminen ratkaistaan
-   1. piirtämällä ensin uloin ympyrä ja sen jälkeen
-   2. piirtämällä 4 sisäkkäistä ympyrää.
+   /Rekursiossa/ tehtävä tai ongelma ratkaistaan pilkkomalla se
+   pienempiin, samanlaisiin tehtäviin. Yllä olevassa esimerkissä
+   alkuperäinen tehtävä
+   #+BEGIN_CENTER
+   piirrä 5 sisäkkäistä ympyrää
+   #+END_CENTER
+   ratkaistaan piirtämällä ensin uloin ympyrä ja ratkaisemalla sen
+   jälkeen /alkuperäisen ongelman kanssa samanlainen mutta pienempi
+   ongelma/
+   #+BEGIN_CENTER
+   piirrä 4 sisäkkäistä ympyrää.
+   #+END_CENTER
 
    /Rekursiivinen funktio/ kutsuu itseään. Jotta rekursio päättyisi
    joskus, funktiossa täytyy olla myös /lopetusehto/. Yllä olevassa
