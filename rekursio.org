@@ -9,12 +9,14 @@
    määrittelemällä funktio, joka kutsuu itse itseään.
    #+NAME: rekursio-sisakkaiset-ympyrat
    #+BEGIN_SRC processing
-     // piirretään lkm sisäkkäistä ympyrää siten, että uloimman halkaisija
-     // on d ja uloimman väri on joko valkoinen tai musta
-     void piirraYmpyrat (int lkm, float d, boolean valkoinen)
+     // piirretään parametrin ympyroita mukainen lukumäärä sisäkkäisiä
+     // ympyröitä siten, että uloimman halkaisija on d ja uloimman väri on
+     // joko valkoinen tai musta; sisäkkäisten ympyröiden halkaisijoiden
+     // erotus on 30
+     void piirraYmpyrat (int ympyroita, float d, boolean valkoinen)
      {
        // palataan jos on piirretty jo riittävästi
-       if (lkm == 0)
+       if (ympyroita == 0)
          return;
 
        // valkoinen tai musta ympyrä
@@ -27,7 +29,7 @@
        ellipse (width / 2.0, height / 2.0, d, d);
 
        // jatketaan piirtämistä, seuraavaksi pienempi jolla eri väri
-       piirraYmpyrat (lkm - 1, d - 30, !valkoinen);
+       piirraYmpyrat (ympyroita - 1, d - 30, !valkoinen);
      }
 
      void setup ()
@@ -50,7 +52,7 @@
    #+END_SRC
    Alla oleva kuva esittää, miten ohjelman aikana funktiota
    ~piirraYmpyrat()~ kutsutaan eri arvoilla. Viimeisessä kutsussa
-   parametrin ~lkm~ arvo on 0, jolloin funktio ei enää kutsu itseään
+   parametrin ~ympyroita~ arvo on 0, jolloin funktio ei enää kutsu itseään
    uudestaan. Kuvaa kutsutaan /rekursiopuuksi/ - nimityksen syy
    selviää pian.
    #+BEGIN_CENTER
@@ -92,7 +94,7 @@
      (rekursioaskel). Jotta rekursio päättyisi joskus, funktiossa
      täytyy olla myös /lopetusehto/ (perustapaus). Yllä olevassa
      esimerkissä lopetusehto täyttyy silloin, kun kaikki ympyrät on
-     piirretty, eli kun parametrin ~lkm~ arvo on 0.
+     piirretty, eli kun parametrin ~ympyroita~ arvo on 0.
    #+END_QUOTE
 ** Esimerkki
    /Fibonaccin lukujono/ on kuuluisa esimerkki rekursiosta. Lukujono
@@ -164,6 +166,11 @@
      }
      label ("\Tree " + fibtree (6));
    #+END_SRC
+** Muistintaminen
+   Funktiokutsun ~fib (6)~ rekursiopuusta huomataan, että esimerkiksi
+   $f_4$ lasketaan kahteen kertaan, $f_3$ kolmeen kertaan jne. Jos
+   lasketaan Fibonaccin jonoa pidemmälle eteenpäin, tästä
+   päällekkäisyydestä seuraa paljon ylimääräistä laskentaa.
 ** Esimerkki
    Alla olevassa kaaviossa toistuu sama rakenne: kaavion yläosasta
    lähtee kaksi haaraa, joista kukin jakautuu kahteen haaraan, joista
