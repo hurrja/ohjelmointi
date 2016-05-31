@@ -9,10 +9,12 @@
    määrittelemällä funktio, joka kutsuu itse itseään.
    #+NAME: rekursio-sisakkaiset-ympyrat
    #+BEGIN_SRC processing
-     void piirraYmpyrat (float d, boolean valkoinen, int piirretaan)
+     // piirretään lkm sisäkkäistä ympyrää siten, että uloimman halkaisija
+     // on d ja uloimman väri on joko valkoinen tai musta
+     void piirraYmpyrat (int lkm, float d, boolean valkoinen)
      {
        // palataan jos on piirretty jo riittävästi
-       if (piirretaan == 0)
+       if (lkm == 0)
          return;
 
        // valkoinen tai musta ympyrä
@@ -25,34 +27,60 @@
        ellipse (width / 2.0, height / 2.0, d, d);
 
        // jatketaan piirtämistä, seuraavaksi pienempi jolla eri väri
-       piirraYmpyrat (0.9 * d, !valkoinen, piirretaan - 1);
+       piirraYmpyrat (lkm - 1, d - 30, !valkoinen);
      }
 
      void setup ()
      {
-       size (600, 600);
+       size (400, 400);
        colorMode (HSB, 100);
        noLoop ();
      }
 
      void draw ()
      {
-       piirraYmpyrat (width, false, 10);
+       // piirretään 5 ympyrää, joista uloin on piirtoikkunan levyinen ja
+       // väriltään musta
+       piirraYmpyrat (5, width, false);
      }
    #+END_SRC
 
-  #+LATEX: \newcommand{\Circles}[1]{\texttt{piirraYmpyrat (#1)}}
-  #+BEGIN_CENTER
-  #+BEGIN_SRC latex
-  \Tree [ .{\Circles{7, 2, 1, 0}} [ .{\Circles{7, 3, 1, 1}} [ .{\Circles{7,
-      4, 2, 1}} [ .{\Circles{7, 
-      5, 3, 2}} [ .{\Circles{7,
-          6, 5, 3}} [ .{\Circles{7,
-          7, 8, 5}} [ .{\texttt{8}} ] ] ] ] ] ] ]
-  #+END_SRC
-  #+END_CENTER
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<rekursio-sisakkaiset-ympyrat>>
+   #+END_SRC
+   Alla oleva kuva esittää, miten ohjelman aikana funktiota
+   ~piirraYmpyrat()~ kutsutaan eri arvoilla. Viimeisessä kutsussa
+   parametrin ~lkm~ arvo on 0, jolloin funktio ei enää kutsu itseään
+   uudestaan. Kuvaa kutsutaan /rekursiopuuksi/ - nimityksen syy
+   selviää pian.
+   #+BEGIN_CENTER
+   #+NAME: rekursio-sisakkaiset-ympyrat-kutsupuu
+   #+BEGIN_SRC asymptote :file rekursio-sisakkaiset-ympyrat-kutsupuu.svg
+     size (18cm, 0);
+     usepackage ("qtree");
+     usepackage ("amsmath");
+     defaultpen (fontsize (14));
+     texpreamble ("\newcommand{\Circles}[1]{\texttt{piirraYmpyrat (#1)}}");
 
+     label ("\Tree [ .{\Circles{5, 400, false}} [ .{\Circles{4, 370, true}} [
+         .{\Circles{3, 340, false}} [ .{\Circles{2, 310, true}} [
+         .{\Circles{1, 280, false}} [ .{\Circles{0, 250, true}} ] ]
+         ] ] ] ]", (0, 0));
+   #+END_SRC
+   #+END_CENTER
+** Rekursio
+   #+BEGIN_QUOTE
+   /Rekursiossa/ tehtävä ratkotaan pilkkomalla se pienempiin,
+   samanlaisiin tehtäviin. Yllä olevassa esimerkissä 5 sisäkkäisen
+   ympyrän piirtäminen ratkaistaan
+   1. piirtämällä ensin uloin ympyrä ja sen jälkeen
+   2. piirtämällä 4 sisäkkäistä ympyrää.
 
+   /Rekursiivinen funktio/ kutsuu itseään. Jotta rekursio päättyisi
+   joskus, funktiossa täytyy olla myös /lopetusehto/. Yllä olevassa
+   esimerkissä lopetusehto täyttyy silloin, kun kaikki ympyrät on
+   piirretty, eli kun parametrin ~lkm~ arvo on 0.
+   #+END_QUOTE
 ** Esimerkki
    #+BEGIN_SRC processing
      void piirraNeliot (float sivu, boolean valkoinen, int lkm, int nelioita)
