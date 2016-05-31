@@ -68,23 +68,85 @@
          ] ] ] ]", (0, 0));
    #+END_SRC
    #+END_CENTER
-** Rekursio
+** Rekursio ja rekursiivinen funktio
    #+BEGIN_QUOTE
-   /Rekursiossa/ tehtävä tai ongelma ratkaistaan pilkkomalla se
-   pienempiin, samanlaisiin tehtäviin. Yllä olevassa esimerkissä
-   alkuperäinen tehtävä
-   #+BEGIN_CENTER
-   piirrä 5 sisäkkäistä ympyrää
-   #+END_CENTER
-   ratkaistaan piirtämällä ensin uloin ympyrä ja ratkaisemalla sen
-   jälkeen /alkuperäisen ongelman kanssa samanlainen mutta pienempi
-   ongelma/
-   #+BEGIN_CENTER
-   piirrä 4 sisäkkäistä ympyrää.
-   #+END_CENTER
-
-   /Rekursiivinen funktio/ kutsuu itseään. Jotta rekursio päättyisi
-   joskus, funktiossa täytyy olla myös /lopetusehto/. Yllä olevassa
-   esimerkissä lopetusehto täyttyy silloin, kun kaikki ympyrät on
-   piirretty, eli kun parametrin ~lkm~ arvo on 0.
+   - /Rekursiossa/ tehtävä tai ongelma ratkaistaan pilkkomalla se
+     pienempiin, samanlaisiin tehtäviin. Yllä olevassa esimerkissä
+     alkuperäinen tehtävä
+     #+BEGIN_CENTER
+     piirrä 5 sisäkkäistä ympyrää
+     #+END_CENTER
+     ratkaistaan piirtämällä ensin uloin ympyrä ja ratkaisemalla sen
+     jälkeen /alkuperäisen ongelman kanssa samanlainen mutta pienempi
+     ongelma/
+     #+BEGIN_CENTER
+     piirrä 4 sisäkkäistä ympyrää.
+     #+END_CENTER
+     Pienempään ongelmaan siirtymistä kutsutaan
+     /rekursioaskeleeksi/. Jotta rekursio päättyisi joskus, tarvitaan
+     /perustapaus/, jota ei enää pilkota pienempiin osiin. Yllä
+     olevassa esimerkissä perustapaus on tilanne, jossa kaikki ympyrät
+     on piirretty.
+   - /Rekursiivinen funktio/ on ohjelmoinnin tapa toteuttaa
+     rekursio. Rekursiivinen funktio kutsuu itseään
+     (rekursioaskel). Jotta rekursio päättyisi joskus, funktiossa
+     täytyy olla myös /lopetusehto/ (perustapaus). Yllä olevassa
+     esimerkissä lopetusehto täyttyy silloin, kun kaikki ympyrät on
+     piirretty, eli kun parametrin ~lkm~ arvo on 0.
    #+END_QUOTE
+** Esimerkki
+   Alla olevassa kaaviossa toistuu sama rakenne: kaavion yläosasta
+   lähtee kaksi haaraa, joista kukin jakautuu kahteen haaraan, joista
+   kukin jakautuu edelleen kahteen jne.
+   #+NAME: rekursio-kaavio
+   #+BEGIN_SRC processing
+     // piirretään kaavio, jossa on annettu määrä tasoja; kaavion yläreunan
+     // keskikohta on annetuissa koordinaateissa (x, y), ja ensimmäisenä
+     // piirrettävän tason vaakaviivan pituus on parametri leveys
+     void piirraKaavio (int tasoja, float x, float y, float leveys)
+     {
+       if (tasoja == 0)
+         return;
+
+       // piirretään tämän tason vaakaviiva ja pystyviivat
+       float p = leveys / 2; // puolet leveydestä
+       float xVasen = x - p; // seuraavan tason vasemman haaran x-koordinaatti
+       float xOikea = x + p; // seuraavan tason oikean haaran x-koordinaatti
+       line (xVasen, y, xOikea, y); // vaakaviiva
+       float yUusi =  y + p; // seuraavan tason y-koordinaatti
+       line (xVasen, y, xVasen, yUusi); // vasen pystyviiva
+       line (xOikea, y, xOikea, yUusi); // oikea pystyviiva
+
+       // rekursioaskel: piirretään vasen ja oikea haara, joissa molemmissa
+       // yksi taso vähemmän
+       int tasojaJaljella = tasoja - 1;
+       piirraKaavio (tasojaJaljella, xVasen, yUusi, p); // vasen haara
+       piirraKaavio (tasojaJaljella, xOikea, yUusi, p); // oikea haara
+     }
+
+     void setup ()
+     {
+       size (600, 400);
+       colorMode (HSB, 100);
+       background (0);
+       stroke (100);
+       noLoop ();
+     }
+
+     void draw ()
+     {
+       // kaavio, jossa on 7 tasoa; ylin taso sivusuunnassa kuvan keskellä
+       // ja kuvan yläreunasta 1/7 alaspäin; ylimmän tason leveys puolet
+       // piirtoikkunan leveydestä
+       piirraKaavio (7, width / 2.0, height / 7.0, width / 2.0);
+     }
+   #+END_SRC
+   Kuvan piirtävä ohjelma voidaan kirjoittaa
+   rekursiivisesti. Esimerkiksi 7-tasoinen kaavio voidaan piirtää
+   1. piirtämällä ensin ylimmän tason vaakaviiva ja kaksi pystyviivaa
+   2. piirtämällä sen jälkeen vasen ja oikea kaavio, joissa molemmissa
+      on 6 tasoa.
+   Näin on tehty alla olevassa ohjelmassa.
+   #+BEGIN_SRC processing :noweb yes :exports code
+   <<rekursio-kaavio>>
+   #+END_SRC
