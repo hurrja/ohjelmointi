@@ -419,6 +419,17 @@
           piirraPuu (6, width / 2.0, height, 100);
         }
       #+END_SRC
+   5. 
+      #+BEGIN_SRC processing
+        void piirraRuutukuvio (int tasoja,
+                               float x,
+                               float y,
+                               float sivu,
+                               boolean valkoinen)
+        {
+        }
+
+      #+END_SRC
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :noweb yes :exports code
