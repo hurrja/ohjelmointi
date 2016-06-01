@@ -279,3 +279,35 @@
    #+BEGIN_SRC processing :noweb yes :exports code
    <<rekursio-kaavio>>
    #+END_SRC
+** Tehtäviä
+   1. Kirjoita rekursiota käyttävä ohjelma, joka piirtää alla olevan
+      kuvan. Vasemmanpuoleisen pystyviivan korkeus on 350. Kukin
+      seuraavan pystyviivan korkeus on 10\thinsp{}% edellistä
+      pienempi. Pystyviivojen etäisyys \(x\)-akselilla on 10 pikseliä.
+      #+NAME: rekursio-pystyviivat
+      #+BEGIN_SRC processing
+        void piirraPystyviivat (int viivoja, float x, float korkeus)
+        {
+          if (viivoja == 0)
+            return;
+
+          line (x, 0, x, korkeus);
+          piirraPystyviivat (viivoja - 1, x + 10, 0.9 * korkeus);
+        }
+
+        void setup ()
+        {
+          size (600, 400);
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          piirraPystyviivat (50, 10, 350);
+        }
+      #+END_SRC
+** Ratkaisuja
+   1. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<rekursio-pystyviivat>>
+      #+END_SRC
