@@ -166,11 +166,66 @@
      }
      label ("\Tree " + fibtree (6));
    #+END_SRC
-** Muistintaminen
+** Taulukointi
    Funktiokutsun ~fib (6)~ rekursiopuusta huomataan, että esimerkiksi
-   $f_4$ lasketaan kahteen kertaan, $f_3$ kolmeen kertaan jne. Jos
-   lasketaan Fibonaccin jonoa pidemmälle eteenpäin, tästä
-   päällekkäisyydestä seuraa paljon ylimääräistä laskentaa.
+   $f_4$ lasketaan kahteen kertaan, $f_3$ kolmeen kertaan
+   jne. Ohjelmassa on siis paljon ylimääräistä laskentaa, josta seuraa
+   ongelmia laskettaessa jonoa pidemmälle.
+
+   Yksi tapa ongelman välttämiseen on /taulukointi/, jossa luku $f_n$
+   tallennetaan taulukkoon kun se lasketaan ensimmäisen
+   kerran. Alla olevassa ohjelmassa tämä taulukko on ~f~. Taulukko
+   alustetaan ohjelman alussa luvuilla \(-1\), jotta ohjelmassa
+   voidaan tunnistaa onko arvo jo laskettu.
+
+   Alla olevassa ohjelmassa lasketaan ja tulostetaan arvo \(f_{20}.\)
+   Tällöin taulukkoon ~f~ täytyy varata tilaa 21 luvulle, koska
+   ~f[20]~ on taulukon ~f~ 21. luku.
+
+   #+BEGIN_SRC processing :exports both
+     int[] f; // taulukko arvojen tallentamiseksi
+
+     // palauttaa luvun f_n
+     int fib (int n)
+     {
+       // jos arvoa f_n ei ole vielä laskettu...
+       if (f [n] < 0)
+       {
+         // lasketaan f_n ja tallennetaan taulukkoon
+         if (n == 0 || n == 1)
+           f [n] = n; // perustapaukset
+         else
+           f [n] = fib (n - 1) + fib (n - 2); // rekursioaskel
+       }
+
+       return (f [n]); // palautetaan arvo taulukosta
+     }
+
+     void setup ()
+     {
+       size (400, 400);
+       colorMode (HSB, 100);
+       background (0);
+       fill (100);
+       textAlign (CENTER, CENTER);
+       textSize (40);
+       noLoop ();
+     }
+
+     void draw ()
+     {
+       int n = 20; // lasketaan f_20
+
+       // varataan tila taulukolle ja alustetaan taulukko luvuilla -1
+       f = new int [n + 1];
+       for (int i = 0; i <= n; i++)
+         f [i] = -1;
+
+       text (fib (n), width / 2.0, height / 2.0);
+     }
+
+   #+END_SRC
+
 ** Esimerkki
    Alla olevassa kaaviossa toistuu sama rakenne: kaavion yläosasta
    lähtee kaksi haaraa, joista kukin jakautuu kahteen haaraan, joista
