@@ -306,8 +306,64 @@
           piirraPystyviivat (50, 10, 350);
         }
       #+END_SRC
+   2. Alla oleva kuva esittää eräänlaista /satunnaiskävelyä/, joka
+      etenee seuraavasti.
+      - Kävely lähtee liikkeelle origosta.
+      - Kullakin askeleella sennhetkiseen \(x\)-koordinaattiin
+        lisätään satunnaisluku, jonka arvo on vähintään 0 mutta
+        pienempi kuin 15. Sama tehdään \(y\)-koordinaatille. Näin
+        saadusta askeleesta piirretään jana.
+
+      #+NAME: rekursio-satunnaiskavely-runko 
+      #+BEGIN_SRC processing :exports none
+          if (askeleita == 0)
+            return;
+
+          final int M = 15;
+          float uusiX = x + random (0, M);
+          float uusiY = y + random (0, M);
+          line (x, y, uusiX, uusiY);
+
+          satunnaiskavely (askeleita - 1, uusiX, uusiY);
+      #+END_SRC
+
+      #+CALL: rekursio-satunnaiskavely[:noweb yes]() :results html
+
+      Kirjoita alla olevan ohjelmakoodin rekursiivisen funktion
+      ~satunnaiskavely()~ runko, eli poista rivi
+      #+BEGIN_EXAMPLE
+          <<rekursio-satunnaiskavely-runko>>
+      #+END_EXAMPLE
+      ja kirjoita tarvittavat rivit sen tilalle.
+
+      #+NAME: rekursio-satunnaiskavely
+      #+BEGIN_SRC processing :exports code :noweb no
+        // piirretään satunnaiskävely, joka alkaa pisteestä (x, y) ja jossa on
+        // 'askeleita' askelta
+        void satunnaiskavely (int askeleita, float x, float y)
+        {
+          <<rekursio-satunnaiskavely-runko>>
+        }
+
+        void setup ()
+        {
+          size (400, 400);
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          satunnaiskavely (30, 0, 0);
+        }
+      #+END_SRC
+
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<rekursio-pystyviivat>>
       #+END_SRC
+   2. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<rekursio-satunnaiskavely-runko>>
+      #+END_SRC
+      
