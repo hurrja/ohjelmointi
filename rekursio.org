@@ -119,18 +119,19 @@
    Alla oleva rekursiivinen ohjelma piirtää piirtoikkunan keskelle
    lukujonon luvun \(f_6.\)
    #+NAME: bonacci-setup
-   #+BEGIN_SRC processing
+   #+BEGIN_SRC processing :exports none
      void setup ()
      {
-       size (400, 400);
+       size (600, 400);
        colorMode (HSB, 100);
        background (0);
        fill (100);
        textAlign (CENTER, CENTER);
-       textSize (40);
+       textSize (15);
        noLoop ();
      }
    #+END_SRC
+
    #+BEGIN_SRC processing :exports both :noweb yes
      // palauttaa luvun f_n
      int fib (int n)
@@ -183,7 +184,7 @@
    onko arvo jo laskettu.  Ohjelmassa lasketaan ja piirretään
    Fibonaccin lukujonon 16 ensimmäistä lukua.
 
-   #+BEGIN_SRC processing :exports both
+   #+BEGIN_SRC processing :exports both :noweb yes
      int[] f; // taulukko arvojen tallentamiseksi
 
      // palauttaa luvun f_n
@@ -388,28 +389,65 @@
       <<rekursio-satunnaiskavely-runko>>
       #+END_SRC
    3. 
-      a)
-         #+BEGIN_SRC processing :exports both :noweb yes
-           // palauttaa luvun t_n
-           int trib (int n)
-           {
-             // perustapaukset
-             if (n == 0)
-               return (0);
+      a) 
+          #+BEGIN_SRC processing :exports both :noweb yes
+            // palauttaa luvun t_n
+            int trib (int n)
+            {
+              // perustapaukset
+              if (n == 0)
+                return (0);
 
-             if (n == 1 || n == 2)
-               return (n - 1);
+              if (n == 1 || n == 2)
+                return (n - 1);
 
-             // rekursioaskel
-             return (trib (n - 1) + trib (n - 2) + trib (n - 3));
-           }
+              // rekursioaskel
+              return (trib (n - 1) + trib (n - 2) + trib (n - 3));
+            }
 
-           <<bonacci-setup>>
+            <<bonacci-setup>>
 
-           void draw ()
-           {
-             text (trib (6), width / 2.0, height / 2.0);
-           }
-   #+END_SRC
+            void draw ()
+            {
+              text (trib (6), width / 2.0, height / 2.0);
+            }
+          #+END_SRC
+      b) 
+          #+BEGIN_SRC processing :exports both :noweb yes
+            int[] t; // taulukko arvojen tallentamiseksi
+
+            // palauttaa luvun f_n
+            int trib (int n)
+            {
+              // jos arvoa f_n ei ole vielä laskettu...
+              if (t [n] < 0)
+              {
+                // perustapaukset
+                if (n == 0)
+                  t [n] = 0;
+                else if (n == 1 || n == 2)
+                  t [n] =  n - 1;
+                else
+                  t [n] = trib (n - 1) + trib (n - 2) + trib (n - 3); // rekursioaskel
+              }
+
+              return (t [n]); // palautetaan arvo taulukosta
+            }
+
+            <<bonacci-setup>>
+
+            void draw ()
+            {
+              final int N = 15; // lasketaan t_0, t_1, ..., t_15
+
+              // varataan tila taulukolle ja alustetaan taulukko luvuilla -1
+              t = new int [N + 1];
+              for (int i = 0; i <= N; i++)
+                t [i] = -1;
+
+              for (int n = 0; n <= N; n++)
+                text (trib (n), (n + 1) * 35, height / 2.0); // 35 pikselin välein
+            }
+          #+END_SRC
          
       
