@@ -280,19 +280,38 @@
    <<rekursio-kaavio>>
    #+END_SRC
 ** Tehtäviä
-   1. Kirjoita rekursiota käyttävä ohjelma, joka piirtää alla olevan
-      kuvan. Vasemmanpuoleisen pystyviivan korkeus on 350. Kukin
-      seuraavan pystyviivan korkeus on 10\thinsp{}% edellistä
-      pienempi. Pystyviivojen etäisyys \(x\)-akselilla on 10 pikseliä.
-      #+NAME: rekursio-pystyviivat
-      #+BEGIN_SRC processing
-        void piirraPystyviivat (int viivoja, float x, float korkeus)
-        {
+   1. Alla olevassa kuvassa vasemmanpuoleisen pystyviivan korkeus on
+      350 ja kunkin seuraavan pystyviivan korkeus on 10\thinsp{}%
+      edellistä pienempi. Pystyviivojen etäisyys \(x\)-akselilla on 10
+      pikseliä.
+
+      #+CALL: rekursio-pystyviivat[:noweb yes]() :results html
+      
+      Tee vastaava ohjelma kopioimalla alla oleva koodi
+      Processing-editoriin ja kirjoittamalla rekursiivisen funktion
+      ~piirraPystyviivat()~ runko: poista rivi
+      #+BEGIN_EXAMPLE
+          <<rekursio-pystyviivat-runko>>
+      #+END_EXAMPLE
+      ja kirjoita tarvittavat rivit tilalle.
+
+      #+NAME: rekursio-pystyviivat-runko
+      #+BEGIN_SRC processing :exports none
           if (viivoja == 0)
             return;
 
           line (x, 0, x, korkeus);
           piirraPystyviivat (viivoja - 1, x + 10, 0.9 * korkeus);
+      #+END_SRC
+
+      #+NAME: rekursio-pystyviivat
+      #+BEGIN_SRC processing :exports code :noweb no
+        // piirretään 'viivoja' kappaletta pystyviivoja siten, että
+        // vasemmanpuoleisen pystyviivan korkeus on 'korkeus' ja
+        // x-koordinaatti 'x'
+        void piirraPystyviivat (int viivoja, float x, float korkeus)
+        {
+          <<rekursio-pystyviivat-runko>>
         }
 
         void setup ()
@@ -334,7 +353,7 @@
       #+BEGIN_EXAMPLE
           <<rekursio-satunnaiskavely-runko>>
       #+END_EXAMPLE
-      ja kirjoita tarvittavat rivit sen tilalle.
+      ja kirjoita tarvittavat rivit tilalle.
 
       #+NAME: rekursio-satunnaiskavely
       #+BEGIN_SRC processing :exports code :noweb no
@@ -360,7 +379,7 @@
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :noweb yes :exports code
-      <<rekursio-pystyviivat>>
+      <<rekursio-pystyviivat-runko>>
       #+END_SRC
    2. 
       #+BEGIN_SRC processing :noweb yes :exports code
