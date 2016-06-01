@@ -425,8 +425,24 @@
                                float x,
                                float y,
                                float sivu,
-                               boolean valkoinen)
+                               boolean valkoinenTausta)
         {
+          if (tasoja == 0)
+            return;
+
+          if (valkoinenTausta)
+            fill (0);
+          else
+            fill (100);
+
+          float p = sivu / 2;
+          float xOikea = x + p;
+          float yOikea = y + p;
+          rect (x, y, p, p);
+          rect (x + p, y + p, p, p);
+
+          piirraRuutukuvio (x, 
+  
         }
 
       #+END_SRC
