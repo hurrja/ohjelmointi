@@ -118,7 +118,20 @@
    \end{align*}
    Alla oleva rekursiivinen ohjelma piirtää piirtoikkunan keskelle
    lukujonon luvun \(f_6.\)
-   #+BEGIN_SRC processing :exports both
+   #+NAME: bonacci-setup
+   #+BEGIN_SRC processing
+     void setup ()
+     {
+       size (400, 400);
+       colorMode (HSB, 100);
+       background (0);
+       fill (100);
+       textAlign (CENTER, CENTER);
+       textSize (40);
+       noLoop ();
+     }
+   #+END_SRC
+   #+BEGIN_SRC processing :exports both :noweb yes
      // palauttaa luvun f_n
      int fib (int n)
      {
@@ -130,16 +143,7 @@
        return (fib (n - 1) + fib (n - 2));
      }
 
-     void setup ()
-     {
-       size (400, 400);
-       colorMode (HSB, 100);
-       background (0);
-       fill (100);
-       textAlign (CENTER, CENTER);
-       textSize (40);
-       noLoop ();
-     }
+     <<bonacci-setup>>
 
      void draw ()
      {
@@ -198,16 +202,7 @@
        return (f [n]); // palautetaan arvo taulukosta
      }
 
-     void setup ()
-     {
-       size (600, 400);
-       colorMode (HSB, 100);
-       background (0);
-       fill (100);
-       textAlign (CENTER, CENTER);
-       textSize (15);
-       noLoop ();
-     }
+     <<bonacci-setup>>
 
      void draw ()
      {
@@ -375,7 +370,14 @@
           satunnaiskavely (30, 0, 0);
         }
       #+END_SRC
-
+   3. Kolme ensimmäistä /tribonaccin lukujonon/ lukua ovat 0, 0 ja 1,
+      ja muut luvut ovat kolmen edellisen luvun summa.
+      a) Kirjoita rekursioon perustuva ohjelma, joka piirtää
+         piirtoikkunan keskelle tribonaccin lukujonon 7. luvun. Voit
+         aloittaa kopioimalla ohjelmakoodin Fibonaccin
+         lukujonoesimerkistä.
+      b) Lisää ohjelmaasi taulukointi ja kirjoita ohjelma joka piirtää
+         16 ensimmäistä tribonaccin lukujonon lukua.
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :noweb yes :exports code
@@ -385,4 +387,29 @@
       #+BEGIN_SRC processing :noweb yes :exports code
       <<rekursio-satunnaiskavely-runko>>
       #+END_SRC
+   3. 
+      a)
+         #+BEGIN_SRC processing :exports both :noweb yes
+           // palauttaa luvun t_n
+           int trib (int n)
+           {
+             // perustapaukset
+             if (n == 0)
+               return (0);
+
+             if (n == 1 || n == 2)
+               return (n - 1);
+
+             // rekursioaskel
+             return (trib (n - 1) + trib (n - 2) + trib (n - 3));
+           }
+
+           <<bonacci-setup>>
+
+           void draw ()
+           {
+             text (trib (6), width / 2.0, height / 2.0);
+           }
+   #+END_SRC
+         
       
