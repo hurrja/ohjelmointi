@@ -1,0 +1,50 @@
+#+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
+
+* Olio-ohjelmointia
+** Esimerkki
+   Processing-ohjelmissa esiintyy usein pisteitä. Pisteellä on \(x\)-
+   ja \(y\)-koordinaatti. Piste voidaan myös piirtää piirtoikkunaan.
+
+   Processing-kielessä voidaan määritellä pisteelle oma
+   muuttujatyyppi. Tällaista muuttujatyyppiä kutsutaan
+   /luokaksi/. Alla on esimerkki tällaisen luokan määrittelystä sekä
+   sen käytöstä ohjelmassa.
+
+   #+BEGIN_SRC processing
+     class Piste
+     {
+       // "rakentaa" pisteen annetuista koordinaateista
+       Piste (float x, float y)
+       {
+         this.x = x;
+         this.y = y;
+       }
+
+       // piirtää pisteen
+       void piirra ()
+       {
+         point (x, y);
+       }
+
+       float x, y; // pisteen koordinaatit
+     }
+
+     void setup ()
+     {
+       size (400, 400);
+       colorMode (HSB, 100);
+       background (0);
+       stroke (100);
+       noLoop ();
+     }
+
+     void draw ()
+     {
+       for (int i = 0; i < 1000; i++)
+       {
+         // rakennetaan uusi piste ja talletetaan se muuttujaan p
+         Piste p = new Piste (random (width), random (height));
+         p.piirra (); // piirretään piste
+       }
+     }
+   #+END_SRC

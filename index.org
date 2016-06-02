@@ -30,4 +30,4 @@
 * [[file:taulukko.org]]
 * [[file:sisakkaiset-silmukat.org]]
 * [[file:rekursio.org]]
-* Luokka ja olio
+* [[file:olio-ohjelmointia.org]]
