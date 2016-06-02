@@ -169,33 +169,38 @@
      }
    #+END_SRC
 ** Esimerkki
-   Luokka voidaan myös määritellä rekursiivisesti. /Binääripuu/ on
+   Luokka voidaan määritellä myös rekursiivisesti. /Binääripuu/ on
    puumainen rakenne, jossa jokaisessa haarautumiskohdassa on tietoa
    sisältävä /solmu/, ja jokaisesta haarautumiskohdasta lähtee
    korkeintaan kaksi haaraa. Alla määritellään luokka ~Binaaripuu~,
    jonka jokaisessa solmussa on satunnainen kokonaisluku ja kustakin
    haarautumiskohdasta lähtee kaksi haaraa. Puussa on konstruktorille
    annettu määrä tasoja, ja solmun suurimman mahdollisen arvon määrää
-   konstruktorin parametri ~suurin~.
-   - 
+   konstruktorin parametri ~suurin~. Tässä on ohjelman piirtämä kuva.
+
+   #+NAME: olio-ohjelmointia-binaaripuu
    #+BEGIN_SRC processing
      class Binaaripuu
      {
+       // jäsenmuuttujat
+       int arvo; // solmun arvo
+       Binaaripuu vasen; // vasen haara
+       Binaaripuu oikea; // oikea haara
+
        // konstruktori
        Binaaripuu (int tasoja, int suurin)
        {
-         assert (tasoja > 0); // varmistetaan, että parametrin arvo järkevä
          arvo = floor (random (suurin + 1)); // solmun satunnainen arvo
     
-         // rekursion lopetusehto
+         // rekursion perustapaus
          if (tasoja == 1)
          {
-           vasen = null;
-           oikea = null;
+           vasen = null; // ei vasenta haaraa...
+           oikea = null; // ... eikä oikeaa
          }
          else
          {
-           // rekursioaskel
+           // rekursioaskel perustapausta kohden
            int tasojaJaljella = tasoja - 1;
            vasen = new Binaaripuu (tasojaJaljella, suurin);
            oikea = new Binaaripuu (tasojaJaljella, suurin);
@@ -209,8 +214,6 @@
          // tarkistetaan onko haaroja
          if (vasen != null)
          {
-           assert (oikea != null); // jos on vasen, pitäisi olla oikeakin
-
            float xVasen = x - askel;
            float xOikea = x + askel;
            float yUusi = y + askel;
@@ -224,11 +227,6 @@
          // piirretään arvo
          text (arvo, x, y);
        }
-
-       // jäsenmuuttujat
-       int arvo; // solmun arvo
-       Binaaripuu vasen; // vasen haara
-       Binaaripuu oikea; // oikea haara
      }
 
      void setup ()
@@ -236,7 +234,7 @@
        size (800, 400);
        colorMode (HSB, 100);
        textAlign (CENTER, CENTER);
-       textSize (16);
+       textSize (20);
        background (0);
        fill (0, 100, 100);
        stroke (30);
@@ -251,4 +249,15 @@
        // piirretään puu
        puu.piirra (width / 2.0, 10, 200);
      }
+   #+END_SRC
+
+   Kuvan piirtänyt ohjelmakoodi on alla. Huomaa, että
+   - luokan rakenne on rekursiivinen: ~Binaaripuu~-olion
+     jäsenmuuttujat ~vasen~ ja ~oikea~ ovat myös tyyppiä ~Binaaripuu~,
+     eli puun vasen ja oikea haara ovat myös puita
+   - konstruktori on rekursiivinen
+   - jäsenfunktio ~piirra()~ on rekursiivinen.
+
+   #+BEGIN_SRC processing :exports code :noweb yes
+   <<olio-ohjelmointia-binaaripuu>>
    #+END_SRC
