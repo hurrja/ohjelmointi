@@ -91,3 +91,65 @@
      mihinkään olioon. Tällöin muuttujan arvo on tyhjää referenssiä
      tarkoittava ~null~.
    #+END_QUOTE
+** Esimerkki
+   Määritellään luokka ympyröitä varten. Luokka käyttää aiemmin
+   määriteltyä luokkaa pisteille.
+
+   #+BEGIN_SRC processing :noweb yes :exports both
+     <<olio-ohjelmointia-piste>>
+
+     class Ympyra
+     {
+       // konstruktori
+       Ympyra (Piste keskipiste, float d)
+       {
+         this.keskipiste = keskipiste;
+         this.d = d;
+       }
+
+       // jäsenfunktio, joka piirtää
+       void piirra ()
+       {
+         ellipse (keskipiste.x, keskipiste.y, d, d);
+       }
+
+       // palauttaa arvon 'true' täsmälleen silloin, jos ympyrät leikkaavat
+       boolean leikkaa (Ympyra ym)
+       {
+         return (dist (keskipiste.x,
+                       keskipiste.y,
+                       ym.keskipiste.x,
+                       ym.keskipiste.y) < d / 2.0 + ym.d / 2.0);
+       }
+
+       Piste keskipiste;
+       float d;
+     }
+
+     void setup ()
+     {
+       size (600, 400);
+       colorMode (HSB, 100);
+       noLoop ();
+     }
+
+     void draw ()
+     {
+       // ympyrä
+       Ympyra y1 = new Ympyra (new Piste (200, 300), 150);
+       y1.piirra ();
+
+       // toinen ympyrä, jolla sama keskipiste kuin ensimmäisellä, mutta 50
+       // pienempi halkaisija
+       Ympyra y2 = new Ympyra (y1.keskipiste, y1.d - 50);
+       y2.piirra ();
+
+       // kolmas, joka piirretään mustana jos se leikkaa ympyrän y1
+       Ympyra y3 = new Ympyra (new Piste (150, 230), 30);
+       if (y1.leikkaa (y3))
+         fill (0);
+       else
+         fill (100);
+       y3.piirra ();
+     }
+   #+END_SRC
