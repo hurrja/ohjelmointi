@@ -369,7 +369,6 @@
            fill (44, 66, 96);
            rect (150, 100, 50, 50);
 	 #+END_SRC
-
       b) 
 	 #+BEGIN_SRC processing :exports both :noweb yes
            <<vari-komponenttien-muutos-alku>>
@@ -378,7 +377,6 @@
            fill (44, 96, 71);
            triangle (100, 180, 120, 70, 250, 110);
 	 #+END_SRC
-
    5. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<vari-tiikeri>>
