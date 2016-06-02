@@ -371,7 +371,40 @@
           satunnaiskavely (30, 0, 0);
         }
       #+END_SRC
-   3. Kolme ensimmäistä /tribonaccin lukujonon/ lukua ovat 0, 0 ja 1,
+   3. Kirjoita rekursiota käyttävä ohjelma, joka piirtää alla olevan
+      kaltaisen kuvan.
+      #+NAME: rekursio-laskeva-lukujono
+      #+BEGIN_SRC processing
+        final int VALI = 30; // lukujen välimatka kuvassa
+
+        void piirraLuvut (int luku, float x)
+        {
+          if (luku < 0)
+            return;
+
+          text (luku, x, height / 2.0);
+          piirraLuvut (luku - 1, x + VALI);
+        }
+
+        void setup ()
+        {
+          size (600, 200);
+          colorMode (HSB, 100);
+          textAlign (CENTER, CENTER);
+          textSize (16);
+
+          background (0);
+          fill (100);
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          piirraLuvut (15, VALI);
+        }
+
+      #+END_SRC
+   4. Kolme ensimmäistä /tribonaccin lukujonon/ lukua ovat 0, 0 ja 1,
       ja muut luvut ovat kolmen edellisen luvun summa.
       a) Kirjoita rekursioon perustuva ohjelma, joka piirtää
          piirtoikkunan keskelle tribonaccin lukujonon 7. luvun. Voit
@@ -379,7 +412,7 @@
          lukujonoesimerkistä.
       b) Lisää ohjelmaasi taulukointi ja kirjoita ohjelma joka piirtää
          16 ensimmäistä tribonaccin lukujonon lukua.
-   4. Tee rekursioon perustuva ohjelma, joka piirtää alla olevan
+   5. Tee rekursioon perustuva ohjelma, joka piirtää alla olevan
       \ldquo{}puun\rdquo.
       - Puun alin haarautumiskohta on kuvan keskellä alareunassa.
       - Puun seuraavat haarautumiskohdat saadaan siirtymällä
@@ -395,13 +428,14 @@
           if (tasoja == 0)
             return;
 
-          float xVasen = x - askel;
-          float xOikea = x + askel;
-          float yUusi = y - askel;
+          float xVasen = x - askel; // vasemman haaran pää
+          float xOikea = x + askel; // oikean haaran pää
+          float yUusi = y - askel; // molempien päiden y-koordinaatti
 
-          line (x, y, xVasen, yUusi);
-          line (x, y, xOikea, yUusi);
+          line (x, y, xVasen, yUusi); // vasen haara
+          line (x, y, xOikea, yUusi); // oikea haara
 
+          // rekursioaskel
           int tasojaJaljella = tasoja - 1;
           float uusiAskel = askel / 2;
           piirraPuu (tasojaJaljella, xVasen, yUusi, uusiAskel);
@@ -419,7 +453,7 @@
           piirraPuu (6, width / 2.0, height, 100);
         }
       #+END_SRC
-   5. Eri kokoisia shakkilautoja, joissa on vaaka- ja pystysuunnassa
+   6. Eri kokoisia shakkilautoja, joissa on vaaka- ja pystysuunnassa
       \(1, 2, 4, 8, ...\) ruutua - eli ruutujen lukumäärä vaaka- ja
       pystysuunnassa on kahden potenssi - voidaan piirtää
       rekursiivisesti.
@@ -448,6 +482,10 @@
       <<rekursio-satunnaiskavely-runko>>
       #+END_SRC
    3. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<rekursio-laskeva-lukujono>>
+      #+END_SRC
+   4. 
       a) 
           #+BEGIN_SRC processing :exports both :noweb yes
             // palauttaa luvun t_n
@@ -475,10 +513,10 @@
           #+BEGIN_SRC processing :exports both :noweb yes
             int[] t; // taulukko arvojen tallentamiseksi
 
-            // palauttaa luvun f_n
+            // palauttaa luvun t_n
             int trib (int n)
             {
-              // jos arvoa f_n ei ole vielä laskettu...
+              // jos arvoa t_n ei ole vielä laskettu...
               if (t [n] < 0)
               {
                 // perustapaukset
@@ -508,11 +546,11 @@
                 text (trib (n), (n + 1) * 35, height / 2.0); // 35 pikselin välein
             }
           #+END_SRC
-   4. 
+   5. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<rekursio-puu>>
       #+END_SRC
-   5. Kuvia voidaan piirtää sijoittamalla jokin luku vakion ~JAOT~
+   6. Kuvia voidaan piirtää sijoittamalla jokin luku vakion ~JAOT~
       paikalle.
       #+NAME: rekursio-shakkilauta
       #+BEGIN_SRC processing :var JAOT=0 :exports code
@@ -522,6 +560,7 @@
                                 float sivu,
                                 boolean musta)
         {
+          // perustapaus
           if (jakoja == 0)
           {
             if (musta)
@@ -533,15 +572,16 @@
             return;
           }
 
-          float p = sivu / 2;
-          float xOikea = x + p;
-          float yOikea = y + p;
+          // rekursioaskel
+          float p = sivu / 2; // sivun puolikas
+          float xOikea = x + p; // uuden jaon oikeanpuoleisten neliöiden x
+          float yAla = y + p; // uuden jaon alaneliöiden y
           int jakojaJaljella = jakoja - 1;
 
-          piirraShakkilauta (jakojaJaljella, x, y, p, true);
-          piirraShakkilauta (jakojaJaljella, xOikea, yOikea, p, true);
-          piirraShakkilauta (jakojaJaljella, x, yOikea, p, false);
-          piirraShakkilauta (jakojaJaljella, xOikea, y, p, false);
+          piirraShakkilauta (jakojaJaljella, x, y, p, true); // vasen ylä
+          piirraShakkilauta (jakojaJaljella, xOikea, yAla, p, true); // oikea ala
+          piirraShakkilauta (jakojaJaljella, x, yAla, p, false); // vasen ala
+          piirraShakkilauta (jakojaJaljella, xOikea, y, p, false); // oikea ylä
         }
 
         void setup ()
