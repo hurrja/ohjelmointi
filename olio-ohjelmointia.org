@@ -5,29 +5,35 @@
    Processing-ohjelmissa esiintyy usein pisteitä. Pisteellä on \(x\)-
    ja \(y\)-koordinaatti. Piste voidaan myös piirtää piirtoikkunaan.
 
-   Processing-kielessä voidaan määritellä pisteelle oma
-   muuttujatyyppi. Tällaista muuttujatyyppiä kutsutaan
-   /luokaksi/. Alla on esimerkki tällaisen luokan määrittelystä sekä
-   sen käytöstä ohjelmassa.
+   Pisteelle voidaan määritellä oma muuttujatyyppi. Tällaista
+   muuttujatyyppiä kutsutaan /luokaksi/. Alla on esimerkki tällaisen
+   luokan määrittelystä sekä sen käytöstä ohjelmassa.
 
-   #+BEGIN_SRC processing
+   #+NAME: olio-ohjelmointia-piste
+   #+BEGIN_SRC processing :exports none
      class Piste
      {
-       // "rakentaa" pisteen annetuista koordinaateista
+       // tämä funktio "rakentaa" uuden pisteen annetuista koordinaateista
        Piste (float x, float y)
        {
          this.x = x;
          this.y = y;
        }
 
-       // piirtää pisteen
+       // tämä funktio piirtää pisteen
        void piirra ()
        {
          point (x, y);
        }
 
-       float x, y; // pisteen koordinaatit
+       float x, y; // pisteen koordinaatit talletetaan näihin muuttujiin
      }
+   
+   #+END_SRC
+
+   #+BEGIN_SRC processing :exports both :noweb yes
+     // luokan Piste määrittely
+     <<olio-ohjelmointia-piste>>
 
      void setup ()
      {
@@ -48,3 +54,40 @@
        }
      }
    #+END_SRC
+** Olio-ohjelmoinnin käsitteitä
+   #+BEGIN_QUOTE
+   - Luokka on ohjelmoijan määrittelemä muuttujatyyppi.
+   - Luokassa on funktioita, joita kutsutaan /jäsenfunktioiksi/. Yllä
+     olevassa esimerkissä jäsenfunktioita ovat ~Piste()~ sekä
+     ~piirra()~.
+   - Luokan sisällä olevia muuttujia kutsutaan
+     /jäsenmuuttujiksi/. Yllä olevassa esimerkissä jäsenmuuttujia ovat
+     ~x~ ja ~y~.
+   - Luokan konkreettiset esiintymät ovat /olioita/. Yllä kukin 1000
+     pisteestä on olio.
+   - Olio luodaan komennolla ~new~ sekä luokan /konstruktorin/
+     avulla. Yllä luokan ~Piste~ konstruktori on funktio
+     #+BEGIN_EXAMPLE
+     Piste (float x, float y)
+     #+END_EXAMPLE
+     Konstruktorin paluuarvoa ei tarvitse määritellä.
+   - Luokan tyyppiä oleva muuttuja on itse asiassa viittaus eli
+     /referenssi/ varsinaiseen olioon. Olio on olemassa niin kauan,
+     kuin siihen on vähintään yksi viittaus. Olio tuhotaan
+     automaattisesti, kun siihen ei enää viitata. Yllä kukin 1000
+     pisteestä on talletettuna muuttujaan ~p~ vain vähän aikaa, minkä
+     jälkeen ne voidaan tuhota. Tuhoamista ennen kukin pisteistä on
+     ehtinyt piirtää itsensä, joten ruudulla pisteet jäävät näkyviin.
+   - Olion jäsenmuuttujiin ja -funktioihin viitataan pistemerkin ~.~
+     avulla. Yllä lauseke
+     #+BEGIN_EXAMPLE
+     p.piirra ();
+     #+END_EXAMPLE
+     kutsuu muuttujaan ~p~ tallennetun olion jäsenfunktiota.
+   - Luokan jäsenfunktioiden sisällä sana ~this~ on referenssi
+     tämänhetkiseen olioon. Yllä sitä käytetään erottamaan
+     jäsenmuuttuja ~this.x~ konstruktorin parametrista ~x~.
+   - Luokan tyyppiä oleva muuttuja voi myös olla viittaamatta
+     mihinkään olioon. Tällöin muuttujan arvo on tyhjää referenssiä
+     tarkoittava ~null~.
+   #+END_QUOTE
