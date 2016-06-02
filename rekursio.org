@@ -419,33 +419,25 @@
           piirraPuu (6, width / 2.0, height, 100);
         }
       #+END_SRC
-   5. 
-      #+BEGIN_SRC processing
-        void piirraRuutukuvio (int tasoja,
-                               float x,
-                               float y,
-                               float sivu,
-                               boolean valkoinenTausta)
-        {
-          if (tasoja == 0)
-            return;
+   5. Eri kokoisia shakkilautoja, joissa on vaaka- ja pystysuunnassa
+      \(1, 2, 4, 8, ...\) ruutua - eli ruutujen lukumäärä vaaka- ja
+      pystysuunnassa on kahden potenssi - voidaan piirtää
+      rekursiivisesti.
+      - Perustapaus. :: Jos piirrettävää aluetta ei tarvitse enää
+           jakaa useampaan ruutuun, piirretään ruutu (tilanteen mukaan
+           keltainen tai musta).
 
-          if (valkoinenTausta)
-            fill (0);
-          else
-            fill (100);
+      - Rekursio perustapausta kohden. :: Jos piirrettävä alue täytyy
+           vielä jakaa, jaetaan se neljään neliöön. Vasen yläkulma ja
+           oikea alakulma merkitään piirrettäväksi mustalla, toiset
+           kaksi neliötä keltaisella.
 
-          float p = sivu / 2;
-          float xOikea = x + p;
-          float yOikea = y + p;
-          rect (x, y, p, p);
-          rect (x + p, y + p, p, p);
-
-          piirraRuutukuvio (x, 
-  
-        }
-
-      #+END_SRC
+      Alla on ohjelman piirtämiä shakkilautoja, kun jakojen määrä on
+      0, 1 ja 2. Kirjoita ohjelma, jolla voit piirtää vastaavia kuvia.
+    
+      #+CALL: rekursio-shakkilauta(0) :results html
+      #+CALL: rekursio-shakkilauta(1) :results html
+      #+CALL: rekursio-shakkilauta(2) :results html
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :noweb yes :exports code
@@ -519,6 +511,51 @@
    4. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<rekursio-puu>>
+      #+END_SRC
+   5. Kuvia voidaan piirtää sijoittamalla jokin luku vakion ~JAOT~
+      paikalle.
+      #+NAME: rekursio-shakkilauta
+      #+BEGIN_SRC processing :var JAOT=0 :exports code
+        void piirraShakkilauta (int jakoja,
+                                float x,
+                                float y,
+                                float sivu,
+                                boolean musta)
+        {
+          if (jakoja == 0)
+          {
+            if (musta)
+              fill (0);
+            else
+              fill (17, 100, 100);
+            rect (x, y, sivu, sivu);
+
+            return;
+          }
+
+          float p = sivu / 2;
+          float xOikea = x + p;
+          float yOikea = y + p;
+          int jakojaJaljella = jakoja - 1;
+
+          piirraShakkilauta (jakojaJaljella, x, y, p, true);
+          piirraShakkilauta (jakojaJaljella, xOikea, yOikea, p, true);
+          piirraShakkilauta (jakojaJaljella, x, yOikea, p, false);
+          piirraShakkilauta (jakojaJaljella, xOikea, y, p, false);
+        }
+
+        void setup ()
+        {
+          size (200, 200);
+          colorMode (HSB, 100);
+          noStroke ();
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          piirraShakkilauta (JAOT, 0, 0, width, true);
+        }
       #+END_SRC
          
       
