@@ -261,3 +261,41 @@
    #+BEGIN_SRC processing :exports code :noweb yes
    <<olio-ohjelmointia-binaaripuu>>
    #+END_SRC
+** Tehtäviä
+   1. Määrittele luokka ~Jana~ ja sille konstruktori sekä jäsenfunktio
+      ~piirra()~. Käytä hyväksesi esimerkissä määriteltyä luokkaa
+      ~Piste~ sekä sitä, että jana voidaan määrittää kahden
+      päätepisteen avulla. Piirrä luokan avulla piirtoikkunaan jana.
+** Ratkaisuja
+   1. 
+      #+BEGIN_SRC processing :noweb yes :exports both
+        <<olio-ohjelmointia-piste>>
+
+        class Jana
+        {
+          Jana (Piste pp1, Piste pp2)
+          {
+            this.pp1 = pp1;
+            this.pp2 = pp2;
+          }
+
+          void piirra ()
+          {
+            line (pp1.x, pp1.y, pp2.x, pp2.y);
+          }
+  
+          Piste pp1, pp2; // päätepisteet
+        }
+
+        void setup ()
+        {
+          size (400, 400);
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          Jana j = new Jana (new Piste (100, 150), new Piste (300, 90));
+          j.piirra ();
+        }
+      #+END_SRC
