@@ -168,3 +168,87 @@
          ym.piirra ();
      }
    #+END_SRC
+** Esimerkki
+   Luokka voidaan myös määritellä rekursiivisesti. /Binääripuu/ on
+   puumainen rakenne, jossa jokaisessa haarautumiskohdassa on tietoa
+   sisältävä /solmu/, ja jokaisesta haarautumiskohdasta lähtee
+   korkeintaan kaksi haaraa. Alla määritellään luokka ~Binaaripuu~,
+   jonka jokaisessa solmussa on satunnainen kokonaisluku ja kustakin
+   haarautumiskohdasta lähtee kaksi haaraa. Puussa on konstruktorille
+   annettu määrä tasoja, ja solmun suurimman mahdollisen arvon määrää
+   konstruktorin parametri ~suurin~.
+   - 
+   #+BEGIN_SRC processing
+     class Binaaripuu
+     {
+       // konstruktori
+       Binaaripuu (int tasoja, int suurin)
+       {
+         assert (tasoja > 0); // varmistetaan, että parametrin arvo järkevä
+         arvo = floor (random (suurin + 1)); // solmun satunnainen arvo
+    
+         // rekursion lopetusehto
+         if (tasoja == 1)
+         {
+           vasen = null;
+           oikea = null;
+         }
+         else
+         {
+           // rekursioaskel
+           int tasojaJaljella = tasoja - 1;
+           vasen = new Binaaripuu (tasojaJaljella, suurin);
+           oikea = new Binaaripuu (tasojaJaljella, suurin);
+         }
+       }
+
+       void piirra (float x,
+                    float y,
+                    float askel)
+       {
+         // tarkistetaan onko haaroja
+         if (vasen != null)
+         {
+           assert (oikea != null); // jos on vasen, pitäisi olla oikeakin
+
+           float xVasen = x - askel;
+           float xOikea = x + askel;
+           float yUusi = y + askel;
+           line (x, y, xVasen, yUusi);
+           line (x, y, xOikea, yUusi);
+           float p = askel / 2;
+           vasen.piirra (xVasen, yUusi, p);
+           oikea.piirra (xOikea, yUusi, p);
+         }
+
+         // piirretään arvo
+         text (arvo, x, y);
+       }
+
+       // jäsenmuuttujat
+       int arvo; // solmun arvo
+       Binaaripuu vasen; // vasen haara
+       Binaaripuu oikea; // oikea haara
+     }
+
+     void setup ()
+     {
+       size (800, 400);
+       colorMode (HSB, 100);
+       textAlign (CENTER, CENTER);
+       textSize (16);
+       background (0);
+       fill (0, 100, 100);
+       stroke (30);
+       noLoop ();
+     }
+
+     void draw ()
+     {
+       // rakennetaan uusi puu, jossa 5 tasoa
+       Binaaripuu puu = new Binaaripuu (5, 100);
+
+       // piirretään puu
+       puu.piirra (width / 2.0, 10, 200);
+     }
+   #+END_SRC
