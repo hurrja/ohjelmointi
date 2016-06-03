@@ -337,7 +337,76 @@
           }
         }
       #+END_SRC
-   4. Määrittele luokka ~NKulmio~ ja sille konstruktori sekä
+   4. Määrittele luokka ~Portaat~ ja sille konstruktori sekä
+      jäsenfunktio ~piirra()~. Konstruktori saa neljä parametria
+      #+BEGIN_EXAMPLE
+      Portaat (float x, float y, int askelmat, float askel)
+      #+END_EXAMPLE
+      joista ~(x, y)~ on portaiden alimman pisteen kohta, ~askelmat~
+      on portaiden askelmien lukumäärä ja ~askel~ on yksittäisen janan
+      pituus piirretyissä askelmissa. Jäsenfunktio ~piirra()~ piirtää
+      alhalta ylös ja vasemmalta oikealle etenevät portaat. Käytä
+      luokkaasi piirtämään alla oleva kuva, joista vasemmanpuoleisissa
+      portaissa konstruktorien parametrien arvot ovat
+      - ~x~: 200
+      - ~y~: 300
+      - ~askelmat~: 10
+      - ~askel~: 20.
+      Oikeanpuoleisissa portaissa arvot ovat muuten samat, mutta
+      askelman pituus puolittuu ja alimman kohdan \(x\)-koordinaatti
+      kasvaa luvulla 100. (Vihje: voit muuttaa vasemmanpuoleisten
+      portaiden olion jäsenmuuttujia ja piirtää oikeanpuoleiset
+      portaat samalla oliolla.)
+
+      #+NAME: olio-ohjelmointia-portaat
+      #+BEGIN_SRC processing
+        class Portaat
+        {
+          Portaat (float x, float y, int askelmat, float askel)
+          {
+            this.askelmat = askelmat;
+            this.askel = askel;
+            this.x = x;
+            this.y = y;
+          }
+
+          void piirra ()
+          {
+            float xAlku = x; // portaan alkupisteen x ...
+            float yAlku = y; // ... sekä y
+            for (int i = 0; i < askelmat; i++)
+            {
+              float xLoppu = xAlku + askel; // loppupisteen x ...
+              float yLoppu = yAlku - askel; // ... sekä y
+              line (xAlku, yAlku, xAlku, yLoppu); // pystyjana
+              line (xAlku, yLoppu, xLoppu, yLoppu); // vaakajana
+
+              xAlku = xLoppu; // seuraavan alku on edellisen loppu
+              yAlku = yLoppu;
+            }
+          }
+
+          int askelmat;
+          float askel;
+          float x, y;
+        }
+
+        void setup ()
+        {
+          size (600, 400);
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          Portaat p = new Portaat (200, 300, 10, 20);
+          p.piirra ();
+          p.askel /= 2;
+          p.x += 100;
+          p.piirra ();
+        }
+      #+END_SRC
+   5. Määrittele luokka ~NKulmio~ ja sille konstruktori sekä
       jäsenfunktio ~piirra()~. Käytä hyväksesi yllä kirjoitettuja
       luokkia ~Piste~ sekä ~Jana~. Luokan ~NKulmio~ konstruktorin
       ainoa parametri on pistetaulukko, jossa olevat pisteet
@@ -345,7 +414,7 @@
       monikulmiota myötä- tai vastapäivään.  Piirrä luokan avulla
       viisikulmio, jonka kärkipisteet ovat itse määrittelemissäsi
       koordinaateissa.
-   5. /Linkitetty lista/ on tietorakenne, jossa on /alkioita/
+   6. /Linkitetty lista/ on tietorakenne, jossa on /alkioita/
       järjestyksessä samaan tapaan kuin taulukossa. Kustakin alkiosta
       päästään listan seuraavaan alkioon -- paitsi viimeisestä
       alkiosta, jolla ei ole seuraavaa alkiota.
@@ -504,6 +573,10 @@
       <<olio-ohjelmointia-rasti>>
       #+END_SRC
    4. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<olio-ohjelmointia-portaat>>
+      #+END_SRC
+   5. 
       #+BEGIN_SRC processing :noweb yes :exports both
         <<olio-ohjelmointia-jana>>
 
@@ -561,7 +634,7 @@
           kulmio.piirra ();
         }
       #+END_SRC
-   5. 
+   6. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<olio-ohjelmointia-linkitetty-lista>>
       #+END_SRC
