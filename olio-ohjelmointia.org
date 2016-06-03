@@ -280,7 +280,64 @@
       luokkaa ~Piste~. Piirrä luokan avulla piirtoikkunaan 5
       erisävyistä, satunnaisen kokoista kolmiota, joilla kaikilla on
       yksi yhteinen, ohjelmassa satunnaisesti arvottu piste.
-   3. Määrittele luokka ~NKulmio~ ja sille konstruktori sekä
+   3. Määrittele luokka ~Rasti~ ja sille konstruktori sekä
+      jäsenfunktio ~piirra()~. Konstruktori saa kaksi parametria.
+      Ensimmäinen on tyyppiä ~Piste~ ja määrittää rastin
+      keskipisteen. Toinen on tyyppiä ~float~ ja määrittää rastin koon
+      (leveyden sekä \(x\)- että \(y\)-suunnissa). Piirrä luokkasi
+      avulla alla olevan kaltainen kuva, jossa on 30 erikokoista
+      rastia piirtoikkunan satunnaisissa kohdissa. Rastien koko on
+      satunnaisluku, jonka arvo on vähintään 5 ja pienempi kuin 25.
+      #+NAME: olio-ohjelmointia-rasti
+      #+BEGIN_SRC processing :noweb yes
+        <<olio-ohjelmointia-piste>>
+
+        class Rasti
+        {
+          Rasti (Piste keskipiste, float koko)
+          {
+            kp = keskipiste;
+            this.koko = koko;
+          }
+
+          void piirra ()
+          {
+            float p = koko / 2; // puolet koosta
+
+            // päätepisteiden x-koordinaatit
+            float vasen = kp.x - p;
+            float oikea = kp.x + p;
+
+            // päätepisteiden y-koordinaatit
+            float yla = kp.y - p;
+            float ala = kp.y + p;
+
+            line (vasen, ala, oikea, yla);
+            line (vasen, yla, oikea, ala);
+          }
+
+          float koko;
+          Piste kp; // keskipiste
+        }
+
+        void setup ()
+        {
+          size (600, 400);
+          noLoop ();
+        }
+
+
+        void draw ()
+        {
+          for (int i = 0; i < 30; i++)
+          {
+            Rasti r = new Rasti (new Piste (random (width), random (height)),
+                                 random (5, 25));
+            r.piirra ();
+          }
+        }
+      #+END_SRC
+   4. Määrittele luokka ~NKulmio~ ja sille konstruktori sekä
       jäsenfunktio ~piirra()~. Käytä hyväksesi yllä kirjoitettuja
       luokkia ~Piste~ sekä ~Jana~. Luokan ~NKulmio~ konstruktorin
       ainoa parametri on pistetaulukko, jossa olevat pisteet
@@ -288,7 +345,7 @@
       monikulmiota myötä- tai vastapäivään.  Piirrä luokan avulla
       viisikulmio, jonka kärkipisteet ovat itse määrittelemissäsi
       koordinaateissa.
-   4. /Linkitetty lista/ on tietorakenne, jossa on /alkioita/
+   5. /Linkitetty lista/ on tietorakenne, jossa on /alkioita/
       järjestyksessä samaan tapaan kuin taulukossa. Kustakin alkiosta
       päästään listan seuraavaan alkioon -- paitsi viimeisestä
       alkiosta, jolla ei ole seuraavaa alkiota.
@@ -443,6 +500,10 @@
         }
       #+END_SRC
    3. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<olio-ohjelmointia-rasti>>
+      #+END_SRC
+   4. 
       #+BEGIN_SRC processing :noweb yes :exports both
         <<olio-ohjelmointia-jana>>
 
@@ -500,7 +561,7 @@
           kulmio.piirra ();
         }
       #+END_SRC
-   4. 
+   5. 
       #+BEGIN_SRC processing :noweb yes :exports code
       <<olio-ohjelmointia-linkitetty-lista>>
       #+END_SRC
