@@ -277,8 +277,9 @@
       päätepisteen avulla. Piirrä luokan avulla piirtoikkunaan jana.
    2. Määrittele luokka ~Kolmio~ ja sille konstruktori sekä
       jäsenfunktio ~piirra()~. Käytä hyväksesi esimerkissä määriteltyä
-      luokkaa ~Piste~. Piirrä luokan avulla piirtoikkunaan 50
-      eriväristä, satunnaisen kokoista kolmiota.
+      luokkaa ~Piste~. Piirrä luokan avulla piirtoikkunaan 5
+      erisävyistä, satunnaisen kokoista kolmiota, joilla kaikilla on
+      yksi yhteinen, ohjelmassa satunnaisesti arvottu piste.
    3. Määrittele luokka ~NKulmio~ ja sille konstruktori sekä
       jäsenfunktio ~piirra()~. Käytä hyväksesi yllä kirjoitettuja
       luokkia ~Piste~ sekä ~Jana~. Luokan ~NKulmio~ konstruktorin
@@ -326,6 +327,52 @@
         }
       #+END_SRC
    2. 
+      #+BEGIN_SRC processing :noweb yes :exports both
+        <<olio-ohjelmointia-piste>>
+
+        class Kolmio
+        {
+          Kolmio (Piste p1, Piste p2, Piste p3)
+          {
+            this.p1 = p1;
+            this.p2 = p2;
+            this.p3 = p3;
+          }
+
+          void piirra ()
+          {
+            triangle (p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+          }
+
+          Piste p1, p2, p3;
+        }
+
+        void setup ()
+        {
+          size (400, 400);
+          colorMode (HSB, 100);
+          background (0);
+          noStroke ();
+
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          // kaikille kolmioille yhteinen piste
+          Piste p1 = new Piste (random (width), random (height));
+
+          for (int i = 0; i < 5; i++)
+          {
+            fill (random (100), 100, 100); // satunnainen sävy
+            Piste p2 = new Piste (random (width), random (height));
+            Piste p3 = new Piste (random (width), random (height));
+            Kolmio k = new Kolmio (p1, p2, p3);
+            k.piirra ();
+          }
+        }
+      #+END_SRC
+   3. 
       #+BEGIN_SRC processing :noweb yes :exports both
         <<olio-ohjelmointia-jana>>
 
