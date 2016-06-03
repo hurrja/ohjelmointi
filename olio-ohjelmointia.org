@@ -170,13 +170,18 @@
    #+END_SRC
 ** Esimerkki
    Luokka voidaan määritellä myös rekursiivisesti. /Binääripuu/ on
-   puumainen rakenne, jossa jokaisessa haarautumiskohdassa on tietoa
-   sisältävä /solmu/, ja jokaisesta haarautumiskohdasta lähtee
-   korkeintaan kaksi haaraa. Alla määritellään luokka ~Binaaripuu~,
-   jonka jokaisessa solmussa on satunnainen kokonaisluku ja kustakin
-   haarautumiskohdasta lähtee kaksi haaraa. Puussa on konstruktorille
-   annettu määrä tasoja, ja solmun suurimman mahdollisen arvon määrää
-   konstruktorin parametri ~suurin~. Tässä on ohjelman piirtämä kuva.
+   puumainen rakenne, joka koostuu /solmuista/ sekä niiden välisistä
+   yhteyksistä. Jokaisesta solmusta lähtee korkeintaan kaksi haaraa
+   alempana oleviin solmuihin. Alimpia solmuja kutsutaan /lehdiksi/.
+
+   Alla määritellään luokka ~Binaaripuu~, jonka jokaisessa lehdessä on
+   satunnainen kokonaisluku ja kustakin ylemmästä solmusta lähtee
+   kaksi haaraa. Solmun arvo on välittömästi solmun alla olevien
+   solmujen arvojen summa. Kunkin solmun arvo on siis solmun alla
+   olevien lehtien arvojen summa. Luokan konstruktorille annetaan puun
+   tasojen määrä (alla olevassa kuvassa 5), ja lehden suurimman
+   mahdollisen arvon määrää konstruktorin parametri ~suurin~. Tässä on
+   ohjelman piirtämä kuva.
 
    #+NAME: olio-ohjelmointia-binaaripuu
    #+BEGIN_SRC processing
@@ -190,11 +195,10 @@
        // konstruktori
        Binaaripuu (int tasoja, int suurin)
        {
-         arvo = floor (random (suurin + 1)); // solmun satunnainen arvo
-    
-         // rekursion perustapaus
+         // rekursion perustapaus: lehti
          if (tasoja == 1)
          {
+           arvo = floor (random (suurin + 1)); // lehden satunnainen arvo
            vasen = null; // ei vasenta haaraa...
            oikea = null; // ... eikä oikeaa
          }
@@ -204,6 +208,9 @@
            int tasojaJaljella = tasoja - 1;
            vasen = new Binaaripuu (tasojaJaljella, suurin);
            oikea = new Binaaripuu (tasojaJaljella, suurin);
+
+           // solmun arvo on alapuiden arvojen summa
+           arvo = vasen.arvo + oikea.arvo; 
          }
        }
 
@@ -256,6 +263,8 @@
      jäsenmuuttujat ~vasen~ ja ~oikea~ ovat myös tyyppiä ~Binaaripuu~,
      eli puun vasen ja oikea haara ovat myös puita
    - konstruktori on rekursiivinen
+   - lehdellä ei ole vasenta eikä oikeaa alihaaraa, joten niiden
+     arvoksi asetetaan puuttuvaa oloita tarkoittava ~null~
    - jäsenfunktio ~piirra()~ on rekursiivinen.
 
    #+BEGIN_SRC processing :exports code :noweb yes
