@@ -2,14 +2,15 @@
 
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
 #+OPTIONS: author:t c:nil creator:nil d:(not "LOGBOOK") date:t e:t
-#+OPTIONS: email:nil f:t inline:t num:t p:nil pri:nil prop:nil stat:t
+#+OPTIONS: email:t f:t inline:t num:t p:nil pri:nil prop:nil stat:t
 #+OPTIONS: tags:t tasks:t tex:t timestamp:t title:t todo:t |:t
-#+TITLE: Ohjelmointi
+#+TITLE: @@html:<br><font size="8">@@Ohjelmointi@@html:</font>@@ @@html:<br><font size="6">@@ \copy Jarmo Hurri @@html:</font>@@
 #+AUTHOR: Jarmo Hurri
 #+EMAIL: jarmo.hurri@iki.fi
 #+LANGUAGE: fi
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
+#+OPTIONS: html-preamble:t
 
 * [[file:piirtaminen.org][Piirtäminen]]
 * [[file:kommentti-vari.org][Kommentti ja väri]]
