@@ -288,6 +288,76 @@
       monikulmiota myötä- tai vastapäivään.  Piirrä luokan avulla
       viisikulmio, jonka kärkipisteet ovat itse määrittelemissäsi
       koordinaateissa.
+   4. /Linkitetty lista/ on tietorakenne, jossa on /alkioita/
+      järjestyksessä samaan tapaan kuin taulukossa. Kustakin alkiosta
+      päästään listan seuraavaan alkioon -- paitsi viimeisestä
+      alkiosta, jolla ei ole seuraavaa alkiota.
+
+      (Listasta voidaan tehdä taulukkoa joustavampi: listaa voidaan
+      mm. lyhentää ja pidentää. Tässä harjoitellaan vain listan
+      määrittelemistä ja läpikäyntiä.)
+
+      Kirjoita luokka ~LinkitettyLista~, jonka kullakin alkiolla on
+      satunnainen kokonaislukuarvo. Arvo on vähintään 0 ja
+      korkeintaan 100. Luokalla on kaksi jäsenfunktiota:
+      - konstruktori ~LinkitettyLista (int pituus)~, jossa parametri
+        ~pituus~ määrää alkioiden määrän
+      - piirtofunktio ~piirra (float x, float y, float askel)~, joka
+        piirtää listan alkioiden arvot vasemmalta oikealla alla olevan
+        kuvan tapaan. Vasemmanpuoleisin luku on koordinaateissa ~(x,
+        y)~, ja lukujen välinen etäisyys on ~askel~. Alla piirretyssä
+        listassa on 10 alkiota.
+
+      Tee luokasta rekursiivinen.
+      - Listan viimeisellä alkiolla on vain arvo.
+      - Muilla listan alkioilla on sekä arvo että häntä, joka on myös
+        lista.
+
+      #+NAME: olio-ohjelmointia-linkitetty-lista
+      #+BEGIN_SRC processing
+        class LinkitettyLista
+        {
+          LinkitettyLista (int pituus)
+          {
+            arvo = floor (random (101));
+            if (pituus == 1)
+              hanta = null; // perustapaus
+            else
+              hanta = new LinkitettyLista (pituus - 1); // rekursioaskel
+          }
+
+          void piirra (float x, float y, float askel)
+          {
+            text (arvo, x, y);
+            if (hanta != null)
+            {
+              float xSeuraava = x + askel;
+              hanta.piirra (x + askel, y, askel);
+            }
+          }
+
+          int arvo;
+          LinkitettyLista hanta; // listan häntä
+        }
+
+        void setup ()
+        {
+          size (600, 200);
+          background (0);
+          colorMode (HSB, 100);
+          textAlign (CENTER, CENTER);
+          textSize (20);
+          fill (0, 100, 100);
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          final int VALI = 40;
+          LinkitettyLista lista = new LinkitettyLista (10);
+          lista.piirra (VALI, height / 2.0, VALI);
+        }
+      #+END_SRC
 ** Ratkaisuja
    1. 
       #+NAME: olio-ohjelmointia-jana
@@ -429,4 +499,8 @@
 
           kulmio.piirra ();
         }
+      #+END_SRC
+   4. 
+      #+BEGIN_SRC processing :noweb yes :exports code
+      <<olio-ohjelmointia-linkitetty-lista>>
       #+END_SRC
