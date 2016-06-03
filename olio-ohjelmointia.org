@@ -275,9 +275,22 @@
       ~piirra()~. Käytä hyväksesi esimerkissä määriteltyä luokkaa
       ~Piste~ sekä sitä, että jana voidaan määrittää kahden
       päätepisteen avulla. Piirrä luokan avulla piirtoikkunaan jana.
+   2. Määrittele luokka ~Kolmio~ ja sille konstruktori sekä
+      jäsenfunktio ~piirra()~. Käytä hyväksesi esimerkissä määriteltyä
+      luokkaa ~Piste~. Piirrä luokan avulla piirtoikkunaan 50
+      eriväristä, satunnaisen kokoista kolmiota.
+   3. Määrittele luokka ~NKulmio~ ja sille konstruktori sekä
+      jäsenfunktio ~piirra()~. Käytä hyväksesi yllä kirjoitettuja
+      luokkia ~Piste~ sekä ~Jana~. Luokan ~NKulmio~ konstruktorin
+      ainoa parametri on pistetaulukko, jossa olevat pisteet
+      määrittävät \(n\)-kulmion kärkipisteiden sijainnin kierrettäessä
+      monikulmiota myötä- tai vastapäivään.  Piirrä luokan avulla
+      viisikulmio, jonka kärkipisteet ovat itse määrittelemissäsi
+      koordinaateissa.
 ** Ratkaisuja
    1. 
-      #+BEGIN_SRC processing :noweb yes :exports both
+      #+NAME: olio-ohjelmointia-jana
+      #+BEGIN_SRC processing :exports none :noweb yes
         <<olio-ohjelmointia-piste>>
 
         class Jana
@@ -295,6 +308,10 @@
   
           Piste pp1, pp2; // päätepisteet
         }
+      #+END_SRC
+
+      #+BEGIN_SRC processing :noweb yes :exports both
+        <<olio-ohjelmointia-jana>>
 
         void setup ()
         {
@@ -306,5 +323,63 @@
         {
           Jana j = new Jana (new Piste (100, 150), new Piste (300, 90));
           j.piirra ();
+        }
+      #+END_SRC
+   2. 
+      #+BEGIN_SRC processing :noweb yes :exports both
+        <<olio-ohjelmointia-jana>>
+
+        class NKulmio
+        {
+          NKulmio (Piste[] pisteet)
+          {
+            this.pisteet = pisteet;
+            n = pisteet.length;
+          }
+
+          void piirra ()
+          {
+            // piirretään janat pisteiden välille
+            for (int i = 0; i < n; i++)
+            {
+              // janan ensimmäinen päätepiste
+              Piste p1 = pisteet [i];
+
+              // toinen päätepiste on seuraava taulukon piste paitsi jos
+              // ensimmäinen päätepiste on taulukon viimeinen, jolloin toinen
+              // päätepiste on taulukon ensimmäinen
+              Piste p2;
+              if (i == n - 1)
+                p2 = pisteet [0];
+              else
+                p2 = pisteet [i + 1];
+
+              Jana j = new Jana (p1, p2);
+              j.piirra ();
+            }
+          }
+
+          Piste[] pisteet;
+          int n; // monikulmion kärkipisteiden lukumäärä
+        }
+
+        void setup ()
+        {
+          size (400, 400);
+          noLoop ();
+        }
+
+        void draw ()
+        {
+          // viisikulmion kärkipisteet
+          Piste[] pisteet = new Piste [5];
+          pisteet [0] = new Piste (0, 0);
+          pisteet [1] = new Piste (100, 20);
+          pisteet [2] = new Piste (200, 70);
+          pisteet [3] = new Piste (300, 170);
+          pisteet [4] = new Piste (150, 320);
+          NKulmio kulmio = new NKulmio (pisteet);
+
+          kulmio.piirra ();
         }
       #+END_SRC
