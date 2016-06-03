@@ -230,7 +230,6 @@
 
         rect (x, 0, 100, 100);
       #+END_SRC
-
    2. 
        #+BEGIN_SRC processing :exports both
          size (400, 400);
@@ -245,7 +244,6 @@
          float sade = halkaisija / 2; // ympyrän säde
          ellipse (sade, sade, halkaisija, halkaisija);
        #+END_SRC
-
    3. 
       #+BEGIN_SRC processing :exports both
         size (300, 400);
@@ -260,7 +258,6 @@
         float puolet = sivu / 2; // puolet sivun pituudesta
         rect (width / 2.0 - puolet, height / 2.0 - puolet, sivu, sivu);
       #+END_SRC
-
    4. Valitaan ikkunan leveydestä ja korkeudesta se, joka on
       pienempi. Ehto toteutuu, kun ympyrän halkaisija on puolet
       valitusta mitasta.
@@ -277,7 +274,6 @@
 
         ellipse (width / 2.0, height / 2.0, halkaisija, halkaisija);
       #+END_SRC
-
    5. 
       a) Punaisessa osassa \(y < x.\)
 
@@ -298,7 +294,6 @@
            fill (savy, 100, 100);
            ellipse (X, Y, 10, 10);
 	 #+END_SRC
-
    6. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<muuttuja-ympyra-lavistajalla>>
