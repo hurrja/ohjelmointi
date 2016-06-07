@@ -1,6 +1,6 @@
 #+NAME: animaatio-oskilloiva-ympyra
 #+BEGIN_SRC processing :exports none
-  int halkaisija; // ympyrän halkaisija
+  float halkaisija; // ympyrän halkaisija
   float muutos; // halkaisijan muutos yhdellä askeleella
 
   void setup ()
