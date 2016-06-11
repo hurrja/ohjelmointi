@@ -3,6 +3,8 @@ var kappaletiedostot;
 var kappaleidenNimet;
 var kappaleita;
 var kappaleElementit;
+var kappaleEtaisyydet;
+var t; // otettujen aika-askeleiden lukumäärä
 
 function preload ()
 {
@@ -14,19 +16,41 @@ function setup ()
 {
     kappaleita = kappaletiedostot.length;
     kappaleElementit = new Array ();
+    kappaleEtaisyydet = new Array ();
     canvas = createCanvas (windowWidth, windowHeight);
     colorMode (HSB, 100);
     
     // luodaan linkit kappaleisiin
-    for (i = 0; i < kappaleita; i++)
+    for (var i = 0; i < kappaleita; i++)
         kappaleElementit [i] = createA (kappaletiedostot [i] + ".html",
                                         kappaleidenNimet [i]);
     asetaElementit ();
+    t = 0;
 }
 
 function draw ()
 {
     background (17, 50, 100);
+
+    if (t % 100 == 0)
+    {
+        for (var i = 0; i < kappaleita; i++)
+        {
+            var pos = kappaleElementit [i].position ();
+            kappaleEtaisyydet [i] = dist (mouseX, mouseY, pos.x, pos.y);
+        }
+        
+        var minEtaisyys = Math.min.apply (Math, kappaleEtaisyydet);
+        if (minEtaisyys == 0)
+            minEtaisyys = 1;
+        
+        for (var i = 0; i < kappaleita; i++)
+            kappaleEtaisyydet [i] /= minEtaisyys;
+    }
+    
+    for (var i = 0; i < kappaleita; i++)
+        text (kappaleEtaisyydet [i], .75 * windowWidth, i * 50);
+    t++;
 }
 
 function asetaElementit ()
