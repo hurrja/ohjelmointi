@@ -16,28 +16,31 @@ function setup ()
     kappaleElementit = new Array ();
     canvas = createCanvas (windowWidth, windowHeight);
     colorMode (HSB, 100);
-    noLoop ();
+    
+    // luodaan linkit kappaleisiin
+    for (i = 0; i < kappaleita; i++)
+        kappaleElementit [i] = createA (kappaletiedostot [i] + ".html",
+                                        kappaleidenNimet [i]);
+    asetaElementit ();
 }
 
 function draw ()
 {
-    removeElements ();
     background (17, 50, 100);
-    var x = windowWidth / 5;
+}
+
+function asetaElementit ()
+{
+    var x = windowWidth / 10;
     var korkeus = windowHeight / (2 * kappaleita + 1);
     
     for (i = 0; i < kappaleita; i++)
-    {
-        var elementti = createA (kappaletiedostot [i] + ".html",
-                                 kappaleidenNimet [i]);
-        elementti.position (x, (2 * i + 1) * korkeus);
-        elementti.size (AUTO, korkeus);
-        kappaleElementit [i] = elementti;
-    }
+        kappaleElementit [i].position (x, (2 * i + 1) * korkeus);
 }
 
 function windowResized ()
 {
     resizeCanvas (windowWidth, windowHeight);
+    asetaElementit ();
 }
 
