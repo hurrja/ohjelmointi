@@ -25,6 +25,7 @@ function setup ()
         kappaleElementit [i] = createA (kappaletiedostot [i] + ".html",
                                         kappaleidenNimet [i]);
     asetaElementit ();
+    frameRate (10);
     t = 0;
 }
 
@@ -32,7 +33,9 @@ function draw ()
 {
     background (17, 50, 100);
 
-    if (t % 100 == 0)
+    // päivitetään etäisyydet kerran sekunnissa; etäisyydet ovat
+    // "suhteellisia"; lähimmän etäisyys 1 ja muiden tämän kertalukuja
+    if (t % 10 == 0)
     {
         for (var i = 0; i < kappaleita; i++)
         {
