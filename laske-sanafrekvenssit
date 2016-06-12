@@ -1,8 +1,9 @@
 #!/bin/bash
 
 FREKVENSSITIEDOSTO=avainsana-frekvenssit.csv
+AVAINSANATIEDOSTO=avainsanat.txt
 
-rm -f ${FREKVENSSITIEDOSTO}
+awk '{ word[$1]=0 } END {for (w in word) print w}' ${AVAINSANATIEDOSTO} | paste -s -d, > ${FREKVENSSITIEDOSTO}
 
 while read KAPPALETIEDOSTO;
 do
@@ -15,6 +16,6 @@ do
     }
   }
   END {for (w in word) print word[w] ; printf "\n" }
-' avainsanat.txt - | sed 's/,$//' >> ${FREKVENSSITIEDOSTO}
+' ${AVAINSANATIEDOSTO} - | sed 's/,$//' >> ${FREKVENSSITIEDOSTO}
 done < kappaletiedostot.txt
 
