@@ -1,6 +1,7 @@
 #!/bin/bash
 
-FREKVENSSITIEDOSTO=avainsana-frekvenssit.csv
+[ -z "$FREKVENSSITIEDOSTO" ] && echo "Ympäristömuuttujalla FREKVENSSITIEDOSTO ei arvoa" && exit 1;
+
 AVAINSANATIEDOSTO=avainsanat.txt
 
 awk '{ word[$1]=0 } END {for (w in word) print w}' ${AVAINSANATIEDOSTO} | paste -s -d, > ${FREKVENSSITIEDOSTO}
