@@ -16,6 +16,6 @@ sana.marginaalit <- apply (todennakoisyydet, 2, sum)
 ## P(sana|kappale)
 ehdolliset <- sweep (todennakoisyydet, 2, sana.marginaalit, '/')
 
-write.csv (format (ehdolliset, digits = 3),
+write.csv (ehdolliset,
            "p-sana-annettu-kappale.csv",
            row.names = FALSE)

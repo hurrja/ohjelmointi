@@ -4,12 +4,18 @@ var kappaleidenNimet;
 var kappaleita;
 var kappaleElementit;
 var kappaleEtaisyydet;
+var pSanaAnnettuKappaleP5Taulukko;
+var pSanaAnnettuKappaleTaulukko
+var avainsanat;
+
 var t; // otettujen aika-askeleiden lukumäärä
 
 function preload ()
 {
     kappaletiedostot = loadStrings ("kappaletiedostot.txt");
     kappaleidenNimet = loadStrings ("kappaleiden-nimet.txt");
+    pSanaAnnettuKappaleP5Taulukko = loadTable ("p-sana-annettu-kappale.csv",
+                                               "csv");
 }
 
 function setup ()
@@ -25,6 +31,25 @@ function setup ()
         kappaleElementit [i] = createA (kappaletiedostot [i] + ".html",
                                         kappaleidenNimet [i]);
     asetaElementit ();
+
+    // luetaan avainsanat sekä niiden ehdolliset todennäköisyydet
+    var riveja = pSanaAnnettuKappaleP5Taulukko.getRowCount ();
+    var sarakkeita = pSanaAnnettuKappaleP5Taulukko.getColumnCount ();
+    
+    // avainsanat 1. riviltä
+    avainsanat = new Array (sarakkeita);
+    for (var s = 0; s < sarakkeita; s++)
+        avainsanat [s] = pSanaAnnettuKappaleP5Taulukko.getString (0, s);
+    
+    // muut jäljemmiltä riveiltä (oletetaan, että (riveja-1)==kappaleita
+    pSanaAnnettuKappaleTaulukko = new Array (kappaleita);
+    for (var r = 1; r < riveja; r++)
+    {
+        pSanaAnnettuKappaleTaulukko [r - 1] = new Array (sarakkeita);
+        for (var s = 0; s < sarakkeita; s++)
+            pSanaAnnettuKappaleTaulukko [r - 1][s] = parseFloat (pSanaAnnettuKappaleP5Taulukko.getString (r, s));
+    }
+    
     frameRate (10);
     t = 0;
 }
@@ -54,6 +79,9 @@ function draw ()
     for (var i = 0; i < kappaleita; i++)
         text (kappaleEtaisyydet [i], .75 * windowWidth, i * 50);
     t++;
+    text (avainsanat[5] + " " + pSanaAnnettuKappaleTaulukko [0][5],
+          windowWidth / 2,
+          windowHeight / 2);
 }
 
 function asetaElementit ()
