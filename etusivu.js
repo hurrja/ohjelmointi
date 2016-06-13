@@ -8,6 +8,45 @@ var pSanaAnnettuKappaleP5Taulukko;
 var pSanaAnnettuKappaleTaulukko
 var avainsanat;
 
+// avainsanakartan koordinaatit ja koot lasketaan suhteellisina;
+// koordinaatit ovat välillä [-.5,.5], missä 0 on ikkunan keskellä;
+// koot ovat välillä [0,1], missä 1 on ikkunan koko
+function AvainsanaTeksti (sana, korkeus, x, y)
+{
+    this.sana = sana;
+    this.korkeus = korkeus;
+    this.x = x;
+    this.y = y;
+
+    this.piirra (ikkunakoko)
+    {
+        textSize (ikkunakoko * korkeus);
+        text (sana, ikkunakoko * x, ikkunakoko * y);
+    }
+}
+
+function AvainsanaKartta (avainsanat, todennakoisyydet)
+{
+    // järjestele todennäköisyyksien mukaan
+    var jarjLista = [];
+    for (var i = 0; i < avainsanat.length; i++)
+        jarjLista.push ({"sana" : avainsanat [i], "tn" : todennakoisyydet [i]});
+    jarjLista.sort (function (a, b)
+                    {
+                        return ((a.tn < b.tn) ? -1 : ((a.tn == b.tn) ? 0 : 1));
+                    });
+    // paikalliset muuttujat, joihin järjestetyt tallennetaan
+    this.avainsanat = [];
+    this.todennakoisyydet = [];
+    for (var i = 0; i < jarjLista.length; i++)
+    {
+        this.avainsanat.push (jarjLista [i].sana);
+        this.todennakoisyydet.push (jarjLista [i].tn);
+    }
+
+    // lasketaan kartan suhteelliset paikat valmiiksi
+}
+
 var t; // otettujen aika-askeleiden lukumäärä
 
 function preload ()
