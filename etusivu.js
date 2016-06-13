@@ -52,6 +52,7 @@ function setup ()
     
     frameRate (1);
     t = 0;
+    redraw ();
 }
 
 function draw ()
@@ -79,7 +80,6 @@ function draw ()
     var lahin = 0; // lähimmän kappaleen indeksi
     for (var i = 0; i < kappaleita; i++)
     {
-        text (kappaleEtaisyydet [i], .75 * windowWidth, i * 50);
         if (kappaleEtaisyydet [i] < kappaleEtaisyydet [lahin])
             lahin = i;
     }
