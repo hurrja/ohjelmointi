@@ -50,7 +50,7 @@ function setup ()
             pSanaAnnettuKappaleTaulukko [r - 1][s] = parseFloat (pSanaAnnettuKappaleP5Taulukko.getString (r, s));
     }
     
-    frameRate (10);
+    frameRate (1);
     t = 0;
 }
 
@@ -60,7 +60,7 @@ function draw ()
 
     // päivitetään etäisyydet kerran sekunnissa; etäisyydet ovat
     // "suhteellisia"; lähimmän etäisyys 1 ja muiden tämän kertalukuja
-    if (t % 10 == 0)
+    if (t % 1 == 0)
     {
         for (var i = 0; i < kappaleita; i++)
         {
@@ -76,12 +76,27 @@ function draw ()
             kappaleEtaisyydet [i] /= minEtaisyys;
     }
     
+    var lahin = 0; // lähimmän kappaleen indeksi
     for (var i = 0; i < kappaleita; i++)
+    {
         text (kappaleEtaisyydet [i], .75 * windowWidth, i * 50);
+        if (kappaleEtaisyydet [i] < kappaleEtaisyydet [lahin])
+            lahin = i;
+    }
+        
+    for (var i = 0; i < avainsanat.length; i++)
+    {
+        var ehdollinenTn = pSanaAnnettuKappaleTaulukko [lahin][i];
+        if (ehdollinenTn > 0)
+        {
+            textSize (ehdollinenTn * .1 * windowHeight);
+            text (avainsanat [i],
+                  random (windowWidth),
+                  random (windowHeight));
+        }
+    }
+
     t++;
-    text (avainsanat[5] + " " + pSanaAnnettuKappaleTaulukko [0][5],
-          windowWidth / 2,
-          windowHeight / 2);
 }
 
 function asetaElementit ()
