@@ -73,18 +73,37 @@ function Avainsanakartta (avainsanat,
                                          tnt [i],
                                          tnt [0]));
         
-    var kaytettyKorkeus = 0;
+    var yYla = 0, yAla = 0;
     // lasketaan kartan suhteelliset paikat valmiiksi; korkeudet ovat
     // suurimman kirjainkoon monikertoja
     for (var i = 0; i < this.avainsanatekstit.length; i++)
     {
-        this.avainsanatekstit [i].asetaPaikka (0, kaytettyKorkeus);
-        kaytettyKorkeus += this.avainsanatekstit [i].kirjainkokoKerroin;
+        var tamanKorkeus = this.avainsanatekstit [i].kirjainkokoKerroin;
+        var yTama;
+        if (i == 0) // ensimmäinen sana keskelle
+        {
+            yTama = 0;
+            yAla = tamanKorkeus / 2;
+            yYla = -yAla;
+        }
+        else if (i % 2 == 0) // alas
+        {
+            yTama = yAla + tamanKorkeus / 2;
+            yAla += tamanKorkeus;;
+        }
+        else
+        {
+            yTama = yYla - tamanKorkeus / 2;
+            yYla -= tamanKorkeus;
+        }
+        
+        this.avainsanatekstit [i].asetaPaikka (0, yTama);
     }
     
     this.piirra = function (koko, x, y)
     {
-        var suurinKoko = this.avainsanatekstit [0].kirjainkoko (koko, 100);
+        var suurinKoko =
+            this.avainsanatekstit [0].kirjainkoko (koko, windowHeight / 10);
                 
         for (var i = 0; i < this.avainsanatekstit.length; i++)
             this.avainsanatekstit [i].piirra (koko, x, y, suurinKoko);
