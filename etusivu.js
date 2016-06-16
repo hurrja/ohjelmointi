@@ -7,6 +7,7 @@ var kappaleEtaisyydet;
 var pSanaAnnettuKappaleP5Taulukko;
 var pSanaAnnettuKappaleTaulukko
 var avainsanat;
+var avainsanakartat;
 
 // avainsanakartan koordinaatit ja koot lasketaan suhteellisina;
 // koordinaatit ovat välillä [-.5,.5], missä 0 on ikkunan keskellä;
@@ -23,18 +24,22 @@ function Avainsanateksti (sanaIndeksi, todennakoisyys)
     var testiLeveys = textWidth (avainsanat [sanaIndeksi]);
     this.korkeus = testiKorkeus / testiLeveys * todennakoisyys;
     
-    this.piirra = function (ikkunakoko, kirjasinkoko, x, y)
+    this.piirra = function (ikkunakoko, ikkunaX, ikkunaY, kirjasinkoko, x, y)
     {
         textSize (kirjasinkoko * this.korkeus);
-        text (sana, ikkunakoko * x, ikkunakoko * y);
+        text (sana, ikkunaX + ikkunakoko * x, ikkunaY + ikkunakoko * y);
     }
 };
 
 function Avainsanakartta (avainsanat,
                           todennakoisyydet,
                           x, y,
-                          leveys, korkeus)
+                          koko)
 {
+    this.x = x;
+    this.y = y;
+    this.koko = koko;
+    
     // järjestele todennäköisyyksien mukaan
     var jarjLista = [];
     for (var i = 0; i < avainsanat.length; i++)
@@ -61,6 +66,20 @@ function Avainsanakartta (avainsanat,
                                          this.todennakoisyydet [i]));
         
     // lasketaan kartan suhteelliset paikat valmiiksi
+
+    this.piirra = function ()
+    {
+        for (var i = 0; i < this.avainsanatekstit; i++)
+            this.avainsanatekstit [i].piirra (this.koko,
+                                              this.koko / 10,
+                                              windowWidth / 2,
+                                              0,
+                                              random (-1, 1),
+                                              random (-1, 1))
+                                              
+                                              
+    }
+    
 };
 
 var t; // otettujen aika-askeleiden lukumäärä
