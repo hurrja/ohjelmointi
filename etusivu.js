@@ -27,7 +27,9 @@ function Avainsanateksti (sanaIndeksi, todennakoisyys)
     this.piirra = function (ikkunakoko, ikkunaX, ikkunaY, kirjasinkoko, x, y)
     {
         textSize (kirjasinkoko * this.korkeus);
-        text (sana, ikkunaX + ikkunakoko * x, ikkunaY + ikkunakoko * y);
+        text (avainsanat [sanaIndeksi],
+              ikkunaX + ikkunakoko * (x + .5),
+              ikkunaY + ikkunakoko * (y + .5));
     };
 };
 
@@ -71,15 +73,13 @@ function Avainsanakartta (avainsanat,
 
     this.piirra = function ()
     {
-        for (var i = 0; i < this.avainsanatekstit; i++)
+        for (var i = 0; i < this.avainsanatekstit.length; i++)
             this.avainsanatekstit [i].piirra (this.koko,
-                                              this.koko / 10,
                                               this.x,
                                               this.y,
-                                              random (-1, 1),
-                                              random (-1, 1))
-                                              
-                                              
+                                              this.koko / 10,
+                                              random (-.5, .5),
+                                              random (-.5, .5));
     };
     
 };
@@ -132,7 +132,7 @@ function setup ()
                                                    pSanaAnnettuKappaleTaulukko [i],
                                                    windowWidth / 2,
                                                    0,
-                                                   windowHeight / 2));
+                                                   windowWidth / 2));
                              
 
     frameRate (1);
@@ -170,20 +170,6 @@ function draw ()
     }
         
     avainsanakartat [lahin].piirra ();
-    text (t + " "
-          + avainsanat [avainsanakartat [lahin].avainsanatekstit [0].sanaIndeksi],
-          windowWidth / 2, windowHeight / 2);
-    // for (var i = 0; i < avainsanat.length; i++)
-    // {
-    //     var ehdollinenTn = pSanaAnnettuKappaleTaulukko [lahin][i];
-    //     if (ehdollinenTn > 0)
-    //     {
-    //         textSize (ehdollinenTn * .1 * windowHeight);
-    //         text (avainsanat [i],
-    //               random (windowWidth),
-    //               random (windowHeight));
-    //     }
-    // }
 
     t++;
 }
