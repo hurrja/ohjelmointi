@@ -5,7 +5,6 @@ var kappaleita;
 var kappaleElementit;
 var kappaleEtaisyydet;
 var pSanaAnnettuKappaleP5Taulukko;
-var pSanaAnnettuKappaleTaulukko
 var avainsanat;
 var avainsanakartat;
 
@@ -118,7 +117,7 @@ function setup ()
         avainsanat [s] = pSanaAnnettuKappaleP5Taulukko.getString (0, s);
     
     // muut jäljemmiltä riveiltä (oletetaan, että (riveja-1)==kappaleita
-    pSanaAnnettuKappaleTaulukko = new Array (kappaleita);
+    var pSanaAnnettuKappaleTaulukko = new Array (kappaleita);
     for (var r = 1; r < riveja; r++)
     {
         pSanaAnnettuKappaleTaulukko [r - 1] = new Array (sarakkeita);
