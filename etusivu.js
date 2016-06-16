@@ -13,7 +13,8 @@ var avainsanakartat;
 function Avainsanateksti (sanaIndeksi, todennakoisyys, suurinTn)
 {
     this.sanaIndeksi = sanaIndeksi;
-    this.kirjainkokoKerroin =  todennakoisyys / suurinTn;
+    // kerroin on vähintään 0.1
+    this.kirjainkokoKerroin = max (todennakoisyys / suurinTn, .1);
     this.x = 0;
     this.y = 0;
     
