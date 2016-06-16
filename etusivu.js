@@ -14,7 +14,7 @@ function Avainsanateksti (sanaIndeksi, todennakoisyys, suurinTn)
 {
     this.sanaIndeksi = sanaIndeksi;
     // kerroin on vähintään 0.1
-    this.kirjainkokoKerroin = max (todennakoisyys / suurinTn, .1);
+    this.kirjainkokoKerroin = max (todennakoisyys / suurinTn, .2);
     this.x = 0;
     this.y = 0;
     
