@@ -33,23 +33,16 @@ function Avainsanateksti (sanaIndeksi, todennakoisyys)
 };
 
 function Avainsanakartta (avainsanat,
-                          todennakoisyydet,
-                          x, y,
-                          koko)
+                          todennakoisyydet)
 {
-    this.x = x;
-    this.y = y;
-    this.koko = koko;
-    
     // järjestele todennäköisyyksien mukaan
     var jarjLista = [];
     for (var i = 0; i < avainsanat.length; i++)
         jarjLista.push ({"indeksi" : i, "tn" : todennakoisyydet [i]});
     jarjLista.sort (function (a, b)
                     {
-                        return ((a.tn < b.tn) ? -1 : ((a.tn == b.tn) ? 0 : 1));
+                        return ((a.tn < b.tn) ? 1 : ((a.tn == b.tn) ? 0 : -1));
                     });
-    jarjLista.reverse ();
     
     // paikalliset muuttujat, joihin järjestetyt tallennetaan
     var sanaindeksit = [];
@@ -70,13 +63,13 @@ function Avainsanakartta (avainsanat,
         
     // lasketaan kartan suhteelliset paikat valmiiksi
 
-    this.piirra = function ()
+    this.piirra = function (koko, x, y)
     {
         for (var i = 0; i < this.avainsanatekstit.length; i++)
-            this.avainsanatekstit [i].piirra (this.koko,
-                                              this.x,
-                                              this.y,
-                                              this.koko / 10,
+            this.avainsanatekstit [i].piirra (koko,
+                                              x,
+                                              y,
+                                              koko / 10,
                                               random (-.5, .5),
                                               random (-.5, .5));
     };
@@ -128,11 +121,7 @@ function setup ()
     avainsanakartat = [];
     for (var i = 0; i < kappaleita; i++)
         avainsanakartat.push (new Avainsanakartta (avainsanat,
-                                                   pSanaAnnettuKappaleTaulukko [i],
-                                                   windowWidth / 2,
-                                                   0,
-                                                   windowWidth / 2));
-                             
+                                                   pSanaAnnettuKappaleTaulukko [i]));
 
     frameRate (1);
     t = 0;
@@ -168,7 +157,7 @@ function draw ()
             lahin = i;
     }
         
-    avainsanakartat [lahin].piirra ();
+    avainsanakartat [lahin].piirra (windowWidth / 2, windowWidth / 2, 0);
 
     t++;
 }
