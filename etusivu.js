@@ -14,7 +14,7 @@ function Avainsanateksti (sanaIndeksi, todennakoisyys, suurinTn)
 {
     this.sanaIndeksi = sanaIndeksi;
     // kerroin on vähintään 0.1
-    this.kirjainkokoKerroin = max (todennakoisyys / suurinTn, .2);
+    this.kirjainkokoKerroin = max (todennakoisyys / suurinTn, .4);
     this.x = 0;
     this.y = 0;
     
@@ -26,11 +26,17 @@ function Avainsanateksti (sanaIndeksi, todennakoisyys, suurinTn)
     
     this.piirra = function (ikkunakoko, ikkunaX, ikkunaY, suurinKirjainkoko)
     {
-        textSize (suurinKirjainkoko * this.kirjainkokoKerroin);
-        textAlign (CENTER, CENTER);
-        text (avainsanat [sanaIndeksi],
-              ikkunaX + .5 * ikkunakoko + suurinKirjainkoko * this.x,
-              ikkunaY + .5 * ikkunakoko + suurinKirjainkoko * this.y + .5);
+        var kirjainKoko = suurinKirjainkoko * this.kirjainkokoKerroin
+        var x = ikkunaX + .5 * ikkunakoko + suurinKirjainkoko * this.x;
+        var y = ikkunaY + .5 * ikkunakoko + suurinKirjainkoko * this.y;
+        if (x < windowWidth
+            && y - kirjainKoko / 2 >= 0
+            && y + kirjainKoko / 2 <= windowHeight)
+        {
+            textSize (kirjainKoko);
+            textAlign (CENTER, CENTER);
+            text (avainsanat [sanaIndeksi], x, y);
+        }
     };
 
     // mikä tulisi kirjainkooksi tällä avainsanatekstillä?
@@ -47,6 +53,7 @@ function Avainsanakartta (avainsanat,
                           todennakoisyydet)
 {
     this.aktiivinen = false;
+    this.alpha = 0; // "läpinäkymättömyys"
     
     // järjestele todennäköisyyksien mukaan
     var jarjLista = [];
@@ -99,15 +106,29 @@ function Avainsanakartta (avainsanat,
             yYla -= tamanKorkeus;
         }
         
-        this.avainsanatekstit [i].asetaPaikka (0, yTama);
+        this.avainsanatekstit [i].asetaPaikka (random (-3, 1), yTama);
     }
     
     this.piirra = function (koko, x, y)
     {
+        var alphaMuutos = 5;
+        
         if (this.aktiivinen)
         {
+            this.alpha += alphaMuutos;
+            this.alpha = min (this.alpha, 100);
+        }
+        else
+        {
+            this.alpha -= alphaMuutos;
+            this.alpha = max (this.alpha, 0);
+        }
+        
+        if (this.alpha > 0)
+        {
+            fill (0, 0, 0, this.alpha);
             var suurinKoko =
-                this.avainsanatekstit [0].kirjainkoko (koko, windowHeight / 10);
+                this.avainsanatekstit [0].kirjainkoko (koko, windowHeight / 20);
                 
             for (var i = 0; i < this.avainsanatekstit.length; i++)
                 this.avainsanatekstit [i].piirra (koko, x, y, suurinKoko);
@@ -163,7 +184,7 @@ function setup ()
         avainsanakartat.push (new Avainsanakartta (avainsanat,
                                                    pSanaAnnettuKappaleTaulukko [i]));
 
-    frameRate (1);
+    frameRate (10);
     t = 0;
     redraw ();
 }
@@ -173,7 +194,7 @@ function draw ()
     background (17, 50, 100);
 
     // päivitetään etäisyydet kerran sekunnissa
-    if (t % 1 == 0)
+    if (t % 10 == 0)
     {
         for (var i = 0; i < kappaleita; i++)
         {
