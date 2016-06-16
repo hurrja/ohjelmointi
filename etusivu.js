@@ -22,13 +22,22 @@ function Avainsanateksti (sanaIndeksi, todennakoisyys, suurinTn)
     textSize (testiKorkeus);
     var testiLeveys = textWidth (avainsanat [sanaIndeksi]);
     this.korkeus = testiKorkeus / testiLeveys * todennakoisyys / suurinTn;
-
-    this.piirra = function (ikkunakoko, ikkunaX, ikkunaY, suurinLeveys, x, y)
+    this.x = 0;
+    this.y = 0;
+    
+    this.asetaPaikka = function (x, y)
+    {
+        this.x = x;
+        this.y = y;
+    };
+    
+    this.piirra = function (ikkunakoko, ikkunaX, ikkunaY, suurinLeveys)
     {
         textSize (suurinLeveys * this.korkeus);
+        textAlign (CENTER, CENTER);
         text (avainsanat [sanaIndeksi],
-              ikkunaX + ikkunakoko * (x + .5),
-              ikkunaY + ikkunakoko * (y + .5));
+              ikkunaX + ikkunakoko * (this.x + .5),
+              ikkunaY + ikkunakoko * (this.y + .5));
     };
 };
 
@@ -62,19 +71,21 @@ function Avainsanakartta (avainsanat,
                                          tnt [i],
                                          tnt [0]));
         
+    var kaytettyKorkeus = 0;
     // lasketaan kartan suhteelliset paikat valmiiksi
+    for (var i = 0; i < this.avainsanatekstit.length; i++)
+    {
+        this.avainsanatekstit [i].asetaPaikka (0, kaytettyKorkeus);
+        kaytettyKorkeus += this.avainsanatekstit [i].korkeus;
+    }
     
     this.piirra = function (koko, x, y)
     {
         var suurinTn;
         
         for (var i = 0; i < this.avainsanatekstit.length; i++)
-            this.avainsanatekstit [i].piirra (koko,
-                                              x,
-                                              y,
-                                              koko / 2,
-                                              random (-.5, .5),
-                                              random (-.5, .5));
+            this.avainsanatekstit [i].piirra (koko, x, y, koko / 2);
+                                              
     };
     
 };
