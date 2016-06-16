@@ -46,6 +46,8 @@ function Avainsanateksti (sanaIndeksi, todennakoisyys, suurinTn)
 function Avainsanakartta (avainsanat,
                           todennakoisyydet)
 {
+    this.aktiivinen = false;
+    
     // järjestele todennäköisyyksien mukaan
     var jarjLista = [];
     for (var i = 0; i < avainsanat.length; i++)
@@ -102,12 +104,14 @@ function Avainsanakartta (avainsanat,
     
     this.piirra = function (koko, x, y)
     {
-        var suurinKoko =
-            this.avainsanatekstit [0].kirjainkoko (koko, windowHeight / 10);
+        if (this.aktiivinen)
+        {
+            var suurinKoko =
+                this.avainsanatekstit [0].kirjainkoko (koko, windowHeight / 10);
                 
-        for (var i = 0; i < this.avainsanatekstit.length; i++)
-            this.avainsanatekstit [i].piirra (koko, x, y, suurinKoko);
-                                              
+            for (var i = 0; i < this.avainsanatekstit.length; i++)
+                this.avainsanatekstit [i].piirra (koko, x, y, suurinKoko);
+        }
     };
     
 };
@@ -170,20 +174,26 @@ function draw ()
 
     // päivitetään etäisyydet kerran sekunnissa
     if (t % 1 == 0)
+    {
         for (var i = 0; i < kappaleita; i++)
         {
             var pos = kappaleElementit [i].position ();
             kappaleEtaisyydet [i] = dist (mouseX, mouseY, pos.x, pos.y);
         }
+    }
     
     var lahin = 0; // lähimmän kappaleen indeksi
     for (var i = 0; i < kappaleita; i++)
     {
+        avainsanakartat [i].aktiivinen = false;
+        
         if (kappaleEtaisyydet [i] < kappaleEtaisyydet [lahin])
             lahin = i;
     }
-        
-    avainsanakartat [lahin].piirra (windowWidth / 2, windowWidth / 2, 0);
+    avainsanakartat [lahin].aktiivinen = true;
+    
+    for (var i = 0; i < kappaleita; i++)
+        avainsanakartat [i].piirra (windowWidth / 2, windowWidth / 2, 0);
 
     t++;
 }
