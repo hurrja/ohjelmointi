@@ -8,20 +8,12 @@ var pSanaAnnettuKappaleP5Taulukko;
 var avainsanat;
 var avainsanakartat;
 
-// avainsanakartan koordinaatit ja koot lasketaan suhteellisina;
-// koordinaatit ovat välillä [-.5,.5], missä 0 on ikkunan keskellä;
-// koot ovat välillä [0,1], missä 1 on ikkunan koko
+// avainsanakartan koordinaatit ja koot lasketaan suurimman kirjainkoon
+// monikertoina
 function Avainsanateksti (sanaIndeksi, todennakoisyys, suurinTn)
 {
     this.sanaIndeksi = sanaIndeksi;
-    
-    // lasketaan leveys tekstikoolla 10; sen jälkeen lasketaan
-    // korkeus, jos leveys olisi yhta suuri kuin parametri
-    // todennakoisyys
-    var testiKorkeus = 10;
-    textSize (testiKorkeus);
-    var testiLeveys = textWidth (avainsanat [sanaIndeksi]);
-    this.korkeus = testiKorkeus / testiLeveys * todennakoisyys / suurinTn;
+    this.kirjainkokoKerroin =  todennakoisyys / suurinTn;
     this.x = 0;
     this.y = 0;
     
@@ -31,14 +23,23 @@ function Avainsanateksti (sanaIndeksi, todennakoisyys, suurinTn)
         this.y = y;
     };
     
-    this.piirra = function (ikkunakoko, ikkunaX, ikkunaY, suurinLeveys)
+    this.piirra = function (ikkunakoko, ikkunaX, ikkunaY, suurinKirjainkoko)
     {
-        textSize (suurinLeveys * this.korkeus);
+        textSize (suurinKirjainkoko * this.kirjainkokoKerroin);
         textAlign (CENTER, CENTER);
         text (avainsanat [sanaIndeksi],
-              ikkunaX + ikkunakoko * (this.x + .5),
-              ikkunaY + ikkunakoko * (this.y + .5));
+              ikkunaX + .5 * ikkunakoko + suurinKirjainkoko * this.x,
+              ikkunaY + .5 * ikkunakoko + suurinKirjainkoko * this.y + .5);
     };
+
+    // mikä tulisi kirjainkooksi tällä avainsanatekstillä?
+    this.kirjainkoko = function (ikkunakoko, maxKirjainkoko)
+    {
+        textSize (maxKirjainkoko);
+        var testiLeveys = textWidth (avainsanat [sanaIndeksi]);
+        var ehdotettuKoko = ikkunakoko / testiLeveys * maxKirjainkoko;
+        return (min (ehdotettuKoko, maxKirjainkoko));
+    }
 };
 
 function Avainsanakartta (avainsanat,
@@ -72,19 +73,20 @@ function Avainsanakartta (avainsanat,
                                          tnt [0]));
         
     var kaytettyKorkeus = 0;
-    // lasketaan kartan suhteelliset paikat valmiiksi
+    // lasketaan kartan suhteelliset paikat valmiiksi; korkeudet ovat
+    // suurimman kirjainkoon monikertoja
     for (var i = 0; i < this.avainsanatekstit.length; i++)
     {
         this.avainsanatekstit [i].asetaPaikka (0, kaytettyKorkeus);
-        kaytettyKorkeus += this.avainsanatekstit [i].korkeus;
+        kaytettyKorkeus += this.avainsanatekstit [i].kirjainkokoKerroin;
     }
     
     this.piirra = function (koko, x, y)
     {
-        var suurinTn;
-        
+        var suurinKoko = this.avainsanatekstit [0].kirjainkoko (koko, 100);
+                
         for (var i = 0; i < this.avainsanatekstit.length; i++)
-            this.avainsanatekstit [i].piirra (koko, x, y, koko / 2);
+            this.avainsanatekstit [i].piirra (koko, x, y, suurinKoko);
                                               
     };
     
