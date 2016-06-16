@@ -11,21 +11,21 @@ var avainsanakartat;
 // avainsanakartan koordinaatit ja koot lasketaan suhteellisina;
 // koordinaatit ovat välillä [-.5,.5], missä 0 on ikkunan keskellä;
 // koot ovat välillä [0,1], missä 1 on ikkunan koko
-function Avainsanateksti (sanaIndeksi, todennakoisyys)
+function Avainsanateksti (sanaIndeksi, todennakoisyys, suurinTn)
 {
     this.sanaIndeksi = sanaIndeksi;
-
+    
     // lasketaan leveys tekstikoolla 10; sen jälkeen lasketaan
     // korkeus, jos leveys olisi yhta suuri kuin parametri
     // todennakoisyys
     var testiKorkeus = 10;
     textSize (testiKorkeus);
     var testiLeveys = textWidth (avainsanat [sanaIndeksi]);
-    this.korkeus = testiKorkeus / testiLeveys * todennakoisyys;
-    
-    this.piirra = function (ikkunakoko, ikkunaX, ikkunaY, kirjasinkoko, x, y)
+    this.korkeus = testiKorkeus / testiLeveys * todennakoisyys / suurinTn;
+
+    this.piirra = function (ikkunakoko, ikkunaX, ikkunaY, suurinLeveys, x, y)
     {
-        textSize (kirjasinkoko * this.korkeus);
+        textSize (suurinLeveys * this.korkeus);
         text (avainsanat [sanaIndeksi],
               ikkunaX + ikkunakoko * (x + .5),
               ikkunaY + ikkunakoko * (y + .5));
@@ -59,17 +59,20 @@ function Avainsanakartta (avainsanat,
         if (tnt [i] > 0)
             this.avainsanatekstit.push (new Avainsanateksti
                                         (sanaindeksit [i],
-                                         tnt [i]));
+                                         tnt [i],
+                                         tnt [0]));
         
     // lasketaan kartan suhteelliset paikat valmiiksi
-
+    
     this.piirra = function (koko, x, y)
     {
+        var suurinTn;
+        
         for (var i = 0; i < this.avainsanatekstit.length; i++)
             this.avainsanatekstit [i].piirra (koko,
                                               x,
                                               y,
-                                              koko / 10,
+                                              koko / 2,
                                               random (-.5, .5),
                                               random (-.5, .5));
     };
