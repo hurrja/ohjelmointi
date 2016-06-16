@@ -168,23 +168,13 @@ function draw ()
 {
     background (17, 50, 100);
 
-    // päivitetään etäisyydet kerran sekunnissa; etäisyydet ovat
-    // "suhteellisia"; lähimmän etäisyys 1 ja muiden tämän kertalukuja
+    // päivitetään etäisyydet kerran sekunnissa
     if (t % 1 == 0)
-    {
         for (var i = 0; i < kappaleita; i++)
         {
             var pos = kappaleElementit [i].position ();
             kappaleEtaisyydet [i] = dist (mouseX, mouseY, pos.x, pos.y);
         }
-        
-        var minEtaisyys = Math.min.apply (Math, kappaleEtaisyydet);
-        if (minEtaisyys == 0)
-            minEtaisyys = 1;
-        
-        for (var i = 0; i < kappaleita; i++)
-            kappaleEtaisyydet [i] /= minEtaisyys;
-    }
     
     var lahin = 0; // lähimmän kappaleen indeksi
     for (var i = 0; i < kappaleita; i++)
