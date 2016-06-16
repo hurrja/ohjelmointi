@@ -11,41 +11,57 @@ var avainsanat;
 // avainsanakartan koordinaatit ja koot lasketaan suhteellisina;
 // koordinaatit ovat välillä [-.5,.5], missä 0 on ikkunan keskellä;
 // koot ovat välillä [0,1], missä 1 on ikkunan koko
-function AvainsanaTeksti (sana, korkeus, x, y)
+function Avainsanateksti (sanaIndeksi, todennakoisyys)
 {
-    this.sana = sana;
-    this.korkeus = korkeus;
-    this.x = x;
-    this.y = y;
+    this.sanaIndeksi = sanaIndeksi;
 
-    this.piirra (ikkunakoko)
+    // lasketaan leveys tekstikoolla 10; sen jälkeen lasketaan
+    // korkeus, jos leveys olisi yhta suuri kuin parametri
+    // todennakoisyys
+    var testiKorkeus = 10;
+    textSize (testiKorkeus);
+    var testiLeveys = textWidth (avainsanat [sanaIndeksi]);
+    this.korkeus = testiKorkeus / testiLeveys * todennakoisyys;
+    
+    this.piirra = function (ikkunakoko, kirjasinkoko, x, y)
     {
-        textSize (ikkunakoko * korkeus);
+        textSize (kirjasinkoko * this.korkeus);
         text (sana, ikkunakoko * x, ikkunakoko * y);
     }
-}
+};
 
-function AvainsanaKartta (avainsanat, todennakoisyydet)
+function Avainsanakartta (avainsanat,
+                          todennakoisyydet,
+                          x, y,
+                          leveys, korkeus)
 {
     // järjestele todennäköisyyksien mukaan
     var jarjLista = [];
     for (var i = 0; i < avainsanat.length; i++)
-        jarjLista.push ({"sana" : avainsanat [i], "tn" : todennakoisyydet [i]});
+        jarjLista.push ({"indeksi" : i, "tn" : todennakoisyydet [i]});
     jarjLista.sort (function (a, b)
                     {
                         return ((a.tn < b.tn) ? -1 : ((a.tn == b.tn) ? 0 : 1));
                     });
     // paikalliset muuttujat, joihin järjestetyt tallennetaan
-    this.avainsanat = [];
-    this.todennakoisyydet = [];
+    var sanaindeksit = [];
+    var todennakoisyydet = [];
     for (var i = 0; i < jarjLista.length; i++)
     {
-        this.avainsanat.push (jarjLista [i].sana);
-        this.todennakoisyydet.push (jarjLista [i].tn);
+        sanaindeksit.push (jarjLista [i].indeksi);
+        todennakoisyydet.push (jarjLista [i].tn);
     }
 
+    // jäsenmuuttuja, jossa avaintekstit suhteellisine kokoineen
+    this.avainsanatekstit = [];
+    for (var i = 0; i < this.todennakoisyydet.length; i++)
+        if (this.todennakoisyydet [i] > 0)
+            this.avainsanatekstit.push (new Avainsanateksti
+                                        (this.sanaindeksit [i],
+                                         this.todennakoisyydet [i]));
+        
     // lasketaan kartan suhteelliset paikat valmiiksi
-}
+};
 
 var t; // otettujen aika-askeleiden lukumäärä
 
