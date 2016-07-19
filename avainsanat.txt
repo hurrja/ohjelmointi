@@ -331,7 +331,6 @@ yhtäsuuruus
 silmukka
 lauselohko
 vuokaavio
-päivityslauseke
 jakojäännös
 paluuarvo
 parametri

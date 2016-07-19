@@ -1,3 +1,5 @@
+var TAAJUUS = 10; // piirtotaajuus
+
 var canvas;
 var kappaletiedostot;
 var kappaleidenNimet;
@@ -184,7 +186,7 @@ function setup ()
         avainsanakartat.push (new Avainsanakartta (avainsanat,
                                                    pSanaAnnettuKappaleTaulukko [i]));
 
-    frameRate (10);
+    frameRate (TAAJUUS);
     t = 0;
     redraw ();
 }
@@ -194,7 +196,7 @@ function draw ()
     background (17, 50, 100);
 
     // päivitetään etäisyydet kerran sekunnissa
-    if (t % 10 == 0)
+    if (t % TAAJUUS == 0)
     {
         for (var i = 0; i < kappaleita; i++)
         {
