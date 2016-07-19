@@ -159,8 +159,11 @@ function setup ()
     
     // luodaan linkit kappaleisiin
     for (var i = 0; i < kappaleita; i++)
+    {
         kappaleElementit [i] = createA (kappaletiedostot [i] + ".html",
                                         kappaleidenNimet [i]);
+        kappaleElementit [i].style ("text-decoration", "none");
+    }
     asetaElementit ();
 
     // luetaan avainsanat sekä niiden ehdolliset todennäköisyydet
@@ -227,7 +230,10 @@ function asetaElementit ()
     var korkeus = windowHeight / (2 * kappaleita + 1);
     
     for (i = 0; i < kappaleita; i++)
+    {
         kappaleElementit [i].position (x, (2 * i + 1) * korkeus);
+        kappaleElementit [i].style ("font-size", round (korkeus));
+    }
 }
 
 function windowResized ()
