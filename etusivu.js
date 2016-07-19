@@ -1,6 +1,7 @@
 var TAAJUUS = 10; // piirtotaajuus
 
 var canvas;
+var ylaElementti; // div-elementti, johon canvas piirretään
 var kappaletiedostot;
 var kappaleidenNimet;
 var kappaleita;
@@ -151,12 +152,17 @@ function preload ()
 
 function setup ()
 {
+    ylaElementti = select ("#etusivuKangas");
+    var koko = ylaElementti.size ();
+    canvas = createCanvas (koko.width, koko.height);
+    canvas.parent (ylaElementti);
+
+    colorMode (HSB, 100);
+    
     kappaleita = kappaletiedostot.length;
     kappaleElementit = new Array ();
     kappaleEtaisyydet = new Array ();
-    canvas = createCanvas (windowWidth, windowHeight);
-    colorMode (HSB, 100);
-    
+
     // luodaan linkit kappaleisiin
     for (var i = 0; i < kappaleita; i++)
     {
@@ -196,8 +202,8 @@ function setup ()
 
 function draw ()
 {
-    background (17, 50, 100);
-
+    clear ();
+    
     // päivitetään etäisyydet kerran sekunnissa
     if (t % TAAJUUS == 0)
     {
@@ -228,17 +234,19 @@ function asetaElementit ()
 {
     var x = windowWidth / 10;
     var korkeus = windowHeight / (2 * kappaleita + 1);
+    var canvasY = canvas.position ().y;
     
     for (i = 0; i < kappaleita; i++)
     {
-        kappaleElementit [i].position (x, (2 * i + 1) * korkeus);
+        kappaleElementit [i].position (x, canvasY + 1.8 * i * korkeus);
         kappaleElementit [i].style ("font-size", round (korkeus));
     }
 }
 
 function windowResized ()
 {
-    resizeCanvas (windowWidth, windowHeight);
+    var koko = ylaElementti.size ();
+    resizeCanvas (koko.width, koko.height);
     asetaElementit ();
 }
 
