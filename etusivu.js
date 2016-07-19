@@ -205,12 +205,18 @@ function draw ()
     clear ();
     
     // päivitetään etäisyydet kerran sekunnissa
+    var elementtiPaikka = ylaElementti.position ();
     if (t % TAAJUUS == 0)
     {
         for (var i = 0; i < kappaleita; i++)
         {
             var pos = kappaleElementit [i].position ();
-            kappaleEtaisyydet [i] = dist (mouseX, mouseY, pos.x, pos.y);
+            // hiiren koordinaatit ovat piirtoikkunan koordinaateissa,
+            // kappale-elementtien sivun koordinaateissa
+            kappaleEtaisyydet [i] = dist (mouseX,
+                                          mouseY,
+                                          pos.x - elementtiPaikka.x,
+                                          pos.y - elementtiPaikka.y);
         }
     }
     
