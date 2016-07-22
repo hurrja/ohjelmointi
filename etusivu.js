@@ -152,7 +152,7 @@ function preload ()
 
 function setup ()
 {
-    ylaElementti = select ("#etusivuKangas");
+    ylaElementti = select ("#frontpageCanvas");
     var koko = ylaElementti.size ();
     canvas = createCanvas (koko.width, koko.height);
     canvas.parent (ylaElementti);
@@ -168,7 +168,7 @@ function setup ()
     {
         kappaleElementit [i] = createA (kappaletiedostot [i] + ".html",
                                         kappaleidenNimet [i]);
-        kappaleElementit [i].style ("text-decoration", "none");
+        kappaleElementit [i].class ("chapterlink");
     }
     asetaElementit ();
 

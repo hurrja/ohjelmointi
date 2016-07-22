@@ -8,7 +8,7 @@
     PREAMBLE
     <script language="javascript" type="text/javascript" src="p5.js"></script>
     <script language="javascript" type="text/javascript" src="p5.dom.js"></script>
-    <div id="etusivuKangas"
+    <div id="frontpageCanvas"
          style="height: 90vh;width: 95vw;"></div>
     <script language="javascript" type="text/javascript" src="etusivu.js"></script>
     <style> body {padding: 0; margin: 0;} </style>

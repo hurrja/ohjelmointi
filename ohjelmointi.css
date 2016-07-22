@@ -3,6 +3,7 @@ body
     margin: 0;
     background-color: #E8EFF3;
     font-family: "Helvetica Neue",Helvetica, sans-serif;
+    text-align: justify;
 }
 
 ol li ol
@@ -36,7 +37,7 @@ canvas
 pre.src
 {
     margin: 0 auto;
-    width: 50%;
+    width: 90%;
     color: white;
     background-color: #102e4e;
     border-radius: 10px;
@@ -45,8 +46,9 @@ pre.src
 blockquote
 {
     margin-top: 10px;
-    background-color: #b6d8b6;
+    background-color: #c5d8c5;
     margin: 0 auto;
+    margin-top: 10px;
     width: 80%;
     border-radius: 3px;
     padding: 5pt;
@@ -83,7 +85,8 @@ h1
 
 #content
 {
-    margin-left: 3em;
+    margin-left: 15vw;
+    margin-right: 15vw;
 }
 
 .title
@@ -131,4 +134,16 @@ h1
 {
     margin-top: 10px;
     float: right;
+}
+
+.chapterlink
+{
+    color: black;
+    text-decoration: none;
+}
+
+#frontpageCanvas
+{
+    margin-right: 15vh;
+    margin-left: 15vh;
 }
