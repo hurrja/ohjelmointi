@@ -1,6 +1,8 @@
 body
 {
-    background-color: aliceblue;
+    margin: 0;
+    background-color: #E8EFF3;
+    font-family: "Helvetica Neue",Helvetica, sans-serif;
 }
 
 ol li ol
@@ -58,6 +60,75 @@ pre.example
 
 a
 {
-    font-family: Calibri;
     text-decoration: none;
+}
+
+header
+{
+    background-color: #638291;
+    min-height: 100px;
+    width: 100%;
+    position:relative;
+}
+
+preamble
+{
+
+}
+
+h1
+{
+    margin-top: 0;
+}
+
+#content
+{
+    margin-left: 3em;
+}
+
+.title
+{
+    color: white;
+    float: left;
+    margin-left: 1em;
+    margin-top: 1em;
+}
+
+.title a:link
+{
+    color: white;
+}
+
+.title a:visited
+{
+    color: white;
+}
+
+.byline
+{
+    color: white;
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.author
+{
+    float: right;
+}
+
+.author a:link
+{
+    color: white;
+}
+
+.author a:visited
+{
+    color: white;
+}
+
+.license
+{
+    margin-top: 5px;
+    float: right;
 }
