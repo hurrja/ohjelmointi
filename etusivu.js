@@ -16,8 +16,8 @@ var avainsanakartat;
 function Avainsanateksti (sanaIndeksi, todennakoisyys, suurinTn)
 {
     this.sanaIndeksi = sanaIndeksi;
-    // kerroin on vähintään 0.1
-    this.kirjainkokoKerroin = max (todennakoisyys / suurinTn, .4);
+    // kerroin on vähintään 0.2
+    this.kirjainkokoKerroin = max (todennakoisyys / suurinTn, .2);
     this.x = 0;
     this.y = 0;
     
@@ -27,11 +27,13 @@ function Avainsanateksti (sanaIndeksi, todennakoisyys, suurinTn)
         this.y = y;
     };
     
-    this.piirra = function (ikkunakoko, ikkunaX, ikkunaY, suurinKirjainkoko)
+    this.piirra = function (ikkunaLeveys, ikkunaKorkeus,
+                            ikkunaX, ikkunaY,
+                            suurinKirjainkoko)
     {
         var kirjainKoko = suurinKirjainkoko * this.kirjainkokoKerroin
-        var x = ikkunaX + .5 * ikkunakoko + suurinKirjainkoko * this.x;
-        var y = ikkunaY + .5 * ikkunakoko + suurinKirjainkoko * this.y;
+        var x = ikkunaX + .5 * ikkunaLeveys + suurinKirjainkoko * this.x;
+        var y = ikkunaY + .5 * ikkunaKorkeus + suurinKirjainkoko * this.y;
         if (x < windowWidth
             && y - kirjainKoko / 2 >= 0
             && y + kirjainKoko / 2 <= windowHeight)
@@ -43,11 +45,11 @@ function Avainsanateksti (sanaIndeksi, todennakoisyys, suurinTn)
     };
 
     // mikä tulisi kirjainkooksi tällä avainsanatekstillä?
-    this.kirjainkoko = function (ikkunakoko, maxKirjainkoko)
+    this.kirjainkoko = function (ikkunaLeveys, maxKirjainkoko)
     {
         textSize (maxKirjainkoko);
         var testiLeveys = textWidth (avainsanat [sanaIndeksi]);
-        var ehdotettuKoko = ikkunakoko / testiLeveys * maxKirjainkoko;
+        var ehdotettuKoko = ikkunaLeveys / testiLeveys * maxKirjainkoko * .9;
         return (min (ehdotettuKoko, maxKirjainkoko));
     }
 };
@@ -109,10 +111,11 @@ function Avainsanakartta (avainsanat,
             yYla -= tamanKorkeus;
         }
         
-        this.avainsanatekstit [i].asetaPaikka (random (-3, 1), yTama);
+        this.avainsanatekstit [i].asetaPaikka ((i == 0 ? 0 : random (-1, 2)),
+                                               yTama);
     }
     
-    this.piirra = function (koko, x, y)
+    this.piirra = function (leveys, korkeus, x, y)
     {
         var alphaMuutos = 5;
         
@@ -131,10 +134,12 @@ function Avainsanakartta (avainsanat,
         {
             fill (0, 0, 0, this.alpha);
             var suurinKoko =
-                this.avainsanatekstit [0].kirjainkoko (koko, windowHeight / 20);
+                this.avainsanatekstit [0].kirjainkoko (leveys, korkeus / 10);
                 
             for (var i = 0; i < this.avainsanatekstit.length; i++)
-                this.avainsanatekstit [i].piirra (koko, x, y, suurinKoko);
+                this.avainsanatekstit [i].piirra (leveys, korkeus,
+                                                  x, y,
+                                                  suurinKoko);
         }
     };
     
@@ -231,21 +236,24 @@ function draw ()
     avainsanakartat [lahin].aktiivinen = true;
     
     for (var i = 0; i < kappaleita; i++)
-        avainsanakartat [i].piirra (windowWidth / 2, windowWidth / 2, 0);
+        avainsanakartat [i].piirra (.4 * windowWidth, .6 * windowHeight,
+                                    .6 * windowWidth, .2 * windowHeight);
 
     t++;
 }
 
 function asetaElementit ()
 {
+    // tässä funktiossa olevat kertoimet on kehitelty pitkälti
+    // kokeilemalla, että lopputulos on järjellisen näköinen
     var x = windowWidth / 10;
     var korkeus = windowHeight / (2 * kappaleita + 1);
     var canvasY = canvas.position ().y;
     
     for (i = 0; i < kappaleita; i++)
     {
-        kappaleElementit [i].position (x, canvasY + 1.8 * i * korkeus);
-        kappaleElementit [i].style ("font-size", round (korkeus));
+        kappaleElementit [i].position (x, canvasY + 1.7 * (i + 1) * korkeus);
+        kappaleElementit [i].style ("font-size", round (0.9 * korkeus));
     }
 }
 
