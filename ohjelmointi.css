@@ -32,12 +32,14 @@ canvas
     display: block;
     margin: 0 auto;
     margin-top: 10px;
+    width: 40vw;
 }
 
 pre.src
 {
     margin: 0 auto;
-    width: 90%;
+    font-size: 0.9vw;
+    width: 75em;
     color: white;
     background-color: #102e4e;
     border-radius: 10px;
@@ -142,8 +144,3 @@ h1
     text-decoration: none;
 }
 
-#frontpageCanvas
-{
-    margin-right: 15vh;
-    margin-left: 15vh;
-}
