@@ -1,7 +1,8 @@
 <html>
   <head>
+    <link rel="additional stylesheet" type="text/css" href="ohjelmointi.css" />  <head>
     <title>Ohjelmointi</title>
-  </head>
+    </head>
   <body>
     <meta charset="UTF-8">
     PREAMBLE
