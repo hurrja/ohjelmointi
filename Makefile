@@ -1,2 +1,5 @@
-upload:
-	rsync -avL ohjelmointi.html *.css *.svg *.svg processing.js @kolmio.syk.fi:public_html/tmp/
+all: index.html
+
+index.html: index-runko preamble
+	sed -e "/PREAMBLE/r preamble" -e "s///" > $@
+
