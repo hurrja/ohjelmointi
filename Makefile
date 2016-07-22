@@ -1,5 +1,5 @@
 all: index.html
 
 index.html: index-runko preamble
-	sed -e "/PREAMBLE/r preamble" -e "s///" > $@
+	sed -e "/PREAMBLE/r preamble" -e "s///" $< > $@
 
