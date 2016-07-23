@@ -281,7 +281,7 @@
       edellistä pienempi. Pystyviivojen etäisyys \(x\)-akselilla on 10
       pikseliä.
 
-      #+CALL: rekursio-pystyviivat[:noweb yes]() :results html
+      #+CALL: rekursio-pystyviivat[:noweb yes :exports results]() :results html
       
       Tee vastaava ohjelma kopioimalla alla oleva koodi
       Processing-editoriin ja kirjoittamalla rekursiivisen funktion
@@ -342,7 +342,7 @@
           satunnaiskavely (askeleita - 1, uusiX, uusiY);
       #+END_SRC
 
-      #+CALL: rekursio-satunnaiskavely[:noweb yes]() :results html
+      #+CALL: rekursio-satunnaiskavely[:noweb yes :exports results]() :results html
 
       Kirjoita alla olevan ohjelmakoodin rekursiivisen funktion
       ~satunnaiskavely()~ runko, eli poista rivi
