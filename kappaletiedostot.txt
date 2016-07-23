@@ -7,11 +7,11 @@ muuttuja
 lauselohko
 while-silmukka
 for-silmukka
-kokonaislukumuuttuja-vakio
-funktion-maaritteleminen
+kokonaisluku
+funktio
 animaatio
 hiiren-painallukset
-loogiset-lausekkeet-muuttujat
+logiikkaa
 funktion-paluuarvo
 satunnaisuus
 taulukko
