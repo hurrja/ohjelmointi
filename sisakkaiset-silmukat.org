@@ -77,13 +77,13 @@
    \(y\)-koordinaatti.
 
    #+BEGIN_SRC processing :exports both
-     size (400, 400);
+     size (200, 200);
      colorMode (HSB, 100);
 
      for (int x = 0; x < width; x++)
        for (int y = 0; y < height; y++)
        {
-         stroke (x / 4.0, 100, y / 4.0);
+         stroke (x / 2.0, 100, y / 2.0);
          point (x, y);
        }
 
@@ -201,7 +201,7 @@
       satunnainen. Kirjoita ohjelma, joka piirtää vastaavan kuvan.
       #+NAME: sisakkaiset-silmukat-satunnaiset-pikselit
       #+BEGIN_SRC processing
-        size (600, 400);
+        size (200, 200);
         colorMode (HSB, 100);
 
         for (int x = 0; x < width; x++)
@@ -242,13 +242,13 @@
       voidaan ohjelmassa värittää millä tahansa värillä.
       #+NAME: sisakkaiset-silmukat-voronoi
       #+BEGIN_SRC processing
-        size (400, 400);
+        size (200, 200);
         colorMode (HSB, 100);
 
         // ympyröiden keskipisteet
         final float X1 = 70, Y1 = 90;
         final float X2 = 180, Y2 = 20;
-        final float X3 = 150, Y3 = 200;
+        final float X3 = 150, Y3 = 170;
 
         for (int x = 0; x < width; x++)
           for (int y = 0; y < height; y++)
