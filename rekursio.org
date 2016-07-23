@@ -469,9 +469,9 @@
       Alla on ohjelman piirtämiä shakkilautoja, kun jakojen määrä on
       0, 1 ja 2. Kirjoita ohjelma, jolla voit piirtää vastaavia kuvia.
     
-      #+CALL: rekursio-shakkilauta(0) :results html
-      #+CALL: rekursio-shakkilauta(1) :results html
-      #+CALL: rekursio-shakkilauta(2) :results html
+      #+CALL: rekursio-shakkilauta[:exports results](0) :results html
+      #+CALL: rekursio-shakkilauta[:exports results](1) :results html
+      #+CALL: rekursio-shakkilauta[:exports results](2) :results html
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :noweb yes :exports code
