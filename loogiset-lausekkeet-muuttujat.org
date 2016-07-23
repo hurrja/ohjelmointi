@@ -1,6 +1,6 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
-* Loogiset lausekkeet ja muuttujat
+* Logiikkaa
 ** Looginen lauseke
    #+BEGIN_QUOTE
    Loogisen lausekkeen arvo on joko tosi tai epätosi. Esimerkkejä

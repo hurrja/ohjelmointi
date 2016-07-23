@@ -1,6 +1,6 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
-* Kokonaislukumuuttuja ja -vakio
+* Kokonaisluku
 ** Liukuluvun ja kokonaisluvun ero
    Tietokoneessa liukulukujen eli ~float~-tyyppisten muuttujien esitys
    poikkeaa kokonaislukujen esityksestä. Täten Processing kielen luvut

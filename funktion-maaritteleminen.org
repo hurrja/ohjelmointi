@@ -1,6 +1,6 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
-* Funktion määritteleminen
+* Funktio
 ** Funktiot ~setup()~ ja ~draw()~
    Ennen kuin ryhdymme määrittelemään funktioita ja piirtämään
    animaatioita, meidän täytyy tutustua Processing-ohjelmoinnin
