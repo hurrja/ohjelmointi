@@ -1,6 +1,6 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
-* Piirtäminen lausekkeiden avulla
+* Piirtäminen
 ** Piirtoikkunan pisteen koordinaatit
    
    Processing-ohjelmointikielessä piirretään kuvioita ja animaatioita
