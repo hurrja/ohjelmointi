@@ -162,7 +162,7 @@ function setup ()
     canvas = createCanvas (koko.width, koko.height);
     canvas.parent (ylaElementti);
 
-    colorMode (HSB, 100);
+    fill (200);
     
     kappaleita = kappaletiedostot.length;
     kappaleElementit = new Array ();
