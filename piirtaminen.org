@@ -46,7 +46,7 @@
          }
    #+END_SRC
 
-   #+RESULTS[1b649732bd8bdb1e283014ac1869f9579037accc]: pisteita-koordinaatistossa
+   #+RESULTS[ba65e9a8adc35339944122d669c0b96a45972266]: pisteita-koordinaatistossa
    [[file:pisteita-koordinaatistossa.svg]]
 
    Pistettä \((0, 0)\) kutsutaan piirtokoordinaatiston /origoksi/. 
