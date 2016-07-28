@@ -253,7 +253,7 @@ function asetaElementit ()
     for (i = 0; i < kappaleita; i++)
     {
         kappaleElementit [i].position (x, canvasY + 1.7 * (i + 1) * korkeus);
-        kappaleElementit [i].style ("font-size", round (0.9 * korkeus));
+        kappaleElementit [i].style ("font-size", korkeus);
     }
 }
 
