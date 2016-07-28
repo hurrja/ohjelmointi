@@ -96,6 +96,10 @@
         hsbKoodausHavainnollistus (360, "värisävy", f, valittuVari.x);
       #+END_SRC
 
+      #+ATTR_HTML: :class color-coding-img
+      #+RESULTS: varisavy
+      [[file:varisavy.png]]
+
       Valitaanpa värisävyksi 17, joka antaa keltavihreän värin. Tämä
       on merkattu kuvaan katkoviivalla.
 
@@ -112,6 +116,10 @@
         hsbKoodausHavainnollistus (1, "kirkkaus", f, valittuVari.z);
       #+END_SRC
 
+      #+ATTR_HTML: :class color-coding-img
+      #+RESULTS: kirkkaus
+      [[file:kirkkaus.png]]
+
       Valitaan värisävyn 17 lisäksi kirkkaus 75 (kuvassa
       katkoviivalla).
 
@@ -125,6 +133,10 @@
         pen f (real s) { return (hsv (valittuVari.x * 360, s, valittuVari.z)); }
         hsbKoodausHavainnollistus (1, "värikylläisyys", f, valittuVari.y);
       #+END_SRC
+
+      #+ATTR_HTML: :class color-coding-img
+      #+RESULTS: varikyllaisyys
+      [[file:varikyllaisyys.png]]
 
       Valitaan värikylläisyydeksi 60 (kuvassa katkoviivalla). 
 

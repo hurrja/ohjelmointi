@@ -34,6 +34,11 @@ canvas
     margin-top: 10px;
 }
 
+.color-coding-img
+{
+    width: 50vw;
+}
+
 .org-svg
 {
     width: 50vw;
@@ -43,7 +48,7 @@ canvas
 {
     canvas
     {
-        width: 40vw;
+        max-width: 70vw;
     }
 
 }
