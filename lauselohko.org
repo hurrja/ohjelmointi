@@ -145,7 +145,7 @@
 
    [Ohjelma voitaisiin kirjoittaa lyhyesti käyttämällä
    Processing-kielen funktiota ~rectMode()~. Tässä on tarkoitus
-   miettiä, miten tällainen tehtävä voidaan ohjelmoida.]
+   miettiä, miten ratkaisu voidaan ohjelmoida.]
 
    Suorakulmio voidaan piirtää sen jälkeen, kun on selvitetty vasen
    yläkulma ja oikea alakulma. Nämä riippuvat siitä, miten $A$ ja $B$
