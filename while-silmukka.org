@@ -99,6 +99,11 @@
          });
 
    #+END_SRC
+
+   #+ATTR_HTML: :id while-flowchart-img
+   #+RESULTS:
+   [[file:while-silmukka-vuokaavio.svg]]
+
 ** Esimerkki
    Piirretään \(400\times 400\)-kokoiseen ikkunaan alla olevan
    kaltainen kuva. Kunkin viivan kuvan alareunassa olevan päätepisteen

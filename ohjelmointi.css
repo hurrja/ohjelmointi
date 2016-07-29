@@ -157,7 +157,7 @@ h1
     height: 100%;
 }
 
-#pixel-explanation-img
+#pixel-explanation-img, #while-flowchart-img
 {
     width: 30vw;
 }
