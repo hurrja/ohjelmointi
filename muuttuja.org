@@ -181,6 +181,11 @@
            fill (N -- (N + E) -- E -- cycle, red);
 	   fill (N -- (0, 0) -- E -- cycle, blue);
 	 #+END_SRC
+
+         #+ATTR_HTML: :id square-split-diagonal-img
+         #+RESULTS: nelio-jaettu
+         [[file:nelio-jaettu.svg]]
+
 	 Mikä ehto pätee niiden pisteiden \(x\)- ja
          \(y\)-koordinaateille, jotka sijaitsevat ikkunan punaisessa
          osassa?
