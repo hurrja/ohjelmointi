@@ -69,6 +69,11 @@
          .{\Circles{1, 280, false}} [ .{\Circles{0, 250, true}} ] ]
          ] ] ] ]", (0, 0));
    #+END_SRC
+
+   #+ATTR_HTML: :id simple-recursion-tree-img
+   #+RESULTS: rekursio-sisakkaiset-ympyrat-kutsupuu
+   [[file:rekursio-sisakkaiset-ympyrat-kutsupuu.svg]]
+
    #+END_CENTER
 ** Rekursio ja rekursiivinen funktio
    #+BEGIN_QUOTE
@@ -453,7 +458,7 @@
           piirraPuu (6, width / 2.0, height, 100);
         }
       #+END_SRC
-   6. Eri kokoisia shakkilautoja, joissa on vaaka- ja pystysuunnassa
+   6. Eri kokoisia \ldquo{}shakkilautoja\rdquo, joissa on vaaka- ja pystysuunnassa
       \(1, 2, 4, 8, ...\) ruutua - eli ruutujen lukumäärä vaaka- ja
       pystysuunnassa on kahden potenssi - voidaan piirtää
       rekursiivisesti.
@@ -467,11 +472,13 @@
            kaksi neliötä keltaisella.
 
       Alla on ohjelman piirtämiä shakkilautoja, kun jakojen määrä on
-      0, 1 ja 2. Kirjoita ohjelma, jolla voit piirtää vastaavia kuvia.
+      0, 1, 2 tai 4. Kirjoita ohjelma, jolla voit piirtää vastaavia
+      kuvia.
     
       #+CALL: rekursio-shakkilauta[:exports results](0) :results html
       #+CALL: rekursio-shakkilauta[:exports results](1) :results html
       #+CALL: rekursio-shakkilauta[:exports results](2) :results html
+      #+CALL: rekursio-shakkilauta[:exports results](4) :results html
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :noweb yes :exports code
