@@ -157,7 +157,7 @@ function preload ()
 
 function setup ()
 {
-    ylaElementti = select ("#frontpageCanvas");
+    ylaElementti = select ("#frontpage-canvas");
     var koko = ylaElementti.size ();
     canvas = createCanvas (koko.width, koko.height);
     canvas.parent (ylaElementti);

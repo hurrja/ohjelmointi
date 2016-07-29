@@ -6,16 +6,16 @@
   <body>
     <meta charset="UTF-8">
     PREAMBLE
-    <div id="supportedBy">
-      <a id="supportedByLink"
+    <div id="supported-by">
+      <a id="supported-by-link"
          href="http://100-vuotissaatio.teknologiateollisuus.fi/">
-        <img id="supportedByImg" src="teknologiateollisuuden-100-vuotissaatio.png"
+        <img id="supported-by-img" src="teknologiateollisuuden-100-vuotissaatio.png"
              alt="Teknologiateollisuuden 100-vuotissäätiö">
       </a>
     </div>
     <script language="javascript" type="text/javascript" src="p5.js"></script>
     <script language="javascript" type="text/javascript" src="p5.dom.js"></script>
-    <div id="frontpageCanvas"
+    <div id="frontpage-canvas"
          style="height: 90vh;width: 95vw;"></div>
     <script language="javascript" type="text/javascript" src="etusivu.js"></script>
     <style> body {padding: 0; margin: 0;} </style>

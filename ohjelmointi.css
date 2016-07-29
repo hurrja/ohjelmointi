@@ -136,13 +136,13 @@ h1
     float: right;
 }
 
-.chapterlink, #supportedByLink
+.chapterlink, #supported-by-link
 {
     color: black;
     text-decoration: none;
 }
 
-#supportedBy
+#supported-by
 {
     position:fixed;
     right:0;
@@ -152,7 +152,7 @@ h1
     height: 10vh;
 }
 
-#supportedByImg
+#supported-by-img
 {
     height: 100%;
 }
