@@ -6,6 +6,12 @@
   <body>
     <meta charset="UTF-8">
     PREAMBLE
+    <div id="supportedBy">
+      <p id="supportedByText">
+        Rahoittanut <a id="supportedByLink" href="http://100-vuotissaatio.teknologiateollisuus.fi/">Teknologiateollisuuden
+          100-vuotissäätiö</a>
+      </p>
+    </div>
     <script language="javascript" type="text/javascript" src="p5.js"></script>
     <script language="javascript" type="text/javascript" src="p5.dom.js"></script>
     <div id="frontpageCanvas"
