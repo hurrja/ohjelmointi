@@ -80,13 +80,16 @@
      colorMode (HSB, 100);
      background (0); // musta tausta
      textSize (16); // tekstin koko
-     textAlign (CENTER, CENTER); // tekstin keskikohta annetuissa koordinaateissa
+
+     // tekstin keskikohta annetuissa koordinaateissa
+     textAlign (CENTER, CENTER); 
 
      final int VALI = 30; // tekstin keskipisteiden väli
      final float Y = height / 2.0; // tekstin keskipisteen Y-koordinaatti
 
      // piirretään 25 numeroa
-     for (int n = 1, x = VALI; n <= 25; n += 1, x += VALI) // turvallista vertailla, kun n on kokonaisluku
+     // turvallista vertailla, kun n on kokonaisluku
+     for (int n = 1, x = VALI; n <= 25; n += 1, x += VALI) 
      {
        if (n == 10) // turvallista vertailla
          fill (0, 100, 100); // punainen teksti
