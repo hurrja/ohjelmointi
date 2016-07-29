@@ -72,6 +72,10 @@
        }
    #+END_SRC
 
+   #+ATTR_HTML: :id pixel-explanation-img
+   #+RESULTS: sisakkaiset-silmukat-pikselit
+   [[file:sisakkaiset-silmukat-pikselit.svg]]
+
    Alla oleva ohjelmakoodi piirtää kuvan, jossa kunkin pikselin
    värisävyn määrittää \(x\)-koordinaatti ja kirkkauden
    \(y\)-koordinaatti.
