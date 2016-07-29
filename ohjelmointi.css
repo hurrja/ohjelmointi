@@ -93,11 +93,6 @@ header
     position:relative;
 }
 
-preamble
-{
-
-}
-
 h1
 {
     margin-top: 0;
@@ -117,16 +112,6 @@ h1
     margin-top: 1em;
 }
 
-.title a:link
-{
-    color: white;
-}
-
-.title a:visited
-{
-    color: white;
-}
-
 .byline
 {
     color: white;
@@ -140,12 +125,7 @@ h1
     float: right;
 }
 
-.author a:link
-{
-    color: white;
-}
-
-.author a:visited
+.title a:link, .title a:visited, .author a:link, .author a:visited
 {
     color: white;
 }
