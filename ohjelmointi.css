@@ -53,7 +53,7 @@ canvas
 
 }
 
-pre.src
+pre:not(.example)
 {
     margin: 0 auto;
     font-size: 0.9vw;
