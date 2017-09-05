@@ -4,7 +4,7 @@
 ** Liukuluvun ja kokonaisluvun ero
    Tietokoneessa liukulukujen eli ~float~-tyyppisten muuttujien esitys
    poikkeaa kokonaislukujen esityksestä. Täten Processing kielen luvut
-   ~1~ ja ~1.0~ esitetään tietokoneessa eril lailla, joten ne eivät
+   ~1~ ja ~1.0~ esitetään tietokoneessa eri lailla, joten ne eivät
    välttämättä ole täsmälleen yhtä suuria. Niinpä seuraavassa
    ohjelmassa /ei voida taata/, että ehto ~(a == 1)~ on tosi, vaikka
    muuttujan ~a~ arvo on kolmen desimaalin tarkkuudella ~1.000~.
