@@ -338,7 +338,7 @@
 	 #+END_SRC
    5. Piirrä alla oleva kuvio piirtoikkunaan, jonka koko on
       \(401\times 401\). Vierekkäisten janojen päätepisteiden välinen
-      etäisyys sekä \(x\)- että \(y\)-akselilla on 10.
+      etäisyys sekä ikkunan ylä- että alareunassa on 10.
       #+NAME: while-tiimalasi
       #+BEGIN_SRC processing
         size (401, 401);
