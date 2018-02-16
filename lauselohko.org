@@ -309,12 +309,12 @@
         ja ylemmän ympyrän värin kirkkaus on ~(200 - P)~ ja
         alemman ~(P - 100)~. 
       Alla on esimerkki ohjelman piirtämästä kuvasta vakion ~P~
-      arvolla 110. Testaa ohjelmasi toimivuutta eri vakion ~P~
+      arvolla 130. Testaa ohjelmasi toimivuutta eri vakion ~P~
       arvoilla.
       #+NAME: kaksi-liikennevaloa
       #+BEGIN_SRC processing
         size (200, 400);
-        final float P = 110;
+        final float P = 130;
         final float HALKAISIJA = width;
         final float SADE = HALKAISIJA / 2;
 
