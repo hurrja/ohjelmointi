@@ -170,7 +170,7 @@
 
         for (int i = 0; i < YT.length; i++)
           rect (0, YT [i], SIVU, SIVU);
-   #+END_SRC
+      #+END_SRC
    2. Tee [[file:taulukko-varisavyt-sivu.org][tällä sivulla]] näkyvä animaatio seuraavasti. 
       - Määrittele ohjelmaasi taulukkovakio, jossa on seuraavat
         varisävyt: call_taulukko-varisavyarvot().
