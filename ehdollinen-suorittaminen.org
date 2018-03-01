@@ -1,7 +1,7 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * Ehdollinen suorittaminen
-** Esimerkki
+** {{{example}}}
    #+NAME: ehdollinen-kolmio-suunta-runko
    #+BEGIN_SRC processing :exports none
      // jos leveys on suurempi kuin korkeus
@@ -77,7 +77,7 @@
    Lukujen ~a~ ja ~b~ yhtäsuuruus testataan vertailuoperaattorilla
    ~==~, jossa on kaksi yhtäsuuruusmerkkiä peräkkäin.
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    Piirretään neliön muotoiseen piirtoikkunaan ympyrä tai nelikulmio
    riippuen vakion ~P~ arvosta. Jos ~P~ on alle 95 piirretään ympyrä,
    muuten nelikulmio.

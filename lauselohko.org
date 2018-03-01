@@ -1,7 +1,7 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * Lauselohko
-** Esimerkki
+** {{{example}}}
   Kirjoitetaan ohjelma, joka piirtää piirtoikkunan keskelle ympyrän
   seuraavasti.
   - Jos ikkunan leveys on suurempi kuin korkeus, piirretään mustalle
@@ -68,7 +68,7 @@
 
     ellipse (width / 2.0, height / 2.0, halkaisija, halkaisija);
   #+END_SRC
-** Esimerkki
+** {{{example}}}
    Kirjoitetaan ohjelma, joka piirtää siniselle taustalle \(200\times
    200\)-kokoiseen piirtoikkunaan ympyrän, jonka halkaisija on 20 ja
    keskipiste vakioiden ~X~ ja ~Y~ määrittämissä
@@ -132,7 +132,7 @@
      <<ympyran-vari-sijainnista-loppu>>
    #+END_SRC
 
-** Esimerkki
+** {{{example}}}
    Kirjoitetaan ohjelma, joka piirtää suorakulmion \(600\times
    400\)-kokoiseen piirtoikkunaan seuraavasti. Ohjelmassa määritellään
    neljän vakion avulla kaksi piirtoikkunan pistettä $A$ ja $B$:
@@ -434,7 +434,7 @@
         line (SIVU / 2, SIVU / 2, paatepisteX, paatepisteY);
       #+END_SRC
 
-** Esimerkkiratkaisuja
+** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports both
         size (400, 400);

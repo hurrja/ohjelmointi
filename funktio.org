@@ -90,7 +90,7 @@
    tyyppi on aina ~void~.
    #+END_QUOTE
 
-** Esimerkki
+** {{{example}}}
    Piirretään alla oleva kuva, jossa on päällekkäisiä ympyröitä eri
    kohdissa piirtoikkunaa.
    #+NAME: funktio-ympyraparit
@@ -162,7 +162,7 @@
    rivillä parametrit määritellään.
 
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    Alla olevassa ohjelmakoodissa on kaksi funktiota, joissa molemmissa
    määritellään muuttuja ~n~. Kukin muuttuja ~n~ näkyy vain oman
    funktionsa rungossa, joten ne ovat käytännössä kaksi eri muuttujaa.

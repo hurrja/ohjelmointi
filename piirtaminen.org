@@ -270,7 +270,7 @@
      paljon tilaa ja myös ylä- ja alapuolelle jää yhtä paljon
      tilaa. Voit pyöristää laskujesi tuloksina saamasi koordinaatit
      kokonaisluvuiksi.
-** Esimerkkiratkaisuja
+** Ratkaisuja
    Saman asian tekevä tietokoneohjelma voidaan kirjoittaa monella eri
    tavalla. Nämä ratkaisut ovat vain esimerkkejä.
    1. 

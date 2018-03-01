@@ -17,7 +17,7 @@
    palauttaa satunnaisen desimaaliluvun, joka arvo on vähintään ~v~ ja
    pienempi kuin ~k~.
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    Alla oleva ohjelma piirtää 10 ympyrää satunnaisiin piirtoikkunan
    kohtiin.
    #+BEGIN_SRC processing :exports both
@@ -27,7 +27,7 @@
      for (n = 1; n <= 10; n++)
        ellipse (random (width), random (height), HALKAISIJA, HALKAISIJA);
    #+END_SRC
-** Esimerkki
+** {{{example}}}
    [[file:satunnaisuus-ympyrajahti-sivu.org][Tällä sivulla]] oleva interaktiivinen animaatio on ohjelmoitu alla
    olevalla ohjelmakoodilla. Ohjelmassa piirretään ympyrä satunnaiseen
    kohtaan sen jälkeen, kun käyttäjä on painanut hiiren painiketta
@@ -106,7 +106,7 @@
    [Tarkalleen ottaen ~floor()~ pyöristää luvun lähimpään /pienempään/
    kokonaislukuun. Esimerkiksi kutsun ~floor (-2.1)~ paluuarvo on
    \(-3.\)]
-** Esimerkki
+** {{{example}}}
    [[file:satunnaisuus-janat-sivu.org][Tällä sivulla]] oleva animaatio on piirretty alla olevalla
    ohjelmakoodilla. Animaatiossa piirretään joka toinen sekunti
    satunnainen määrä janoja satunnaisin värein piirtoikkunan

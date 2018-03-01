@@ -11,7 +11,7 @@
 #+END_SRC
 
 * Taulukko
-** Esimerkki
+** {{{example}}}
    Kirjoitetaan ohjelma, joka piirtää alla olevan kuvan. Kuvassa
    ympyröiden keskipisteitä ei ole arvottu satunnaisesti, vaan ne on
    annettu: call_taulukko-ympyrat-annetut-x().
@@ -140,7 +140,7 @@
    #+BEGIN_SRC processing :exports code :noweb yes
    <<taulukko-ympyrat-savy>>
    #+END_SRC
-** Esimerkki
+** {{{example}}}
    Yksittäinen piirtoikkunan piste kohdassa ~(x, y)~ voidaan piirtää
    funktiolla
    #+BEGIN_EXAMPLE

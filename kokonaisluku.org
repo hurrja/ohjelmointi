@@ -66,7 +66,7 @@
 
      text (42, 100, 100);
    #+END_SRC
-** Esimerkki
+** {{{example}}}
    Piirretään \(1000\times 100\)-kokoiseen ikkunaan mustalle taustalle
    25 ensimmäistä positiivista kokonaislukua vasemmalta
    oikealle. Luvut ovat pystysuunnassa piirtoikkunan keskellä. Luku 10
@@ -131,7 +131,7 @@
    0\), niin Processing-kielen laskutoimitus ~n % m~ antaa
    jakojäännöksen, kun luku ~n~ jaetaan luvulla ~m~.
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    #+BEGIN_SRC processing :exports both
      size (800, 200);
 
@@ -160,7 +160,7 @@
 
    Vastaavasti merkintä ~n--~ tarkoittaa samaa kuin ~n = n - 1.~
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    Piirretään alla olevan kuvan mukaisesti mustalle taustalle
    mahdollisimman monta ympyrää piirtoikkunaan. Ympyröiden halkaisija
    on vakio ~HALKAISIJA~.
@@ -206,7 +206,7 @@
    #+BEGIN_SRC processing :noweb yes :exports code
    <<vakio-siniset-keltaiset-ympyrat>>
    #+END_SRC
-** Esimerkki
+** {{{example}}}
    Piirretään alla oleva sahalaitakuvio piirtoikkunaan, jonka koko on
    \(400\times 400\). Origosta alkavan janan pituus on 10, ja kukin
    seuraava jana on 10 prosenttia edellistä pidempi. Viivaan voidaan

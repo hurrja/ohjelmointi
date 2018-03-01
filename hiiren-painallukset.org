@@ -1,7 +1,7 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * Hiiren painallukset
-** Esimerkki
+** {{{example}}}
    Vie hiiren kursori alla olevaan piirtoikkunaan ja painele hiiren
    nappia eri kohdissa.
    #+NAME: hiiren-painallukset-neliot
@@ -44,7 +44,7 @@
    piirtoikkunan sisällä. Funktion sisällä muuttujien ~mouseX~ ja
    ~mouseY~ arvot ovat hiiren kursorin \(x\)- ja \(y\)-koordinaatit.
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    Alla oleva ohjelmakoodin tuloksena saadaan [[file:hiiren-painallukset-ympyran-ohjaus-sivu.org][tällä sivulla]] oleva
    interaktiivinen animaatio. Animaatiossa ympyrä liikkuu oikealle tai
    vasemmalle riippuen siitä, painetaanko hiiren painiketta ympyrän
@@ -61,7 +61,7 @@
    niin tällöin piirretään oletusarvoisella nopeudella, joka on 60
    kuvaa sekunnissa.
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    Alla oleva ohjelmakoodin tuloksena saadaan [[file:hiiren-painallukset-varin-valinta-sivu.org][tällä sivulla]] oleva
    interaktiivinen ohjelmaa. Käyttäjä voi valita vasemmassa reunassa
    olevasta väripaletista sen värin, jolla ympyrä piirretään. Ohjelman

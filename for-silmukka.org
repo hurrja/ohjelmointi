@@ -37,7 +37,7 @@
        lauseke tai lohko, joka suoritetaan niin kauan kuin ehto tosi;
    #+END_EXAMPLE
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    Alla oleva ohjelmakoodi piirtää neliön muotoiseen piirtoikkunaan
    samanlaisen ruudukon kuin edellisessä kappaleessa.
    #+BEGIN_SRC processing :exports both
@@ -74,7 +74,7 @@
    | ~x *= 5~ | ~x = x * 5~ |
    | ~x /= 5~ | ~x = x / 5~ |
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    Alla oleva esimerkki piirtää janoja origosta kuvan alareunaan
    siten, että kuvan alareunassa vierekkäisten janojen välinen
    etäisyys on 5.

@@ -203,7 +203,7 @@
      stroke (10, 100, 100); // piirretään viivat, oransseina
      triangle (300, 200, 500, 350, 250, 50); // musta kolmio, oranssi ääriviiva
    #+END_SRC
-** Esimerkki
+** {{{example}}}
    Alla on esimerkki yksinkertaisesta kuvasta. Kuvien piirtäminen
    ohjelmallisesti näin yksinkertaisin menetelmin vaatii paljon työtä
    ja on aikaavievää. Sen takia tehtävissä piirretään pääosin hyvin

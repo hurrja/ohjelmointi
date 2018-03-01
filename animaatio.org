@@ -1,7 +1,7 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * Animaatio
-** Esimerkki
+** {{{example}}}
    Kirjoitetaan ohjelma, joka piirtää alla olevan animaation.
    #+NAME: animaatio-ympyra
    #+BEGIN_SRC processing 
@@ -110,7 +110,7 @@
    sivulla. Tämän takia alla olevat animaatiot ovat kukin omalla
    sivullaan.
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    Alle oleva ohjelmakoodi piirtää [[file:animaatio-kulunut-aika-sivu.org][tällä sivulla]] näkyvän animaation,
    jossa piirtoikkunan keskellä näytetään ohjelman alusta kulunut aika
    sekunteina.
@@ -119,7 +119,7 @@
    <<animaatio-kulunut-aika>>
    #+END_SRC
 
-** Esimerkki
+** {{{example}}}
    Alla oleva ohjelmakoodi piirtää [[file:animaatio-oskilloiva-ympyra-sivu.org][tällä sivulla]] olevan animaation,
    jossa piirtoikkunan keskellä oleva ympyrä vuorotellen suurenee ja
    pienenee. Ympyrä on vihreä, jos halkaisija on yli puolet ikkunan

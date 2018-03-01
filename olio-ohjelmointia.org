@@ -1,7 +1,7 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * Olio-ohjelmointia
-** Esimerkki
+** {{{example}}}
    Processing-ohjelmissa esiintyy usein pisteitä. Pisteellä on \(x\)-
    ja \(y\)-koordinaatti. Piste voidaan myös piirtää piirtoikkunaan.
 
@@ -91,7 +91,7 @@
      mihinkään olioon. Tällöin muuttujan arvo on tyhjää referenssiä
      tarkoittava ~null~.
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    Määritellään luokka ympyröitä varten. Luokka käyttää aiemmin
    määriteltyä luokkaa pisteille. Tässä esimerkissä huomataan myös,
    että
@@ -168,7 +168,7 @@
          ym.piirra ();
      }
    #+END_SRC
-** Esimerkki
+** {{{example}}}
    Luokka voidaan määritellä myös rekursiivisesti. /Binääripuu/ on
    puumainen rakenne, joka koostuu /solmuista/ sekä niiden välisistä
    yhteyksistä. Jokaisesta solmusta lähtee korkeintaan kaksi haaraa

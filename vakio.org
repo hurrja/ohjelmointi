@@ -139,7 +139,7 @@
    vakion määrittelevällä rivillä.
    #+END_QUOTE
 
-** Esimerkki
+** {{{example}}}
    Tässä esimerkissä piirretään mustalle pohjalle valkoinen
    suunnikas. Seuraavat vakiot ja ominaisuudet määrittävät kuvion
    mitat.

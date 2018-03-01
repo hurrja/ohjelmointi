@@ -1,7 +1,7 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * ~while~-silmukka
-** Esimerkki
+** {{{example}}}
    Piirretään alla oleva kuva, jossa on \(20\times 20\)-kokoisia
    neliöitä piirtoikkunan lävistäjällä.
 
@@ -104,7 +104,7 @@
    #+RESULTS:
    [[file:while-silmukka-vuokaavio.svg]]
 
-** Esimerkki
+** {{{example}}}
    Piirretään \(400\times 400\)-kokoiseen ikkunaan alla olevan
    kaltainen kuva. Kunkin viivan kuvan alareunassa olevan päätepisteen
    \(x\)-koordinaatti määrää viivan värisävyn siten, että värisävy on
@@ -129,7 +129,7 @@
    #+BEGIN_SRC processing :exports code :noweb yes
    <<viivoja-origosta-alareunaan>>
    #+END_SRC
-** Esimerkki
+** {{{example}}}
   Piirretään alla oleva kuva, jossa neliön muotoiseen piirtoikkunaan
   piirretään ruudukko. Ruudukossa vierekkäisten yhdensuuntaisten
   viivojen välinen etäisyys on vakio ~L~. 
@@ -187,7 +187,7 @@
     }
 
   #+END_SRC
-** Esimerkki
+** {{{example}}}
    Piirretään alla oleva murtoviiva piirtoikkunaan, jonka koko on
    \(600\times 400\). Murtoviivan \ldquo{}ensimmäinen piste\rdquo on
    piirtoikkunan vasemmassa alakulmassa. Jos viivan tämänhetkinen

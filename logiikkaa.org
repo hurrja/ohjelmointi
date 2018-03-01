@@ -39,7 +39,7 @@
    | tosi    | epätosi | epätosi  |
    | tosi    | tosi    | tosi     |
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
     Alla olevassa interaktiivisessa animaatiossa piirretään eri
     värinen pystypalkki sen mukaan, onko hiiren painallus palkin sisä-
     vai ulkopuolella. 
@@ -104,7 +104,7 @@
    ~false~ (epätosi). Muuttujaan voidaan tallentaa loogisen lausekkeen
    arvo.
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    [[file:loogiset-lausekkeet-muuttujat-alternoiva-sivu.org][Tällä sivulla]] olevan animaation ohjelmoinnissa käytetään loogista
    muuttujaa sekä negaatiota. Animaation piirtävä ohjelmakoodi on
    alla. Ohjelmassa ~boolean~-tyyppisen muuttujan ~piirretaan~ arvo
@@ -138,7 +138,7 @@
    | tosi    | epätosi | tosi                      |
    | tosi    | tosi    | tosi                      |
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    [[file:loogiset-lausekkeet-muuttujat-ristikko-sivu.org][Tällä sivulla]] oleva interaktiivinen animaatio havainnollistaa sekä
    loogisten muuttujien että operaattorin ~||~ käyttöä. Animaatio on
    piirretty alla olevalla ohjelmakoodilla. Hiirtä painettaessa

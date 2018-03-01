@@ -1,7 +1,7 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * Funktion paluuarvo
-** Esimerkki
+** {{{example}}}
    Useat funktiot /palauttavat/ jonkin arvon. Esimerkiksi
    Processing-kielessä valmiina oleva funktio ~float min(float a,
    float b)~ palauttaa pienemmän luvuista ~a~ ja ~b~. Funktion avulla
@@ -63,7 +63,7 @@
      }
    #+END_SRC
    Vastaava funktio ~max()~ on olemassa valmiina Processing-kielessä.
-** Esimerkki
+** {{{example}}}
    Alla olevassa esimerkissä määritellään funktio
    #+BEGIN_EXAMPLE
    boolean piirtoikkunassa (int x, int y)

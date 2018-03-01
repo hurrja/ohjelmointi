@@ -3,7 +3,7 @@
 #+LATEX: \usepackage{qtree}
 
 * Rekursio
-** Esimerkki
+** {{{example}}}
    Alla oleva kuva voitaisiin piirtää ~for~- tai ~while~-silmukan
    avulla. Se voidaan kuitenkin piirtää myös ilman silmukoita
    määrittelemällä funktio, joka kutsuu itse itseään.
@@ -101,7 +101,7 @@
      esimerkissä lopetusehto täyttyy silloin, kun kaikki ympyrät on
      piirretty, eli kun parametrin ~ympyroita~ arvo on 0.
    #+END_QUOTE
-** Esimerkki
+** {{{example}}}
    /Fibonaccin lukujono/ on kuuluisa esimerkki rekursiosta. Lukujono
    alkaa 
    #+BEGIN_CENTER
@@ -224,7 +224,7 @@
      }
    #+END_SRC
 
-** Esimerkki
+** {{{example}}}
    Alla olevassa kaaviossa toistuu sama rakenne: kaavion yläosasta
    lähtee kaksi haaraa, joista kukin jakautuu kahteen haaraan, joista
    kukin jakautuu edelleen kahteen jne.

@@ -1,7 +1,7 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * Sisäkkäiset silmukat
-** Esimerkki
+** {{{example}}}
    Piirretään alla oleva kuva, jossa on lukuja 40 pikselin välein.
    Kukin luku kertoo, kuinka monentena se on piirretty.
    #+NAME: sisakkaiset-silmukat-luvut-sarakkeittain
@@ -46,7 +46,7 @@
       saa taas eri arvot. Näin piirretään siis toinen pystyrivi.
 
    Ohjelmassa luvut piirretään siis pystyrivi kerrallaan.
-** Esimerkki
+** {{{example}}}
    Processing-ohjelman piirtoikkuna koostuu /pikseleistä/, joista
    kukin on pieni neliö näytöllä. Jos piirtoikkunan koko olisi
    \(10\times 10\), suurennettuna se näyttäisi alla olevan kuvan
@@ -92,7 +92,7 @@
        }
 
    #+END_SRC
-** Esimerkki
+** {{{example}}}
    Kirjoitetaan ohjelma, joka piirtää valkoisia ympyröitä satunnaisiin
    piirtoikkunan kohtiin ja valkoiset janat kaikkien ympyröiden
    keskipisteiden välille.

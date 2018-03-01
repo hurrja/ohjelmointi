@@ -104,7 +104,7 @@
      size (100, 100);
      <<desimaaliluku-ympyra-runko>>
    #+END_SRC
-** Esimerkki
+** {{{example}}}
    Suomen, Ruotsin ja Tanskan lipuissa on jonkin värinen risti toisen
    värisellä pohjalla. Värien lisäksi lipuissa vaihtelevat
    mittasuhteet. Esimerkiksi Ruotsin lippu jakautuu eri osiin

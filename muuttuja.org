@@ -1,7 +1,7 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * Muuttuja 
-** Esimerkki
+** {{{example}}}
    Piirretään piirtoikkunaan mahdollisimman suuri ympyrä. Ympyrän
    halkaisijan pituus riippuu siitä, kumpi on suurempi: ikkunan leveys
    vai korkeus. Ensimmäisessä esimerkissä leveys on suurempi, joten
@@ -61,7 +61,7 @@
 
    Monet ohjelmoijat kirjoittavat muuttujien nimet pienillä
    kirjaimilla erotellakseen ne vakioista.
-** Esimerkki
+** {{{example}}}
    Piirretään ikkunaan palkki, joka peittää ~P~ prosenttia ikkunasta,
    missä ~P~ on vakio. Jos vakion ~P~ arvo on alle 90, palkki on
    sininen. Muussa tapauksessa palkki on vihreä.
@@ -96,7 +96,7 @@
      final float P = 95;
      <<muuttuja-palkki-runko>>
    #+END_SRC
-** Esimerkki
+** {{{example}}}
    Piirretään mahdollisimman suuri ellipsi, jonka keskipisteen
    \(x\)-koordinaatti on vakio ~X~. Korkeussuunnassa ellipsin
    keskipiste on ikkunan puolivälissä.
