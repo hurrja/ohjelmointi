@@ -154,24 +154,29 @@
    Ratkaise seuraavat tehtävät muuttujien avulla.
 
    1. Kirjoita ohjelma, joka piirtää \((400 \times 400)\)-kokoisen
-      piirtoikkunan vasempaan ylänurkkaan ympyrän. Ympyrän halkaisija
-      on 100, jos vakion ~K~ arvo on alle 100. Muussa tapauksessa
-      ympyrän halkaisija on 200. Testaa ohjelmasi toimivuus
-      muuttamalla vakion ~K~ arvoa.
-   2. Kirjoita ohjelma, joka piirtää piirtoikkunan keskelle
+      piirtoikkunan keskelle ympyrän. Määrittele ohjelmassasi muuttuja
+      ympyrän halkaisijalle. Halkaisija on 100, jos vakion ~K~ arvo on
+      alle 100. Muussa tapauksessa halkaisija on 200. Testaa ohjelmasi
+      toimivuus muuttamalla vakion ~K~ arvoa.
+   2. Kirjoita ohjelma, joka piirtää \((400 \times 400)\)-kokoisen
+      piirtoikkunan vasempaan ylänurkkaan ympyrän. Määrittele
+      ohjelmassasi muuttuja ympyrän halkaisijalle. Halkaisija on 100,
+      jos vakion ~K~ arvo on alle 100. Muussa tapauksessa halkaisija
+      on 200. Testaa ohjelmasi toimivuus muuttamalla vakion ~K~ arvoa.
+   3. Kirjoita ohjelma, joka piirtää piirtoikkunan keskelle
       mahdollisimman suuren valkoisen neliön. Testaa ohjelmasi
       toimivuus muuttamalla piirtoikkunan kokoa.
-   3. Piirrä piirtoikkunan keskelle /mahdollisimman suuri ympyrä/,
+   4. Piirrä piirtoikkunan keskelle /mahdollisimman suuri ympyrä/,
       joka toteuttaa seuraavan ehdon: ympyrän ja piirtoikkunan väliin
       jää joka suunnassa tilaa vähintään ympyrän säteen verran.
-   4. Kirjoita ohjelma, jossa määritellään vakiot ~X1~ ja ~X2~, joiden
+   5. Kirjoita ohjelma, jossa määritellään vakiot ~X1~ ja ~X2~, joiden
       molempien arvo on vähintään 0 ja korkeintaan 300. Ohjelma
       piirtää \((400 \times 400)\)-kokoiseen piirtoikkunan yläreunaan
       \((100\times 100)\)-kokoisen neliön, jonka vasemman yläkulman
       \(x\)-koordinaatti on pienempi vakioista ~X1~ ja ~X2~ (kumpi
       tahansa vakioista, jos vakiot ovat yhtä suuret). Testaa
       ohjelmasi toimivuus muuttamalla vakioiden arvoja.
-   5. 
+   6. 
       a) Jaetaan neliön muotoinen piirtoikkuna kahteen osaan alla
          olevan kuvan mukaisesti.
 	 #+NAME: nelio-jaettu
@@ -197,7 +202,7 @@
          punainen, jos sen keskipiste sijaitsee ikkunan
          \ldquo{}punaisessa\rdquo{} osassa. Muussa tapauksessa ympyrä
          on sininen.
-   6. Kirjoita ohjelma, joka piirtää neliön muotoiseen piirtoikkunaan
+   7. Kirjoita ohjelma, joka piirtää neliön muotoiseen piirtoikkunaan
       mahdollisimman suuren ympyrän, joka täyttää seuraavat ehdot.
       - Ohjelman vakio ~X~ määrää ympyrän keskipisteen
         \(x\)-koordinaatin.
@@ -226,16 +231,29 @@
          size (400, 400);
          final float K = 150;
 
-         float halkaisija;
+         float h; // halkaisija
          if (K < 100)
-           halkaisija = 100;
+           h = 100;
          else
-           halkaisija = 200;
+           h = 200;
 
-         float sade = halkaisija / 2; // ympyrän säde
-         ellipse (sade, sade, halkaisija, halkaisija);
+         ellipse (width / 2.0, height / 2.0, h, h);
        #+END_SRC
    2. 
+       #+BEGIN_SRC processing :exports both
+         size (400, 400);
+         final float K = 150;
+
+         float d; // halkaisija
+         if (K < 100)
+           d = 100;
+         else
+           d = 200;
+
+         float r = d / 2; // ympyrän säde
+         ellipse (r, r, d, d);
+       #+END_SRC
+   3. 
       #+BEGIN_SRC processing :exports both
         size (300, 400);
 	noStroke ();
@@ -249,7 +267,7 @@
         float puolet = sivu / 2; // puolet sivun pituudesta
         rect (width / 2.0 - puolet, height / 2.0 - puolet, sivu, sivu);
       #+END_SRC
-   3. Valitaan ikkunan leveydestä ja korkeudesta se, joka on
+   4. Valitaan ikkunan leveydestä ja korkeudesta se, joka on
       pienempi. Ehto toteutuu, kun ympyrän halkaisija on puolet
       valitusta mitasta.
       #+BEGIN_SRC processing :exports both
@@ -265,7 +283,7 @@
 
         ellipse (width / 2.0, height / 2.0, halkaisija, halkaisija);
       #+END_SRC
-   4. 
+   5. 
       #+BEGIN_SRC processing :exports both
         size (400, 400);
         final float X1 = 100;
@@ -279,7 +297,7 @@
 
         rect (x, 0, 100, 100);
       #+END_SRC
-   5. 
+   6. 
       a) Punaisessa osassa \(y < x.\)
 
       b) 
@@ -299,7 +317,7 @@
            fill (savy, 100, 100);
            ellipse (X, Y, 10, 10);
 	 #+END_SRC
-   6. 
+   7. 
       #+BEGIN_SRC processing :exports code :noweb yes
       <<muuttuja-ympyra-lavistajalla>>
       #+END_SRC
