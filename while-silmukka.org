@@ -233,6 +233,21 @@
 ** Tehtävät
    1. Piirrä alla oleva kuva. Piirtoikkunan koko on \(400\times 400\)
       ja ympyröiden halkaisija 20.
+      #+NAME: while-ympyroita-puolivalissa
+      #+BEGIN_SRC processing
+        size (400, 400);
+        final float H = 20; // halkaisija
+        float x = H / 2;
+
+        while (x < width)
+        {
+          ellipse (x, height / 2.0, H, H);
+          x = x + H;
+        }
+
+      #+END_SRC
+   2. Piirrä alla oleva kuva. Piirtoikkunan koko on \(400\times 400\)
+      ja ympyröiden halkaisija 20.
       #+NAME: while-ympyroita-halkaisijalla
       #+BEGIN_SRC processing
         size (400, 400);
@@ -246,11 +261,11 @@
         }
 
       #+END_SRC
-   2. Piirrä alla oleva kuva piirtoikkunaan, jonka koko on
+   3. Piirrä alla oleva kuva piirtoikkunaan, jonka koko on
       \(1000\times 100\). Kuvassa olevien ympyröiden halkaisija on
-      yhtä suuri kuin piirtoikkunan korkeus. Jos ympyrän keskipisteen
-      \(x\)-koordinaatti on ~x~, niin ympyrän värisävy on
-      \(\displaystyle\frac{\mathtt{x}}{10}\).
+      yhtä suuri kuin piirtoikkunan korkeus. Kunkin ympyrän värisävy
+      on \(\displaystyle\frac{\mathtt{x}}{10}\), missä ympyrän
+      keskipisteen \(x\)-koordinaatti on ~x~.
       #+NAME: while-varikkaita-ympyroita
       #+BEGIN_SRC processing
         size (1000, 100);
@@ -270,7 +285,7 @@
           x = x + HALKAISIJA;
         }
       #+END_SRC
-   3. Piirrä alla oleva kuva, jonka tulee skaalautua piirtoikkunan
+   4. Piirrä alla oleva kuva, jonka tulee skaalautua piirtoikkunan
       koon mukana. Kunkin pystyviivan värisävy on Processing-koodina
       ilmaistuna ~(x / width * 100)~, missä ~x~ on pystyviivan
       \(x\)-koordinaatti.
@@ -289,7 +304,7 @@
           x = x + 1;
         }
       #+END_SRC
-   4. Piirrä seuraavat kuvat. Piirtoikkunan koko on \(400\times 400\)
+   5. Piirrä seuraavat kuvat. Piirtoikkunan koko on \(400\times 400\)
       ja valkoisten neliöiden koko \(20\times 20\). 
       #+NAME: while-valkoisia-nelioita-alku
       #+BEGIN_SRC processing :exports none
@@ -336,7 +351,7 @@
              y = y - SIVU;
            }
 	 #+END_SRC
-   5. Piirrä alla oleva kuvio piirtoikkunaan, jonka koko on
+   6. Piirrä alla oleva kuvio piirtoikkunaan, jonka koko on
       \(401\times 401\). Vierekkäisten janojen päätepisteiden välinen
       etäisyys sekä ikkunan ylä- että alareunassa on 10.
       #+NAME: while-tiimalasi
@@ -351,7 +366,7 @@
         }
 
       #+END_SRC
-   6. Piirrä alla oleva kuvio \(600\times 400\)-kokoiseen
+   7. Piirrä alla oleva kuvio \(600\times 400\)-kokoiseen
       piirtoikkunaan. Valkoinen viiva koostuu lyhyistä
       janoista. Vasemmalla ylhäällä olevan janan vasemmanpuoleinen
       päätepiste on koordinaateissa \((1, 1)\). Jos viivan
@@ -383,17 +398,21 @@
 ** Ratkaisuja
    1. 
       #+BEGIN_SRC processing :exports code :noweb yes
-      <<while-ympyroita-halkaisijalla>>
+      <<while-ympyroita-puolivalissa>>
       #+END_SRC
    2. 
       #+BEGIN_SRC processing :exports code :noweb yes
-      <<while-varikkaita-ympyroita>>
+      <<while-ympyroita-halkaisijalla>>
       #+END_SRC
    3. 
       #+BEGIN_SRC processing :exports code :noweb yes
-      <<while-varikkaita-pystyviivoja>>
+      <<while-varikkaita-ympyroita>>
       #+END_SRC
    4. 
+      #+BEGIN_SRC processing :exports code :noweb yes
+      <<while-varikkaita-pystyviivoja>>
+      #+END_SRC
+   5. 
       a) 
 	 #+BEGIN_SRC processing :exports code :noweb yes
 	 <<while-valkoisia-nelioita-dy-pienempi>>
@@ -406,12 +425,12 @@
 	 #+BEGIN_SRC processing :exports code :noweb yes
 	 <<while-valkoisia-nelioita-dy-negatiivinen>>
 	 #+END_SRC
-   5. 
+   6. 
        #+BEGIN_SRC processing :exports code :noweb yes
        <<while-tiimalasi>>
        #+END_SRC
 
-   6. 
+   7. 
        #+BEGIN_SRC processing :exports code :noweb yes
        <<while-eksponentiaalinen>>
        #+END_SRC
