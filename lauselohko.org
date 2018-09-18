@@ -244,15 +244,16 @@
    #+END_SRC
 
 ** Tehtävät
-   1. Kirjoita ohjelma, joka piirtää \(400\times 400\)-kokoisen
-      piirtoikkunan yläreunaan erilaisen kuvion vakion ~P~ arvosta
-      riippuen. Vakion ~P~ arvo on vähintään 10 ja korkeintaan 200.
-      - Jos ~P~ on alle 100, piirretään punainen neliö, jonka sivun
-        pituus on ~P~.
+   1. Kirjoita seuraava ohjelma.
+      - Piirtoikkunan koko on \(400\times 400.\)
+      - Ohjelmassa on vakio ~P~. Anna vakiolle ~P~ ensin arvoksi
+        valitsemasi luku joka on vähintään 10 ja korkeintaan 200.
+      - Jos ~P~ on alle 100, ohjelma piirtää punaisen neliön, jonka
+        sivun pituus on ~P~.
       - Muuten piirretään vihreä ympyrä, jonka halkaisija on ~P~.
       Testaa ohjelmasi toimivuus eri vakion ~P~ arvoilla.
-   2. Kirjoita ohjelma, joka piirtää vakion ~K~ arvosta riippuen eri
-      värisen neliön: jos arvo on
+   2. Kirjoita ohjelma, jossa on vakio ~K.~ Ohjelma piirtää vakion ~K~
+      arvosta riippuen eri värisen neliön: jos arvo on
       - alle 10, neliö on punainen
       - vähintään 10 mutta alle 20, neliö on keltainen
       - vähintään 20, neliö on vihreä.
