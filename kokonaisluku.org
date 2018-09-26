@@ -1,52 +1,6 @@
 #+INCLUDE: ohjelmointi-kappaleiden-yhteiset-asetukset.org
 
 * Kokonaisluku
-** Liukuluvun ja kokonaisluvun ero
-   Tietokoneessa liukulukujen eli ~float~-tyyppisten muuttujien esitys
-   poikkeaa kokonaislukujen esityksestä. Täten Processing kielen luvut
-   ~1~ ja ~1.0~ esitetään tietokoneessa eri lailla, joten ne eivät
-   välttämättä ole täsmälleen yhtä suuria. Niinpä seuraavassa
-   ohjelmassa /ei voida taata/, että ehto ~(a == 1)~ on tosi, vaikka
-   muuttujan ~a~ arvo on kolmen desimaalin tarkkuudella ~1.000~.
-
-   #+BEGIN_SRC processing :exports both
-     size (200, 200);
-     colorMode (HSB, 100);
-
-     float a = 0.1; // muuttujan a arvo alussa
-
-     // lisätään 0.1 niin kauan, kun a < 0.99
-     while (a < 0.99)
-       a = a + 0.1;
-     // tämän jälkeen muuttujan a arvo lienee 1
-
-     if (a == 1) // MUTTA tämä ehto voi olla tosi tai sitten ei
-       background (30, 100, 100); // vihreä jos a:n arvo on 1
-     else
-       background (0, 100, 100); // punainen, jos a:n arvo ei ole 1
-
-     // piirretään vielä luku a tekstinä kuvan keskelle
-     fill (0);
-     textSize (40); // selitys alla
-     textAlign (CENTER, CENTER); // selitys alla
-     text (a, width / 2.0, height / 2.0); // selitys alla
-   #+END_SRC
-
-   #+BEGIN_QUOTE
-   Tietokoneohjelmassa liukuluku ~1.0~ ja kokonaisluku ~1~ eivät
-   välttämättä ole täsmälleen sama luku. Tällä on merkitystä
-   erityisesti silloin, kun lukuja vertaillaan jollain
-   vertailuoperaattoreista ~==~, ~!=~, ~>=~ tai ~<=~, ~>~ tai ~<~.
-   #+END_QUOTE
-** Kokonaislukumuuttuja ja -vakio
-   #+BEGIN_QUOTE
-   Jos jokin muuttuja tai vakio on kokonaisluku, määrittelyssä
-   käytetään ~float~ sanan sijasta sanaa ~int~, joka tulee englannin
-   kielen kokonaislukua tarkoittavasta sanasta /integer/. Tällöin on
-   syytä muistaa aiemmin esitetyt kokonaislukujen jakolaskun
-   ominaisuudet: kahden kokonaisluvun jakolaskun tulos on aina
-   kokonaisluku.
-   #+END_QUOTE
 ** Luvun piirtäminen tekstinä piirtoikkunaan
    Luku voidaan piirtää tekstinä funktion ~text()~ avulla. Tekstin
    kokoa voidaan muuttaa funktiolla ~textSize()~, ja tekstin
@@ -66,6 +20,23 @@
 
      text (42, 100, 100);
    #+END_SRC
+** Kokonaislukumuuttuja ja -vakio
+   #+BEGIN_QUOTE
+   Jos jokin muuttuja tai vakio on kokonaisluku, määrittelyssä
+   käytetään ~float~ sanan sijasta sanaa ~int~, joka tulee englannin
+   kielen kokonaislukua tarkoittavasta sanasta /integer/. Tällöin on
+   syytä muistaa aiemmin esitetyt kokonaislukujen jakolaskun
+   ominaisuudet: kahden kokonaisluvun jakolaskun tulos on aina
+   kokonaisluku.
+   #+END_QUOTE
+
+   #+BEGIN_QUOTE
+   Tietokoneohjelmassa liukuluku ~1.0~ ja kokonaisluku ~1~ eivät
+   välttämättä ole täsmälleen sama luku. Tällä on merkitystä
+   erityisesti silloin, kun lukuja vertaillaan jollain
+   vertailuoperaattoreista ~==~, ~!=~, ~>=~, ~<=~, ~>~ tai ~<~.
+   #+END_QUOTE
+
 ** {{{example}}}
    Piirretään \(1000\times 100\)-kokoiseen ikkunaan mustalle taustalle
    25 ensimmäistä positiivista kokonaislukua vasemmalta
@@ -73,6 +44,9 @@
    on punainen, muut ovat valkoisia. Lukujen keskipisteiden väli on
    30, joka on myös vasemmanpuoleisen luvun
    \(x\)-koordinaatti. Tekstin koko on 16 pikseliä.
+
+   Ohjelmassa muuttuja ~n~ on /pakko/ määritellä kokonaislukuna, jotta
+   vertailut kuten ~n == 10~ onnistuvat varmasti.
 
    #+NAME: kokonaisluku-luvut-rivissa
    #+BEGIN_SRC processing
@@ -84,14 +58,14 @@
      // tekstin keskikohta annetuissa koordinaateissa
      textAlign (CENTER, CENTER); 
 
-     final int VALI = 30; // tekstin keskipisteiden väli
+     final float VALI = 30; // tekstin keskipisteiden väli
      final float Y = height / 2.0; // tekstin keskipisteen Y-koordinaatti
+     float x = VALI; // ensimmäisen luvun x-koordinaatti
 
      // piirretään 25 numeroa
-     // turvallista vertailla, kun n on kokonaisluku
-     for (int n = 1, x = VALI; n <= 25; n += 1, x += VALI) 
+     for (int n = 1; n <= 25; n += 1, x += VALI) 
      {
-       if (n == 10) // turvallista vertailla
+       if (n == 10)
          fill (0, 100, 100); // punainen teksti
        else
          fill (100); // valkoinen teksti
@@ -105,20 +79,15 @@
    <<kokonaisluku-luvut-rivissa>>
    #+END_SRC
 
-   Esimerkissä myös vakio ~VALI~ sekä muuttuja ~x~ /voitaisiin/
-   määritellä kokonaisluvuiksi, koska ne saavat vain
-   kokonaislukuarvoja. Muuttuja ~n~ on kuitenkin /pakko/ määritellä
-   kokonaislukuna, jotta vertailut onnistuvat varmasti.
-
 ** Milloin käytetään kokonaislukumuuttujaa tai -vakiota?
    #+BEGIN_QUOTE
-   Kokonaislukumuuttujaa täytyy käyttää silloin, kun
+   Kokonaislukumuuttujaa /täytyy/ käyttää silloin, kun
    - muuttuja saa vain kokonaislukuarvoja ja
    - muuttujaa käytetään myös muuhun kuin piirtokoordinaattien
      laskemiseen (kuten muuttujan arvon vertaamiseen kokonaislukuun).
    Kokonaislukuvakiota täytyy käyttää samanlaisissa tilanteissa.
 
-   Liukulukumuuttujaa (tai vakiota) täytyy käyttää silloin, kun
+   Liukulukumuuttujaa (tai vakiota) /täytyy/ käyttää silloin, kun
    muuttuja saa desimaalilukuarvoja.
 
    Muissa tapauksissa ohjelmoija voi valita, haluaako hän käyttää
@@ -256,6 +225,37 @@
    jatkamisen ehtoa. 
    #+BEGIN_SRC processing :exports code :noweb yes
    <<kokonaisluku-sahalaita-pitenevin-askelin>>
+   #+END_SRC
+
+** Liukuluvun ja kokonaisluvun ero (valinnaista lisätietoa)
+   Tietokoneessa liukulukujen eli ~float~-tyyppisten muuttujien esitys
+   poikkeaa kokonaislukujen esityksestä. Täten Processing kielen luvut
+   ~1~ ja ~1.0~ esitetään tietokoneessa eri lailla, joten ne eivät
+   välttämättä ole täsmälleen yhtä suuria. Niinpä seuraavassa
+   ohjelmassa /ei voida taata/, että ehto ~(a == 1)~ on tosi, vaikka
+   muuttujan ~a~ arvo on kolmen desimaalin tarkkuudella ~1.000~.
+
+   #+BEGIN_SRC processing :exports both
+     size (200, 200);
+     colorMode (HSB, 100);
+
+     float a = 0.1; // muuttujan a arvo alussa
+
+     // lisätään 0.1 niin kauan, kun a < 0.99
+     while (a < 0.99)
+       a += 0.1;
+     // tämän jälkeen muuttujan a arvo lienee 1
+
+     if (a == 1) // MUTTA tämä ehto voi olla tosi tai sitten ei
+       background (30, 100, 100); // vihreä jos a:n arvo on 1
+     else
+       background (0, 100, 100); // punainen, jos a:n arvo ei ole 1
+
+     // piirretään vielä luku a tekstinä kuvan keskelle
+     fill (0);
+     textSize (40);
+     textAlign (CENTER, CENTER);
+     text (a, width / 2.0, height / 2.0);
    #+END_SRC
 
 ** Tehtävät
