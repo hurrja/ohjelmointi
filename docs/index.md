@@ -1,3 +1,3 @@
 # Ohjelmointi
 ## Opetusmateriaali
-   [https://www.syk.fi/ohjelmointi]
+   (https://www.syk.fi/ohjelmointi)
