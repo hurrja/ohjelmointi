@@ -10,8 +10,8 @@
 
 #+NAME: taulukko-liikkuva-ympyra
 #+BEGIN_SRC processing :noweb yes :exports none
-  final float XT = {<<taulukko-liikkuva-ympyra-x>>};
-  final float YT = {<<taulukko-liikkuva-ympyra-y>>};
+  final float[] XT = {<<taulukko-liikkuva-ympyra-x>>};
+  final float[] YT = {<<taulukko-liikkuva-ympyra-y>>};
   final int HALKAISIJA = 10;
 
   int indeksi;

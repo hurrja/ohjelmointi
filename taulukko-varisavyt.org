@@ -5,7 +5,7 @@
 
 #+NAME: taulukko-varisavyt
 #+BEGIN_SRC processing :noweb yes :exports none
-  final float VARISAVYT = {<<taulukko-varisavyarvot>>};
+  final float[] VARISAVYT = {<<taulukko-varisavyarvot>>};
 
   void setup ()
   {
